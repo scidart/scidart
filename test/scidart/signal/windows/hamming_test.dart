@@ -3,23 +3,23 @@ import 'package:scidart/scidart/signal/signal.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('generate a blackman window', () {
+  test('generate a hamming window', () {
     var M = 10;
-    var w = blackman(M);
+    var w = hamming(M);
 
     print(w);
 
     var wExpect = Array([
-      -1.38777878e-17,
-      5.08696327e-02,
-      2.58000502e-01,
-      6.30000000e-01,
-      9.51129866e-01,
-      9.51129866e-01,
-      6.30000000e-01,
-      2.58000502e-01,
-      5.08696327e-02,
-      -1.38777878e-17
+      0.08,
+      0.18761956,
+      0.46012184,
+      0.77,
+      0.97225861,
+      0.97225861,
+      0.77,
+      0.46012184,
+      0.18761956,
+      0.08
     ]);
 
     var fractionDigits = 8;
@@ -29,23 +29,23 @@ void main() {
     }
   });
 
-  test('generate a blackman asym', () {
+  test('generate a hamming  asym', () {
     var M = 10;
-    var w = blackman(M, sym: false);
+    var w = hamming(M, sym: false);
 
     print(w);
 
     var wExpect = Array([
-      -1.38777878e-17,
-      4.02128624e-02,
-      2.00770143e-01,
-      5.09787138e-01,
-      8.49229857e-01,
-      1.00000000e+00,
-      8.49229857e-01,
-      5.09787138e-01,
-      2.00770143e-01,
-      4.02128624e-02
+      0.08,
+      0.16785218,
+      0.39785218,
+      0.68214782,
+      0.91214782,
+      1.0,
+      0.91214782,
+      0.68214782,
+      0.39785218,
+      0.16785218
     ]);
 
     var fractionDigits = 8;

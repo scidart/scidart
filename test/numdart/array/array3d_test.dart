@@ -3,12 +3,12 @@ import 'package:test/test.dart';
 
 void main() {
   test('create a 3x3x3 matrix that represent a book', () {
-    var book = Array3d();
+    var book = Array3d.empty();
 
-    var page = Array2d();
-    page.add([1.0 ,2.0 , 3.0]);
-    page.add([1.0 ,2.0 , 3.0]);
-    page.add([1.0 ,2.0 , 3.0]);
+    var page = Array2d.empty();
+    page.add(Array([1.0 ,2.0 , 3.0]));
+    page.add(Array([1.0 ,2.0 , 3.0]));
+    page.add(Array([1.0 ,2.0 , 3.0]));
     
     book.add(page);
     book.add(page);
@@ -28,5 +28,26 @@ void main() {
     expect(book[i].elementAt(2).elementAt(0), 1.0);
     expect(book[i].elementAt(2).elementAt(1), 2.0);
     expect(book[i].elementAt(2).elementAt(2), 3.0);
+  });
+
+  test('create a 3x3x3 matrix that represent a book', () {
+    var book = Array3d.empty();
+
+    var page = Array2d.empty();
+    page.add(Array([1.0 ,2.0 , 3.0]));
+    page.add(Array([1.0 ,2.0 , 3.0]));
+    page.add(Array([1.0 ,2.0 , 3.0]));
+
+    book.add(page);
+    book.add(page);
+    book.add(page);
+
+    var str = book.toString();
+
+    var strExpec = "Array3d([Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])])";
+
+    print(book);
+
+    expect(str, strExpec);
   });
 }

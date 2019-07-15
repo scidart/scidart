@@ -1,4 +1,6 @@
 import 'dart:core';
+import 'package:scidart/numdart/math/fastmath.dart' as fmath;
+import 'dart:math' as math;
 
 import 'package:scidart/numdart/geometric/pythagoras.dart';
 
@@ -7,7 +9,10 @@ import 'package:scidart/numdart/geometric/pythagoras.dart';
 ///  ----------
 ///  Complex({this.real = 0, this.imaginary = 0}) : default constructor.
 ///
-///  Complex.ri(this.real, this.imaginary) : constructor with values
+///  Complex.ri(this.real, this.imaginary) : constructor with
+///  References
+///  ----------
+///  .. [1] "Complex number representation in Dart". https://github.com/rwl/complex. Retrieved 2019-07-15.
 ///  Examples
 ///  --------
 ///  >>> import 'package:scidart/numdart/numdart.dart';
@@ -134,6 +139,22 @@ class Complex {
   ///  >>> Complex(real: 4.0, imaginary: 4.0)
   Complex multiplyScalar(num b) {
     return Complex(real: real*b, imaginary: imaginary*b);
+  }
+
+  ///  Compute the [cosine](http://mathworld.wolfram.com/Cosine.html)
+  ///  of this complex number.
+  ///
+  ///  Implements the formula:
+  ///
+  ///      cos(a + bi) = cos(a)cosh(b) - sin(a)sinh(b)i
+  ///
+  ///  Examples
+  ///  --------
+  ///  >>> var c1 = Complex(real: 3.0, imaginary: 4.0);
+  ///  >>> c1.cos();
+  ///  Complex(real: -27.034945603074224, imaginary: -3.8511533348117775)
+  Complex cos() {
+    return Complex(real: math.cos(real) * fmath.cosh(imaginary), imaginary: -math.sin(real) * fmath.sinh(imaginary));
   }
 
   ///  Convert a Complex object (number) to a String representation

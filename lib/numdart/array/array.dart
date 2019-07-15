@@ -5,7 +5,7 @@ import 'package:scidart/numdart/numbers/complex.dart';
 
 import 'arrayComplex.dart';
 
-///  Class to a Array.
+///  Class to create 1 dimension Array.
 ///  Constructors:
 ///  ----------
 ///  Array(List<double> list) : default constructor

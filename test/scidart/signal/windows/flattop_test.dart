@@ -3,23 +3,23 @@ import 'package:scidart/scidart/signal/signal.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('generate a blackman window', () {
+  test('generate a flattop window', () {
     var M = 10;
-    var w = blackman(M);
+    var w = flattop(M);
 
     print(w);
 
     var wExpect = Array([
-      -1.38777878e-17,
-      5.08696327e-02,
-      2.58000502e-01,
-      6.30000000e-01,
-      9.51129866e-01,
-      9.51129866e-01,
-      6.30000000e-01,
-      2.58000502e-01,
-      5.08696327e-02,
-      -1.38777878e-17
+      -4.21051000e-04,
+      -2.01720315e-02,
+      -7.01990421e-02,
+      1.98210530e-01,
+      8.62476344e-01,
+      8.62476344e-01,
+      1.98210530e-01,
+      -7.01990421e-02,
+      -2.01720315e-02,
+      -4.21051000e-04
     ]);
 
     var fractionDigits = 8;
@@ -29,23 +29,23 @@ void main() {
     }
   });
 
-  test('generate a blackman asym', () {
+  test('generate a flattop  asym', () {
     var M = 10;
-    var w = blackman(M, sym: false);
+    var w = flattop(M, sym: false);
 
     print(w);
 
     var wExpect = Array([
-      -1.38777878e-17,
-      4.02128624e-02,
-      2.00770143e-01,
-      5.09787138e-01,
-      8.49229857e-01,
+      -4.21051000e-04,
+      -1.55972747e-02,
+      -6.77142521e-02,
+      5.45446482e-02,
+      6.06872153e-01,
       1.00000000e+00,
-      8.49229857e-01,
-      5.09787138e-01,
-      2.00770143e-01,
-      4.02128624e-02
+      6.06872153e-01,
+      5.45446482e-02,
+      -6.77142521e-02,
+      -1.55972747e-02
     ]);
 
     var fractionDigits = 8;

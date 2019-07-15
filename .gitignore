@@ -21,3 +21,6 @@ doc/api/
 *.js.map
 .DS_Store
 .idea/
+
+# Python jupyter
+.ipynb_checkpoints/

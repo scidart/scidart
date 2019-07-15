@@ -1,4 +1,5 @@
 import 'package:scidart/numdart/numbers/complex.dart';
+import 'package:scidart/numdart/numdart.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -86,6 +87,16 @@ test('Conjugate positive imaginary complex numbers', () {
     
     expect(c1.real, 1.0);
     expect(c1.imaginary, 1.0);
+  });
+
+  test('cos', () {
+    var c1 = Complex(real: 3.0, imaginary: 4.0);
+    c1 = c1.cos();
+
+    print(c1);
+
+    expect(truncate(c1.real, 5), truncate(-27.034945603074, 5));
+    expect(truncate(c1.imaginary, 5), truncate(-3.8511533348118, 5));
   });
 
   test('toString', () {

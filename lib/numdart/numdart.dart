@@ -17,3 +17,4 @@ export 'spaces/ones.dart';
 export 'spaces/arange.dart';
 
 export 'dart:math';
+export 'math/fastmath.dart';

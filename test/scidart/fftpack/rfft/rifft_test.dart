@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('irfft of a signal', () {
-    var X = ArrayComplex.fromList([
+    var X = ArrayComplex([
       Complex(real: 4.0, imaginary: 0.0),
       Complex(real: 1.0, imaginary: -2.41421356),
       Complex(real: 0.0, imaginary: 0.0),

@@ -14,7 +14,7 @@ import 'arrayComplex.dart';
 ///
 ///  Array.fromArray(Array list) : from another array
 ///
-///  Array.length(int length) : from a fixed length
+///  Array.fixed(int length) : from a fixed length
 ///  Examples
 ///  --------
 ///  >>> import 'package:scidart/numdart/numdart.dart';
@@ -40,7 +40,7 @@ class Array extends ListBase<double> {
     l = list;
   }
 
-  Array.length(int length) {
+  Array.fixed(int length) {
     l = List<double>(length);
   }
   //#endregion
@@ -76,7 +76,7 @@ class Array extends ListBase<double> {
       throw ('both arrays need have the same dimesion');
     }
 
-    var c = Array.length(this.length);
+    var c = Array.fixed(this.length);
     for (int i = 0; i < this.length; i++) {
       c[i] = this[i] * b[i];
     }
@@ -92,7 +92,7 @@ class Array extends ListBase<double> {
   ///  >>> list.multiplyToScalar(2);
   ///  Array([4.0, 4.0, 4.0])
   Array multiplyToScalar(num b) {
-    var c = Array.length(this.length);
+    var c = Array.fixed(this.length);
     for (int i = 0; i < this.length; i++) {
       c[i] = this[i] * b;
     }
@@ -106,7 +106,7 @@ class Array extends ListBase<double> {
   ///  >>> list.divisionToScalar(2);
   ///  Array([2.0, 4.0, 8.0])
   Array divisionToScalar(num b) {
-    var c = Array.length(this.length);
+    var c = Array.fixed(this.length);
     for (int i = 0; i < this.length; i++) {
       c[i] = this[i] / b;
     }
@@ -120,7 +120,7 @@ class Array extends ListBase<double> {
   ///  >>> list.toComplexArray();
   ///  ArrayComplex([Complex(real: 1.0, imaginary: 0.0), Complex(real: 2.0, imaginary: 0.0) , Complex(real: 3.0, imaginary: 0.0)])
   ArrayComplex toComplexArray() {
-    var c = ArrayComplex.length(this.length);
+    var c = ArrayComplex.fixed(this.length);
     for (int i = 0; i < this.length; i++) {
       c[i] = Complex(real: this[i]);
     }
@@ -134,7 +134,7 @@ class Array extends ListBase<double> {
   ///  >>> var cosn = n.cos();
   ///  Array([6.123233995736766e-17, -1.0, -1.8369701987210297e-16, 1.0])
   Array cos() {
-    var c = Array.length(this.length);
+    var c = Array.fixed(this.length);
     for (int i = 0; i < this.length; i++) {
       c[i] = math.cos(this[i]);
     }
@@ -149,7 +149,7 @@ class Array extends ListBase<double> {
   ///  >>> n.sum(n2);
   ///  Array([2.0, 4.0, 6.0])
   Array sum(Array b) {
-    var c = Array.length(this.length);
+    var c = Array.fixed(this.length);
     for (int i = 0; i < this.length; i++) {
       c[i] = this[i] + b[i];
     }
@@ -164,7 +164,7 @@ class Array extends ListBase<double> {
   ///  >>> n.sum(n2);
   ///  Array([1.0, 2.0])
   Array truncateLast() {
-    var c = Array.length(this.length - 1);
+    var c = Array.fixed(this.length - 1);
     for (int i = 0; i < c.length; i++) {
       c[i] = this[i];
     }

@@ -12,7 +12,7 @@ import 'package:scidart/numdart/numbers/complex.dart';
 ///
 ///  ArrayComplex.fromArray(Array list) : from another array
 ///
-///  ArrayComplex.length(int length) : from a fixed length
+///  ArrayComplex.fixed(int length) : from a fixed length
 ///  Examples
 ///  --------
 ///  >>> import 'package:scidart/numdart/numdart.dart';
@@ -36,7 +36,7 @@ class ArrayComplex extends ListBase<Complex> {
     l = list;
   }
 
-  ArrayComplex.length(int length) {
+  ArrayComplex.fixed(int length) {
     l = List<Complex>(length);
   }
   //#endregion
@@ -76,7 +76,7 @@ class ArrayComplex extends ListBase<Complex> {
       throw('both arrays need have the same dimesion');
     }
 
-    var c = ArrayComplex.length(this.length);
+    var c = ArrayComplex.fixed(this.length);
     for(int i = 0; i < this.length; i++) {
       c[i] = this[i] * b[i];
     }
@@ -96,7 +96,7 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>> list.multiplyToScalar(2);
   ///  ArrayComplex([Complex(real: 4.0, imaginary: 4.0), Complex(real: 4.0, imaginary: 4.0), Complex(real: 4.0, imaginary: 4.0)])
   ArrayComplex multiplyToScalar(num b) {
-    var c = ArrayComplex.length(this.length);
+    var c = ArrayComplex.fixed(this.length);
     for(var i = 0; i < length; i++) {
       c[i] = this[i].multiplyScalar(b);
     }
@@ -114,7 +114,7 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>> list.divisionToScalar(2);
   ///  ArrayComplex([Complex(real: 2.0, imaginary: 2.0), Complex(real: 4.0, imaginary: 4.0), Complex(real: 8.0, imaginary: 8.0)])
   ArrayComplex divisionToScalar(num b) {
-    var c = ArrayComplex.length(this.length);
+    var c = ArrayComplex.fixed(this.length);
     for (var i = 0; i < length; i++) {
       c[i] = this[i].divideScalar(b);
     }
@@ -136,7 +136,7 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>> list.sum(list2);
   ///  ArrayComplex([Complex(real: 2.0, imaginary: 2.0), Complex(real: 2.0, imaginary: 2.0), Complex(real: 2.0, imaginary: 2.0)])
   ArrayComplex sum(ArrayComplex b) {
-    var c = ArrayComplex.length(this.length);
+    var c = ArrayComplex.fixed(this.length);
     for (int i = 0; i < this.length; i++) {
       c[i] = this[i] + b[i];
     }
@@ -150,7 +150,7 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>>  c1.cos();
   ///  Complex(real: -27.034945603074224, imaginary: -3.8511533348117775)
   ArrayComplex cos() {
-    var c = ArrayComplex.length(this.length);
+    var c = ArrayComplex.fixed(this.length);
     for (int i = 0; i < this.length; i++) {
       c[i] = this[i].cos();
     }
@@ -167,7 +167,7 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>> list.conjugate();
   ///  ArrayComplex([Complex(real: 1.0, imaginary: -1.0), Complex(real: 2.0, imaginary: -2.0), Complex(real: 3.0, imaginary: -3.0)])
   ArrayComplex conjugate() {
-    var c = ArrayComplex.length(this.length);
+    var c = ArrayComplex.fixed(this.length);
     for (var i = 0; i < length; i++) {
       c[i] = this[i].conjugate();
     }
@@ -184,7 +184,7 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>> list.abs();
   ///  Array([5.0, 5.0, 5.0])
   Array abs() {
-    var c = Array.length(this.length);
+    var c = Array.fixed(this.length);
     for (var i = 0; i < length; i++) {
       c[i] = this[i].abs();
     }
@@ -201,7 +201,7 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>> list.cos()
   ///  ArrayComplex([Complex(real: -27.034945603074224, imaginary: -3.8511533348117775), Complex(real: -27.034945603074224, imaginary: -3.8511533348117775), Complex(real: -27.034945603074224, imaginary: -3.8511533348117775)])
   ArrayComplex truncateLast() {
-    var c = ArrayComplex.length(this.length - 1);
+    var c = ArrayComplex.fixed(this.length - 1);
     for (int i = 0; i < c.length; i++) {
       c[i] = this[i];
     }

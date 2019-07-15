@@ -11,7 +11,7 @@ import 'array.dart';
 ///
 ///  Array2d.fromArray(Array list) : from another array
 ///
-///  Array2d.length(int length) : from a fixed length
+///  Array2d.fixed(int length) : from a fixed length
 ///  Examples
 ///  --------
 ///  >>> import 'package:scidart/numdart/numdart.dart';
@@ -36,8 +36,11 @@ class Array2d extends ListBase<Array> {
     l = list;
   }
 
-  Array2d.length(int length) {
-    l = List<Array>(length);
+  Array2d.fixed(int row, int column) {
+    l = List<Array>(row);
+    for (int i = 0; i < row; i++) {
+      l[i] = Array.fixed(column);
+    }
   }
   //#endregion
 

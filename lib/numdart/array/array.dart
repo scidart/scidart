@@ -37,11 +37,16 @@ class Array extends ListBase<double> {
   Array.empty();
 
   Array.fromArray(Array list) {
-    l = list;
+    // deep copy of the parameter
+    l = list.map((element) => element).toList();
   }
 
-  Array.fixed(int length) {
-    l = List<double>(length);
+  Array.fixed(int length, {double initialValue}) {
+    if (initialValue != null) {
+      l = List<double>.generate(length, (i) => initialValue);
+    } else {
+      l = List<double>(length);
+    }
   }
   //#endregion
 
@@ -72,15 +77,45 @@ class Array extends ListBase<double> {
   ///  >>> a1 * a2;
   ///  Array([4.0, 4.0, 4.0])
   Array operator *(Array b) {
-    if (this.length != b.length) {
-      throw ('both arrays need have the same dimesion');
-    }
-
+    _checkArray(b);
     var c = Array.fixed(this.length);
     for (int i = 0; i < this.length; i++) {
       c[i] = this[i] * b[i];
     }
     return c;
+  }
+
+  ///  Sum two arrays
+  ///  Examples
+  ///  --------
+  ///  >>> var n = Array([1, 2, 3]);
+  ///  >>> var n2 = Array([1, 2, 3]);
+  ///  >>> n + n2;
+  ///  Array([2.0, 4.0, 6.0])
+  @override Array operator +(List<double> b) {
+    _checkArray(b);
+    var c = Array.fixed(this.length);
+    for (int i = 0; i < this.length; i++) {
+      c[i] = this[i] + b[i];
+    }
+    return c;
+  }
+
+  ///  compare two arrays
+  ///  Examples
+  ///  --------
+  ///  >>> var n = Array([1, 2, 3]);
+  ///  >>> var n2 = Array([1, 2, 3]);
+  ///  >>> n == n2;
+  ///  true
+  bool operator ==(b) {
+    _checkArray(b);
+    for (var i = 0; i < this.length; i++) {
+      if (this[i] != b[i]) {
+        return false;
+      }
+    }
+    return true;
   }
   //#endregion
 
@@ -141,21 +176,6 @@ class Array extends ListBase<double> {
     return c;
   }
 
-  ///  Sum two arrays
-  ///  Examples
-  ///  --------
-  ///  >>> var n = Array([1, 2, 3]);
-  ///  >>> var n2 = Array([1, 2, 3]);
-  ///  >>> n.sum(n2);
-  ///  Array([2.0, 4.0, 6.0])
-  Array sum(Array b) {
-    var c = Array.fixed(this.length);
-    for (int i = 0; i < this.length; i++) {
-      c[i] = this[i] + b[i];
-    }
-    return c;
-  }
-
   ///  Return a Array without the last element
   ///  Examples
   ///  --------
@@ -185,6 +205,12 @@ class Array extends ListBase<double> {
   String toString() {
     var str = IterableBase.iterableToFullString(this, '[', ']');
     return '\n  Array(${str})';
+  }
+
+  void _checkArray(Array b) {
+    if (this.length != b.length) {
+      throw ('both arrays need have the same dimesion');
+    }
   }
   //#endregion
 }

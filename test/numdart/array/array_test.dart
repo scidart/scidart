@@ -108,13 +108,23 @@ void main() {
   test('sum', () {
     var n = Array([1, 2, 3]);
     var n2 = Array([1, 2, 3]);
-    var n3 = n.sum(n2);
+    var n3 = n + n2;
 
     var n3Exp = Array([2, 4, 6]);
 
     for(var i=0; i< n.length; i++) {
       expect(truncate(n3[i], 4), truncate(n3Exp[i], 4));
     }
+  });
+
+  test('compare ==', () {
+    var n = Array([1, 2, 3]);
+    var n2 = Array([1, 2, 3]);
+    var n3 = n == n2;
+
+    var n3Exp = true;
+
+    expect(n3, n3Exp);
   });
 
   test('truncateLast', () {

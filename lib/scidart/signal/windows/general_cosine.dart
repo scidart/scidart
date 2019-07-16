@@ -65,7 +65,7 @@ Array generalCosine(int M, Array a, {bool sym = true}) {
   var fac = linspace(-pi, pi, num: MExt);
   var w = zeros(MExt);
   for(var k = 0; k < a.length; k++) {
-    w = w.sum(fac.multiplyToScalar(k).cos().multiplyToScalar(a[k]));
+    w += fac.multiplyToScalar(k).cos().multiplyToScalar(a[k]);
   }
   
   return _truncate(w, needsTrunc);

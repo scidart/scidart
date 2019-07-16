@@ -123,7 +123,7 @@ Array polyfit(Array x, Array y, int deg,
     {double rcond, bool full = false, Array w, bool cov = false}) {
   var order = deg + 1;
 
-  /// check arguments.
+  // check arguments.
   if (deg < 0) {
     throw FormatException("expected deg >= 0");
   }
@@ -134,7 +134,7 @@ Array polyfit(Array x, Array y, int deg,
     throw FormatException("expected x and y to have same length");
   }
 
-  /// set rcond
+  // set rcond
   if (rcond == null) {
     rcond = x.length * FloatInfo.eps;
   }
@@ -148,13 +148,8 @@ Array polyfit(Array x, Array y, int deg,
     if (w.length != y.length) {
       throw FormatException("expected w and y to have the same length");
     }
-    lhs *= w[:, NX.newaxis];
-    if (rhs.ndim == 2) {
-      rhs *= w[:, NX.newaxis]
-    }
-    else {
-      rhs *= w;
-    }
+    lhs = lhs.multiplyColumns(w);
+    rhs *= w;
   }
 
   // scale lhs to improve condition number and solve
@@ -170,7 +165,7 @@ Array polyfit(Array x, Array y, int deg,
   }
 
   if (full) {
-    return c, resids, rank, s, rcond
+  return c, resids, rank, s, rcond;
   else if (cov) {
     Vbase = inv(dot(lhs.T, lhs))
     Vbase /= NX.outer(scale, scale)

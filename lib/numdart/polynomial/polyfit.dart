@@ -117,6 +117,7 @@
 ///  (-2, 2)
 ///  >>> plt.show()
 import 'package:scidart/numdart/array/array.dart';
+import 'package:scidart/numdart/array/twodim_base/vander.dart';
 
 Array polyfit(Array x, Array y, int deg,
     {double rcond, bool full = false, Array w, bool cov = false}) {
@@ -139,14 +140,15 @@ Array polyfit(Array x, Array y, int deg,
   }
 
   // set up least squares equation for powers of x
-  var lhs = vander(x, order);
-  rhs = y
+  var lhs = vander(x, N: order);
+  var rhs = y;
 
-  # apply weighting
-  if w is not None:
-  w = NX.asarray (w) +0.0
+  // apply weighting
+  if (w is not None) {
+    w = NX.asarray (w) +0.0
+  }
   if w.ndim != 1:
-  raise TypeError ("expected a 1-d array for weights")
+    raise TypeError ("expected a 1-d array for weights")
     if w.shape[0] != y.shape[0]:
     raise TypeError ("expected w and y to have the same length")
       lhs *= w[

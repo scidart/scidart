@@ -75,7 +75,7 @@ class Array2d extends ListBase<Array> {
   ///  Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])
   @override
   String toString() {
-    var str = IterableBase.iterableToFullString(this, '[', ']');
+    var str = IterableBase.iterableToFullString(this, '[', '\n]');
     return 'Array2d(${str})';
   }
   //#endregion

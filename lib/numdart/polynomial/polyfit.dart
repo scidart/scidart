@@ -144,54 +144,55 @@ Array polyfit(Array x, Array y, int deg,
   var rhs = y;
 
   // apply weighting
-  if (w is not None) {
-    w = NX.asarray (w) +0.0
+  if (w != null) {
+    if (w.length != y.length) {
+      throw FormatException("expected w and y to have the same length");
+    }
+    lhs *= w[:, NX.newaxis];
+    if (rhs.ndim == 2) {
+      rhs *= w[:, NX.newaxis]
+    }
+    else {
+      rhs *= w;
+    }
   }
-  if w.ndim != 1:
-    raise TypeError ("expected a 1-d array for weights")
-    if w.shape[0] != y.shape[0]:
-    raise TypeError ("expected w and y to have the same length")
-      lhs *= w[
-  :, NX.newaxis]
-  if rhs.ndim == 2:
-  rhs *= w[:, NX.newaxis]
-  else:
-  rhs *= w
 
-  # scale lhs to improve condition number and solve
+  // scale lhs to improve condition number and solve
   scale = NX.sqrt((lhs*lhs).sum(axis=0))
   lhs /= scale
   c, resids, rank, s = lstsq(lhs, rhs, rcond)
   c = (c.T/scale).T # broadcast scale coefficients
 
-  # warn on rank reduction, which indicates an ill conditioned matrix
-  if rank != order and not full:
-  msg = "Polyfit may be poorly conditioned"
-  warnings.warn(msg, RankWarning, stacklevel=2)
+  // warn on rank reduction, which indicates an ill conditioned matrix
+  if (rank != order and not full) {
+    msg = "Polyfit may be poorly conditioned"
+    warnings.warn(msg, RankWarning, stacklevel=2)
+  }
 
-  if full:
-  return c, resids, rank, s, rcond
-  elif cov:
-  Vbase = inv(dot(lhs.T, lhs))
-  Vbase /= NX.outer(scale, scale)
-  # Some literature ignores the extra -2.0 factor in the denominator, but
-  # it is included here because the covariance of Multivariate Student-T
-  # (which is implied by a Bayesian uncertainty analysis) includes it.
-  # Plus, it gives a slightly more conservative estimate of uncertainty.
-  if len(x) <= order + 2:
-  raise ValueError("the number of data points must exceed order + 2 "
-  "for Bayesian estimate the covariance matrix")
-  fac = resids / (len(x) - order - 2.0)
-  if y.ndim == 1:
-  return c, Vbase * fac
-  else:
-  return c, Vbase[:,:, NX.newaxis]
-  *
-  fac
-  else
-  :
-  return
-  c
+  if (full) {
+    return c, resids, rank, s, rcond
+  else if (cov) {
+    Vbase = inv(dot(lhs.T, lhs))
+    Vbase /= NX.outer(scale, scale)
+    // Some literature ignores the extra -2.0 factor in the denominator, but
+    // it is included here because the covariance of Multivariate Student-T
+    // (which is implied by a Bayesian uncertainty analysis) includes it.
+    // Plus, it gives a slightly more conservative estimate of uncertainty.
+    if (len(x) <= order + 2) {
+      raise ValueError("the number of data points must exceed order + 2 "
+        "for Bayesian estimate the covariance matrix")
+    }
+    fac = resids / (len(x) - order - 2.0)
+    if (y.ndim == 1) {
+      return c, Vbase * fac
+    }
+    else {
+      return c, Vbase[:,:, NX.newaxis] * fac
+    }
+  }
+  else {
+    return c;
+  }
 }
 
 class FloatInfo {

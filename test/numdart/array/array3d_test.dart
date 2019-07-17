@@ -44,7 +44,19 @@ void main() {
 
     var str = book.toString();
 
-    var strExpec = "Array3d([Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])])";
+    var strExpec = 'Array3d([Array2d([\n' +
+        '  Array([1.0, 2.0, 3.0]), \n' +
+        '  Array([1.0, 2.0, 3.0]), \n' +
+        '  Array([1.0, 2.0, 3.0])\n' +
+        ']), Array2d([\n' +
+        '  Array([1.0, 2.0, 3.0]), \n' +
+        '  Array([1.0, 2.0, 3.0]), \n' +
+        '  Array([1.0, 2.0, 3.0])\n' +
+        ']), Array2d([\n' +
+        '  Array([1.0, 2.0, 3.0]), \n' +
+        '  Array([1.0, 2.0, 3.0]), \n' +
+        '  Array([1.0, 2.0, 3.0])\n' +
+        '])])';
 
     print(book);
 

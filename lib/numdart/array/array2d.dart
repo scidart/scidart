@@ -85,7 +85,7 @@ class Array2d extends ListBase<Array> {
   Array2d operator *(Array2d b) {
     _checkArray2dColunmsLength(this);
     _checkArray2dColunmsLength(b);
-    _checkArray2dLength(b);
+    _checkArray2dLength(this, b);
 
     int aRows = this.length;
     int aColumns = this[0].length;
@@ -111,7 +111,7 @@ class Array2d extends ListBase<Array> {
   bool operator ==(b) {
     _checkArray2dColunmsLength(this);
     _checkArray2dColunmsLength(b);
-    _checkArray2dLength(b);
+    _checkArray2dLength(this, b);
 
     for (var i = 0; i < this.length; i++) {
       if (this[i] != b[i]) {
@@ -210,6 +210,71 @@ class Array2d extends ListBase<Array> {
 
     return c;
   }
+
+  ///  Sum the all columns of the array
+  ///  Examples
+  ///  --------
+  ///  >>> var a = Array2d([
+  ///  >>>    Array([1, 1, 1]),
+  ///  >>>    Array([1, 1, 1]),
+  ///  >>>    Array([1, 1, 1])
+  ///  >>> ]);
+  ///  a.sumColumns();
+  ///  Array([3, 3, 3])
+  Array sumColumns() {
+    _checkArray2dColunmsLength(this);
+
+    int aRows = this.length;
+    int aColumns = this[0].length;
+
+    var c = Array.fixed(aColumns, initialValue: 0.0);
+
+    for (int j = 0; j < aColumns; j++) { // bColumn
+      for (int i = 0; i < aRows; i++) { //
+        c[j] += this[i][j];
+      }
+    }
+
+    return c;
+  }
+
+  ///  Divide all the columns by a Array
+  ///  Examples
+  ///  --------
+  ///  >>> var a = Array2d([
+  ///  >>>   Array([2, 2, 2]),
+  ///  >>>   Array([2, 2, 2]),
+  ///  >>>   Array([2, 2, 2])
+  ///  >>> ]);
+  ///  >>> var b = Array([2, 2, 2]);
+  ///  >>> a.divideColumns(b);
+  ///  Array2d([
+  ///    Array([1, 1, 1]),
+  ///    Array([1, 1, 1]),
+  ///    Array([1, 1, 1])
+  ///  ]);
+  Array2d divideColumns(Array b) {
+    _checkArray2dColunmsLength(this);
+
+    int aRows = this.length;
+    int aColumns = this[0].length;
+    int bColumns = b.length;
+
+    if (aColumns != bColumns) {
+      throw FormatException(
+          "Then length of B need be the same length of columns of A");
+    }
+
+    var c = Array2d.fromArray(this); // make a copy of local
+
+    for (int i = 0; i < aRows; i++) { //
+      for (int j = 0; j < aColumns; j++) { // bColumn
+        c[i][j] /= b[i];
+      }
+    }
+
+    return c;
+  }
   //#endregion
 
   //#region overload methods
@@ -229,6 +294,7 @@ class Array2d extends ListBase<Array> {
     return 'Array2d(${str})';
   }
 
+  /// check all the rows have the same length of columns
   void _checkArray2dColunmsLength(List<Array> list) {
     // check if all the columns has the same length
     var columns = list[0].length;
@@ -240,9 +306,10 @@ class Array2d extends ListBase<Array> {
     }
   }
 
-  void _checkArray2dLength(Array2d b) {
-    int aRows = this.length;
-    int aColumns = this[0].length;
+  /// check if inputs have the same size
+  void _checkArray2dLength(Array2d a, Array2d b) {
+    int aRows = a.length;
+    int aColumns = a[0].length;
     int bRows = b.length;
     int bColumns = b[0].length;
 

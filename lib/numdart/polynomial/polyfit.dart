@@ -153,8 +153,10 @@ Array polyfit(Array x, Array y, int deg,
   }
 
   // scale lhs to improve condition number and solve
-  scale = NX.sqrt((lhs*lhs).sum(axis=0))
-  lhs /= scale
+  var scale = (lhs * lhs).sumColumns().sqrt();
+
+  lhs = lhs.divideColumns(scale);
+
   c, resids, rank, s = lstsq(lhs, rhs, rcond)
   c = (c.T/scale).T # broadcast scale coefficients
 

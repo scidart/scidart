@@ -36,7 +36,11 @@ void main() {
 
     var str = matrix.toString();
 
-    var strExpec = "Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])";
+    var strExpec = 'Array2d([\n' +
+        '  Array([1.0, 2.0, 3.0]), \n' +
+        '  Array([1.0, 2.0, 3.0]), \n' +
+        '  Array([1.0, 2.0, 3.0])\n' +
+        '])';
 
     print(matrix);
 
@@ -129,5 +133,43 @@ void main() {
     var cExp = true;
 
     expect(c, cExp);
+  });
+
+  test('sumColumns', () {
+    var a = Array2d([
+      Array([1, 1, 1]),
+      Array([1, 1, 1]),
+      Array([1, 1, 1])
+    ]);
+
+    var b = a.sumColumns();
+
+    print(b);
+
+    var bExpec = Array([3, 3, 3]);
+
+    expect(b, bExpec);
+  });
+
+  test('divideColumns', () {
+    var a = Array2d([
+      Array([2, 2, 2]),
+      Array([2, 2, 2]),
+      Array([2, 2, 2])
+    ]);
+
+    var b = Array([2, 2, 2]);
+
+    var c = a.divideColumns(b);
+
+    print(c);
+
+    var cExpec = Array2d([
+      Array([1, 1, 1]),
+      Array([1, 1, 1]),
+      Array([1, 1, 1])
+    ]);
+
+    expect(c, cExpec);
   });
 }

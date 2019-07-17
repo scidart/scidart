@@ -176,6 +176,20 @@ class Array extends ListBase<double> {
     return c;
   }
 
+  ///  Compute the square root for each element of the array
+  ///  Examples
+  ///  --------
+  ///  >>> var n = Array([4, 4, 4]);
+  ///  >>> n.sqrt();
+  ///  Array([2, 2, 2])
+  Array sqrt() {
+    var c = Array.fixed(this.length);
+    for (int i = 0; i < this.length; i++) {
+      c[i] = math.sqrt(this[i]);
+    }
+    return c;
+  }
+
   ///  Return a Array without the last element
   ///  Examples
   ///  --------

@@ -139,6 +139,17 @@ void main() {
       expect(truncate(n2[i], 4), truncate(n2Exp[i], 4));
     }
   });
+
+  test('sqrt', () {
+    var n = Array([4, 4, 4]);
+    var nsqrt = n.sqrt();
+
+    print(nsqrt);
+
+    var nsqrtExp = Array([2, 2, 2]);
+
+    expect(nsqrt, nsqrtExp);
+  });
   //#endregion
 
   //#region methods overload
@@ -147,7 +158,7 @@ void main() {
 
     var str = n.toString();
 
-    var strExpect = "Array([1.0, 2.0, 3.0])";
+    var strExpect = '\n' + '  Array([1.0, 2.0, 3.0])';
 
     print(str);
 

@@ -172,4 +172,43 @@ void main() {
 
     expect(c, cExpec);
   });
+
+  test('subMatrix', () {
+    var a = Array2d([
+      Array([2, 2, 2]),
+      Array([2, 2, 2]),
+      Array([2, 2, 2])
+    ]);
+
+    var b = a.subMatrix(0, 1, 0, 1);
+
+    print(b);
+
+    var bExpec = Array2d([
+      Array([2, 2]),
+      Array([2, 2])
+    ]);
+
+    expect(b, bExpec);
+  });
+
+  test('truncateEachElement', () {
+    var a = Array2d([
+      Array([2.123456789, 2.123456789, 2.123456789]),
+      Array([2.123456789, 2.123456789, 2.123456789]),
+      Array([2.123456789, 2.123456789, 2.123456789])
+    ]);
+
+    a.truncateEachElement(4);
+
+    print(a);
+
+    var aExpec = Array2d([
+      Array([2.1235, 2.1235, 2.1235]),
+      Array([2.1235, 2.1235, 2.1235]),
+      Array([2.1235, 2.1235, 2.1235])
+    ]);
+
+    expect(a, aExpec);
+  });
 }

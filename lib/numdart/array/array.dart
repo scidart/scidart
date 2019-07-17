@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:math' as math;
 
 import 'package:scidart/numdart/numbers/complex.dart';
+import 'package:scidart/numdart/numbers/double.dart';
 
 import 'arrayComplex.dart';
 
@@ -203,6 +204,19 @@ class Array extends ListBase<double> {
       c[i] = this[i];
     }
     return c;
+  }
+
+  ///  Truncate all the numbers of the array
+  ///  Examples
+  ///  --------
+  ///  >>> var n = Array([4.123456789, 4.123456789, 4.123456789]);
+  ///  >>> n.truncateEachElement(4);
+  ///  >>> n;
+  ///  Array([4.1235, 4.1235, 4.1235])
+  void truncateEachElement(int fractionDigits) {
+    for (var i = 0; i < this.length; i++) {
+      this[i] = truncate(this[i], fractionDigits);
+    }
   }
   //#endregion
 

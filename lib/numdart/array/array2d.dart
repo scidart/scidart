@@ -46,6 +46,16 @@ class Array2d extends ListBase<Array> {
   }
   //#endregion
 
+  //#region properties
+  int get row => l.length;
+
+  int get column {
+    _checkArray2dColunmsLength(this);
+    return this[0].length;
+  }
+
+  //#endregion
+
   //#region operators
   set length(int newLength) { l.length = newLength; }
 
@@ -120,10 +130,9 @@ class Array2d extends ListBase<Array> {
     }
     return true;
   }
-
   //#endregion
 
-  //#region array operations
+  //#region value operations
   ///  Multiply two matrix
   ///  References
   ///  --------
@@ -275,6 +284,43 @@ class Array2d extends ListBase<Array> {
 
     return c;
   }
+
+  ///  generate a submatrix from a given interval
+  ///  Examples
+  ///  --------
+  ///  >>> var a = Array2d([
+  ///  >>>  Array([2, 2, 2]),
+  ///  >>>  Array([2, 2, 2]),
+  ///  >>>  Array([2, 2, 2])
+  ///  >>> ]);
+  ///  >>> a.subMatrix(0, 1, 0, 1);
+  ///  Array2d([
+  ///    Array([2, 2]),
+  ///    Array([2, 2])
+  ///  ]);
+  Array2d subMatrix(int i0, int i1, int j0, int j1) {
+    Array2d B = Array2d.fixed(i1 - i0 + 1, j1 - j0 + 1);
+    try {
+      for (int i = i0; i <= i1; i++) {
+        for (int j = j0; j <= j1; j++) {
+          B[i - i0][j - j0] = this[i][j];
+        }
+      }
+    } catch (e) {
+      throw FormatException("Submatrix indices");
+    }
+    return B;
+  }
+
+  ///  Trucate all the elements of the array
+  ///  Examples
+  ///  --------
+  ///  >>>
+  void truncateEachElement(int fractionDigits) {
+    for (var elem in this) {
+      elem.truncateEachElement(fractionDigits);
+    }
+  }
   //#endregion
 
   //#region overload methods
@@ -294,6 +340,15 @@ class Array2d extends ListBase<Array> {
     return 'Array2d(${str})';
   }
 
+  //#endregion
+
+  //#region memory operations
+  ///  Generate a copy of the current matrix
+  Array2d copy() => Array2d.fromArray(this);
+
+  //#endregion
+
+  //#region private methods
   /// check all the rows have the same length of columns
   void _checkArray2dColunmsLength(List<Array> list) {
     // check if all the columns has the same length

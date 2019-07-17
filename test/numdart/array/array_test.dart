@@ -150,6 +150,18 @@ void main() {
 
     expect(nsqrt, nsqrtExp);
   });
+
+  test('truncateEachElement', () {
+    var n = Array([4.123456789, 4.123456789, 4.123456789]);
+    n.truncateEachElement(4);
+
+    print(n);
+
+    var nExp = Array([4.1235, 4.1235, 4.1235]);
+
+    expect(n, nExp);
+  });
+
   //#endregion
 
   //#region methods overload

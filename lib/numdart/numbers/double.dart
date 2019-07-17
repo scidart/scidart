@@ -15,3 +15,7 @@ double truncate(double val, int fractionDigits) {
   double mod = pow(10.0, fractionDigits); 
   return ((val * mod).round().toDouble() / mod);
 }
+
+class FloatInfo {
+  static double get eps => 2e-16;
+}

@@ -1,8 +1,7 @@
 import 'dart:math';
 
+import 'package:scidart/numdart/array/array.dart';
 import 'package:scidart/numdart/array/array2d.dart';
-
-import '../array.dart';
 
 ///  Generate a Vandermonde matrix.
 ///  The columns of the output matrix are powers of the input vector. The

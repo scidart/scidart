@@ -17,7 +17,17 @@ import 'package:scidart/numdart/geometric/pythagoras.dart';
 ///  .. [2] "Jama". https://math.nist.gov/javanumerics/jama/. Retrieved 2019-07-17.
 ///  .. [3] "QR Decomposition Algorithms". https://rosettacode.org/wiki/QR_decomposition#Java. Retrieved 2019-07-17.
 ///  .. [4] "numpy.linalg.qr". https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.qr.html. Retrieved 2019-07-17.
-class QRDecomposition {
+///  Examples
+///  --------
+///  >>> var qr = QR(Array2d([
+///  >>>    Array([4.0, 2.0, 1.0]),
+///  >>>    Array([16.0, 4.0, 1.0]),
+///  >>>    Array([64.0, 8.0, 1.0])
+///  >>> ]));
+///  >>> var q = qr.Q();
+///  >>> q.truncateEachElement(frac);
+///  >>> var r = qr.R();
+class QR {
   //#region Class variables
   ///  Array for internal storage of decomposition.
   ///  [_QR] internal array storage.
@@ -38,7 +48,7 @@ class QRDecomposition {
   ///  QR Decomposition, computed by Householder reflections.
   ///  Structure to access R and the Householder vectors and compute Q.
   ///  [A] Rectangular matrix
-  QRDecomposition(Array2d A) {
+  QR(Array2d A) {
     // Initialize.
     _QR = A.copy();
     _m = A.row;

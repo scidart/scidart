@@ -211,4 +211,58 @@ void main() {
 
     expect(a, aExpec);
   });
+
+  test('QRDecomposition', () {
+    var a = Array2d([
+      Array([4.0, 2.0, 1.0]),
+      Array([16.0, 4.0, 1.0]),
+      Array([64.0, 8.0, 1.0])
+    ]);
+
+    var qr = a.QRDecomposition();
+
+    expect(qr is QR, true);
+  });
+
+  test('subMatrixFromArray', () {
+    var a = Array2d([
+      Array([4.0, 2.0, 1.0]),
+      Array([16.0, 4.0, 1.0]),
+      Array([64.0, 8.0, 1.0])
+    ]);
+
+    var subA = a.subMatrixFromArray(Array([0, 1]), 0, 2);
+
+    var subAExp = Array2d([
+      Array([4.0, 2.0, 1.0]),
+      Array([16.0, 4.0, 1.0])
+    ]);
+
+    print(subA);
+
+    expect(subA, subAExp);
+  });
+
+  test('solve', () {
+    var a = Array2d([
+      Array([3.0, 1.0]),
+      Array([1.0, 2.0])
+    ]);
+
+    var b = Array2d([
+      Array([9.0]),
+      Array([8.0])
+    ]);
+
+    var x = a.solve(b);
+
+    var subAExp = Array2d([
+      Array([4.0, 2.0, 1.0]),
+      Array([16.0, 4.0, 1.0])
+    ]);
+
+    print(x);
+
+    expect(x, subAExp);
+  });
 }

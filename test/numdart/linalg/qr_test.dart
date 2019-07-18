@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('create a QRDecomposition object', () {
-    var qr = QRDecomposition(Array2d([
+    var qr = QR(Array2d([
       Array([4.0, 2.0, 1.0]),
       Array([16.0, 4.0, 1.0]),
       Array([64.0, 8.0, 1.0])

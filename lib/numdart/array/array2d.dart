@@ -1,5 +1,9 @@
 import 'dart:collection';
 
+import 'package:scidart/numdart/linalg/identity.dart';
+import 'package:scidart/numdart/linalg/lu.dart';
+import 'package:scidart/numdart/linalg/qr.dart';
+
 import 'array.dart';
 
 ///  Class to create 2 dimensions Array.
@@ -44,6 +48,7 @@ class Array2d extends ListBase<Array> {
       l[i] = Array.fixed(column, initialValue: initialValue);
     }
   }
+
   //#endregion
 
   //#region properties
@@ -57,7 +62,9 @@ class Array2d extends ListBase<Array> {
   //#endregion
 
   //#region operators
-  set length(int newLength) { l.length = newLength; }
+  set length(int newLength) {
+    l.length = newLength;
+  }
 
   ///  Return the length of Array2d
   ///  Examples
@@ -70,8 +77,12 @@ class Array2d extends ListBase<Array> {
   ///  >>> matrix.length;
   ///  3
   int get length => l.length;
+
   Array operator [](int index) => l[index];
-  void operator []=(int index, Array value) { l[index] = value; }
+
+  void operator []=(int index, Array value) {
+    l[index] = value;
+  }
 
   ///  Multiply two arrays with the same size
   ///  Examples
@@ -130,9 +141,10 @@ class Array2d extends ListBase<Array> {
     }
     return true;
   }
+
   //#endregion
 
-  //#region value operations
+  //#region Matrix operations
   ///  Multiply two matrix
   ///  References
   ///  --------
@@ -315,11 +327,92 @@ class Array2d extends ListBase<Array> {
   ///  Trucate all the elements of the array
   ///  Examples
   ///  --------
-  ///  >>>
+  ///  >>> var a = Array2d([
+  ///  >>>   Array([2.123456789, 2.123456789, 2.123456789]),
+  ///  >>>   Array([2.123456789, 2.123456789, 2.123456789]),
+  ///  >>>   Array([2.123456789, 2.123456789, 2.123456789])
+  ///  >>> ]);
+  ///  >>> a.truncateEachElement(4);
+  ///  Array2d([
+  ///    Array([2.1235, 2.1235, 2.1235]),
+  ///    Array([2.1235, 2.1235, 2.1235]),
+  ///    Array([2.1235, 2.1235, 2.1235])
+  ///  ]);
   void truncateEachElement(int fractionDigits) {
     for (var elem in this) {
       elem.truncateEachElement(fractionDigits);
     }
+  }
+
+  ///  Generate a QR decomposition of current array
+  ///  Examples
+  ///  --------
+  ///  >>> var a = Array2d([
+  ///  >>>   Array([2.123456789, 2.123456789, 2.123456789]),
+  ///  >>>   Array([2.123456789, 2.123456789, 2.123456789]),
+  ///  >>>   Array([2.123456789, 2.123456789, 2.123456789])
+  ///  >>> ]);
+  ///  >>> a.truncateEachElement(4);
+  ///  Array2d([
+  ///    Array([2.1235, 2.1235, 2.1235]),
+  ///    Array([2.1235, 2.1235, 2.1235]),
+  ///    Array([2.1235, 2.1235, 2.1235])
+  ///  ]);
+  QR QRDecomposition() {
+    return QR(this);
+  }
+
+  ///  Get a submatrix where each element of [rows] array represent a column on
+  ///  current array.
+  ///  [rows]    Array of row indices.
+  ///  [col0]   Initial column index
+  ///  [col1]   Final column index
+  ///  return     A(r(:),j0:j1)
+  ///  exception  ArrayIndexOutOfBoundsException Submatrix indices
+  ///  Examples
+  ///  --------
+  ///  >>> var a = Array2d([
+  ///  >>>  Array([4.0, 2.0, 1.0]),
+  ///  >>>  Array([16.0, 4.0, 1.0]),
+  ///  >>>  Array([64.0, 8.0, 1.0])
+  ///  >>> ]);
+  ///  >>> a.subMatrixFromArray(Array([0, 1]), 0, 2);
+  ///  Array2d([
+  ///    Array([4.0, 2.0, 1.0]),
+  ///    Array([16.0, 4.0, 1.0])
+  ///  ]);
+  Array2d subMatrixFromArray(Array rows, int col0, int col1) {
+    Array2d B = Array2d.fixed(rows.length, col1 - col0 + 1);
+    try {
+      for (int i = 0; i < rows.length; i++) {
+        for (int j = col0; j <= col1; j++) {
+          B[i][j - col0] = this[rows[i].toInt()][j];
+        }
+      }
+    } catch (e) {
+      throw FormatException("Submatrix indices: ${e}");
+    }
+    return B;
+  }
+
+  ///  Solve A*X = B
+  ///  [B]    right hand side
+  ///  return     solution if A is square, least squares solution otherwise
+  ///  Examples
+  ///  --------
+  ///
+  Array2d solve(Array2d B) {
+    return (row == column ? (LU(this)).solve(B) :
+    (QR(this)).solve(B));
+  }
+
+  ///  Matrix inverse or pseudoinverse
+  ///  return     inverse(A) if A is square, pseudoinverse otherwise.
+  ///  Examples
+  ///  --------
+  ///  >>>
+  Array2d inverse() {
+    return solve(identity(row, row));
   }
   //#endregion
 
@@ -373,5 +466,5 @@ class Array2d extends ListBase<Array> {
           "A and B need to have the same length of rows and columns.");
     }
   }
-  //#endregion
+//#endregion
 }

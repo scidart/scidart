@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:scidart/numdart/numbers/complex.dart';
 import 'package:scidart/numdart/numbers/double.dart';
 
+import 'array2d.dart';
 import 'arrayComplex.dart';
 
 ///  Class to create 1 dimension Array.
@@ -218,6 +219,27 @@ class Array extends ListBase<double> {
       this[i] = truncate(this[i], fractionDigits);
     }
   }
+  //#endregion
+
+  //#region vector operations
+  ///  Convert a Array to a matrix with one column
+  ///  Examples
+  ///  --------
+  ///  >>> var n = Array([4.0, 4.0, 4.0]);
+  ///  >>> n.toColumnMatrix();
+  ///  Array2d([
+  ///    Array([4.0]),
+  ///    Array([4.0]),
+  ///    Array([4.0])
+  ///  ])
+  Array2d toColumnMatrix() {
+    var b = Array2d.fixed(this.length, 1);
+    for (var i = 0; i < this.length; i++) {
+      b[i][0] = this[i];
+    }
+    return b;
+  }
+
   //#endregion
 
   //#region overload methods

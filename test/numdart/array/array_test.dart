@@ -162,6 +162,20 @@ void main() {
     expect(n, nExp);
   });
 
+  test('toColumnMatrix', () {
+    var a = Array([4.0, 4.0, 4.0]);
+    var n = a.toColumnMatrix();
+
+    print(n);
+
+    var nExp = Array2d([
+      Array([4.0]),
+      Array([4.0]),
+      Array([4.0])
+    ]);
+
+    expect(n, nExp);
+  });
   //#endregion
 
   //#region methods overload

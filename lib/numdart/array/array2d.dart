@@ -16,6 +16,10 @@ import 'array.dart';
 ///  Array2d.fromArray(Array list) : from another array
 ///
 ///  Array2d.fixed(int length) : from a fixed length
+///  References
+///  ----------
+///  .. [1] "Jama". https://math.nist.gov/javanumerics/jama/. Retrieved 2019-07-17.
+///  .. [2] "numpylinalg.solve". https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.solve.html. Retrieved 2019-07-19.
 ///  Examples
 ///  --------
 ///  >>> import 'package:scidart/numdart/numdart.dart';
@@ -400,7 +404,19 @@ class Array2d extends ListBase<Array> {
   ///  return     solution if A is square, least squares solution otherwise
   ///  Examples
   ///  --------
-  ///
+  ///  >>> var a = Array2d([
+  ///  >>>   Array([3.0, 1.0]),
+  ///  >>>   Array([1.0, 2.0])
+  ///  >>> ]);
+  ///  >>> var b = Array2d([
+  ///  >>>   Array([9.0]),
+  ///  >>>   Array([8.0])
+  ///  >>> ]);
+  ///  >>> a.solve(b);
+  ///  Array2d([
+  ///    Array([2.0]),
+  ///    Array([3.0])
+  ///  ]);
   Array2d solve(Array2d B) {
     return (row == column ? (LU(this)).solve(B) :
     (QR(this)).solve(B));
@@ -410,9 +426,56 @@ class Array2d extends ListBase<Array> {
   ///  return     inverse(A) if A is square, pseudoinverse otherwise.
   ///  Examples
   ///  --------
-  ///  >>>
+  ///  >>> var a = Array2d([
+  ///  >>>  Array([1.0, 2.0, 3.0]),
+  ///  >>>  Array([4.0, 5.0, 6.0]),
+  ///  >>>  Array([7.0, 8.0, 10.0]),
+  ///  >>> ]);
+  ///  >>> a.inverse();
+  ///  Array2d([
+  ///    Array([-0.666667, -1.333333, 1.0]),
+  ///    Array([-0.666667, 3.666667, -2.0]),
+  ///   Array([1.0, -2.0, 1.0])
+  ///  ])
   Array2d inverse() {
     return solve(identity(row, row));
+  }
+
+  ///  Matrix transpose.
+  ///  return    A'
+  ///  Examples
+  ///  --------
+  ///  >>> var a = Array2d([
+  ///  >>>  Array([1.0, 2.0, 3.0]),
+  ///  >>>  Array([4.0, 5.0, 6.0]),
+  ///  >>>  Array([7.0, 8.0, 10.0]),
+  ///  >>> ]);
+  ///  >>> a.transpose();
+  ///  Array2d([
+  ///    Array([1.0, 4.0, 7.0]),
+  ///    Array([2.0, 5.0, 8.0]),
+  ///    Array([3.0, 6.0, 10.0])
+  ///  ]);
+  Array2d transpose() {
+    Array2d C = Array2d.fixed(row, column);
+    for (int i = 0; i < row; i++) {
+      for (int j = 0; j < column; j++) {
+        C[j][i] = this[i][j];
+      }
+    }
+    return C;
+  }
+
+  ///  Get matrix column.
+  ///  return  Array
+  ///  Examples
+  ///  --------
+  Array columnToArray(int column) {
+    var b = Array.fixed(this.row);
+    for (var i = 0; i < this.row; i++) {
+      b[i] = this[i][column];
+    }
+    return b;
   }
   //#endregion
 

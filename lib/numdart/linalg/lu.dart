@@ -264,9 +264,8 @@ class LU {
     }
 
     // Copy right hand side with pivoting
-    int nx = B.row;
-//    Array2d X = B.subMatrixFromArray(_piv, 0, nx-1);
-    Array2d X = B.copy();
+    int nx = B.column;
+    Array2d X = B.subMatrixFromArray(_piv, 0, nx - 1);
 
     // Solve L*Y = B(piv,:)
     for (int k = 0; k < _n; k++) {

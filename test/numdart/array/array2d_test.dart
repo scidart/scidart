@@ -256,13 +256,103 @@ void main() {
 
     var x = a.solve(b);
 
-    var subAExp = Array2d([
-      Array([4.0, 2.0, 1.0]),
-      Array([16.0, 4.0, 1.0])
+    var xExp = Array2d([
+      Array([2]),
+      Array([3])
     ]);
 
     print(x);
 
-    expect(x, subAExp);
+    expect(x, xExp);
+  });
+
+  test('solve2', () {
+    var a = Array2d([
+      Array([1.0, 2.0, 3.0]),
+      Array([4.0, 5.0, 6.0]),
+      Array([7.0, 8.0, 10.0]),
+    ]);
+
+    var frac = 6;
+
+    var b = Array2d([
+      Array([9.0]),
+      Array([4.0]),
+      Array([6.0])
+    ]);
+
+    var x = a.solve(b);
+    x.truncateEachElement(frac);
+
+    var xExp = Array2d([
+      Array([-5.33333333]),
+      Array([-3.33333333]),
+      Array([7.0])
+    ]);
+    xExp.truncateEachElement(frac);
+
+    print(x);
+
+    expect(x, xExp);
+  });
+
+  test('inverse', () {
+    var a = Array2d([
+      Array([1.0, 2.0, 3.0]),
+      Array([4.0, 5.0, 6.0]),
+      Array([7.0, 8.0, 10.0]),
+    ]);
+
+    var frac = 6;
+
+    var i = a.inverse();
+    i.truncateEachElement(frac);
+
+    var iExp = Array2d([
+      Array([-0.66666667, -1.33333333, 1.0]),
+      Array([-0.66666667, 3.66666667, -2.0]),
+      Array([1.0, -2.0, 1.0])
+    ]);
+    iExp.truncateEachElement(frac);
+
+    print(i);
+
+    expect(i, iExp);
+  });
+
+  test('transpose', () {
+    var a = Array2d([
+      Array([1.0, 2.0, 3.0]),
+      Array([4.0, 5.0, 6.0]),
+      Array([7.0, 8.0, 10.0]),
+    ]);
+
+    var t = a.transpose();
+
+    var tExp = Array2d([
+      Array([1.0, 4.0, 7.0]),
+      Array([2.0, 5.0, 8.0]),
+      Array([3.0, 6.0, 10.0])
+    ]);
+
+    print(t);
+
+    expect(t, tExp);
+  });
+
+  test('columnToArray', () {
+    var a = Array2d([
+      Array([1.0, 2.0, 3.0]),
+      Array([4.0, 5.0, 6.0]),
+      Array([7.0, 8.0, 10.0]),
+    ]);
+
+    var b = a.columnToArray(2);
+
+    var bExp = Array([3.0, 6.0, 10.0]);
+
+    print(b);
+
+    expect(b, bExp);
   });
 }

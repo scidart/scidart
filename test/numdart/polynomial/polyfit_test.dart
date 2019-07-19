@@ -9,7 +9,8 @@ void main() {
     var y = Array(
         [1.0, 6.0, 17.0, 34.0, 57.0, 86.0, 121.0, 162.0, 209.0, 262.0, 321.0]);
 
-    var p = polyfit(x, y, degree);
+//    var p = polyfit(x, y, degree);
+    var p = polynomialRegression(x, y, degree);
 
     print(p);
 

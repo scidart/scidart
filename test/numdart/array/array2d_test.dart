@@ -355,4 +355,41 @@ void main() {
 
     expect(b, bExp);
   });
+
+  test('-', () {
+    var a = Array2d([
+      Array([2, 2, 2]),
+      Array([2, 2, 2]),
+      Array([2, 2, 2])
+    ]);
+
+    var b = Array2d([
+      Array([2, 2, 2]),
+      Array([2, 2, 2]),
+      Array([2, 2, 2])
+    ]);
+
+    var c = a - b;
+
+    var cExpec = Array2d([
+      Array([0, 0, 0]),
+      Array([0, 0, 0]),
+      Array([0, 0, 0])
+    ]);
+
+    expect(c, cExpec);
+  });
+
+  test('fromVector', () {
+    var a = Array2d.fromVector(Array([1, 2, 3, 4]), 2);
+
+    print(a);
+
+    var aExpec = Array2d([
+      Array([1, 3]),
+      Array([2, 4])
+    ]);
+
+    expect(a, aExpec);
+  });
 }

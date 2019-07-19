@@ -1,8 +1,10 @@
 import 'dart:collection';
+import 'dart:math' as math;
 
 import 'package:scidart/numdart/linalg/identity.dart';
 import 'package:scidart/numdart/linalg/lu.dart';
 import 'package:scidart/numdart/linalg/qr.dart';
+import 'package:scidart/numdart/linalg/singular.dart';
 
 import 'array.dart';
 
@@ -53,6 +55,36 @@ class Array2d extends ListBase<Array> {
     }
   }
 
+  ///  Construct a matrix from a one-dimensional packed array
+  ///  [vals] One-dimensional array of doubles, packed by columns (ala Fortran).
+  ///  [mRow]    Number of rows.
+  ///  [IllegalArgumentException] Array length must be a multiple of m.
+  ///  Examples
+  ///  --------
+  ///  >>> var a =  Array2d.fromVector(Array([1, 2, 3, 4]), 2);
+  ///  >>> a;
+  ///  var aExpec = Array2d([
+  ///    Array([1, 3]),
+  ///    Array([2, 4])
+  ///  ]);
+  Array2d.fromVector(Array vals, int mRow) {
+    var nCol = (mRow != 0 ? vals.length / mRow : 0).toInt();
+
+    if (mRow * nCol != vals.length) {
+      throw FormatException("Array length must be a multiple of mRow.");
+    }
+
+    l = List<Array>(mRow);
+    for (int i = 0; i < mRow; i++) {
+      l[i] = Array.fixed(nCol);
+    }
+
+    for (int i = 0; i < mRow; i++) {
+      for (int j = 0; j < nCol; j++) {
+        this[i][j] = vals[i + j * mRow];
+      }
+    }
+  }
   //#endregion
 
   //#region properties
@@ -146,6 +178,43 @@ class Array2d extends ListBase<Array> {
     return true;
   }
 
+  ///  Multiply two arrays with the same size
+  ///  Examples
+  ///  --------
+  ///  >>> var a = Array2d([
+  ///  >>>   Array([2, 2, 2]),
+  ///  >>>   Array([2, 2, 2]),
+  ///  >>>   Array([2, 2, 2])
+  ///  >>> ]);
+  ///  >>> var b = Array2d([
+  ///  >>>   Array([2, 2, 2]),
+  ///  >>>   Array([2, 2, 2]),
+  ///  >>>   Array([2, 2, 2])
+  ///  >>> ]);
+  ///  >>> a - b;
+  ///  Array2d([
+  ///    Array([4, 4, 4]),
+  ///    Array([4, 4, 4]),
+  ///    Array([4, 4, 4])
+  ///  ]);
+  Array2d operator -(Array2d b) {
+    _checkArray2dColunmsLength(this);
+    _checkArray2dColunmsLength(b);
+    _checkArray2dLength(this, b);
+
+    int aRows = this.length;
+    int aColumns = this[0].length;
+
+    var c = Array2d.fromArray(this); // make a copy of local
+
+    for (int i = 0; i < aRows; i++) { //
+      for (int j = 0; j < aColumns; j++) { // bColumn
+        c[i][j] -= b[i][j];
+      }
+    }
+
+    return c;
+  }
   //#endregion
 
   //#region Matrix operations
@@ -476,6 +545,26 @@ class Array2d extends ListBase<Array> {
       b[i] = this[i][column];
     }
     return b;
+  }
+
+  ///  One norm
+  ///  return    maximum column sum.
+  double norm1() {
+    double f = 0;
+    for (int j = 0; j < column; j++) {
+      double s = 0;
+      for (int i = 0; i < row; i++) {
+        s += this[i][j].abs();
+      }
+      f = math.max(f, s);
+    }
+    return f;
+  }
+
+  ///  Two norm
+  ///  return    maximum singular value.
+  double norm2() {
+    return Singular(this).norm2();
   }
   //#endregion
 

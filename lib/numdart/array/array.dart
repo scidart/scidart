@@ -219,6 +219,20 @@ class Array extends ListBase<double> {
       this[i] = truncate(this[i], fractionDigits);
     }
   }
+
+  ///  Return the sum of all elements of the array
+  ///  Examples
+  ///  --------
+  ///  >>> var n = Array([1, 2, 3]);
+  ///  >>> n.sum();
+  ///  6.0
+  double sum() {
+    double sum = 0.0;
+    for (int i = 0; i < length; i++) {
+      sum += this[i];
+    }
+    return sum;
+  }
   //#endregion
 
   //#region vector operations

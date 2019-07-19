@@ -176,6 +176,17 @@ void main() {
 
     expect(n, nExp);
   });
+
+  test('sum', () {
+    var a = Array([1.0, 2.0, 3.0]);
+    var n = a.sum();
+
+    print(n);
+
+    var nExp = 6.0;
+
+    expect(n, nExp);
+  });
   //#endregion
 
   //#region methods overload

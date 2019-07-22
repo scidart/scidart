@@ -1,6 +1,6 @@
 import 'package:scidart/numdart/array/array.dart';
 import 'package:scidart/numdart/array/array2d.dart';
-import 'package:scidart/numdart/geometric/pythagoras.dart';
+import 'package:scidart/numdart/geometric/hypotenuse.dart';
 
 ///  QR Decomposition.
 ///  For an m-by-n matrix A with m >= n, the QR decomposition is an m-by-n
@@ -60,7 +60,7 @@ class QR {
       // Compute 2-norm of k-th column without under/overflow.
       double nrm = 0;
       for (int i = k; i < _m; i++) {
-        nrm = pythagoras(nrm, _QR[i][k]);
+        nrm = hypotenuse(nrm, _QR[i][k]);
       }
 
       if (nrm != 0.0) {

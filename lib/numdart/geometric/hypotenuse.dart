@@ -7,6 +7,6 @@ import 'dart:math';
 ///  --------
 ///  >>> truncate(1.4747474747474747, 3);
 ///  >>> 1.475;
-double pythagoras(double x, double y) {
+double hypotenuse(double x, double y) {
   return sqrt(pow(x, 2) + pow(y, 2));
 }

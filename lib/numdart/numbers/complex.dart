@@ -1,8 +1,8 @@
 import 'dart:core';
-import 'package:scidart/numdart/math/fastmath.dart' as fmath;
 import 'dart:math' as math;
 
-import 'package:scidart/numdart/geometric/pythagoras.dart';
+import 'package:scidart/numdart/geometric/hypotenuse.dart';
+import 'package:scidart/numdart/math/fastmath.dart' as fmath;
 
 ///  Class to create and handle a complex numbers.
 ///  Constructors:
@@ -116,7 +116,7 @@ class Complex {
   ///  >>> c1.abs();
   ///  >>> 5.0
   double abs() {
-    return pythagoras(real, imaginary);
+    return hypotenuse(real, imaginary);
   }
 
   ///  Divide real part and imaginary for a double number

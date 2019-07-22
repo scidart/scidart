@@ -539,6 +539,13 @@ class Array2d extends ListBase<Array> {
   ///  return  Array
   ///  Examples
   ///  --------
+  ///  >>> var a = Array2d([
+  ///  >>>   Array([1.0, 2.0, 3.0]),
+  ///  >>>   Array([4.0, 5.0, 6.0]),
+  ///  >>>   Array([7.0, 8.0, 10.0]),
+  ///  >>> ]);
+  ///  >>> a.columnToArray(2);
+  ///  var bExp = Array([3.0, 6.0, 10.0]);
   Array columnToArray(int column) {
     var b = Array.fixed(this.row);
     for (var i = 0; i < this.row; i++) {
@@ -549,6 +556,15 @@ class Array2d extends ListBase<Array> {
 
   ///  One norm
   ///  return    maximum column sum.
+  ///  Examples
+  ///  --------
+  ///  >>> var a = Array2d([
+  ///  >>>   Array([1, 2, 3]),
+  ///  >>>   Array([1, 2, 3]),
+  ///  >>>   Array([1, 2, 3]),
+  ///  >>> ]);
+  ///  >>> a.norm1();
+  ///  >>> 9
   double norm1() {
     double f = 0;
     for (int j = 0; j < column; j++) {
@@ -563,6 +579,15 @@ class Array2d extends ListBase<Array> {
 
   ///  Two norm
   ///  return    maximum singular value.
+  ///  Examples
+  ///  --------
+  ///  >>> var a = Array2d([
+  ///  >>>   Array([1, 2, 3]),
+  ///  >>>   Array([1, 2, 3]),
+  ///  >>>   Array([1, 2, 3]),
+  ///  >>> ]);
+  ///  >>> a.norm2();
+  ///  6.496425037213701
   double norm2() {
     return Singular(this).norm2();
   }

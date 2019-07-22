@@ -392,4 +392,35 @@ void main() {
 
     expect(a, aExpec);
   });
+
+  test('norm1', () {
+    var a = Array2d([
+      Array([1, 2, 3]),
+      Array([1, 2, 3]),
+      Array([1, 2, 3]),
+    ]);
+
+    var norm = a.norm1();
+    print(norm);
+
+    var normExpec = 9;
+
+    expect(norm, normExpec);
+  });
+
+  test('norm2', () {
+    var a = Array2d([
+      Array([1, 2, 3]),
+      Array([1, 2, 3]),
+      Array([1, 2, 3]),
+    ]);
+
+    var norm = truncate(a.norm2(), 4);
+    print(a.norm2());
+    print(norm);
+
+    var normExpec = 6.4807;
+
+    expect(norm, normExpec);
+  });
 }

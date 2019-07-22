@@ -6,7 +6,7 @@ export 'array/array.dart';
 export 'array/array2d.dart';
 export 'array/array3d.dart';
 export 'array/arrayComplex.dart';
-export 'geometric/pythagoras.dart';
+export 'geometric/hypotenuse.dart';
 export 'linalg/identity.dart';
 export 'linalg/lu.dart';
 export 'linalg/qr.dart';

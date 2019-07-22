@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:scidart/numdart/array/array.dart';
 import 'package:scidart/numdart/array/array2d.dart';
-import 'package:scidart/numdart/geometric/pythagoras.dart';
+import 'package:scidart/numdart/geometric/hypotenuse.dart';
 import 'package:scidart/numdart/numdart.dart';
 
 ///  Singular Value Decomposition.
@@ -20,9 +20,29 @@ import 'package:scidart/numdart/numdart.dart';
 ///  References
 ///  ----------
 ///  .. [1] "Jama". https://math.nist.gov/javanumerics/jama/. Retrieved 2019-07-19.
+///  .. [2] "Jama Github". https://github.com/fiji/Jama. Retrieved 2019-07-19.
+///  .. [3] "Apache Commons Math Github". https://github.com/apache/commons-math. Retrieved 2019-07-19.
 ///  Examples
 ///  --------
-///  >>>
+///  >>> var svd = Singular(Array2d([
+///  >>>   Array([4.0, 2.0, 1.0]),
+///  >>>   Array([16.0, 4.0, 1.0]),
+///  >>>   Array([64.0, 8.0, 1.0])
+///  >>> ]));
+///  >>> var u = svd.U();
+///  >>> var s = svd.S();
+///  >>> print(u);
+///  Array2d([
+///    Array([0.06370191, 0.63944931, -0.76618969]),
+///    Array([0.24598854, 0.73399958,  0.63303575]),
+///    Array([0.96717718, -0.22879947, -0.11054003])
+///  ]);
+///  >>> print(s);
+///  Array2d([
+///    Array([66.69193778, 0.0, 0.0]),
+///    Array([0.0, 2.66694684, 0.0]),
+///    Array([0.0, 0.0, 0.26986934]),
+///  ]);
 class Singular {
   //#region Class variables
   ///  Arrays for internal storage of U and V.
@@ -78,7 +98,7 @@ class Singular {
         // Compute 2-norm of k-th column without under/overflow.
         _s[k] = 0;
         for (int i = k; i < _m; i++) {
-          _s[k] = pythagoras(_s[k], A[i][k]);
+          _s[k] = hypotenuse(_s[k], A[i][k]);
         }
         if (_s[k] != 0.0) {
           if (A[k][k] < 0.0) {
@@ -110,7 +130,7 @@ class Singular {
 
         e[j] = A[k][j];
       }
-      if (wantu & (k < nct)) {
+      if (wantu && (k < nct)) {
         // Place the transformation in U for subsequent back
         // multiplication.
 
@@ -124,7 +144,7 @@ class Singular {
         // Compute 2-norm without under/overflow.
         e[k] = 0;
         for (int i = k + 1; i < _n; i++) {
-          e[k] = pythagoras(e[k], e[i]);
+          e[k] = hypotenuse(e[k], e[i]);
         }
         if (e[k] != 0.0) {
           if (e[k + 1] < 0.0) {
@@ -136,7 +156,7 @@ class Singular {
           e[k + 1] += 1.0;
         }
         e[k] = -e[k];
-        if ((k + 1 < _m) & (e[k] != 0.0)) {
+        if ((k + 1 < _m) && (e[k] != 0.0)) {
           // Apply the transformation.
 
           for (int i = k + 1; i < _m; i++) {
@@ -304,7 +324,7 @@ class Singular {
             double f = e[p - 2];
             e[p - 2] = 0.0;
             for (int j = p - 2; j >= k; j--) {
-              double t = pythagoras(_s[j], f);
+              double t = hypotenuse(_s[j], f);
               double cs = _s[j] / t;
               double sn = f / t;
               _s[j] = t;
@@ -330,7 +350,7 @@ class Singular {
             double f = e[k - 1];
             e[k - 1] = 0.0;
             for (int j = k; j < p; j++) {
-              double t = pythagoras(_s[j], f);
+              double t = hypotenuse(_s[j], f);
               double cs = _s[j] / t;
               double sn = f / t;
               _s[j] = t;
@@ -380,7 +400,7 @@ class Singular {
             // Chase zeros.
 
             for (int j = k; j < p - 1; j++) {
-              double t = pythagoras(f, g);
+              double t = hypotenuse(f, g);
               double cs = f / t;
               double sn = g / t;
               if (j != k) {
@@ -397,7 +417,7 @@ class Singular {
                   _V[i][j] = t;
                 }
               }
-              t = pythagoras(f, g);
+              t = hypotenuse(f, g);
               cs = f / t;
               sn = g / t;
               _s[j] = t;

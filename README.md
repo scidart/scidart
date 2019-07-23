@@ -5,7 +5,7 @@ Created from templates made available by Stagehand under a BSD-style
 
 ## Milestone
 * polyfit (OK)
-fft * end documentation <--
+* end documentation (OK)
 * fuction to time the exection of a process
 * random
 * read txt

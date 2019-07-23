@@ -33,7 +33,7 @@ class Array extends ListBase<double> {
 
   //#region constructors
   Array(List<double> list) {
-    l = list;
+    l = list.toList();
   }
 
   Array.empty();

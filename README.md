@@ -7,6 +7,7 @@ Created from templates made available by Stagehand under a BSD-style
 * polyfit (OK)
 * end documentation (OK)
 * fuction to time the exection of a process
+
 * random
 * read txt
 * read csv

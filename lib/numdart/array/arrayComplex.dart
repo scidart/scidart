@@ -27,7 +27,7 @@ class ArrayComplex extends ListBase<Complex> {
 
   //#region constructors
   ArrayComplex(List<Complex> list) {
-    l = list;
+    l = list.toList();
   }
 
   ArrayComplex.empty();
@@ -207,6 +207,28 @@ class ArrayComplex extends ListBase<Complex> {
     }
     return c;
   }
+
+  ///  Append X in to the current array
+  ///  Examples
+  ///  >>> var list = ArrayComplex([
+  ///  >>> Complex(real: 3.0, imaginary: 4.0),
+  ///  >>> Complex(real: 3.0, imaginary: 4.0) ,
+  ///  >>> Complex(real: 3.0, imaginary: 4.0)]);
+  ///  >>> var b = ArrayComplex([
+  ///  >>> Complex(real: 3.0, imaginary: 4.0)
+  ///  >>> ]);
+  ///  >>> list.append(b);
+  ///  ArrayComplex([
+  ///    Complex(real: 3.0, imaginary: 4.0),
+  ///    Complex(real: 3.0, imaginary: 4.0) ,
+  ///    Complex(real: 3.0, imaginary: 4.0),
+  ///    Complex(real: 3.0, imaginary: 4.0)
+  ///  ])
+  void append(ArrayComplex x) {
+    for (int i = 0; i < x.length; i++) {
+      this.add(x[i]);
+    }
+  }
   //#endregion
 
   //#region overload methods
@@ -222,7 +244,7 @@ class ArrayComplex extends ListBase<Complex> {
   @override
   String toString() {
     var str = IterableBase.iterableToFullString(this, '[', ']');
-    return 'ArrayComplex(${str})';
+    return '\n ArrayComplex(${str})';
   }
   //#endregion
 }

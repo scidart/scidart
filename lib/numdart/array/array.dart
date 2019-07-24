@@ -254,6 +254,23 @@ class Array extends ListBase<double> {
     return b;
   }
 
+  ///  Concatenate X in to the current array
+  ///  Examples
+  ///  >>> var list = Array([1,2,3]);
+  ///  >>> var b = Array([4]);
+  ///  >>> list.concat(b);
+  ///  Array([1, 2, 3, 4])
+  void concat(Array x) {
+    for (int i = 0; i < x.length; i++) {
+      this.add(x[i]);
+    }
+  }
+
+  //#endregion
+
+  //#region memory operations
+  ///  Generate a copy of the current vector
+  Array copy() => Array.fromArray(this);
   //#endregion
 
   //#region overload methods
@@ -271,6 +288,9 @@ class Array extends ListBase<double> {
     return '\n  Array(${str})';
   }
 
+  //#endregion
+
+  //#region private methods
   void _checkArray(Array b) {
     if (this.length != b.length) {
       throw ('both arrays need have the same dimesion');

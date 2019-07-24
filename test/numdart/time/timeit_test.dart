@@ -22,8 +22,10 @@ void main() {
       print(x);
 
       var xx = x.columnToArray(0).toComplexArray();
-      print(xx);
+
       var xf = fft(xx);
+
+      print(xf);
     });
     print('Array.solve() executed in ${duration}');
   });

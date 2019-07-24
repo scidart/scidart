@@ -33,16 +33,24 @@ class ArrayComplex extends ListBase<Complex> {
   ArrayComplex.empty();
 
   ArrayComplex.fromArray(ArrayComplex list) {
-    l = list;
+    // deep copy of the parameter
+    l = list.map((element) => element).toList();
   }
 
-  ArrayComplex.fixed(int length) {
-    l = List<Complex>(length);
+  ArrayComplex.fixed(int length, {Complex initialValue}) {
+    if (initialValue != null) {
+      l = List<Complex>.generate(length, (i) => initialValue);
+    } else {
+      l = List<Complex>(length);
+    }
   }
+
   //#endregion
 
   //#region operators
-  set length(int newLength) { l.length = newLength; }
+  set length(int newLength) {
+    l.length = newLength;
+  }
 
   ///  Return the length of ComplexArray
   ///  Examples
@@ -54,8 +62,12 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>> list.length;
   ///  3
   int get length => l.length;
+
   Complex operator [](int index) => l[index];
-  void operator []=(int index, Complex value) { l[index] = value; }
+
+  void operator []=(int index, Complex value) {
+    l[index] = value;
+  }
 
   ///  Multiply two arrays
   ///  Examples
@@ -72,17 +84,32 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>> clist
   ///  ArrayComplex([Complex(real: 23.0, imaginary: 14.0), Complex(real: 23.0, imaginary: 14.0), Complex(real: 23.0, imaginary: 14.0)])
   ArrayComplex operator *(ArrayComplex b) {
-    if(this.length != b.length) {
-      throw('both arrays need have the same dimesion');
-    }
-
+    _checkArray(b);
     var c = ArrayComplex.fixed(this.length);
-    for(int i = 0; i < this.length; i++) {
+    for (int i = 0; i < this.length; i++) {
       c[i] = this[i] * b[i];
     }
 
     return c;
   }
+
+  ///  compare two arrays
+  ///  Examples
+  ///  --------
+  ///  >>> var n = Array([1, 2, 3]);
+  ///  >>> var n2 = Array([1, 2, 3]);
+  ///  >>> n == n2;
+  ///  true
+  bool operator ==(b) {
+    _checkArray(b);
+    for (var i = 0; i < this.length; i++) {
+      if (this[i] != b[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   //#endregion
 
   //#region array operations
@@ -97,7 +124,7 @@ class ArrayComplex extends ListBase<Complex> {
   ///  ArrayComplex([Complex(real: 4.0, imaginary: 4.0), Complex(real: 4.0, imaginary: 4.0), Complex(real: 4.0, imaginary: 4.0)])
   ArrayComplex multiplyToScalar(num b) {
     var c = ArrayComplex.fixed(this.length);
-    for(var i = 0; i < length; i++) {
+    for (var i = 0; i < length; i++) {
       c[i] = this[i].multiplyScalar(b);
     }
 
@@ -208,7 +235,7 @@ class ArrayComplex extends ListBase<Complex> {
     return c;
   }
 
-  ///  Append X in to the current array
+  ///  Concatenate X in to the current array
   ///  Examples
   ///  >>> var list = ArrayComplex([
   ///  >>> Complex(real: 3.0, imaginary: 4.0),
@@ -217,7 +244,7 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>> var b = ArrayComplex([
   ///  >>> Complex(real: 3.0, imaginary: 4.0)
   ///  >>> ]);
-  ///  >>> list.append(b);
+  ///  >>> list.concat(b);
   ///  ArrayComplex([
   ///    Complex(real: 3.0, imaginary: 4.0),
   ///    Complex(real: 3.0, imaginary: 4.0) ,
@@ -229,6 +256,7 @@ class ArrayComplex extends ListBase<Complex> {
       this.add(x[i]);
     }
   }
+
   //#endregion
 
   //#region overload methods
@@ -246,5 +274,20 @@ class ArrayComplex extends ListBase<Complex> {
     var str = IterableBase.iterableToFullString(this, '[', ']');
     return '\n ArrayComplex(${str})';
   }
+
   //#endregion
+
+  //#region memory operations
+  ///  Generate a copy of the current vector
+  ArrayComplex copy() => ArrayComplex.fromArray(this);
+
+  //#endregion
+
+//#region private methods
+  void _checkArray(ArrayComplex b) {
+    if (this.length != b.length) {
+      throw ('both arrays need have the same dimesion');
+    }
+  }
+//#endregion
 }

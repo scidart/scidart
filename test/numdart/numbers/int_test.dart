@@ -7,4 +7,10 @@ void main() {
     print(n);
     expect(n, 4);
   });
+
+  test('highest one bit', () {
+    var n = highestOneBit(130); // 0b10000010 => 1H: 2^8 = 128
+    print(n);
+    expect(n, 128);
+  });
 }

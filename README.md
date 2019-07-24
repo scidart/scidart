@@ -6,8 +6,9 @@ Created from templates made available by Stagehand under a BSD-style
 ## Milestone
 * polyfit (OK)
 * end documentation (OK)
-* fuction to time the exection of a process
-
+* fuction to time the exection of a process (OK)
+* test for circular convolution
+* convolution
 * random
 * read txt
 * read csv

@@ -3,6 +3,11 @@ import 'package:scidart/scidart/fftpack/fft/fft.dart';
 
 ///  Compute the one-dimensional discrete Fourier Transform for a Real input.
 ///  [x] A Array with the input
+///  [n] : optional
+///        Length of the transformed axis of the output.
+///        If n is smaller than the length of the input, the input is cropped.
+///        If it is larger, the input is padded with zeros.
+///        If n is not given, the length of the input is used.
 ///  return A ArrayComplex with FFT output
 ///  References
 ///  ----------
@@ -21,7 +26,7 @@ import 'package:scidart/scidart/fftpack/fft/fft.dart';
 ///  >>>   Complex(real: 0.0, imaginary: 0.0),
 ///  >>>   Complex(real: 1.0, imaginary: 2.41421356)
 ///  >>> ]);
-ArrayComplex rfft(Array x) {
+ArrayComplex rfft(Array x, {n}) {
   var buffer = x.toComplexArray();
-  return fft(buffer);
+  return fft(buffer, n: n);
 }

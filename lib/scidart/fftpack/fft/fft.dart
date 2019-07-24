@@ -1,6 +1,7 @@
 import 'dart:math';
 
-import 'package:scidart/numdart/numdart.dart';
+import 'package:scidart/numdart/numdart.dart'
+import 'dart:math' as math;
 
 ///  Compute the one-dimensional discrete Fourier Transform.
 ///  [buffer] A ArrayComplex with the input
@@ -30,7 +31,7 @@ ArrayComplex fft(ArrayComplex x, {n}) {
     return _transformRadix2(x);
   }
   else { // More complicated algorithm for arbitrary sizes
-    return transformBluestein(real, imag);
+    return transformBluestein(x);
   }
 
 
@@ -93,11 +94,9 @@ ArrayComplex _transformRadix2(ArrayComplex buffer) {
 //https://www.nayuki.io/res/free-small-fft-in-multiple-languages/Fft.java
 //https://stackoverflow.com/questions/34655959/looking-for-fft1d-arbitrary-length-code
 
-/*
-	 * Computes the discrete Fourier transform (DFT) of the given complex vector, storing the result back into the vector.
-	 * The vector can have any length. This requires the convolution function, which in turn requires the radix-2 FFT function.
-	 * Uses Bluestein's chirp z-transform algorithm.
-	 */
+///  Computes the discrete Fourier transform (DFT) of the given complex vector, storing the result back into the vector.
+///  The vector can have any length. This requires the convolution function, which in turn requires the radix-2 FFT function.
+///  Uses Bluestein's chirp z-transform algorithm.
 ArrayComplex transformBluestein(ArrayComplex buffer) {
   var n = buffer.length;
   // Find a power-of-2 convolution length m such that m >= n * 2 + 1
@@ -107,41 +106,41 @@ ArrayComplex transformBluestein(ArrayComplex buffer) {
 
   int m = highestOneBit(n) * 4;
 
-// Trignometric tables
-  double[] cosTable = new double[n];
-  double[] sinTable = new double[n];
+  // Trignometric tables
+  Array cosTable = Array.fixed(n);
+  Array sinTable = Array.fixed(n);
   for (int i = 0; i < n; i++) {
-    int j = (int)(
-        (long)i * i % (n * 2)); // This is more accurate than j = i * i
-  cosTable[i] = Math.cos(Math.PI * j / n);
-  sinTable[i] = Math.sin(Math.PI * j / n);
+    int j = (i.toDouble() * i % (n * 2))
+        .toInt(); // This is more accurate than j = i * i
+    cosTable[i] = math.cos(math.pi * j / n);
+    sinTable[i] = math.sin(math.pi * j / n);
   }
 
-// Temporary vectors and preprocessing
-  double[] areal = new double[m];
-  double[] aimag = new double[m];
+  // Temporary vectors and preprocessing
+  ArrayComplex a = ArrayComplex.fixed(m);
   for (int i = 0; i < n; i++) {
-  areal[i] = real[i] * cosTable[i] + imag[i] * sinTable[i];
-  aimag[i] = -real[i] * sinTable[i] + imag[i] * cosTable[i];
+    var areal = buffer[i].real * cosTable[i] +
+        buffer[i].imaginary * sinTable[i];
+    var aimag = -buffer[i].real * sinTable[i] +
+        buffer[i].imaginary * cosTable[i];
+    a[i] = Complex(real: areal, imaginary: aimag);
   }
-  double[] breal = new double[m];
-  double[] bimag = new double[m];
-  breal[0] = cosTable[0];
-  bimag[0] = sinTable[0];
+
+  ArrayComplex b = ArrayComplex.fixed(m);
+  b[0] = Complex(real: cosTable[0], imaginary: sinTable[0]);
   for (int i = 1; i < n; i++) {
-  breal[i] = breal[m - i] = cosTable[i];
-  bimag[i] = bimag[m - i] = sinTable[i];
+    b[i] = b[m - i] = Complex(real: cosTable[i], imaginary: sinTable[i]);
   }
 
-// Convolution
-  double[] creal = new double[m];
-  double[] cimag = new double[m];
+  // Convolution
+  ArrayComplex c = ArrayComplex.fixed(m);
   convolve(areal, aimag, breal, bimag, creal, cimag);
 
-// Postprocessing
+  ArrayComplex result = ArrayComplex.fixed(n);
+  // Postprocessing
   for (int i = 0; i < n; i++) {
-  real[i] = creal[i] * cosTable[i] + cimag[i] * sinTable[i];
-  imag[i] = -creal[i] * sinTable[i] + cimag[i] * cosTable[i];
+    real[i] = creal[i] * cosTable[i] + cimag[i] * sinTable[i];
+    imag[i] = -creal[i] * sinTable[i] + cimag[i] * cosTable[i];
   }
 }
 
@@ -152,5 +151,48 @@ int highestOneBit(int i) {
   i |= (i >> 4);
   i |= (i >> 8);
   i |= (i >> 16);
-  return i - (i >>> 1);
+  return i - (i >> 1);
+}
+
+/*
+ * Computes the circular convolution of the given real vectors. Each vector's length must be the same.
+ */
+void convolve(Array x, Array y, Array out) {
+  int n = x.length;
+  if (n != y.length || n != out.length) {
+    throw FormatException("Mismatched lengths");
+  }
+  circularConvolution(x, new double[n], y, new double[n], out, new double[n]);
+}
+
+/*
+ * Computes the circular convolution of the given complex vectors. Each vector's length must be the same.
+ */
+void circularConvolution(Array xreal, Array ximag, Array yreal, Array yimag,
+    Array outreal, Array outimag) {
+  int n = xreal.length;
+  if (n != ximag.length || n != yreal.length || n != yimag.length ||
+      n != outreal.length || n != outimag.length) {
+    throw FormatException("Mismatched lengths");
+  }
+
+  xreal = xreal.clone();
+  ximag = ximag.clone();
+  yreal = yreal.clone();
+  yimag = yimag.clone();
+  transform(xreal, ximag);
+  transform(yreal, yimag);
+
+  for (int i = 0; i < n; i++) {
+    double temp = xreal[i] * yreal[i] - ximag[i] * yimag[i];
+    ximag[i] = ximag[i] * yreal[i] + xreal[i] * yimag[i];
+    xreal[i] = temp;
+  }
+  inverseTransform(xreal, ximag);
+
+  for (int i = 0; i <
+      n; i++) { // Scaling (because this FFT implementation omits it)
+    outreal[i] = xreal[i] / n;
+    outimag[i] = ximag[i] / n;
+  }
 }

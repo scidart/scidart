@@ -224,7 +224,7 @@ class ArrayComplex extends ListBase<Complex> {
   ///    Complex(real: 3.0, imaginary: 4.0),
   ///    Complex(real: 3.0, imaginary: 4.0)
   ///  ])
-  void append(ArrayComplex x) {
+  void concat(ArrayComplex x) {
     for (int i = 0; i < x.length; i++) {
       this.add(x[i]);
     }

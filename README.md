@@ -7,9 +7,11 @@ Created from templates made available by Stagehand under a BSD-style
 * polyfit (OK)
 * end documentation (OK)
 * fuction to time the exection of a process (OK)
-* test for circular convolution
-* convolution
+* test for circular convolution (ok)
+* convolution (ok)
 * random
+* filter
+* separate fast math
 * read txt
 * read csv
 * generate a plot in memory

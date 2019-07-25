@@ -261,11 +261,36 @@ class Array extends ListBase<double> {
   ///  >>> list.concat(b);
   ///  Array([1, 2, 3, 4])
   void concat(Array x) {
+    if (identical(this, x)) {
+      throw FormatException(
+          "you can't concat object with it self, use Obj.copy() to make this operation");
+    }
     for (int i = 0; i < x.length; i++) {
       this.add(x[i]);
     }
   }
 
+  ///  Concatenate X in to the start current array
+  ///  Examples
+  ///  >>> var list = Array([1,2,3]);
+  ///  >>> var b = Array([4]);
+  ///  >>> list.concat(b);
+  ///  Array([4, 1, 2, 3,])
+  void concatStart(Array x) {
+    var aux = this.copy();
+    this.l = x.copy();
+    this.concat(aux);
+  }
+
+  ///  Add zeros at begging of the array
+  ///  Examples
+  ///  >>> var list = Array([1,2,3]);
+  ///  >>> list.padStart(2)
+  ///  Array([0, 0, 1, 2, 3])
+  void padStart(int pad) {
+    var aux = Array.fixed(pad, initialValue: 0);
+    concatStart(aux);
+  }
   //#endregion
 
   //#region memory operations

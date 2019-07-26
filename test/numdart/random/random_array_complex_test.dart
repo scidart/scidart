@@ -1,9 +1,9 @@
-import 'package:scidart/numdart/random/random_array.dart';
+import 'package:scidart/numdart/random/random_array_complex.dart';
 import 'package:test/test.dart';
 
 void main() {
   test('random array', () {
-    var x = randomArray(20);
+    var x = randomArrayComplex(20);
     print(x);
     var xExpec = 20;
 

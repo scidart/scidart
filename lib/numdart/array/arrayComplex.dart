@@ -316,7 +316,7 @@ class ArrayComplex extends ListBase<Complex> {
   @override
   String toString() {
     var str = IterableBase.iterableToFullString(this, '[', ']');
-    return '\n ArrayComplex(${str})';
+    return '\n  ArrayComplex(${str}\n  )';
   }
 
   //#endregion

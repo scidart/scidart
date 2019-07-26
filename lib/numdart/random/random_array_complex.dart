@@ -7,6 +7,9 @@ import 'package:scidart/numdart/numbers/complex.dart';
 ///  point value uniformly distributed complex numbers in the range
 ///  from 0.0, inclusive, to 1.0, exclusive.
 ///  [n] : length of array
+///  Examples
+///  --------
+///  >>> var x = randomArrayComplex(20);
 ArrayComplex randomArrayComplex(int n) {
   var rng = Random();
   var l =

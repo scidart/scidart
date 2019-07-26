@@ -1,8 +1,8 @@
 import 'dart:core';
 import 'dart:math' as math;
 
+import 'package:scidart/numdart/fastmath/fastmath.dart' as fmath;
 import 'package:scidart/numdart/geometric/hypotenuse.dart';
-import 'package:scidart/numdart/math/fastmath.dart' as fmath;
 
 ///  Class to create and handle a complex numbers.
 ///  Constructors:
@@ -167,6 +167,6 @@ class Complex {
   ///  Complex(real: 4.0, imaginary: 4.0)
   @override
   String toString() {
-    return '\n Complex(real: ${real}, imaginary: ${imaginary})';
+    return '\n    Complex(real: ${real}, imaginary: ${imaginary})';
   }
 }

@@ -1,5 +1,6 @@
 //#region Matrix operations
-import 'package:scidart/numdart/array/array_operations/array_operations.dart';
+import 'package:scidart/numdart/linalg/lu.dart';
+import 'package:scidart/numdart/linalg/qr.dart';
 
 import '../array.dart';
 import '../array2d.dart';
@@ -183,7 +184,7 @@ Array2d matrixSub(Array2d a, int i0, int i1, int j0, int j1) {
   return b;
 }
 
-///  Generate a QR decomposition of current array
+///  Generate a QR decomposition of the matrix
 ///  Examples
 ///  --------
 ///  >>> var a = Array2d([
@@ -191,18 +192,14 @@ Array2d matrixSub(Array2d a, int i0, int i1, int j0, int j1) {
 ///  >>>   Array([2.123456789, 2.123456789, 2.123456789]),
 ///  >>>   Array([2.123456789, 2.123456789, 2.123456789])
 ///  >>> ]);
-///  >>> a.truncateEachElement(4);
-///  Array2d([
-///    Array([2.1235, 2.1235, 2.1235]),
-///    Array([2.1235, 2.1235, 2.1235]),
-///    Array([2.1235, 2.1235, 2.1235])
-///  ]);
-QR QRDecomposition() {
-  return QR(this);
+///  >>> var qr = QRDecomposition(a);
+QR QRDecomposition(Array2d a) {
+  a.isMatrix();
+  return QR(a);
 }
 
 ///  Get a submatrix where each element of [rows] array represent a column on
-///  current array.
+///  current matrix.
 ///  [rows]    Array of row indices.
 ///  [col0]   Initial column index
 ///  [col1]   Final column index
@@ -215,27 +212,27 @@ QR QRDecomposition() {
 ///  >>>  Array([16.0, 4.0, 1.0]),
 ///  >>>  Array([64.0, 8.0, 1.0])
 ///  >>> ]);
-///  >>> a.subMatrixFromArray(Array([0, 1]), 0, 2);
+///  >>> matrixSubFromArray(a, Array([0, 1]), 0, 2);
 ///  Array2d([
 ///    Array([4.0, 2.0, 1.0]),
 ///    Array([16.0, 4.0, 1.0])
 ///  ]);
-Array2d subMatrixFromArray(Array rows, int col0, int col1) {
-  Array2d B = Array2d.fixed(rows.length, col1 - col0 + 1);
+Array2d matrixSubFromArray(Array2d a, Array rows, int col0, int col1) {
+  Array2d b = Array2d.fixed(rows.length, col1 - col0 + 1);
   try {
     for (int i = 0; i < rows.length; i++) {
       for (int j = col0; j <= col1; j++) {
-        B[i][j - col0] = this[rows[i].toInt()][j];
+        b[i][j - col0] = a[rows[i].toInt()][j];
       }
     }
   } catch (e) {
     throw FormatException("Submatrix indices: ${e}");
   }
-  return B;
+  return b;
 }
 
 ///  Solve A*X = B
-///  [B]    right hand side
+///  [b]    right hand side
 ///  return     solution if A is square, least squares solution otherwise
 ///  Examples
 ///  --------
@@ -247,14 +244,14 @@ Array2d subMatrixFromArray(Array rows, int col0, int col1) {
 ///  >>>   Array([9.0]),
 ///  >>>   Array([8.0])
 ///  >>> ]);
-///  >>> a.solve(b);
+///  >>> matrixSolve(a, b);
 ///  Array2d([
 ///    Array([2.0]),
 ///    Array([3.0])
 ///  ]);
-Array2d solve(Array2d B) {
-  return (row == column ? (LU(this)).solve(B) :
-  (QR(this)).solve(B));
+Array2d matrixSolve(Array2d a, Array2d b) {
+  a.isMatrix();
+  return (a.row == a.column ? (LU(a)).solve(b) : (QR(a)).solve(b));
 }
 
 ///  Matrix inverse or pseudoinverse
@@ -266,14 +263,14 @@ Array2d solve(Array2d B) {
 ///  >>>  Array([4.0, 5.0, 6.0]),
 ///  >>>  Array([7.0, 8.0, 10.0]),
 ///  >>> ]);
-///  >>> a.inverse();
+///  >>> matrixInverse(a);
 ///  Array2d([
 ///    Array([-0.666667, -1.333333, 1.0]),
 ///    Array([-0.666667, 3.666667, -2.0]),
 ///   Array([1.0, -2.0, 1.0])
 ///  ])
-Array2d inverse() {
-  return solve(identity(row, row));
+Array2d matrixInverse(Array2d a) {
+  return matrixSolve(identity(a.row, a.row));
 }
 
 ///  Matrix transpose.
@@ -358,27 +355,3 @@ double norm2() {
   return Singular(this).norm2();
 }
 //#endregion
-
-
-///  Trucate all the elements of the array
-///  Examples
-///  --------
-///  >>> var a = Array2d([
-///  >>>   Array([2.123456789, 2.123456789, 2.123456789]),
-///  >>>   Array([2.123456789, 2.123456789, 2.123456789]),
-///  >>>   Array([2.123456789, 2.123456789, 2.123456789])
-///  >>> ]);
-///  >>> array2dTruncateEachElement(a, 4);
-///  Array2d([
-///    Array([2.1235, 2.1235, 2.1235]),
-///    Array([2.1235, 2.1235, 2.1235]),
-///    Array([2.1235, 2.1235, 2.1235])
-///  ]);
-Array2d array2dTruncateEachElement(Array2d a, int fractionDigits,
-    {bool returnNewArray = false}) {
-  returnNewArray
-  for (var elem in a) {
-    arrayTruncateEachElement(
-        elem, fractionDigits, returnNewArray: returnNewArray);
-  }
-}

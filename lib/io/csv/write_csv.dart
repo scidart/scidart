@@ -13,7 +13,20 @@ import 'package:scidart/numdart/numdart.dart';
 ///  [mode] : optional, the mode how the program will write the file:
 ///    * [FileMode.write]: truncates the file to length zero, default.
 ///    * [FileMode.append]: sets the initial write position to the end of the file.
-///  https://api.dartlang.org/stable/2.4.0/dart-io/File-class.html
+///  References
+///  ----------
+///  .. [1] "Dart file class". https://api.dartlang.org/stable/2.4.0/dart-io/File-class.html. Retrieved 2019-07-26.
+///  Examples
+///  --------
+///  >>> var fileName = 'data_array.csv';
+///  >>> var data = Array2d([
+///  >>>   Array([1, 2, 3, 4, 5]),
+///  >>>   Array([2, 3, 4, 5, 6]),
+///  >>>   Array([3, 4, 5, 6, 7]),
+///  >>>   Array([4, 5, 6, 7, 8]),
+///  >>>   Array([5, 6, 7, 8, 9]),
+///  >>> ]);
+///  >>> await writeLinesCSV(data, fileName);
 void writeLinesCSV(Array2d data, String fileName,
     {String baseDir,
     String delimiter = ";",

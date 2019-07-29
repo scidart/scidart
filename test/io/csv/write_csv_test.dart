@@ -16,7 +16,7 @@ void main() {
     var fileName = 'data_array.csv';
 
     await writeLinesCSV(data, fileName);
-    var dataRead = await readCSV(fileName, tryConvertToArray2d: true);
+    var dataRead = await readCSV(fileName, convertToArray2d: true);
 
     expect(dataRead, data);
   });

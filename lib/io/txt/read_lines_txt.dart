@@ -7,6 +7,9 @@ import 'package:scidart/io/path/retrieve_file_path.dart';
 ///  [fileName] : file name or path of the file
 ///  [baseDir] : optional, base directory to the file, if not informed, get current script path.
 ///  [encoding] : optional, the encoding of the file, default is utf8
+///  Examples
+///  --------
+///  >>> var data = await readLinesTxt('stock_data.txt');
 Future<List> readLinesTxt(String fileName,
     {String baseDir, Encoding encoding = utf8}) async {
   return await File(retrieveFilePath(fileName, baseDir))

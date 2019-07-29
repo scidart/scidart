@@ -13,10 +13,12 @@ Created from templates made available by Stagehand under a BSD-style
 * read txt (ok)
 * read csv (ok)
 * separate fast math (ok)
-* gen ref and examples for io read functions
-* generate a plot in memory
+* gen ref and examples for io read functions (ok)
+* generate a plot in memory (delegated to https://stackoverflow.com/questions/43703802/flutter-draw-graphs-on-the-screen)
 * test fast math
 * filter
+* refactor array, array2d class to be more functional
+* write a CLI to interact with the lib
 
 * publish package
 * show to the comunity

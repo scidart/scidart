@@ -1,6 +1,7 @@
-import 'package:scidart/numdart/array/array.dart';
-import 'package:scidart/numdart/array/array2d.dart';
+import 'package:scidart/numdart/arrays_base/array.dart';
+import 'package:scidart/numdart/arrays_base/array2d.dart';
 import 'package:scidart/numdart/geometric/hypotenuse.dart';
+import 'package:scidart/numdart/linalg/matrix_operations/matrix_sub.dart';
 
 ///  QR Decomposition.
 ///  For an m-by-n matrix A with m >= n, the QR decomposition is an m-by-n
@@ -200,7 +201,7 @@ class QR {
         }
       }
     }
-    return (X.subMatrix(0, _n - 1, 0, nx - 1));
+    return (matrixSub(X, 0, _n - 1, 0, nx - 1));
   }
 //#endregion
 }

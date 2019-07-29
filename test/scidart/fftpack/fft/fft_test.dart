@@ -4,7 +4,8 @@ import 'package:test/test.dart';
 
 void main() {
   test('fft of a signal', () {
-    var x = Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0]).toComplexArray();
+    var x = arrayToComplexArray(
+        Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0]));
 
     var X = fft(x);
 
@@ -30,7 +31,7 @@ void main() {
   });
 
   test('fft of a odd samples signal', () {
-    var x = Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0]).toComplexArray();
+    var x = arrayToComplexArray(Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0]));
 
     var X = fft(x);
 
@@ -57,7 +58,7 @@ void main() {
   });
 
   test('fft of signal with a N < length defined', () {
-    var x = Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0]).toComplexArray();
+    var x = arrayToComplexArray(Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0]));
 
     var X = fft(x, n: 6);
 
@@ -82,7 +83,7 @@ void main() {
   });
 
   test('fft of signal with a N > length defined', () {
-    var x = Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0]).toComplexArray();
+    var x = arrayToComplexArray(Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0]));
 
     var X = fft(x, n: 16);
 

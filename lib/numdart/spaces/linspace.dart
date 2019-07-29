@@ -1,4 +1,4 @@
-import 'package:scidart/numdart/array/array.dart';
+import 'package:scidart/numdart/arrays_base/array.dart';
 
 ///  Return evenly spaced numbers over a specified interval.
 ///  Returns `num` evenly spaced samples, calculated over the

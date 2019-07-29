@@ -1,4 +1,4 @@
-import 'package:scidart/numdart/array/array.dart';
+import 'package:scidart/numdart/numdart.dart';
 import 'package:scidart/scidart/signal/convolution/convolution_complex.dart';
 
 ///  Compute the 1D convolution of 2 signals
@@ -19,7 +19,8 @@ import 'package:scidart/scidart/signal/convolution/convolution_complex.dart';
 Array convolution(Array input, Array kernel, {fast = false}) {
   if (fast) {
     // compute convolution using FFT
-    var d = convolutionComplex(input.toComplexArray(), kernel.toComplexArray());
+    var d = convolutionComplex(
+        arrayToComplexArray(input), arrayToComplexArray(kernel));
 
     return d.abs();
   } else {

@@ -1,4 +1,4 @@
-import 'package:scidart/numdart/array/array2d.dart';
+import 'package:scidart/numdart/arrays_base/array2d.dart';
 
 ///  Generate identity matrix
 ///  [row]  Number of rows.
@@ -13,7 +13,7 @@ import 'package:scidart/numdart/array/array2d.dart';
 ///    Array([0.0, 1.0, 0.0]),
 ///    Array([0.0, 0.0, 1.0])
 ///  ]);
-Array2d identity(int row, int column) {
+Array2d matrixIdentity(int row, int column) {
   var X = Array2d.fixed(row, column);
   for (int i = 0; i < row; i++) {
     for (int j = 0; j < column; j++) {

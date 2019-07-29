@@ -1,4 +1,4 @@
-import 'package:scidart/numdart/array/arrayComplex.dart';
+import 'package:scidart/numdart/numdart.dart';
 import 'package:scidart/scidart/fftpack/fft/fft.dart';
 import 'package:scidart/scidart/fftpack/fft/ifft.dart';
 

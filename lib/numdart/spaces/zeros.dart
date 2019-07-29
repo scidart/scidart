@@ -1,4 +1,4 @@
-import 'package:scidart/numdart/array/array.dart';
+import 'package:scidart/numdart/arrays_base/array.dart';
 
 ///  Return a new array of given shape and type, filled with zeros.
 ///  Parameters:

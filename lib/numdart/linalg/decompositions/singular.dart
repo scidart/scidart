@@ -1,8 +1,9 @@
 import 'dart:math' as math;
 
-import 'package:scidart/numdart/array/array.dart';
-import 'package:scidart/numdart/array/array2d.dart';
+import 'package:scidart/numdart/arrays_base/array.dart';
+import 'package:scidart/numdart/arrays_base/array2d.dart';
 import 'package:scidart/numdart/geometric/hypotenuse.dart';
+import 'package:scidart/numdart/linalg/matrix_operations/matrix_sub.dart';
 import 'package:scidart/numdart/numdart.dart';
 
 ///  Singular Value Decomposition.
@@ -491,13 +492,13 @@ class Singular {
   ///  Return the left singular vectors
   ///  return     U
   Array2d U() {
-    return _U.subMatrix(0, _m - 1, 0, math.min(_m + 1, _n) - 1);
+    return matrixSub(_U, 0, _m - 1, 0, math.min(_m + 1, _n) - 1);
   }
 
   ///  Return the right singular vectors
   ///  return     V
   Array2d V() {
-    return _V.subMatrix(0, _n, 0, _n);
+    return matrixSub(_V, 0, _n, 0, _n);
   }
 
   ///  Return the one-dimensional array of singular values

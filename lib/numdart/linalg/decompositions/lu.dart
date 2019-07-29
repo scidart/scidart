@@ -1,7 +1,8 @@
 import 'dart:math' as math;
 
-import 'package:scidart/numdart/array/array.dart';
-import 'package:scidart/numdart/array/array2d.dart';
+import 'package:scidart/numdart/arrays_base/array.dart';
+import 'package:scidart/numdart/arrays_base/array2d.dart';
+import 'package:scidart/numdart/linalg/matrix_operations/matrix_sub_from_array.dart';
 import 'package:scidart/numdart/numdart.dart';
 
 ///  LU Decomposition.
@@ -265,7 +266,7 @@ class LU {
 
     // Copy right hand side with pivoting
     int nx = B.column;
-    Array2d X = B.subMatrixFromArray(_piv, 0, nx - 1);
+    Array2d X = matrixSubFromArray(B, _piv, 0, nx - 1);
 
     // Solve L*Y = B(piv,:)
     for (int k = 0; k < _n; k++) {

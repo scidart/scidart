@@ -1,4 +1,4 @@
-import 'package:scidart/numdart/array/array.dart';
+import 'package:scidart/numdart/numdart.dart';
 import 'package:scidart/scidart/signal/windows/general_cosine.dart';
 
 ///  Return a generalized Hamming window.

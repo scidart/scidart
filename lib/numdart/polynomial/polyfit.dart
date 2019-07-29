@@ -1,9 +1,11 @@
 import 'dart:math' as math;
 
-import 'package:scidart/numdart/array/array.dart';
-import 'package:scidart/numdart/array/array2d.dart';
-import 'package:scidart/numdart/linalg//vander.dart';
-import 'package:scidart/numdart/linalg/qr.dart';
+import 'package:scidart/numdart/arrays_base/array.dart';
+import 'package:scidart/numdart/arrays_base/array2d.dart';
+import 'package:scidart/numdart/linalg/decompositions/qr.dart';
+import 'package:scidart/numdart/linalg/matrix_operations/matrix_dot.dart';
+import 'package:scidart/numdart/linalg/matrix_operations/matrix_norm_two.dart';
+import 'package:scidart/numdart/linalg/matrix_operations/matrix_vander.dart';
 import 'package:scidart/numdart/statistic/mean.dart';
 
 ///  The {@code PolynomialRegression} class performs a polynomial regression
@@ -68,7 +70,7 @@ class PolyFit {
     // in case Vandermonde matrix does not have full rank, reduce degree until it does
     while (true) {
       // build Vandermonde matrix
-      matrixX = vander(x, increasing: true);
+      matrixX = matrixVander(x, increasing: true);
 
       // find least squares solution
       qr = QR(matrixX);
@@ -94,8 +96,8 @@ class PolyFit {
     }
 
     // variation not accounted for
-    Array2d residuals = matrixX.dot(beta) - matrixY;
-    sse = residuals.norm2() * residuals.norm2();
+    Array2d residuals = matrixDot(matrixX, beta) - matrixY;
+    sse = matrixNormTwo(residuals) * matrixNormTwo(residuals);
   }
 
   ///  Returns the {@code j}th regression coefficient.

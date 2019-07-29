@@ -4,8 +4,8 @@ import 'package:test/test.dart';
 
 void main() {
   test('convolve two complex signals', () {
-    var xi = Array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]).toComplexArray();
-    var yi = Array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]).toComplexArray();
+    var xi = arrayToComplexArray(Array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]));
+    var yi = arrayToComplexArray(Array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]));
     var zi = convolutionComplex(xi, yi);
     print(zi);
     print(zi.length);

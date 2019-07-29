@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:scidart/numdart/array/array.dart';
+import 'package:scidart/numdart/arrays_base/array.dart';
 
 ///  Generates a Array with n elements containing non-negative random floating
 ///  point value uniformly distributed in the range from 0.0, inclusive,

@@ -21,7 +21,7 @@ _extend(int M, bool sym) {
 ///  Truncate window by 1 sample if needed for DFT-even symmetry
 _truncate(Array w, needed) {
   if (needed) {
-    return w.truncateLast();
+    return arrayTruncateLast(w);
   } else {
     return w;
   }
@@ -65,7 +65,7 @@ Array generalCosine(int M, Array a, {bool sym = true}) {
   var fac = linspace(-pi, pi, num: MExt);
   var w = zeros(MExt);
   for(var k = 0; k < a.length; k++) {
-    w += fac.multiplyToScalar(k).cos().multiplyToScalar(a[k]);
+    w += arrayMultiplyToScalar(arrayCos(arrayMultiplyToScalar(fac, k)), a[k]);
   }
   
   return _truncate(w, needsTrunc);

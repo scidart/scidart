@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:scidart/numdart/array/array.dart';
-import 'package:scidart/numdart/array/array2d.dart';
+import 'package:scidart/numdart/arrays_base/array.dart';
+import 'package:scidart/numdart/arrays_base/array2d.dart';
 
 ///  Generate a Vandermonde matrix.
 ///  The columns of the output matrix are powers of the input vector. The
@@ -41,7 +41,7 @@ import 'package:scidart/numdart/array/array2d.dart';
 ///    Array([1.0, 4.0, 16.0]),
 ///    Array([1.0, 8.0, 64.0])
 ///  ])
-Array2d vander(Array x, {int N, bool increasing = false}) {
+Array2d matrixVander(Array x, {int N, bool increasing = false}) {
   if (N == null) {
     N = x.length;
   }

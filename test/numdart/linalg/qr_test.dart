@@ -16,20 +16,20 @@ void main() {
       Array([-0.24209101, -0.76482436, 0.59702231]),
       Array([-0.96836405, 0.22884508, -0.09950372])
     ]);
-    qExp.truncateEachElement(frac);
+    array2dTruncateEachElement(qExp, frac);
 
     var rExp = Array2d([
       Array([-66.09084657, -8.83632198, -1.27097782]),
       Array([0.0, -2.43298457, -1.13820318]),
       Array([0.0, 0.0, -0.29851116]),
     ]);
-    rExp.truncateEachElement(frac);
+    array2dTruncateEachElement(rExp, frac);
 
     var q = qr.Q();
-    q.truncateEachElement(frac);
+    array2dTruncateEachElement(q, frac);
 
     var r = qr.R();
-    r.truncateEachElement(frac);
+    array2dTruncateEachElement(r, frac);
 
     print(q);
     print(r);

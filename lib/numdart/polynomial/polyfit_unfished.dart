@@ -1,7 +1,7 @@
 //fixme: I started translate from numpy until realize how complex it is.export
 //fixme: so, I will let this translation to the future
 //import 'package:scidart/numdart/array/array.dart';
-//import 'package:scidart/numdart/linalg/vander.dart';
+//import 'package:scidart/numdart/linalg/matrix_vander.dart';
 //import 'package:scidart/numdart/numbers/double.dart';
 //
 /////  Least squares polynomial fit.

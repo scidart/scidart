@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   test('create a Vandermonde matrix', () {
     var x = Array([2.0, 4.0, 8.0]);
-    var v  = vander(x);
+    var v = matrixVander(x);
 
     var vExpect = Array2d([
       Array([4.0, 2.0, 1.0]),
@@ -17,7 +17,7 @@ void main() {
 
   test('create a Vandermonde matrix increasing', () {
     var x = Array([2.0, 4.0, 8.0]);
-    var v  = vander(x, increasing: true);
+    var v = matrixVander(x, increasing: true);
 
     var vExpect = Array2d([
       Array([1.0, 2.0, 4.0]),
@@ -30,7 +30,7 @@ void main() {
 
   test('create a Vandermonde matrix N = 2', () {
     var x = Array([2.0, 4.0, 8.0]);
-    var v  = vander(x, N: 2);
+    var v = matrixVander(x, N: 2);
 
     var vExpect = Array2d([
       Array([2.0, 1.0]),

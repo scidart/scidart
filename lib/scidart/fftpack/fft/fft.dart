@@ -1,10 +1,7 @@
 import 'dart:math';
 import 'dart:math' as math;
 
-import 'package:scidart/numdart/array/array.dart';
-import 'package:scidart/numdart/array/arrayComplex.dart';
-import 'package:scidart/numdart/numbers/complex.dart';
-import 'package:scidart/numdart/numbers/int.dart';
+import 'package:scidart/numdart/numdart.dart';
 import 'package:scidart/scidart/signal/convolution/convolution_circular_complex.dart';
 
 ///  Compute the one-dimensional discrete Fourier Transform.

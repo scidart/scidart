@@ -16,20 +16,21 @@ void main() {
       Array([0.25, 1.0, 0.0]),
       Array([0.0625, 0.75, 1.0])
     ]);
-    lExp.truncateEachElement(frac);
+
+    array2dTruncateEachElement(lExp, frac);
 
     var uExp = Array2d([
       Array([64.0, 8.0, 1.0]),
       Array([0.0, 2.0, 0.75]),
       Array([0.0, 0.0, 0.375]),
     ]);
-    uExp.truncateEachElement(frac);
+    array2dTruncateEachElement(uExp, frac);
 
     var l = lu.L();
-    l.truncateEachElement(frac);
+    array2dTruncateEachElement(l, frac);
 
     var u = lu.U();
-    u.truncateEachElement(frac);
+    array2dTruncateEachElement(u, frac);
 
     print(l);
     print(u);

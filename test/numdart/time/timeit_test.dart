@@ -1,3 +1,5 @@
+import 'package:scidart/numdart/linalg/matrix_operations/matrix_column_to_array.dart';
+import 'package:scidart/numdart/linalg/matrix_operations/matrix_solve.dart';
 import 'package:scidart/numdart/numdart.dart';
 import 'package:scidart/numdart/time/timeit.dart';
 import 'package:scidart/scidart/fftpack/fft/fft.dart';
@@ -17,11 +19,11 @@ void main() {
         Array([4.0]),
         Array([6.0])
       ]);
-      var x = a.solve(b);
+      var x = matrixSolve(a, b);
 
       print(x);
 
-      var xx = x.columnToArray(0).toComplexArray();
+      var xx = arrayToComplexArray(matrixColumnToArray(x, 0));
 
       var xf = fft(xx);
 

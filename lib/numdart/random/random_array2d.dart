@@ -1,4 +1,4 @@
-import 'package:scidart/numdart/array/array2d.dart';
+import 'package:scidart/numdart/arrays_base/array2d.dart';
 import 'package:scidart/numdart/random/random_array.dart';
 
 ///  Generates a Array with n elements containing non-negative random floating

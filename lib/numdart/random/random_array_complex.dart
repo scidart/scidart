@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:scidart/numdart/array/arrayComplex.dart';
+import 'package:scidart/numdart/arrays_base/array_complex.dart';
 import 'package:scidart/numdart/numbers/complex.dart';
 
 ///  Generates a ArrayComplex with n elements containing non-negative random floating

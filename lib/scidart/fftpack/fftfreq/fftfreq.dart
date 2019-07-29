@@ -39,8 +39,8 @@ Array fftFreq(int n, {double d = 1.0}) {
   var results = Array.empty();
   var N = (n - 1) ~/ 2 + 1;
   var p1 = arange(start: 0, stop: N);
-  results.concat(p1);
+  results = arrayConcat(results, p1);
   var p2 = arange(start: -(n ~/ 2), stop: 0);
-  results.concat(p2);
-  return results.multiplyToScalar(val);
+  results = arrayConcat(results, p2);
+  return arrayMultiplyToScalar(results, val);
 }

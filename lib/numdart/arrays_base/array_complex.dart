@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:scidart/numdart/array/array.dart';
+import 'package:scidart/numdart/arrays_base/array.dart';
 import 'package:scidart/numdart/numbers/complex.dart';
 
 ///  Class to create 1 dimension ArrayComplex.

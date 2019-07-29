@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('create a identity matrix', () {
-    var i = identity(3, 3);
+    var i = matrixIdentity(3, 3);
 
     print(i);
 

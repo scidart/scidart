@@ -1,4 +1,4 @@
-import 'package:scidart/numdart/array/array.dart';
+import 'package:scidart/numdart/arrays_base/arrays_base.dart';
 
 ///  Return the mean of all elements of the array
 ///  Examples
@@ -7,5 +7,5 @@ import 'package:scidart/numdart/array/array.dart';
 ///  >>> n.mean();
 ///  2.0
 double mean(Array a) {
-  return a.sum() / a.length;
+  return arraySum(a) / a.length;
 }

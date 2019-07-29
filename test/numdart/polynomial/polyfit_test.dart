@@ -11,13 +11,13 @@ void main() {
 
     var p = PolyFit(x, y, degree);
     var coef = p.coefficients();
-    coef.truncateEachElement(4);
+    arrayTruncateEachElement(coef, 4);
 
     print(p);
     print(coef);
 
     var coefExpect = Array([3.0, 2.0, 1.0]);
-    coefExpect.truncateEachElement(4);
+    arrayTruncateEachElement(coefExpect, 4);
 
 
     expect(coef, coefExpect);

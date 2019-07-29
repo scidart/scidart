@@ -1,4 +1,4 @@
-import 'package:scidart/numdart/array/array.dart';
+import 'package:scidart/numdart/arrays_base/array.dart';
 
 ///  Return evenly spaced values within a given interval.
 ///  Values are generated within the half-open interval [start, stop) (in other words, the interval including start but excluding stop).

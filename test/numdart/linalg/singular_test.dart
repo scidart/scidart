@@ -16,20 +16,20 @@ void main() {
       Array([0.24598854, 0.73399958, 0.63303575]),
       Array([0.96717718, -0.22879947, -0.11054003])
     ]);
-    uExp.truncateEachElement(frac);
+    array2dTruncateEachElement(uExp, frac);
 
     var sExp = Array2d([
       Array([66.69193778, 0.0, 0.0]),
       Array([0.0, 2.66694684, 0.0]),
       Array([0.0, 0.0, 0.26986934]),
     ]);
-    sExp.truncateEachElement(frac);
+    array2dTruncateEachElement(sExp, frac);
 
     var u = svd.U();
-    u.truncateEachElement(frac);
+    array2dTruncateEachElement(u, frac);
 
     var s = svd.S();
-    s.truncateEachElement(frac);
+    array2dTruncateEachElement(s, frac);
 
     print(u);
     print(s);

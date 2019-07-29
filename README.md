@@ -3,7 +3,7 @@ A sample command-line application.
 Created from templates made available by Stagehand under a BSD-style
 [license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
 
-## Milestone
+## Todo list
 * polyfit (ok)
 * end documentation (ok)
 * function to time the execution of a process (ok)
@@ -16,9 +16,14 @@ Created from templates made available by Stagehand under a BSD-style
 * gen ref and examples for io read functions (ok)
 * generate a plot in memory (delegated to https://stackoverflow.com/questions/43703802/flutter-draw-graphs-on-the-screen)
 * test fast math (ok)
-* -> refactor array, array2d class to be more functional
-* write some examples
+* -> refactor array(ok), array2d(ok), arrayComplex(->), Complex class to be more functional
+* write matrix operations tests
+* implement determinant calculation
 * filter IIR
+* other spaces: logSpace
+* dbConverters
+* spectrum generator
+* write some examples
 * write a CLI to interact with the lib
 
 * publish package

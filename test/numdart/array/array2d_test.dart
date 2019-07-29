@@ -71,50 +71,6 @@ void main() {
     expect(c, cExpec);
   });
 
-  test('multiply matrix', () {
-    var a = Array2d([
-      Array([4, 2, 1]),
-      Array([16, 4, 1]),
-      Array([64, 8, 1])
-    ]);
-
-    var b = Array2d([
-      Array([1]),
-      Array([1]),
-      Array([1])
-    ]);
-
-    var c = a.dot(b);
-
-    var cExpec = Array2d([
-      Array([7]),
-      Array([21]),
-      Array([73])
-    ]);
-
-    expect(c, cExpec);
-  });
-
-  test('multiply column', () {
-    var a = Array2d([
-      Array([4, 2, 1]),
-      Array([16, 4, 1]),
-      Array([64, 8, 1])
-    ]);
-
-    var b = Array([2, 2, 2]);
-
-    var c = a.multiplyColumns(b);
-
-    var cExp = Array2d([
-      Array([8.0, 4.0, 2.0]),
-      Array([32.0, 8.0, 2.0]),
-      Array([128.0, 16.0, 2.0])
-    ]);
-
-    expect(c, cExp);
-  });
-
   test('==', () {
     var a = Array2d([
       Array([4, 2, 1]),

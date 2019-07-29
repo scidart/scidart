@@ -65,8 +65,8 @@ void main() {
       1.0
     ]);
 
-    zi.truncateEachElement(6);
-    ziExpec.truncateEachElement(6);
+    arrayTruncateEachElement(zi, 6);
+    arrayTruncateEachElement(ziExpec, 6);
     expect(zi, ziExpec);
   });
 }

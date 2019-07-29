@@ -6,15 +6,15 @@ void main() {
   test('convolve two periodic signals', () {
     var input = Array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
     var kernel = Array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
-    var xi = input.toComplexArray();
-    var yi = kernel.toComplexArray();
+    var xi = arrayToComplexArray(input);
+    var yi = arrayToComplexArray(kernel);
 
     print(convolutionCircularComplex(xi, yi));
 
     var zi = convolutionCircularComplex(xi, yi).abs();
-    zi.truncateEachElement(4);
+    arrayTruncateEachElement(zi, 4);
 
-    kernel.concat(kernel.copy());
+    kernel = arrayConcat(kernel, kernel.copy());
     var ziExpec = convolution(input, kernel);
 
     print(zi);

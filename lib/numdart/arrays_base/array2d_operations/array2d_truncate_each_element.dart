@@ -1,4 +1,4 @@
-import 'package:scidart/numdart/array/array_operations/array_operations.dart';
+import 'package:scidart/numdart/arrays_base/array_operations/array_truncate_each_element.dart';
 
 import '../array2d.dart';
 

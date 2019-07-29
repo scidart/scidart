@@ -27,6 +27,6 @@ import 'package:scidart/scidart/fftpack/fft/fft.dart';
 ///  >>>   Complex(real: 1.0, imaginary: 2.41421356)
 ///  >>> ]);
 ArrayComplex rfft(Array x, {n}) {
-  var buffer = x.toComplexArray();
+  var buffer = arrayToComplexArray(x);
   return fft(buffer, n: n);
 }

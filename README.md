@@ -15,9 +15,10 @@ Created from templates made available by Stagehand under a BSD-style
 * separate fast math (ok)
 * gen ref and examples for io read functions (ok)
 * generate a plot in memory (delegated to https://stackoverflow.com/questions/43703802/flutter-draw-graphs-on-the-screen)
-* test fast math
-* filter
+* test fast math (ok)
 * refactor array, array2d class to be more functional
+* write some examples
+* filter IIR
 * write a CLI to interact with the lib
 
 * publish package

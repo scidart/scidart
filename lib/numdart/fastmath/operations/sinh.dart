@@ -83,7 +83,7 @@ double sinh(double x) {
     result *= 0.5;
   } else {
     final hiPrec = List<double>(2);
-    expm1(x, hiPrec);
+    expm1(x, hiPrecOut: hiPrec);
 
     double ya = hiPrec[0] + hiPrec[1];
     double yb = -(ya - hiPrec[0] - hiPrec[1]);

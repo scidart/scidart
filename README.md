@@ -18,8 +18,8 @@ Created from templates made available by Stagehand under a BSD-style
 * test fast math (ok)
 * -> refactor array(ok), array2d(ok), arrayComplex(ok), Complex(ok) class to be more functional
 * write matrix operations tests (ok)
-* -> implement determinant calculation
-* integration and derivation
+* implement determinant calculation (ok)
+* integration and derivation 
 * filter IIR
 * other spaces: logSpace
 * dbConverters

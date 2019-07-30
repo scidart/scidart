@@ -1,14 +1,16 @@
-import 'package:scidart/numdart/calculus/numerical_integration/functions/check_params_get_range.dart';
-
 import '../../../numdart.dart';
+import 'check_params_get_range_array.dart';
 
-double trapzFunction(Array y, {Array x, double dx = 1}) {
-  double range = checkParamsGetRange(a, b, n);
-  double nFloat = n.toDouble();
+double trapzArray(Array y, {Array x, int dx = 1}) {
+  checkParamsGetRangeArray(y, x, dx);
+
+  if (x == null) {
+    x = arange(start: 0, stop: y.length, step: dx);
+  }
+
   double sum = 0.0;
-  for (int i = 1; i < n; i++) {
-    double x = a + range * i.toDouble() / nFloat;
-    sum += f(x);
+  for (var xi in x) {
+    sum += y[];
   }
   sum += (f(a) + f(b)) / 2.0;
   return sum * range / nFloat;

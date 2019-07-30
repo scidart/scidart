@@ -25,7 +25,7 @@ Array rifft(ArrayComplex X) {
   var x = ifft(X);
 
   // absulute value of the list
-  var xReal = x.abs();
+  var xReal = arrayComplexAbs(x);
 
   return xReal;
 }

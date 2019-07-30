@@ -2,7 +2,7 @@ library linalg;
 
 export 'decompositions/lu.dart';
 export 'decompositions/qr.dart';
-export 'decompositions/singular.dart';
+export 'decompositions/svd.dart';
 export 'matrix_operations/matrix_column_to_array.dart';
 export 'matrix_operations/matrix_divide_columns.dart';
 export 'matrix_operations/matrix_dot.dart';

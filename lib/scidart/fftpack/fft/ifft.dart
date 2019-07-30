@@ -32,16 +32,16 @@ import 'package:scidart/scidart/fftpack/fft/fft.dart';
 ///  >>> ])
 ArrayComplex ifft(ArrayComplex X) {
   // conjugate the complex numbers
-  var XConj = X.conjugate();
+  var XConj = arrayComplexConjugate(X);
 
   // forward fft
   var xImag = fft(XConj);
 
   // conjugate the complex numbers again
-  xImag = xImag.conjugate();
+  xImag = arrayComplexConjugate(xImag);
 
   // scale the numbers
-  xImag = xImag.divisionToScalar(xImag.length);
+  xImag = arrayComplexDivisionToScalar(xImag, xImag.length);
 
   return xImag;
 }

@@ -22,7 +22,7 @@ Array convolution(Array input, Array kernel, {fast = false}) {
     var d = convolutionComplex(
         arrayToComplexArray(input), arrayToComplexArray(kernel));
 
-    return d.abs();
+    return arrayComplexAbs(d);
   } else {
     // compute convolution using numeric algorithm
     var result = Array.fixed(input.length + kernel.length - 1, initialValue: 0);

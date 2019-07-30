@@ -38,12 +38,12 @@ ArrayComplex convolutionComplex(ArrayComplex input, ArrayComplex kernel) {
   // compute convolution using FFT
   var n = input.length + kernel.length; // n of final vector + 1
   var i = input.copy(); // copy of input
-  i.padStart(
-      (n - input.length)); // padding with zeros the difference between lengths
+  i = arrayComplexPadStart(
+      i, n - input.length); // padding with zeros the difference between lengths
 
   var k = kernel.copy(); // copy of kernel
-  k.padStart(
-      (n - kernel.length)); // padding with zeros the difference between lengths
+  k = arrayComplexPadStart(k,
+      n - kernel.length); // padding with zeros the difference between lengths
 
   var x = fft(i); // fft of i
   var y = fft(k); // fft of k
@@ -51,7 +51,7 @@ ArrayComplex convolutionComplex(ArrayComplex input, ArrayComplex kernel) {
   var c = x * y; // arrayComplex multiplication
 
   // ifft of multiplication without last element because is close to zero.
-  var d = ifft(c).truncateLast();
+  var d = arrayComplexTruncateLast(ifft(c));
 
   return d;
 }

@@ -25,7 +25,7 @@ import 'package:scidart/numdart/numdart.dart';
 ///  .. [3] "Apache Commons Math Github". https://github.com/apache/commons-math. Retrieved 2019-07-19.
 ///  Examples
 ///  --------
-///  >>> var svd = Singular(Array2d([
+///  >>> var svd = SVD(Array2d([
 ///  >>>   Array([4.0, 2.0, 1.0]),
 ///  >>>   Array([16.0, 4.0, 1.0]),
 ///  >>>   Array([64.0, 8.0, 1.0])
@@ -44,7 +44,7 @@ import 'package:scidart/numdart/numdart.dart';
 ///    Array([0.0, 2.66694684, 0.0]),
 ///    Array([0.0, 0.0, 0.26986934]),
 ///  ]);
-class Singular {
+class SVD {
   //#region Class variables
   ///  Arrays for internal storage of U and V.
   ///  internal storage of [_U].
@@ -66,7 +66,7 @@ class Singular {
   ///  Construct the singular value decomposition
   ///  Structure to access U, S and V.
   ///  @param Arg    Rectangular matrix
-  Singular(Array2d Arg) {
+  SVD(Array2d Arg) {
     // Derived from LINPACK code.
     // Initialize.
     Array2d A = Arg.copy();

@@ -1,8 +1,6 @@
 import 'dart:core';
-import 'dart:math' as math;
 
-import 'package:scidart/numdart/fastmath/fastmath.dart' as fmath;
-import 'package:scidart/numdart/geometric/hypotenuse.dart';
+import 'package:scidart/numdart/numbers/complex_operations/complex_conjugate.dart';
 
 ///  Class to create and handle a complex numbers.
 ///  Constructors:
@@ -76,7 +74,7 @@ class Complex {
   ///  >>> c1 / c2;
   ///  >>> Complex(real: -1.0, imaginary: -1.0)
   Complex operator /(Complex b) {
-    var conjugation = b.conjugate();
+    var conjugation = complexConjugate(b);
     var denominatorRes = b * conjugation;
 
     // denominator has only real part
@@ -97,64 +95,6 @@ class Complex {
   ///  >>> false
   bool operator ==(b) {
     return b.real == this.real && b.imaginary == this.imaginary;
-  }
-
-  ///  Return the conjugate of a complex number
-  ///  Examples
-  ///  --------
-  ///  >>> var c1 = Complex(real: 1, imaginary: -3);
-  ///  >>> c1.conjugate();
-  ///  >>> Complex(real: 1.0, imaginary: 3.0)
-  Complex conjugate() {
-    return Complex(real: real, imaginary: -imaginary);
-  }
-
-  ///  Return a double that represent the absolute value of a complex number
-  ///  Examples
-  ///  --------
-  ///  >>> var c1 = Complex(real: 3.0, imaginary: 4.0);
-  ///  >>> c1.abs();
-  ///  >>> 5.0
-  double abs() {
-    return hypotenuse(real, imaginary);
-  }
-
-  ///  Divide real part and imaginary for a double number
-  ///  [b] : a scalar number, can be int or double
-  ///  Examples
-  ///  --------
-  ///  >>> var c1 = Complex(real: 4.0, imaginary: 4.0);
-  ///  >>> c1.divideScalar(2);
-  ///  >>> Complex(real: 2.0, imaginary: 2.0)
-  Complex divideScalar(num b) {
-    return Complex(real: real/b, imaginary: imaginary/b);
-  }
-
-  ///  Multiply real part and imaginary for a double number
-  ///  [b] : a scalar number, can be int or double
-  ///  Examples
-  ///  --------
-  ///  >>> var c1 = Complex(real: 2.0, imaginary: 2.0);
-  ///  >>> c1.divideScalar(2);
-  ///  >>> Complex(real: 4.0, imaginary: 4.0)
-  Complex multiplyScalar(num b) {
-    return Complex(real: real*b, imaginary: imaginary*b);
-  }
-
-  ///  Compute the [cosine](http://mathworld.wolfram.com/Cosine.html)
-  ///  of this complex number.
-  ///
-  ///  Implements the formula:
-  ///
-  ///      cos(a + bi) = cos(a)cosh(b) - sin(a)sinh(b)i
-  ///
-  ///  Examples
-  ///  --------
-  ///  >>> var c1 = Complex(real: 3.0, imaginary: 4.0);
-  ///  >>> c1.cos();
-  ///  Complex(real: -27.034945603074224, imaginary: -3.8511533348117775)
-  Complex cos() {
-    return Complex(real: math.cos(real) * fmath.cosh(imaginary), imaginary: -math.sin(real) * fmath.sinh(imaginary));
   }
 
   ///  Convert a Complex object (number) to a String representation

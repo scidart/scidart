@@ -54,54 +54,9 @@ void main() {
     expect(c3.imaginary, -1/2);
   });
 
-test('Conjugate positive imaginary complex numbers', () {
-    var c1 = Complex(real: 1, imaginary: 1);
-    var c2 = c1.conjugate();
-    expect(c2.real, 1);
-    expect(c2.imaginary, -1);
-  });
-
-  test('Conjugate negative imaginary complex numbers', () {
-    var c1 = Complex(real: 1, imaginary: -1);
-    var c2 = c1.conjugate();
-    expect(c2.real, 1);
-    expect(c2.imaginary, 1);
-  });
-
-  test('Conjugate zero negative imaginary complex numbers', () {
-    var c1 = Complex(real: 1, imaginary: -0);
-    var c2 = c1.conjugate();
-    expect(c2.real, 1);
-    expect(c2.imaginary, -0);
-  });
-
-  test('abs complex numbers', () {
-    var c1 = Complex(real: 3.0, imaginary: 4.0);
-
-    expect(c1.abs(), 5.0);
-  });
-
-  test('divide scalar complex numbers', () {
-    var c1 = Complex(real: 2.0, imaginary: 2.0);
-    c1 = c1.divideScalar(2);
-    
-    expect(c1.real, 1.0);
-    expect(c1.imaginary, 1.0);
-  });
-
-  test('cos', () {
-    var c1 = Complex(real: 3.0, imaginary: 4.0);
-    c1 = c1.cos();
-
-    print(c1);
-
-    expect(truncate(c1.real, 5), truncate(-27.034945603074, 5));
-    expect(truncate(c1.imaginary, 5), truncate(-3.8511533348118, 5));
-  });
-
   test('toString', () {
     var c1 = Complex(real: 1, imaginary: 1);
 
-    expect(c1.toString(), 'Complex(real: ${c1.real}, imaginary: ${c1.imaginary})');
+    expect(c1.toString(), '\n' + '    Complex(real: 1.0, imaginary: 1.0)');
   });
 }

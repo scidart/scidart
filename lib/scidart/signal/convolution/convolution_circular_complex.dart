@@ -63,7 +63,7 @@ ArrayComplex convolutionCircularComplex(ArrayComplex input, ArrayComplex kernel,
   } else {
     var ii = input.copy();
     var kk = kernel.copy();
-    kk.concat(kk.copy());
+    kk = arrayComplexConcat(kk, kk);
     return convolutionComplex(ii, kk);
   }
 }

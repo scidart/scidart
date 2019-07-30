@@ -16,14 +16,15 @@ Created from templates made available by Stagehand under a BSD-style
 * gen ref and examples for io read functions (ok)
 * generate a plot in memory (delegated to https://stackoverflow.com/questions/43703802/flutter-draw-graphs-on-the-screen)
 * test fast math (ok)
-* -> refactor array(ok), array2d(ok), arrayComplex(->), Complex class to be more functional
-* write matrix operations tests
-* implement determinant calculation
+* -> refactor array(ok), array2d(ok), arrayComplex(ok), Complex(ok) class to be more functional
+* write matrix operations tests (ok)
+* -> implement determinant calculation
+* integration and derivation
 * filter IIR
 * other spaces: logSpace
 * dbConverters
 * spectrum generator
-* write some examples
+* write some examples: frequency stimator, step counter, FM modulation, AM modulation
 * write a CLI to interact with the lib
 
 * publish package

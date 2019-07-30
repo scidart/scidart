@@ -1,10 +1,19 @@
-library array;
+library arrays_base;
 
 export 'array.dart';
 export 'array2d.dart';
 export 'array2d_operations/array2d_truncate_each_element.dart';
 export 'array3d.dart';
 export 'array_complex.dart';
+export 'array_complex_operations/array_complex_abs.dart';
+export 'array_complex_operations/array_complex_concat.dart';
+export 'array_complex_operations/array_complex_conjugate.dart';
+export 'array_complex_operations/array_complex_cos.dart';
+export 'array_complex_operations/array_complex_division_to_scalar.dart';
+export 'array_complex_operations/array_complex_multiply_to_scalar.dart';
+export 'array_complex_operations/array_complex_pad_start.dart';
+export 'array_complex_operations/array_complex_sum.dart';
+export 'array_complex_operations/array_complex_truncate_last.dart';
 export 'array_operations/array_concat.dart';
 export 'array_operations/array_cos.dart';
 export 'array_operations/array_division_to_scalar.dart';

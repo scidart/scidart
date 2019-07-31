@@ -3,6 +3,7 @@ library numdart;
 export 'dart:math';
 
 export 'arrays_base/arrays_base.dart';
+export 'calculus/calculus.dart';
 export 'fastmath/fastmath.dart';
 export 'geometric/geometric.dart';
 export 'linalg/linalg.dart';

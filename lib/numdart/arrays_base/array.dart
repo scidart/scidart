@@ -80,6 +80,22 @@ class Array extends ListBase<double> {
     return c;
   }
 
+  ///  Divide two arrays
+  ///  Examples
+  ///  --------
+  ///  >>> var a1 = Array([2.0, 2.0, 2.0]);
+  ///  >>> var a2 = Array([2.0, 2.0, 2.0]);
+  ///  >>> a1 / a2;
+  ///  Array([1.0, 1.0, 1.0])
+  Array operator /(Array b) {
+    _checkArray(b);
+    var c = Array.fixed(this.length);
+    for (int i = 0; i < this.length; i++) {
+      c[i] = this[i] / b[i];
+    }
+    return c;
+  }
+
   ///  Sum two arrays
   ///  Examples
   ///  --------
@@ -92,6 +108,22 @@ class Array extends ListBase<double> {
     var c = Array.fixed(this.length);
     for (int i = 0; i < this.length; i++) {
       c[i] = this[i] + b[i];
+    }
+    return c;
+  }
+
+  ///  Subtract two arrays
+  ///  Examples
+  ///  --------
+  ///  >>> var n = Array([1, 2, 3]);
+  ///  >>> var n2 = Array([1, 2, 3]);
+  ///  >>> n - n2;
+  ///  Array([0, 0, 0])
+  Array operator -(List<double> b) {
+    _checkArray(b);
+    var c = Array.fixed(this.length);
+    for (int i = 0; i < this.length; i++) {
+      c[i] = this[i] - b[i];
     }
     return c;
   }
@@ -111,6 +143,22 @@ class Array extends ListBase<double> {
       }
     }
     return true;
+  }
+
+  ///  Return a array given a index interval
+  ///  [start] : start index close interval
+  ///  [end] : end index open interval
+  ///  Examples
+  ///  --------
+  ///  >>> var a = Array([1,2,3,4,5]);
+  ///  >>> var b = a.getRangeArray(1, 3);
+  ///  >>> Array([2, 3]);
+  Array getRangeArray(int start, int end, {int step = 1}) {
+    var b = Array.empty();
+    for (var i = start; i < end; i += step) {
+      b.add(this[i]);
+    }
+    return b;
   }
   //#endregion
 

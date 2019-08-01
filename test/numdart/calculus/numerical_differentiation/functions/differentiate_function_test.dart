@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   test('basic derivative', () {
     var f = (x) => x * x * x;
-    var df = derivativeFunction(2, f);
+    var df = differentiateFunction(2, f);
     print(df);
     df = truncate(df, 6);
 

@@ -6,4 +6,5 @@ export 'package:scidart/numdart/calculus/numerical_integration/arrays/trapz_arra
 export 'package:scidart/numdart/calculus/numerical_integration/functions/simps_function.dart';
 export 'package:scidart/numdart/calculus/numerical_integration/functions/trapz_function.dart';
 
-export 'numerical_differentiation/functions/derivative_function.dart';
+export 'numerical_differentiation/functions/differentiate_function.dart';
+export 'numerical_integration/arrays/cum_integration.dart';

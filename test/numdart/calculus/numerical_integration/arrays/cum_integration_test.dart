@@ -1,5 +1,5 @@
+import 'package:scidart/numdart/calculus/numerical_integration/arrays/cum_integration.dart';
 import 'package:scidart/numdart/numdart.dart';
-import 'package:scidart/scidart/signal/integration/cum_integration.dart';
 import 'package:test/test.dart';
 
 void main() {

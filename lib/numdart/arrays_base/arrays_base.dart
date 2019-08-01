@@ -26,3 +26,4 @@ export 'array_operations/array_to_column_matrix.dart';
 export 'array_operations/array_to_complex_array.dart';
 export 'array_operations/array_truncate_each_element.dart';
 export 'array_operations/array_truncate_last.dart';
+export 'array_operations/array_cum_sum.dart';

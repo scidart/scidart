@@ -19,6 +19,8 @@ export 'array_operations/array_cos.dart';
 export 'array_operations/array_cum_sum.dart';
 export 'array_operations/array_diff.dart';
 export 'array_operations/array_division_to_scalar.dart';
+export 'array_operations/array_max.dart';
+export 'array_operations/array_min.dart';
 export 'array_operations/array_multiply_to_scalar.dart';
 export 'array_operations/array_pad_start.dart';
 export 'array_operations/array_sin.dart';

@@ -33,6 +33,24 @@ import 'package:scidart/numdart/numdart.dart';
 ///  that type.
 ///  Examples
 ///  --------
-Array get_window(dynamic window, int Nx, {bool fftbins = true}) {
+Array getWindow(dynamic window, int Nx, {bool fftbins = true}) {
   var sym = !fftbins;
+  var winfunc;
+  if (window is Array) {
+    if (window[0] is String && window[1] is double) {
+
+    } else {
+      throw FormatException("First ");
+    }
+  } else if (window is String) {
+
+  } else if (window is double) {
+    // kaiser
+  }
+  else {
+    throw FormatException(
+        "window need be a string or array with String and Beta");
+  }
+
+
 }

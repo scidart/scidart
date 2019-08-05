@@ -20,8 +20,8 @@ Created from templates made available by Stagehand under a BSD-style
 * write matrix operations tests (ok)
 * implement determinant calculation (ok)
 * integration and derivation (ok)
+* filter FIR
 * filter IIR
-* other spaces: logSpace
 * dbConverters
 * logSpace (https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.logspace.html)
 * spectrum generator (https://matplotlib.org/3.1.1/gallery/lines_bars_and_markers/spectrum_demo.html - https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.spectrogram.html)

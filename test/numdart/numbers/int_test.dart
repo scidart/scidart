@@ -13,4 +13,16 @@ void main() {
     print(n);
     expect(n, 128);
   });
+
+  test('int to bool', () {
+    var n = intToBool(130);
+    print(n);
+    expect(n, true);
+  });
+
+  test('bool to int', () {
+    var n = boolToInt(false);
+    print(n);
+    expect(n, 0);
+  });
 }

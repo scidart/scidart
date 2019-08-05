@@ -6,4 +6,5 @@ export 'operations/copySign.dart';
 export 'operations/cosh.dart';
 export 'operations/exp_fast.dart';
 export 'operations/expm1.dart';
+export 'operations/sinc.dart';
 export 'operations/sinh.dart';

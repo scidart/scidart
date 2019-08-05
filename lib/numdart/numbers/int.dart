@@ -36,3 +36,9 @@ int highestOneBit(int n) {
   n |= (n >> 16);
   return n - (n >> 1);
 }
+
+///  Convert a bool to int, if true return 1, else 0
+int boolToInt(bool a) => a ? 1 : 0;
+
+///  Convert a int to bool, if 0 return false, else true
+bool intToBool(int a) => a == 0 ? false : true;

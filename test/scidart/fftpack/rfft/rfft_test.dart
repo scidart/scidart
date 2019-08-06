@@ -21,6 +21,10 @@ void main() {
     ];
 
     var fractionDigits = 8;
+
+    expect(arrayTruncateEachElement(X, fractionDigits),
+        arrayComplexTruncateEachElement(XExpected, fractionDigits));
+
     for (var i = 0; i < X.length; i++) {
       expect(truncate(X[i].real, fractionDigits),
           truncate(XExpected[i].real, fractionDigits));

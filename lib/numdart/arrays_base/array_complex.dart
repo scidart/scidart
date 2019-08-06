@@ -109,6 +109,26 @@ class ArrayComplex extends ListBase<Complex> {
     return true;
   }
 
+  ///  Return a array given a index interval
+  ///  [start] : start index close interval
+  ///  [end] : end index open interval
+  ///  Examples
+  ///  --------
+  ///  >>> var var list = ArrayComplex([
+  ///  >>> Complex(real: 3.0, imaginary: 4.0),
+  ///  >>> Complex(real: 3.0, imaginary: 4.0),
+  ///  >>> Complex(real: 3.0, imaginary: 4.0)]);
+  ///  >>> var b = list.getRangeArray(0, 1);
+  ///  ArrayComplex([
+  ///    Complex(real: 3.0, imaginary: 4.0)
+  ///  ]);
+  ArrayComplex getRangeArray(int start, int end, {int step = 1}) {
+    var b = ArrayComplex.empty();
+    for (var i = start; i < end; i += step) {
+      b.add(this[i]);
+    }
+    return b;
+  }
   //#endregion
 
   //#region overload methods

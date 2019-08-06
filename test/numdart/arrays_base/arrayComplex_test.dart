@@ -56,6 +56,19 @@ void main() {
     expect(cList.elementAt(1), Complex(real: 23, imaginary: 14));
     expect(cList.elementAt(2), Complex(real: 23, imaginary: 14));
   });
+
+  test('getArrayRange', () {
+    var list = ArrayComplex([
+      Complex(real: 3.0, imaginary: 4.0),
+      Complex(real: 3.0, imaginary: 4.0),
+      Complex(real: 3.0, imaginary: 4.0)]);
+    var b = list.getRangeArray(0, 1);
+    var bExpec = ArrayComplex([
+      Complex(real: 3.0, imaginary: 4.0)
+    ]);
+
+    expect(b, bExpec);
+  });
   //#endregion
 
   //#region methods overload

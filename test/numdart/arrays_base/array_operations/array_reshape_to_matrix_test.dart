@@ -15,4 +15,17 @@ void main() {
 
     expect(n, nExp);
   });
+
+  test('array 2 length reshape to matrix', () {
+    var a = Array([4.0, 4.0]);
+    var n = arrayReshapeToMatrix(a, 2);
+
+    print(n);
+
+    var nExp = Array2d([
+      Array([4.0, 4.0])
+    ]);
+
+    expect(n, nExp);
+  });
 }

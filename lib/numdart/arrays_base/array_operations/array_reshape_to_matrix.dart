@@ -14,7 +14,7 @@ Array2d arrayReshapeToMatrix(Array a, int order) {
     throw FormatException("order must be multiple of array length");
   }
 
-  var b = Array2d.fixed(order, a.length ~/ order);
+  var b = Array2d.fixed(a.length ~/ order, order);
   for (var i = 0; i < b.row; i++) {
     for (var j = 0; j < b.column; j++) {
       b[i][j] = a[i + j];

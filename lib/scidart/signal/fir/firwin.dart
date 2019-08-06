@@ -1,4 +1,5 @@
 import 'package:scidart/numdart/numdart.dart';
+import 'package:scidart/scidart/signal/windows/get_window.dart';
 
 ///  FIR filter design using the window method.
 ///  This function computes the coefficients of a finite impulse response
@@ -13,13 +14,13 @@ import 'package:scidart/numdart/numdart.dart';
 ///      Length of the filter (number of coefficients, i.e. the filter
 ///      order + 1).  `numtaps` must be odd if a passband includes the
 ///      Nyquist frequency.
-///  [cutoff] : float or 1D array_like
+///  [cutoff] : Array
 ///      Cutoff frequency of filter (expressed in the same units as `fs`)
 ///      OR an array of cutoff frequencies (that is, band edges). In the
 ///      latter case, the frequencies in `cutoff` should be positive and
 ///      monotonically increasing between 0 and `fs/2`.  The values 0 and
 ///      `fs/2` must not be included in `cutoff`.
-///  [width] : float or None, optional
+///  [width] : double or None, optional
 ///      If `width` is not None, then assume it is the approximate width
 ///      of the transition region (expressed in the same units as `fs`)
 ///      for use in Kaiser FIR filter design.  In this case, the `window`
@@ -33,7 +34,7 @@ import 'package:scidart/numdart/numdart.dart';
 ///      desired filter type (equivalent to ``btype`` in IIR design functions).
 ///      .. versionadded:: 1.3.0
 ///         Support for string arguments.
-///  scale : bool, optional
+///  [scale] : bool, optional
 ///      Set to True to scale the coefficients so that the frequency
 ///      response is exactly unity at a certain frequency.
 ///      That frequency is either:
@@ -42,16 +43,16 @@ import 'package:scidart/numdart/numdart.dart';
 ///      - `fs/2` (the Nyquist frequency) if the first passband ends at
 ///        `fs/2` (i.e the filter is a single band highpass filter);
 ///        center of first passband otherwise
-///  nyq : float, optional
+///  [nyq] : double, optional
 ///      *Deprecated.  Use `fs` instead.*  This is the Nyquist frequency.
 ///      Each frequency in `cutoff` must be between 0 and `nyq`. Default
 ///      is 1.
-///  fs : float, optional
+///  [fs] : float, optional
 ///      The sampling frequency of the signal.  Each frequency in `cutoff`
 ///      must be between 0 and ``fs/2``.  Default is 2.
 ///  Returns
 ///  -------
-///  h : (numtaps,) ndarray
+///  [h] : Array
 ///      Coefficients of length `numtaps` FIR filter.
 ///  Raises
 ///  ------
@@ -60,6 +61,16 @@ import 'package:scidart/numdart/numdart.dart';
 ///      than or equal to ``fs/2``, if the values in `cutoff` are not strictly
 ///      monotonically increasing, or if `numtaps` is even but a passband
 ///      includes the Nyquist frequency.
+///  References
+///  ----------
+///  .. [1] "doc scipy.signal.firwin". https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.firwin.html#scipy.signal.firwin. Retrieved 2019-08-06.
+///  .. [2] "source code scipy.signal.firwin". https://github.com/scipy/scipy/blob/v1.3.0/scipy/signal/fir_filter_design.py#L264-L482. Retrieved 2019-08-06.
+///  Examples
+///  --------
+///  >>> var numtaps = 3;
+///  >>> var f = 0.1;
+///  >>> firwin(numtaps, Array([f]));
+///  Array([0.06799017,  0.86401967,  0.06799017]);
 dynamic firwin(int numtaps, Array cutoff,
     {double width,
       dynamic window = 'hamming',
@@ -78,7 +89,7 @@ dynamic firwin(int numtaps, Array cutoff,
     throw FormatException(
         "Invalid cutoff frequency: frequencies must be greater than 0 and less than fs/2.");
   }
-  if (arrayMin(arrayDiff(cutoff)) <= 0) {
+  if (arrayDiff(cutoff).any((i) => i <= 0)) {
     throw FormatException(
         "Invalid cutoff frequencies: the frequencies must be strictly increasing.");
   }
@@ -155,16 +166,16 @@ dynamic firwin(int numtaps, Array cutoff,
   var alpha = 0.5 * (numtaps - 1);
   var m = arraySubToScalar(arange(start: 0, stop: numtaps), alpha);
   var h = Array.fixed(m.length, initialValue: 0);
-  for (var lr in bands) { // lr[0] - left; lr[1] - right
-    var left = lr[0];
-    var right = lr[1];
+  for (var j = 0; j < bands.row; j++) { // lr[0] - left; lr[1] - right
+    var left = bands[j][0];
+    var right = bands[j][1];
     h += arrayMultiplyToScalar(
         arraySinc(arrayMultiplyToScalar(m, right)), right);
     h -= arrayMultiplyToScalar(arraySinc(arrayMultiplyToScalar(m, left)), left);
   }
 
   // Get and apply the window function.
-  var win = get_window(window, numtaps, fftbins = False);
+  var win = getWindow(window, numtaps, fftbins: false);
   h *= win;
 
   // Now handle scaling if desired.

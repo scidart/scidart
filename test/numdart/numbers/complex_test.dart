@@ -1,5 +1,4 @@
-import 'package:scidart/numdart/numbers/complex.dart';
-import 'package:scidart/numdart/numdart.dart';
+import 'package:scidart/src/numdart/numdart.dart';
 import 'package:test/test.dart';
 
 void main() {

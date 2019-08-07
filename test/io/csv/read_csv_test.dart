@@ -1,4 +1,4 @@
-import 'package:scidart/io/csv/read_csv.dart';
+import 'package:scidart/scidart_io.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -1,6 +1,5 @@
-import 'package:scidart/numdart/arrays_base/array.dart';
-import 'package:scidart/numdart/arrays_base/array_operations/array_truncate_each_element.dart';
-import 'package:scidart/scidart/scidart.dart';
+import 'package:scidart/scidart.dart';
+import 'package:scidart/src/scidart/scidart.dart';
 import 'package:test/test.dart';
 
 void main() {

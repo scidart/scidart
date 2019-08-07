@@ -1,21 +1,24 @@
-# Scidart
-Scidart is a experimental cross-platform scientific library for Dart.
+# SciDart
+
+**SciDart** is a experimental cross-platform scientific library for Dart.
 
 ## Goals
-Your main goal is run where Dart can run, in other words, run on Flutter, Dart CLI, Dart web, etc.
+The main goal of **SciDart** is run where Dart can run, in other words, run on Flutter, Dart CLI, Dart web, etc.
 
 ## Motivation
-Some time ago I tried make a guitar tuner with Flutter and I faced with the problem: Dart dind't have scientific library with main scientific algorithms. 
-So, I tried implement something to help me with that problem.
+Some time ago I tried make a guitar tuner (frequency estimator) with Flutter and I faced with the problem: Dart dind't have scientific library with main scientific algorithms. 
+So, I tried implement something to help me and the community with this problem.
 
 ## Instalation
+
 
 ## Examples
 
 ## Documentation
 
+
 ## Inspiration
-Below, the list with all the main references of Scidart:
+Below, the list with all the main references of **SciDart**:
 
 * SciPy: https://www.scipy.org/
 * Jupyter: https://jupyter.org/
@@ -24,7 +27,7 @@ Below, the list with all the main references of Scidart:
 * Roseta code: https://rosettacode.org/
 
 ## How to contribute
-I recommend see the Todo List and choose a function to implement or choose a problem and implement the parts that are missing in Scidart.
+I recommend see the Todo List and choose a function to implement or choose a problem and implement the parts that are missing in **SciDart**.
 
 The references for tests is obtained with SciPy.
 

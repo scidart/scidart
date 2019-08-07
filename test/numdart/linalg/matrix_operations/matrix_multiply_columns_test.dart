@@ -1,5 +1,4 @@
-import 'package:scidart/numdart/linalg/matrix_operations/matrix_multiply_columns.dart';
-import 'package:scidart/numdart/numdart.dart';
+import 'package:scidart/src/numdart/numdart.dart';
 import 'package:test/test.dart';
 
 void main() {

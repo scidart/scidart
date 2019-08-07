@@ -1,4 +1,4 @@
-import 'package:scidart/io/io.dart';
+import 'package:scidart/scidart_io.dart';
 import 'package:test/test.dart';
 
 void main() {

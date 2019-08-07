@@ -1,5 +1,4 @@
-import 'package:scidart/numdart/numdart.dart';
-import 'package:scidart/numdart/polynomial/polyfit.dart';
+import 'package:scidart/src/numdart/numdart.dart';
 import 'package:test/test.dart';
 
 void main() {

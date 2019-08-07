@@ -1,4 +1,4 @@
-import 'package:scidart/numdart/random/random_array.dart';
+import 'package:scidart/scidart.dart';
 import 'package:test/test.dart';
 
 void main() {

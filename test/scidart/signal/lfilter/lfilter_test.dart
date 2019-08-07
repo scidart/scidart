@@ -1,6 +1,5 @@
-import 'package:scidart/numdart/numdart.dart';
-import 'package:scidart/scidart/scidart.dart';
-import 'package:scidart/scidart/signal/lfilter/lfilter.dart';
+import 'package:scidart/src/numdart/numdart.dart';
+import 'package:scidart/src/scidart/scidart.dart';
 import 'package:test/test.dart';
 
 void main() {

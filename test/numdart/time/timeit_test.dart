@@ -1,8 +1,4 @@
-import 'package:scidart/numdart/linalg/matrix_operations/matrix_column_to_array.dart';
-import 'package:scidart/numdart/linalg/matrix_operations/matrix_solve.dart';
-import 'package:scidart/numdart/numdart.dart';
-import 'package:scidart/numdart/time/timeit.dart';
-import 'package:scidart/scidart/fftpack/fft/fft.dart';
+import 'package:scidart/scidart.dart';
 import 'package:test/test.dart';
 
 void main() {

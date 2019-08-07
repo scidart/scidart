@@ -1,5 +1,4 @@
-import 'package:scidart/numdart/arrays_base/arrays_base.dart';
-import 'package:scidart/numdart/linalg/matrix_operations/matrix_determinant.dart';
+import 'package:scidart/scidart.dart';
 import 'package:test/test.dart';
 
 void main() {

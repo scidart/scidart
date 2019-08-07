@@ -1,7 +1,5 @@
-import 'package:scidart/io/io.dart';
-import 'package:scidart/io/txt/read_lines_txt.dart';
-import 'package:scidart/io/txt/write_lines_txt.dart';
-import 'package:scidart/numdart/numdart.dart';
+import 'package:scidart/scidart.dart';
+import 'package:scidart/scidart_io.dart';
 import 'package:test/test.dart';
 
 void main() {

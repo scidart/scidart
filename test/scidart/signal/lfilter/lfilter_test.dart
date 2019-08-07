@@ -9,6 +9,7 @@ void main() {
     // https://os.mbed.com/cookbook/FIR-Filter
     // https://stackoverflow.com/questions/48043004/how-do-i-generate-a-sine-wave-using-python
     // https://scipy-cookbook.readthedocs.io/items/ApplyFIRFilter.html
+    // https://scipy-cookbook.readthedocs.io/items/FIRFilter.html
 
     // generate the signals
     var N = 50.0;

@@ -65,6 +65,7 @@ import 'package:scidart/scidart/signal/windows/get_window.dart';
 ///  ----------
 ///  .. [1] "doc scipy.signal.firwin". https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.firwin.html#scipy.signal.firwin. Retrieved 2019-08-06.
 ///  .. [2] "source code scipy.signal.firwin". https://github.com/scipy/scipy/blob/v1.3.0/scipy/signal/fir_filter_design.py#L264-L482. Retrieved 2019-08-06.
+///  .. [3] "fir filter design". https://scipy-cookbook.readthedocs.io/items/FIRFilter.html. Retrieved 2019-08-06.
 ///  Examples
 ///  --------
 ///  >>> var numtaps = 3;

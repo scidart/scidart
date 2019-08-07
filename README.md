@@ -6,7 +6,8 @@
 The main goal of **SciDart** is run where Dart can run, in other words, run on Flutter, Dart CLI, Dart web, etc.
 
 ## Motivation
-Some time ago I tried make a guitar tuner (frequency estimator) with Flutter and I faced with the problem: Dart dind't have scientific library with main scientific algorithms. 
+Some time ago I tried make a guitar tuner (frequency estimator) with Flutter and I faced with the problem: Dart dind't 
+have a unified scientific library. 
 So, I tried implement something to help me and the community with this problem.
 
 ## Instalation
@@ -16,7 +17,12 @@ So, I tried implement something to help me and the community with this problem.
 Dart don't have [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) by default but I found [this amazing post from Andreas Kirsch
 ](https://medium.com/dartlang/dart-repl-poc-f327e3769b6f) and He implemented a experimental Dart REPL. 
 But the [current library don't support Dart SDK > 2.0.0](https://github.com/BlackHC/dart_repl/issues/5). 
-So I decide let this work for the future.
+So, I decided to leave this work pending for now.
+
+## SciDart structure
+numdart
+scidart
+io
 
 ## Examples
 
@@ -31,11 +37,12 @@ Below, the list with all the main references of **SciDart**:
 * Roseta code: https://rosettacode.org/
 
 ## How to contribute
-I recommend see the Todo List and choose a function to implement or choose a problem and implement the parts that are missing in **SciDart**.
+I recommend see the Todo List and choose a function to implement or choose and solve a problem with **SciDart** and 
+implement the missing parts.
 
-The references for tests is obtained with SciPy.
+The references values for any function need be obtained with SciPy.
 
-All the contribution need have tests, documentation and examples, otherwise, the pull request will be rejected.
+Every contribution needs have tests, documentation and examples, otherwise, the pull request will be blocked.
 
 ## Todo list
 * complex numbers algebra (ok)

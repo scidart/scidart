@@ -1,25 +1,24 @@
 import 'package:scidart/numdart/arrays_base/array_complex.dart';
-import 'package:scidart/numdart/numbers/double.dart';
-
-import '../array.dart';
+import 'package:scidart/numdart/numbers/complex_operations/complex_truncate.dart';
 
 ///  Truncate all the numbers of the array
 ///  Examples
 ///  --------
 ///  >>> var n = Array([4.123456789, 4.123456789, 4.123456789]);
 ///  >>> arrayTruncateEachElement(n, 4);
+///  >>> n
 ///  Array([4.1235, 4.1235, 4.1235])
 dynamic arrayComplexTruncateEachElement(ArrayComplex a, int fractionDigits,
     {bool returnNewArray = false}) {
   if (returnNewArray) {
-    var b = Array.fixed(a.length);
+    var b = ArrayComplex.fixed(a.length);
     for (var i = 0; i < a.length; i++) {
-      b[i] = truncate(a[i], fractionDigits);
+      b[i] = complexTruncate(a[i], fractionDigits);
     }
     return b;
   } else {
     for (var i = 0; i < a.length; i++) {
-      a[i] = truncate(a[i], fractionDigits);
+      a[i] = complexTruncate(a[i], fractionDigits);
     }
   }
 }

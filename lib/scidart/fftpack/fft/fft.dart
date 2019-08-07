@@ -38,7 +38,7 @@ import 'package:scidart/numdart/numdart.dart';
 ///  >>>   Complex(real: 1.0, imaginary: 2.41421356)
 ///  >>> ]);
 ArrayComplex fft(ArrayComplex x, {int n, bool normalization = false}) {
-  var buffer;
+  ArrayComplex buffer;
   if (n == null || n == x.length) {
     n = x.length;
     buffer = x.copy();
@@ -54,7 +54,7 @@ ArrayComplex fft(ArrayComplex x, {int n, bool normalization = false}) {
       buffer.add(Complex());
       pad--;
     }
-    buffer.concat(x);
+    buffer = arrayComplexConcat(buffer, x);
   }
 
   ArrayComplex res;

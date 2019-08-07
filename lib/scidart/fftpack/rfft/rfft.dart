@@ -29,5 +29,6 @@ import 'package:scidart/scidart/fftpack/fft/fft.dart';
 ArrayComplex rfft(Array x, {n}) {
   var buffer = arrayToComplexArray(x);
   var afft = fft(buffer, n: n);
-  return afft.getRangeArray(0, afft.length ~/ 2);
+  return afft.getRangeArray(0, (afft.length / 2).floor() + 1);
+//  return afft;
 }

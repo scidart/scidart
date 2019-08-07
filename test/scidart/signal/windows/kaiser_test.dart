@@ -6,8 +6,6 @@ void main() {
   test('generate a kaiser window', () {
     var w = kaiser(51, 14);
 
-    print(w);
-
     var wExpect = Array([
       7.72686684e-06,
       8.15094846e-05,
@@ -62,10 +60,18 @@ void main() {
       7.72686684e-06
     ]);
 
-    var fractionDigits = 8;
+    print(w);
+    print(wExpect);
 
-    expect(arrayTruncateEachElement(w, fractionDigits),
-        arrayTruncateEachElement(wExpect, fractionDigits));
+    var fractionDigits = 4;
+
+    arrayTruncateEachElement(w, fractionDigits);
+    arrayTruncateEachElement(wExpect, fractionDigits);
+
+    print(w);
+    print(wExpect);
+
+    expect(w, wExpect);
   });
 
   test('generate a kaiser asym', () {
@@ -127,9 +133,10 @@ void main() {
       7.89004917e-05
     ]);
 
-    var fractionDigits = 8;
+    var fractionDigits = 4;
 
-    expect(arrayTruncateEachElement(w, fractionDigits),
-        arrayTruncateEachElement(wExpect, fractionDigits));
+    expect(arrayTruncateEachElement(w, fractionDigits, returnNewArray: true),
+        arrayTruncateEachElement(
+            wExpect, fractionDigits, returnNewArray: true));
   });
 }

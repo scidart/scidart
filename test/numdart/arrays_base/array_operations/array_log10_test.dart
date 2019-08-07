@@ -12,7 +12,9 @@ void main() {
 
     var logExp = Array([-1.0, 0.0, 1.0, 2.0]);
 
-    expect(
-        arrayTruncateEachElement(log, 5), arrayTruncateEachElement(logExp, 5));
+    arrayTruncateEachElement(log, 5);
+    arrayTruncateEachElement(logExp, 5);
+
+    expect(log, logExp);
   });
 }

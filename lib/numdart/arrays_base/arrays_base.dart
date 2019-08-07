@@ -13,6 +13,7 @@ export 'array_complex_operations/array_complex_division_to_scalar.dart';
 export 'array_complex_operations/array_complex_multiply_to_scalar.dart';
 export 'array_complex_operations/array_complex_pad_start.dart';
 export 'array_complex_operations/array_complex_sum.dart';
+export 'array_complex_operations/array_complex_truncate_each_element.dart';
 export 'array_complex_operations/array_complex_truncate_last.dart';
 export 'array_operations/array_concat.dart';
 export 'array_operations/array_cos.dart';

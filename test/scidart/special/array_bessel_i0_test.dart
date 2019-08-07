@@ -11,7 +11,9 @@ void main() {
     var i0Expec =
         Array([1.00000000e+00, 1.07375171e+42, 1.00000000e+00, 1.07375171e+42]);
 
-    expect(
-        arrayTruncateEachElement(i0, 5), arrayTruncateEachElement(i0Expec, 5));
+    arrayTruncateEachElement(i0, 5);
+    arrayTruncateEachElement(i0Expec, 5);
+
+    expect(i0, i0Expec);
   });
 }

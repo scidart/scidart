@@ -12,7 +12,8 @@ void main() {
 
     print(h);
 
-    expect(arrayTruncateEachElement(h, 4), arrayTruncateEachElement(hExpec, 4));
+    expect(arrayTruncateEachElement(h, 4, returnNewArray: true),
+        arrayTruncateEachElement(hExpec, 4, returnNewArray: true));
   });
 
   test('fir use a specific window function', () {
@@ -24,7 +25,8 @@ void main() {
 
     print(h);
 
-    expect(arrayTruncateEachElement(h, 4), arrayTruncateEachElement(hExpec, 4));
+    expect(arrayTruncateEachElement(h, 4, returnNewArray: true),
+        arrayTruncateEachElement(hExpec, 4, returnNewArray: true));
   });
 
   test('fir high-pass (‘stop’ from 0 to f)', () {
@@ -36,7 +38,8 @@ void main() {
 
     print(h);
 
-    expect(arrayTruncateEachElement(h, 4), arrayTruncateEachElement(hExpec, 4));
+    expect(arrayTruncateEachElement(h, 4, returnNewArray: true),
+        arrayTruncateEachElement(hExpec, 4, returnNewArray: true));
   });
 
   test('fir band-pass', () {
@@ -48,7 +51,8 @@ void main() {
 
     print(h);
 
-    expect(arrayTruncateEachElement(h, 4), arrayTruncateEachElement(hExpec, 4));
+    expect(arrayTruncateEachElement(h, 4, returnNewArray: true),
+        arrayTruncateEachElement(hExpec, 4, returnNewArray: true));
   });
 
   test('fir band-stop', () {
@@ -60,7 +64,8 @@ void main() {
 
     print(h);
 
-    expect(arrayTruncateEachElement(h, 4), arrayTruncateEachElement(hExpec, 4));
+    expect(arrayTruncateEachElement(h, 4, returnNewArray: true),
+        arrayTruncateEachElement(hExpec, 4, returnNewArray: true));
   });
 
   test('fir Multi-band (passbands are [0, f1], [f2, f3] and [f4, 1])', () {
@@ -72,7 +77,8 @@ void main() {
 
     print(h);
 
-    expect(arrayTruncateEachElement(h, 4), arrayTruncateEachElement(hExpec, 4));
+    expect(arrayTruncateEachElement(h, 4, returnNewArray: true),
+        arrayTruncateEachElement(hExpec, 4, returnNewArray: true));
   });
 
   test('fir Multi-band (passbands are [f1, f2] and [f3,f4])', () {
@@ -84,6 +90,7 @@ void main() {
 
     print(h);
 
-    expect(arrayTruncateEachElement(h, 4), arrayTruncateEachElement(hExpec, 4));
+    expect(arrayTruncateEachElement(h, 4, returnNewArray: true),
+        arrayTruncateEachElement(hExpec, 4, returnNewArray: true));
   });
 }

@@ -11,7 +11,11 @@ void main() {
     var f1 = 1; // 1Hz
     var sg1 = arraySin(arrayMultiplyToScalar(n, 2 * pi * f1));
 
+    print(sg1.length);
+
     var db = dbfft(sg1, fs);
+    print(db[0].length);
+    print(db[1].length);
     print(db);
   });
 }

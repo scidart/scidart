@@ -10,9 +10,11 @@ import 'bessel_i0.dart';
 ///  Examples
 ///  --------
 Array arrayBesselI0(Array a) {
-  var b = a.copy();
+  var b = Array.empty();
 
-  b.forEach((i) => besselI0(i));
+  for (var i in a) {
+    b.add(besselI0(i));
+  }
 
   return b;
 }

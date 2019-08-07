@@ -6,55 +6,34 @@ void main() {
   test('get a kaiser window', () {
     var w = getWindow(['kaiser', 4.0], 9);
 
-    var wExpec = Array([
-      0.08848053,
-      0.32578323,
-      0.63343178,
-      0.89640418,
-      1.0,
-      0.89640418,
-      0.63343178,
-      0.32578323,
-      0.08848053
-    ]);
+    var wExpec = Array(
+        [0.08848053, 0.29425961, 0.56437221, 0.82160913, 0.97885093,
+          0.97885093, 0.82160913, 0.56437221, 0.29425961]);
 
-    expect(arrayTruncateEachElement(w, 5), arrayTruncateEachElement(wExpec, 5));
+    expect(arrayTruncateEachElement(w, 5, returnNewArray: true),
+        arrayTruncateEachElement(wExpec, 5, returnNewArray: true));
   });
 
   test('get a kaiser window implicit', () {
     var w = getWindow(4.0, 9);
 
-    var wExpec = Array([
-      0.08848053,
-      0.32578323,
-      0.63343178,
-      0.89640418,
-      1.0,
-      0.89640418,
-      0.63343178,
-      0.32578323,
-      0.08848053
-    ]);
+    var wExpec = Array(
+        [0.08848053, 0.29425961, 0.56437221, 0.82160913, 0.97885093,
+          0.97885093, 0.82160913, 0.56437221, 0.29425961]);
 
-    expect(arrayTruncateEachElement(w, 5), arrayTruncateEachElement(wExpec, 5));
+    expect(arrayTruncateEachElement(w, 5, returnNewArray: true),
+        arrayTruncateEachElement(wExpec, 5, returnNewArray: true));
   });
 
   test('get a blackman window', () {
     var w = getWindow('black', 10);
 
-    var wExpec = Array([
-      -1.38777878e-17,
-      5.08696327e-02,
-      2.58000502e-01,
-      6.30000000e-01,
-      9.51129866e-01,
-      9.51129866e-01,
-      6.30000000e-01,
-      2.58000502e-01,
-      5.08696327e-02,
-      -1.38777878e-17
-    ]);
+    var wExpec = Array(
+        [-1.38777878e-17, 4.02128624e-02, 2.00770143e-01, 5.09787138e-01,
+          8.49229857e-01, 1.00000000e+00, 8.49229857e-01, 5.09787138e-01,
+          2.00770143e-01, 4.02128624e-02]);
 
-    expect(arrayTruncateEachElement(w, 5), arrayTruncateEachElement(wExpec, 5));
+    expect(arrayTruncateEachElement(w, 5, returnNewArray: true),
+        arrayTruncateEachElement(wExpec, 5, returnNewArray: true));
   });
 }

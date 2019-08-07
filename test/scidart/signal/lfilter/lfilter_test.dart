@@ -6444,7 +6444,7 @@ void main() {
       -0.65995719
     ]);
 
-    expect(arrayTruncateEachElement(sgFiltered, 4),
-        arrayTruncateEachElement(sgFilteredExpec, 4));
+    expect(arrayTruncateEachElement(sgFiltered, 4, returnNewArray: true),
+        arrayTruncateEachElement(sgFilteredExpec, 4, returnNewArray: true));
   });
 }

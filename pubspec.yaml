@@ -1,15 +1,14 @@
 name: scidart
-description: A sample command-line application.
-# version: 1.0.0
-# homepage: https://www.example.com
-# author: Ângelo Polotto <angelopolotto@yahoo.com.br>
+description: Cross-platform scientific library for Dart.
+version: 0.0.1
+homepage: https://github.com/angelopolotto/scidart
+author: Ângelo Polotto <angelopolotto@gmail.com.br>
 
 environment:
   sdk: '>=2.4.0 <3.0.0'
 
 dependencies:
   path: ^1.6.4
-#  logging: ^0.11.3+2
 
 dev_dependencies:
   pedantic: ^1.7.0

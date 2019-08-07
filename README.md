@@ -12,9 +12,13 @@ So, I tried implement something to help me and the community with this problem.
 ## Instalation
 
 
-## Examples
+## Dart REPL for prototyping quickly
+Dart don't have [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) by default but I found [this amazing post from Andreas Kirsch
+](https://medium.com/dartlang/dart-repl-poc-f327e3769b6f) and He implemented a experimental Dart REPL. 
+But the [current library don't support Dart SDK > 2.0.0](https://github.com/BlackHC/dart_repl/issues/5). 
+So I decide let this work for the future.
 
-## Documentation
+## Examples
 
 
 ## Inspiration
@@ -55,7 +59,7 @@ All the contribution need have tests, documentation and examples, otherwise, the
 * filter IIR
 * generate a plot in memory (delegated to https://stackoverflow.com/questions/43703802/flutter-draw-graphs-on-the-screen)
 * logSpace (https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.logspace.html)
-* write a CLI to interact with the lib
+* write a REPL to interact with the lib (Need support Dart SDK > 2 : https://medium.com/dartlang/dart-repl-poc-f327e3769b6f)
 * publish package
 * show to the community
 * write readme

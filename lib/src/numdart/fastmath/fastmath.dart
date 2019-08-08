@@ -1,5 +1,6 @@
 library fastmath;
 
+export 'dart_math_operations/dart_math_operations.dart';
 export 'operations/atan2Fast.dart';
 export 'operations/atanFast.dart';
 export 'operations/copySign.dart';

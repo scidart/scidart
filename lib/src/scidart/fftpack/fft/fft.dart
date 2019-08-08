@@ -4,7 +4,7 @@ import 'dart:math' as math;
 import 'package:scidart/src/numdart/numdart.dart';
 
 ///  Compute the one-dimensional discrete Fourier Transform.
-///  [buffer] : A ArrayComplex with the input
+///  [x] : A ArrayComplex with the input
 ///  [n] : optional
 ///        Length of the transformed axis of the output.
 ///        If n is smaller than the length of the input, the input is cropped.

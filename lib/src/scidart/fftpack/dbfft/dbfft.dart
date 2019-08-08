@@ -8,8 +8,8 @@ import 'package:scidart/src/scidart/scidart.dart';
 ///           If not provided, then rectangular window is used by default.
 ///  [ref] : reference value used for dBFS scale. 32768 for int16 and 1 for float
 ///  Returns: List
-///  [ [freq] : frequency vector
-///    [s_db] ] : spectrum in dB scale
+///  [ freq : frequency vector
+///    s_db ] : spectrum in dB scale
 ///  References
 ///  ----------
 ///  .. [1] "fft to spectrum in decibel". https://dsp.stackexchange.com/questions/32076/fft-to-spectrum-in-decibel. Retrieved 2019-08-07.

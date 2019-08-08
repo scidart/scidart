@@ -12,7 +12,7 @@ import 'package:scidart/src/numdart/numdart.dart';
 ///  An input array.
 ///  Returns
 ///  -------
-///  [y] : Array
+///  y : Array
 ///      Filtered x Array.
 ///  References
 ///  ----------
@@ -36,7 +36,7 @@ import 'package:scidart/src/numdart/numdart.dart';
 ///  >>> var fc = 1;
 ///  >>> var normal_fc = fc / nyq;
 ///  >>> var numtaps = 30;
-///  >>> var b = firwin(numtaps, Array([normal_fc]));
+///  >>> var b = firwin(numtaps, Array(\[normal_fc\]));
 ///  >>> var sgFiltered = lfilter(b, Array([1.0]), sg); // filter the signal
 Array lfilter(Array b, Array a, Array x) {
   Array result = Array.fixed(x.length);

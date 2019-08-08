@@ -6,7 +6,7 @@ import 'bessel_i0.dart';
 ///  [a] : Array
 ///  Returns
 ///  -------
-///  [b] : Array
+///  b : Array
 ///  Examples
 ///  --------
 Array arrayBesselI0(Array a) {

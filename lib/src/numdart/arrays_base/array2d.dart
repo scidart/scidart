@@ -51,7 +51,7 @@ class Array2d extends ListBase<Array> {
   ///  Construct a matrix from a one-dimensional packed array
   ///  [vals] One-dimensional array of doubles, packed by columns (ala Fortran).
   ///  [mRow]    Number of rows.
-  ///  [IllegalArgumentException] Array length must be a multiple of m.
+  ///  FormatException: Array length must be a multiple of m.
   ///  Examples
   ///  --------
   ///  >>> var a =  Array2d.fromVector(Array([1, 2, 3, 4]), 2);

@@ -44,7 +44,7 @@ class PolyFit {
   double sse = 0; // sum of squares due to error private
   double sst = 0; // total sum of squares private
 
-  ///  Performs a polynomial reggression on the data points {@code (y[i], x[i])}.
+  ///  Performs a polynomial reggression on the data points (y\[i\], x\[i\]).
   ///  [x] the values of the predictor variable
   ///  [y] the corresponding values of the response variable
   ///  [degree] the degree of the polynomial to fit
@@ -138,7 +138,7 @@ class PolyFit {
   }
 
   ///  return the coefficients of the polynomial regression
-  ///  p(x) = p[0] * x**deg + ... + p[deg]
+  ///  p(x) = p[0] * x**deg + ... + p\[deg\]
   Array coefficients() {
     Array coeff = Array.empty();
     int j = degree;

@@ -52,7 +52,7 @@ import 'package:scidart/src/scidart/signal/windows/get_window.dart';
 ///      must be between 0 and ``fs/2``.  Default is 2.
 ///  Returns
 ///  -------
-///  [h] : Array
+///  h : Array
 ///      Coefficients of length `numtaps` FIR filter.
 ///  Raises
 ///  ------
@@ -70,7 +70,7 @@ import 'package:scidart/src/scidart/signal/windows/get_window.dart';
 ///  --------
 ///  >>> var numtaps = 3;
 ///  >>> var f = 0.1;
-///  >>> firwin(numtaps, Array([f]));
+///  >>> firwin(numtaps, Array(\[f\]));
 ///  Array([0.06799017,  0.86401967,  0.06799017]);
 dynamic firwin(int numtaps, Array cutoff,
     {double width,

@@ -18,7 +18,7 @@ import 'package:scidart/src/scidart/special/bessel/bessel_i0.dart';
 ///  When False, generates a periodic window, for use in spectral analysis.
 ///  Returns
 ///  -------
-///  [w] : Array
+///  w : Array
 ///  The window, with the maximum value normalized to 1 (though the value 1
 ///  does not appear if `M` is even and `sym` is True).
 ///  References

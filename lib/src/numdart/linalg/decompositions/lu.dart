@@ -253,7 +253,7 @@ class LU {
 
   ///  Solve A*X = B
   ///  [B]   A Matrix with as many rows as A and any number of columns.
-  ///  [X] so that L*U*X = B(piv,:)
+  ///  so that L*U*X = B(piv,:)
   ///  IllegalArgumentException Matrix row dimensions must agree.
   ///  RuntimeException  Matrix is singular.
   Array2d solve(Array2d B) {

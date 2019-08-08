@@ -20,12 +20,41 @@ But the [current library don't support Dart SDK > 2.0.0](https://github.com/Blac
 So, I decided to leave this work pending for now.
 
 ## SciDart structure
-numdart
-scidart
-io
+* IO: File manipulation libraries;
+  * csv: [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file manipulation;
+  * txt: text file manipulation;
+* NumDart: Numerical computation libraries;
+  * array_base: array manipulation;
+  * calculus: calculus base;
+  * fastmath: optimized math operations;
+  * geometric: geometric related operations;
+  * interpolation: discrete function interpolation;
+  * linalg: linear algebra algorithms: matrix, decomposition, etc;
+  * numbers: numeric base that are missing in Dart by default: Complex, double truncation, etc;
+  * polynomial: polynomial estimation, regression, etc;
+  * random: random data generation;
+  * spaces: vector linear spaces generators: arrange, ones, linspace, etc;
+  * statistic: statistic computation;
+  * time: execution time measurement;
+* SciDart: Scientific computation libraries;
+  * fftpack: fourier transformer tools;
+    * dbfft
+    * fft
+    * fftfreq
+    * rfft
+  * signal: signal manipulation tools;
+    * convolution
+    * fir
+    * lfilter
+    * windows
+  * special: special functions;
+    * bessel
 
 ## Examples
+### Frequency estimator
+```Dart
 
+```
 
 ## Inspiration
 Below, the list with all the main references of **SciDart**:

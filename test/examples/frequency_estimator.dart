@@ -1,3 +1,4 @@
+import 'package:scidart/numdart.dart';
 import 'package:scidart/scidart.dart';
 import 'package:test/test.dart';
 

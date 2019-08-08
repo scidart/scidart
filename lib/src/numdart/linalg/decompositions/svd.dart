@@ -12,8 +12,8 @@ import 'package:scidart/src/numdart/numdart.dart';
 ///  an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
 ///  an n-by-n orthogonal matrix V so that A = U*S*V'.
 ///  <P>
-///  The singular values, sigma[k] = S[k][k], are ordered so that
-///  sigma[0] >= sigma[1] >= ... >= sigma[n-1].
+///  The singular values, sigma\[k\] = S\[k\]\[k\], are ordered so that
+///  sigma\[0\] >= sigma\[1\] >= ... >= sigma\[n-1\].
 ///  <P>
 ///  The singular value decompostion always exists, so the constructor will
 ///  never fail.  The matrix condition number and the effective numerical

@@ -1,7 +1,7 @@
 import 'package:scidart/src/numdart/arrays_base/array.dart';
 
 ///  Return evenly spaced values within a given interval.
-///  Values are generated within the half-open interval [start, stop) (in other words, the interval including start but excluding stop).
+///  Values are generated within the half-open interval \[start, stop) (in other words, the interval including start but excluding stop).
 ///  When using a non-integer step, such as 0.1, It is better to use linspace.
 ///  Parameters:
 ///  ----------
@@ -10,9 +10,9 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 ///  [stop] : number
 ///  End of interval. The interval does not include this value, except in some cases where step is not an integer and floating point round-off affects the length of out.
 ///  [step] : int, optional
-///  Spacing between values. For any output out, this is the distance between two adjacent values, out[i+1] - out[i]. The default step size is 1. If step is specified as a position argument, start must also be given.
+///  Spacing between values. For any output out, this is the distance between two adjacent values, out\[i+1\] - out\[i\]. The default step size is 1. If step is specified as a position argument, start must also be given.
 ///  Returns:
-///  arange : [Array]
+///  arange : \[Array\]
 ///  Array of evenly spaced values.
 ///  References
 ///  ----------

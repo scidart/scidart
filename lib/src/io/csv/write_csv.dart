@@ -5,14 +5,14 @@ import 'package:scidart/src/io/path/retrieve_file_path.dart';
 import 'package:scidart/src/numdart/numdart.dart';
 
 ///  Write a list of line in a TXT file
-///  [lines] : a list where each line is a string that will be written in the file
+///  [data] : a list where each line is a string that will be written in the file
 ///  [fileName] : file name or path of the file
 ///  [baseDir] : optional, base directory to the file, if not informed, get current script path.
 ///  [delimiter] : optional, string used to separate values, by default is ";"
 ///  [encoding] : optional, the encoding of the file, default is utf8
 ///  [mode] : optional, the mode how the program will write the file:
-///    * [FileMode.write]: truncates the file to length zero, default.
-///    * [FileMode.append]: sets the initial write position to the end of the file.
+///    * FileMode.write: truncates the file to length zero, default.
+///    * FileMode.append: sets the initial write position to the end of the file.
 ///  References
 ///  ----------
 ///  .. [1] "Dart file class". https://api.dartlang.org/stable/2.4.0/dart-io/File-class.html. Retrieved 2019-07-26.

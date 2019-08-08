@@ -14,12 +14,12 @@ import 'check_params_get_range_array.dart';
 ///  [dx] : Optional. Spacing of integration points along axis of `y`.
 ///  Only used when `x` is null(not informed). Default is 1.
 ///  [even] : Even {avg, first, last}, optional
-///  [avg] : Average two results:1) use the first N-2 intervals with
+///  \[avg\] : Average two results:1) use the first N-2 intervals with
 ///  a trapezoidal rule on the last interval and 2) use the last
 ///  N-2 intervals with a trapezoidal rule on the first interval.
-///  [first] : Use Simpson's rule for the first N-2 intervals with
+///  \[first\] : Use Simpson's rule for the first N-2 intervals with
 ///  a trapezoidal rule on the last interval.
-///  [last] : Use Simpson's rule for the last N-2 intervals with a
+///  \[last\] : Use Simpson's rule for the last N-2 intervals with a
 ///  trapezoidal rule on the first interval.
 ///  References
 ///  ----------

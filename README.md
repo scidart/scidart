@@ -26,6 +26,7 @@ So, I decided to leave this work pending for now.
 * NumDart: Numerical computation libraries;
   * array_base: array manipulation;
   * calculus: calculus base;
+  * constants: scientific constants;
   * fastmath: optimized math operations;
   * geometric: geometric related operations;
   * interpolation: discrete function interpolation;
@@ -51,13 +52,120 @@ So, I decided to leave this work pending for now.
     * bessel
 
 ## Examples
-### Frequency estimator
+### NumDart basics
+#### Arrays
 ```Dart
+import 'package:scidart/numdart.dart';
+import 'package:scidart/scidart.dart';
 
+void main() {
+    // 1D array creation
+    var a = Array([1.0, 2.0, 3.0]);
+    
+    print(a); // print vector
+    
+    // 2D array creation
+    var matrix = Array2d.empty();
+    var line = Array([1.0 ,2.0 , 3.0]);
+    
+    matrix.add(line);
+    matrix.add(line);
+    matrix.add(line);
+    
+    print(matrix); // print matrix
+    
+    // 3D array creation
+    var book = Array3d.empty();
+    
+    var page = Array2d.empty();
+    page.add(Array([1.0 ,2.0 , 3.0]));
+    page.add(Array([1.0 ,2.0 , 3.0]));
+    page.add(Array([1.0 ,2.0 , 3.0]));
+    
+    book.add(page);
+    book.add(page);
+    book.add(page);
+    
+    // Create a array of complex numbers
+}
+```
+
+#### Numeric spaces
+
+
+#### Random data generation
+
+#### Matrix operations
+
+#### Complex operations
+
+#### Calculus operations
+
+#### Interpolation
+
+#### Polynomial operations
+
+#### Basic statistic
+
+#### Time computation
+
+### SciDart basics
+#### fftpack
+#### signal
+#### special
+
+### Complete examples
+#### Avoid spectral leakage
+
+
+#### Step counter
+
+
+#### Frequency estimator
+```Dart
+import 'package:scidart/numdart.dart';
+import 'package:scidart/scidart.dart';
+
+void main() {
+  // generate the signals for test
+  // 1Hz sine wave
+  var N = 50.0;
+  var fs = 128.0;
+  var n = linspace(0, N, num: (N * fs).toInt(), endpoint: false);
+  var f1 = 1.0; // 1Hz
+  var sg1 = arraySin(arrayMultiplyToScalar(n, 2 * pi * f1));
+
+  var fEstimated = freqFromFft(sg1, fs);
+
+  print('The original and estimated frequency need be very close each other');
+  print('Original frequency: ${f1}');
+  print('Estimated frequency: ${fEstimated}');
+}
+
+double freqFromFft(Array sig, double fs) {
+  // Estimate frequency from peak of FFT
+
+  // Compute Fourier transform of windowed signal
+  // Avoid spectral leakage: https://en.wikipedia.org/wiki/Spectral_leakage
+  var windowed = sig * blackmanharris(sig.length);
+  var f = rfft(windowed);
+
+  var fAbs = arrayComplexAbs(f);
+
+  // Find the peak and interpolate to get a more accurate peak
+  var i = arrayArgMax(fAbs); // Just use this for less-accurate, naive version
+
+  // Parabolic approximation is necessary to get the exactly frequency of a discrete signal
+  // since the frequency can be in some point between the samples.
+  var true_i = parabolic(arrayLog(fAbs), i)[0];
+
+  // Convert to equivalent frequency
+  return fs * true_i / windowed.length;
+}
 ```
 
 ## Inspiration
-Below, the list with all the main references of **SciDart**:
+Below, the list of the main references of **SciDart**:
 
 * SciPy: https://www.scipy.org/
 * Jupyter: https://jupyter.org/
@@ -69,11 +177,27 @@ Below, the list with all the main references of **SciDart**:
 I recommend see the Todo List and choose a function to implement or choose and solve a problem with **SciDart** and 
 implement the missing parts.
 
-The references values for any function need be obtained with SciPy.
+The references values for all function was obtained with SciPy. The contributions need use SciPy as reference too.
 
 Every contribution needs have tests, documentation and examples, otherwise, the pull request will be blocked.
 
 ## Todo list
+### Project documentation
+* create a logo
+* create a official web site
+* adjust the documentation to be more friendly for the users
+* write tutorials
+
+### Benchmarks
+* construct codes for benchmark tests
+* made benchmark for Android devices
+* made benchmark for iOS devices
+* made benchmark on Web
+* made benchmark on Linux
+* made benchmark on MacOS
+* made benchmark on MS Windows
+
+### Code implementations
 * complex numbers algebra (ok)
 * polyfit (ok but need more tests)
 * documentation with examples(ok)

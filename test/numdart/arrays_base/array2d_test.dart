@@ -71,6 +71,29 @@ void main() {
     expect(c, cExpec);
   });
 
+  test('divide array', () {
+    var a = Array2d([
+      Array([2, 2, 2]),
+      Array([2, 2, 2]),
+      Array([2, 2, 2])
+    ]);
+    var b = Array2d([
+      Array([2, 2, 2]),
+      Array([2, 2, 2]),
+      Array([2, 2, 2])
+    ]);
+
+    var c = a / b;
+
+    var cExpec = Array2d([
+      Array([1, 1, 1]),
+      Array([1, 1, 1]),
+      Array([1, 1, 1])
+    ]);
+
+    expect(c, cExpec);
+  });
+
   test('==', () {
     var a = Array2d([
       Array([4, 2, 1]),

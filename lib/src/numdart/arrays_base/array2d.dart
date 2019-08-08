@@ -150,6 +150,44 @@ class Array2d extends ListBase<Array> {
     return c;
   }
 
+  ///  Divide two arrays with the same size
+  ///  Examples
+  ///  --------
+  ///  >>> var a = Array2d([
+  ///  >>>   Array([2, 2, 2]),
+  ///  >>>   Array([2, 2, 2]),
+  ///  >>>   Array([2, 2, 2])
+  ///  >>> ]);
+  ///  >>> var b = Array2d([
+  ///  >>>   Array([2, 2, 2]),
+  ///  >>>   Array([2, 2, 2]),
+  ///  >>>   Array([2, 2, 2])
+  ///  >>> ]);
+  ///  >>> a / b;
+  ///  Array2d([
+  ///    Array([1, 1, 1]),
+  ///    Array([1, 1, 1]),
+  ///    Array([1, 1, 1])
+  ///  ]);
+  Array2d operator /(Array2d b) {
+    _checkArray2dColunmsLength(this);
+    _checkArray2dColunmsLength(b);
+    _checkArray2dLength(this, b);
+
+    int aRows = this.length;
+    int aColumns = this[0].length;
+
+    var c = Array2d.fromArray(this); // make a copy of local
+
+    for (int i = 0; i < aRows; i++) { //
+      for (int j = 0; j < aColumns; j++) { // bColumn
+        c[i][j] /= b[i][j];
+      }
+    }
+
+    return c;
+  }
+
   ///  compare two arrays
   ///  Examples
   ///  --------

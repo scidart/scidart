@@ -71,9 +71,9 @@ So, I decided to leave this work pending for now.
 
 #### Interpolation
 
-#### Polynomial operations
+#### Polynomial
 
-#### Basic statistic
+#### Statistic
 
 #### Time computation
 

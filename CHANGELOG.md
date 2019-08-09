@@ -1,3 +1,3 @@
-## 0.0.1
+## 0.0.1-dev.1
 
-- Math and Signal fundamentals implemented.
+- NumDart, SciDart and IO fundamentals implemented and documented.

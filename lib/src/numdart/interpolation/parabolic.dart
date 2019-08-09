@@ -2,8 +2,8 @@ import '../numdart.dart';
 
 ///  Quadratic interpolation for estimating the true position of an
 ///  inter-sample maximum when nearby samples are known.
-///  [f] : is a vector
-///  [x] : is an index for that vector.
+///  [y] : is a vector
+///  [x] : is an index point for that vector.
 ///  Return
 ///  --------
 ///  [vx, vy], the coordinates of the vertex of a parabola that goes
@@ -19,9 +19,9 @@ import '../numdart.dart';
 ///  >>> var f = Array([2, 3, 1, 6, 4, 2, 3, 1]);
 ///  >>> parabolic(f, arrayMax(f));
 ///  [3.2142857142857144, 6.1607142857142856]
-List parabolic(Array f, int x) {
+List parabolic(Array y, int x) {
   var xv =
-      1 / 2.0 * (f[x - 1] - f[x + 1]) / (f[x - 1] - 2 * f[x] + f[x + 1]) + x;
-  var yv = f[x] - 1 / 4.0 * (f[x - 1] - f[x + 1]) * (xv - x);
+      1 / 2.0 * (y[x - 1] - y[x + 1]) / (y[x - 1] - 2 * y[x] + y[x + 1]) + x;
+  var yv = y[x] - 1 / 4.0 * (y[x - 1] - y[x + 1]) * (xv - x);
   return [xv, yv];
 }

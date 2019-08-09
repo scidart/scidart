@@ -131,7 +131,7 @@ class PolyFit {
   double predict(double x) {
     // horner's method
     double y = 0.0;
-    for (int j = degree; j >= 0; j--) {
+    for (int j = beta.row - 1; j >= 0; j--) {
       y = beta[j][0] + (x * y);
     }
     return y;
@@ -141,7 +141,7 @@ class PolyFit {
   ///  p(x) = p[0] * x**deg + ... + p\[deg\]
   Array coefficients() {
     Array coeff = Array.empty();
-    int j = degree;
+    int j = beta.row - 1;
 
     // ignoring leading zero coefficients
     while (j >= 0 && beta[j][0].abs() < 1E-5) {
@@ -164,7 +164,7 @@ class PolyFit {
   @override
   String toString() {
     List<String> s = List();
-    int j = degree;
+    int j = beta.row - 1;
 
     // ignoring leading zero coefficients
     while (j >= 0 && beta[j][0].abs() < 1E-5) {

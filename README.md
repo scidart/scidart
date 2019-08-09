@@ -75,7 +75,7 @@ So, I decided to leave this work pending for now.
 
 #### Statistic
 
-#### Time computation
+#### Time
 
 ### SciDart basics
 #### fftpack

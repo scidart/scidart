@@ -4,7 +4,7 @@ import 'package:scidart/src/numdart/arrays_base/arrays_base.dart';
 ///  Examples
 ///  --------
 ///  >>> var n = Array([1, 2, 3]);
-///  >>> n.mean();
+///  >>> mean(n);
 ///  2.0
 double mean(Array a) {
   return arraySum(a) / a.length;

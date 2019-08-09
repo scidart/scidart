@@ -112,6 +112,8 @@ class ArrayComplex extends ListBase<Complex> {
   ///  Return a array given a index interval
   ///  [start] : start index close interval
   ///  [end] : end index open interval
+  ///  [step] : optional, step between samples
+  ///  [reverse] : optional, return a reversed array
   ///  Examples
   ///  --------
   ///  >>> var var list = ArrayComplex([
@@ -122,11 +124,17 @@ class ArrayComplex extends ListBase<Complex> {
   ///  ArrayComplex([
   ///    Complex(real: 3.0, imaginary: 4.0)
   ///  ]);
-  ArrayComplex getRangeArray(int start, int end, {int step = 1}) {
+  ArrayComplex getRangeArray(int start, int end,
+      {int step = 1, bool reverse = false}) {
     var b = ArrayComplex.empty();
     for (var i = start; i < end; i += step) {
       b.add(this[i]);
     }
+
+    if (reverse) {
+      b = ArrayComplex(b.reversed.toList());
+    }
+
     return b;
   }
   //#endregion

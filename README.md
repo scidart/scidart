@@ -142,7 +142,7 @@ Below, the list of the main references of **SciDart**:
 * Roseta code: https://rosettacode.org/
 
 ## How to contribute
-I recommend see the Todo List and choose a function to implement or choose and solve a problem with **SciDart** and 
+I recommend see the Todo List and choose a task or choose and solve a problem with **SciDart** and 
 implement the missing parts.
 
 The references values for all function was obtained with SciPy. The contributions need use SciPy as reference too.

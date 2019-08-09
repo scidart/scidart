@@ -21,11 +21,37 @@ import 'package:scidart/src/scidart/fftpack/fft/ifft.dart';
 ///  >>> ]);
 ///  >>> rifft(X);
 ///  >>> Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0])
-Array rifft(ArrayComplex X) {
-  var x = ifft(X);
+Array rifft(ArrayComplex x) {
+  var s;
+
+  // estimate if final lengh is even or odd
+//  var even = (x.length * 2) % 2 == 0 ? true: false;
+  var even = false;
+
+  if (even) {
+//    n = 2 * (length(x) - 1 );
+    s = 0;
+  } else {
+//    n = 2 * (length(x) - 1 )+1;
+    s = 1;
+  }
+
+  // create a empty array
+  var xn = ArrayComplex.empty();
+
+  // concatenate the input x
+  xn = arrayComplexConcat(xn, x);
+  // array a zero
+  xn.add(Complex());
+
+  // concatenate the conjugate complex
+  xn = arrayComplexConcat(xn, arrayComplexConjugate(
+      x.getRangeArray(s, x.length, step: 1, reverse: true)));
+
+  var irfft = ifft(xn);
 
   // absulute value of the list
-  var xReal = arrayComplexAbs(x);
+  var xReal = arrayComplexAbs(irfft);
 
   return xReal;
 }

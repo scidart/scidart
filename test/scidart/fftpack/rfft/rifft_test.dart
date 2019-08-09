@@ -9,10 +9,10 @@ void main() {
       Complex(real: 1.0, imaginary: -2.41421356),
       Complex(real: 0.0, imaginary: 0.0),
       Complex(real: 1.0, imaginary: -0.41421356),
-      Complex(real: 0.0, imaginary: 0.0),
-      Complex(real: 1.0, imaginary: 0.41421356),
-      Complex(real: 0.0, imaginary: 0.0),
-      Complex(real: 1.0, imaginary: 2.41421356)
+//      Complex(real: 0.0, imaginary: 0.0),
+//      Complex(real: 1.0, imaginary: 0.41421356),
+//      Complex(real: 0.0, imaginary: 0.0),
+//      Complex(real: 1.0, imaginary: 2.41421356)
     ]);
 
     var x = rifft(X);

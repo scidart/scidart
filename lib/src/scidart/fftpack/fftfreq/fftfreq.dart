@@ -9,10 +9,12 @@ import 'package:scidart/src/numdart/numdart.dart';
 ///    f = [0, 1, ..., (n-1)/2, -(n-1)/2, ..., -1] / (d*n)   if n is odd
 ///  Parameters
 ///  ----------
-///  n : int
+///  [n] : int
 ///      Window length.
-///  d : double, optional
+///  [d] : double, optional
 ///      Sample spacing (inverse of the sampling rate (1/FS), Fs if called sampling frequency too)). Defaults to 1.
+///  [realFrequenciesOnly] : bool, optional
+///      if true, return only real frequencies of the FFT
 ///  Returns
 ///  -------
 ///  f : Array
@@ -34,13 +36,15 @@ import 'package:scidart/src/numdart/numdart.dart';
 ///  Array([25.0, 8.632190835805323, 10.04987562112089, 9.56479384901936, 9.0, 9.56479384901936, 10.04987562112089, 8.632190835805325])
 ///  >>> print(freq);
 ///  Array([0.0, 1.25, 2.5, 3.75, -5.0, -3.75, -2.5, -1.25])
-Array fftFreq(int n, {double d = 1.0}) {
+Array fftFreq(int n, {double d = 1.0, bool realFrequenciesOnly = false}) {
   var val = 1.0 / (n * d);
   var results = Array.empty();
   var N = (n - 1) ~/ 2 + 1;
   var p1 = arange(start: 0, stop: N);
   results = arrayConcat(results, p1);
-  var p2 = arange(start: -(n ~/ 2), stop: 0);
-  results = arrayConcat(results, p2);
+  if (!realFrequenciesOnly) {
+    var p2 = arange(start: -(n ~/ 2), stop: 0);
+    results = arrayConcat(results, p2);
+  }
   return arrayMultiplyToScalar(results, val);
 }

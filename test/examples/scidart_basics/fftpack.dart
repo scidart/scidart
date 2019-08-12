@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('fftpack', () {
-    // generate the signals for test
+    // generate the signal for test
     // 1Hz sine wave
     var N = 50.0;
     var fs = 128.0;
@@ -12,15 +12,21 @@ void main() {
     var f1 = 1.0; // 1Hz
     var sw = arraySin(arrayMultiplyToScalar(n, 2 * pi * f1));
 
-    var swF = fft(arrayToComplexArray(sw)); // return the fft of the signal
+    // return the fft of the signal
+    var swF = fft(arrayToComplexArray(sw));
     print(swF);
 
-    var swFr = rfft(
-        sw); // return the real fft, in other words, only the components with of positive frequencies
+    // return the real fft, in other words,
+    // only the components with of positive frequencies
+    var swFr = rfft(sw);
     print(swFr);
 
-    var swFScale = fftFreq(swF.length,
-        d: 1 / fs); // return the frequency scale of FFT in Hz
+    // return the frequency scale of FFT in Hz
+    var swFScale = fftFreq(swF.length, d: 1 / fs);
+    print(swFScale);
+
+    // return only the real frequencies of FFT, useful to use with rFFT
+    swFScale = fftFreq(swF.length, d: 1 / fs, realFrequenciesOnly: true);
     print(swFScale);
 
     print(ifft(swF)); // inverse FFT

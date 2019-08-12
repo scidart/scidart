@@ -132,7 +132,7 @@ double freqFromFft(Array sig, double fs) {
 }
 ```
 
-## Inspiration
+## References
 Below, the list of the main references of **SciDart**:
 
 * SciPy: https://www.scipy.org/

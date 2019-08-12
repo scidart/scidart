@@ -5,6 +5,7 @@ export 'convolution/convolution_circular_complex.dart';
 export 'convolution/convolution_complex.dart';
 export 'fir/firwin.dart';
 export 'lfilter/lfilter.dart';
+export 'peaks/find_peaks.dart';
 export 'windows/blackman.dart';
 export 'windows/blackmanharris.dart';
 export 'windows/flattop.dart';

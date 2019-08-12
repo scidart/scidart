@@ -1,0 +1,17 @@
+const double F_1_3 = 1.0 / 3.0;
+const double F_1_5 = 1.0 / 5.0;
+const double F_1_7 = 1.0 / 7.0;
+const double F_1_9 = 1.0 / 9.0;
+const double F_1_11 = 1.0 / 11.0;
+const double F_1_13 = 1.0 / 13.0;
+const double F_1_15 = 1.0 / 15.0;
+const double F_1_17 = 1.0 / 17.0;
+const double F_3_4 = 3.0 / 4.0;
+const double F_15_16 = 15.0 / 16.0;
+const double F_13_14 = 13.0 / 14.0;
+const double F_11_12 = 11.0 / 12.0;
+const double F_9_10 = 9.0 / 10.0;
+const double F_7_8 = 7.0 / 8.0;
+const double F_5_6 = 5.0 / 6.0;
+const double F_1_2 = 1.0 / 2.0;
+const double F_1_4 = 1.0 / 4.0;

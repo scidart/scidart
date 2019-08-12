@@ -10,6 +10,7 @@ void main() {
 
     //-------- convolution -----------//
     // simple numeric convolution
+    print('convolution');
     print(convolution(x, y));
 
     // compute the convolution using FFT, that will be more fast only if:
@@ -36,8 +37,6 @@ void main() {
     var sg2 = arraySin(arrayMultiplyToScalar(n, 2 * pi * f2));
     var sg = sg1 + sg2;
 
-    print(sg); // show the original signal
-
     // design a FIR filter low pass with cut frequency at 1Hz, the objective is
     // remove the 10Hz sine wave signal
     var nyq = 0.5 * fs; // nyquist frequency
@@ -47,17 +46,28 @@ void main() {
 
     // generation of the filter coefficients
     var b = firwin(numtaps, Array([normal_fc]));
+    print('FIR');
+    print(b);
 
     //-------- Digital filter application -----------//
+    print('digital filter application');
     // Apply the filter on the signal using lfilter function
     // lfilter uses direct form II transposed, for FIR filter
     // the a coefficient is 1.0
     var sgFiltered = lfilter(b, Array([1.0]), sg);
 
+    print(sg); // show the original signal
     print(sgFiltered); // show the filtered signal
+
+    //-------- peaks -----------//
+    print('peaks');
+    var pk = findPeaks(sgFiltered);
+    print(pk[0]); // print the indexes of the peaks found in the signal
+    print(pk[1]); // print the values of the peaks found in the signal
 
     //-------- window functions -----------//
     // generate a backmanharris window with x length
+    print('window functions');
     var wBh = blackmanharris(x.length);
     print(x * wBh); // apply the windows on the signal
 

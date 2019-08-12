@@ -11,7 +11,30 @@ have a unified scientific library.
 So, I tried implement something to help me and the community with this problem.
 
 ## Instalation
+Add this to your package's pubspec.yaml file:
+```
+dependencies:
+  scidart: ^0.0.1-dev.1
+```
 
+You can install packages from the command line:
+
+with pub:
+```
+$ pub get
+```
+
+with Flutter:
+```
+$ flutter pub get
+```
+
+Now in your Dart code, you can use:
+
+```Dart
+import 'package:scidart/numdart.dart';
+import 'package:scidart/scidart.dart';
+```
 
 ## Dart REPL for prototyping quickly
 Dart don't have [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) by default but I found [this amazing post from Andreas Kirsch

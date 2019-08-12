@@ -10,8 +10,11 @@ Some time ago I tried make a guitar tuner (frequency estimator) with Flutter and
 have a unified scientific library. 
 So, I tried implement something to help me and the community with this problem.
 
-## Instalation
+## PUB link
+Link to the Pub repository: https://pub.dev/packages/scidart
 
+## Instalation
+You can follow instruction in the Pub web site: https://pub.dev/packages/scidart#-installing-tab-
 
 ## Dart REPL for prototyping quickly
 Dart don't have [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) by default but I found [this amazing post from Andreas Kirsch
@@ -485,10 +488,69 @@ print(arrayBesselI0(a));
 ### Complete examples
 #### Avoid spectral leakage
 ```Dart
+import 'package:scidart/numdart.dart';
+import 'package:scidart/scidart.dart';
+
+// generate the signals for test
+// 1Hz sine wave with incomplete with result a spectral leakage
+// in the frequency domain
+var N = 20.0;
+var fs = 128.0;
+var n = linspace(0, N, num: (N * fs).toInt(), endpoint: false);
+var f1 = 1.0; // 1Hz
+var sg = arraySin(arrayMultiplyToScalar(n, 2 * pi * f1));
+sg = sg.getRangeArray(0, sg.length - 201);
+sg = arrayConcat(sg, zeros(200));
+
+// reduce spectral leakage with a window function
+var sgWindowed = blackmanharris(sg.length) * sg;
+
+print(dbfft(sg, fs)); // fft of original signal
+print(dbfft(sgWindowed, fs)); // fft of windowed signal
 ```
 
 #### Frequency estimator
 ```Dart
+import 'package:scidart/numdart.dart';
+import 'package:scidart/scidart.dart';
+
+// generate the signals for test
+// 1Hz sine wave
+var N = 50.0;
+var fs = 128.0;
+var n = linspace(0, N, num: (N * fs).toInt(), endpoint: false);
+var f1 = 1.0; // 1Hz
+var sg1 = arraySin(arrayMultiplyToScalar(n, 2 * pi * f1));
+
+var fEstimated = freqFromFft(sg1, fs);
+
+print('The original and estimated frequency need be very close each other');
+print('Original frequency: ${f1}');
+print('Estimated frequency: ${fEstimated}');
+
+// both are equal if truncated
+expect(truncate(f1, 4), truncate(fEstimated, 4));
+
+double freqFromFft(Array sig, double fs) {
+  // Estimate frequency from peak of FFT
+
+  // Compute Fourier transform of windowed signal
+  // Avoid spectral leakage: https://en.wikipedia.org/wiki/Spectral_leakage
+  var windowed = sig * blackmanharris(sig.length);
+  var f = rfft(windowed);
+
+  var fAbs = arrayComplexAbs(f);
+
+  // Find the peak and interpolate to get a more accurate peak
+  var i = arrayArgMax(fAbs); // Just use this for less-accurate, naive version
+
+  // Parabolic approximation is necessary to get the exactly frequency of a discrete signal
+  // since the frequency can be in some point between the samples.
+  var true_i = parabolic(arrayLog(fAbs), i)[0];
+
+  // Convert to equivalent frequency
+  return fs * true_i / windowed.length;
+}
 ```
 
 ## References

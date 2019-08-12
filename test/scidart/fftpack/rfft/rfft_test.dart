@@ -7,15 +7,20 @@ void main() {
     var x = Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0]);
 
     var X = rfft(x);
+
     print(X);
 
     // expected FFT calulated with Scipy (from scipy.fftpack import fft, ifft)
     var XExpected = ArrayComplex([
-      Complex.ri(4.0, 0),
-      Complex.ri(1.0, -2.41421356),
-      Complex.ri(0, 0),
-      Complex.ri(1.0, -0.41421356),
-      Complex.ri(0.0, 0.0)]);
+      Complex(real: 4.0, imaginary: 0.0),
+      Complex(real: 1.0, imaginary: -2.414213562373095),
+      Complex(real: 0.0, imaginary: 0.0),
+      Complex(real: 1.0, imaginary: -0.4142135623730949),
+      Complex(real: 0.0, imaginary: 0.0),
+//          Complex(real: 0.9999999999999999, imaginary: 0.4142135623730949),
+//          Complex(real: 0.0, imaginary: 0.0),
+//          Complex(real: 0.9999999999999997, imaginary: 2.414213562373095)
+    ]);
 
     var fractionDigits = 8;
 
@@ -96,6 +101,31 @@ void main() {
 
     print(X);
     print(XExpected);
+
+    expect(X, XExpected);
+  });
+
+  test('rfft of a signal with odd samples', () {
+    var x = Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0]);
+
+    var X = rfft(x);
+
+    print(X);
+
+    // expected FFT calulated with Scipy (from scipy.fftpack import fft, ifft)
+    var XExpected = ArrayComplex([
+      Complex(real: 4.0, imaginary: 0.0),
+      Complex(real: 0.5000000000000002, imaginary: -2.1906431337674115),
+      Complex(real: 0.4999999999999999, imaginary: 0.24078730940376425),
+      Complex(real: 0.5000000000000002, imaginary: -0.6269801688313521),
+//      Complex(real: 0.4999999999999999, imaginary: 0.6269801688313519),
+//      Complex(real: 0.5000000000000019, imaginary: -0.24078730940376336),
+//      Complex(real: 0.4999999999999992, imaginary: 2.190643133767411)
+    ]);
+    var fractionDigits = 8;
+
+    arrayComplexTruncateEachElement(X, fractionDigits);
+    arrayComplexTruncateEachElement(XExpected, fractionDigits);
 
     expect(X, XExpected);
   });

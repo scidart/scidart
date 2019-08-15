@@ -1,3 +1,7 @@
+## 0.0.1-dev.4
+
+- README examples updated.
+
 ## 0.0.1-dev.3
 
 - IO migrated to scidart_io.

@@ -8,3 +8,8 @@
 
 # open docs with http server
 # dhttpd --path doc/api
+
+# validate but do not publish the package.
+# pub publish  --dry-run
+# publish package
+# pub publish

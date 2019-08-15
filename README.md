@@ -23,9 +23,6 @@ But the [current library don't support Dart SDK > 2.0.0](https://github.com/Blac
 So, I decided to leave this work pending for now.
 
 ## SciDart structure
-* IO: File manipulation libraries;
-  * csv: [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file manipulation;
-  * txt: text file manipulation;
 * NumDart: Numerical computation libraries;
   * array_base: array manipulation;
   * calculus: calculus base;
@@ -572,44 +569,42 @@ Every contribution needs have tests, documentation and examples, otherwise, the 
 
 ## Todo list
 ### Project documentation
-* create a logo
-* create a official web site
-* adjust the documentation to be more friendly for the users
-* write tutorials
+- [ ] create a logo
+- [ ] create a official web site
+- [ ] adjust the documentation to be more friendly for the users
+- [ ] write tutorials
 
 ### Benchmarks
-* construct codes for benchmark tests
-* made benchmark for Android devices
-* made benchmark for iOS devices
-* made benchmark on Web
-* made benchmark on Linux
-* made benchmark on MacOS
-* made benchmark on MS Windows
+- [ ] construct codes for benchmark tests
+- [ ] made benchmark for Android devices
+- [ ] made benchmark for iOS devices
+- [ ] made benchmark on Web
+- [ ] made benchmark on Linux
+- [ ] made benchmark on MacOS
+- [ ] made benchmark on MS Windows
 
 ### Code implementations
-* complex numbers algebra (ok)
-* polyfit (ok but need more tests)
-* documentation with examples(ok)
-* function to time the execution of a process (ok)
-* circular convolution (ok)
-* convolution (ok)
-* random (ok)
-* write, read txt (ok, but work only in PC)
-* write, read csv (ok, but work only in PC)
-* separate fast math (ok)
-* test fast math (ok)
-* refactor array(ok), array2d(ok), arrayComplex(ok), Complex(ok) class to be more functional
-* write matrix operations tests (ok)
-* implement determinant calculation (ok)
-* integration and derivation (ok)
-* filter FIR (ok)
-* dbConverters (ok)
-* write some examples: simples uses, frequency estimator (ok)
-* write readme (ok)
-* write other examples: step counter, FM modulation, AM modulation;
-* filter IIR
-* generate a plot in memory (delegated to https://stackoverflow.com/questions/43703802/flutter-draw-graphs-on-the-screen)
-* logSpace (https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.logspace.html)
-* write a REPL to interact with the lib (Need support Dart SDK > 2 : https://medium.com/dartlang/dart-repl-poc-f327e3769b6f)
-* publish package
-* show to the community
+- [x] complex numbers algebra
+- [x] polyfit
+- [x] documentation with examples
+- [x] function to time the execution of a process
+- [x] circular convolution
+- [x] convolution
+- [x] random
+- [x] separate fast math
+- [x] test fast math
+- [x] refactor array, array2d, arrayComplex, Complex class to be more functional
+- [x] write matrix operations tests
+- [x] implement determinant calculation
+- [x] integration and derivation
+- [x] filter FIR
+- [x] dbConverters
+- [x] write some examples: simples uses, frequency estimator
+- [x] write readme
+- [ ] write other examples: step counter, FM modulation, AM modulation;
+- [ ] filter IIR
+- [ ] generate a plot in memory (delegated to https://stackoverflow.com/questions/43703802/flutter-draw-graphs-on-the-screen)
+- [ ] logSpace (https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.logspace.html)
+- [ ] write a REPL to interact with the lib (Need support Dart SDK > 2 : https://medium.com/dartlang/dart-repl-poc-f327e3769b6f)
+- [ ] publish package
+- [x] show to the community

@@ -136,13 +136,17 @@ class Array extends ListBase<double> {
   ///  >>> n == n2;
   ///  true
   bool operator ==(b) {
-    _checkArray(b);
-    for (var i = 0; i < this.length; i++) {
-      if (this[i] != b[i]) {
-        return false;
+    if (b is Array) {
+      _checkArray(b);
+      for (var i = 0; i < this.length; i++) {
+        if (this[i] != b[i]) {
+          return false;
+        }
       }
+      return true;
+    } else {
+      throw ('the right object has to be a Array type');
     }
-    return true;
   }
 
   ///  Return a array given a index interval

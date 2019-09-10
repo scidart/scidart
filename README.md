@@ -34,12 +34,6 @@ The references values for all function was obtained with SciPy. The contribution
 Every contribution needs have tests, documentation and examples, otherwise, the pull request will be blocked.
 
 ## Todo list
-### Project documentation
-- [ ] create a logo
-- [ ] create a official web site
-- [ ] adjust the documentation to be more friendly for the users
-- [ ] write tutorials
-
 ### Benchmarks
 - [ ] construct codes for benchmark tests
 - [ ] made benchmark for Android devices
@@ -72,5 +66,5 @@ Every contribution needs have tests, documentation and examples, otherwise, the 
 - [ ] generate a plot in memory (delegated to https://stackoverflow.com/questions/43703802/flutter-draw-graphs-on-the-screen)
 - [ ] logSpace (https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.logspace.html)
 - [ ] write a REPL to interact with the lib (Need support Dart SDK > 2 : https://medium.com/dartlang/dart-repl-poc-f327e3769b6f)
-- [ ] publish package
+- [x] publish package
 - [x] show to the community

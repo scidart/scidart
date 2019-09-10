@@ -100,13 +100,17 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>> n == n2;
   ///  true
   bool operator ==(b) {
-    _checkArray(b);
-    for (var i = 0; i < this.length; i++) {
-      if (this[i] != b[i]) {
-        return false;
+    if (b is ArrayComplex) {
+      _checkArray(b);
+      for (var i = 0; i < this.length; i++) {
+        if (this[i] != b[i]) {
+          return false;
+        }
       }
+      return true;
+    } else {
+      throw ('the right object has to be a ArrayComplex type');
     }
-    return true;
   }
 
   ///  Return a array given a index interval

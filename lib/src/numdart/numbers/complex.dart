@@ -1,5 +1,6 @@
 import 'dart:core';
 
+import 'package:scidart/numdart.dart';
 import 'package:scidart/src/numdart/numbers/complex_operations/complex_conjugate.dart';
 
 ///  Class to create and handle a complex numbers.
@@ -94,7 +95,11 @@ class Complex {
   ///  >>> c1 == c2;
   ///  >>> false
   bool operator ==(b) {
-    return b.real == this.real && b.imaginary == this.imaginary;
+    if (b is Complex) {
+      return b.real == this.real && b.imaginary == this.imaginary;
+    } else {
+      throw ('the right object has to be a Complex type');
+    }
   }
 
   ///  Convert a Complex object (number) to a String representation

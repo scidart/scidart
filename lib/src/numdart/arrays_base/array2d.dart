@@ -196,16 +196,20 @@ class Array2d extends ListBase<Array> {
   ///  >>> n == n2;
   ///  true
   bool operator ==(b) {
-    _checkArray2dColunmsLength(this);
-    _checkArray2dColunmsLength(b);
-    _checkArray2dLength(this, b);
+    if (b is Array2d) {
+      _checkArray2dColunmsLength(this);
+      _checkArray2dColunmsLength(b);
+      _checkArray2dLength(this, b);
 
-    for (var i = 0; i < this.length; i++) {
-      if (this[i] != b[i]) {
-        return false;
+      for (var i = 0; i < this.length; i++) {
+        if (this[i] != b[i]) {
+          return false;
+        }
       }
+      return true;
+    } else {
+      throw ('the right object has to be a Array2d type');
     }
-    return true;
   }
 
   ///  Multiply two arrays with the same size

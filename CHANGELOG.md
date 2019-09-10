@@ -1,3 +1,7 @@
+## 0.0.1-dev.6
+
+- bug correction issue: https://github.com/scidart/scidart/issues/7 .
+
 ## 0.0.1-dev.5
 
 - pubspec homepage updated.

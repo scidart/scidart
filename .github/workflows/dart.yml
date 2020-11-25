@@ -40,12 +40,14 @@ jobs:
       - name: Run tests
         run: dart test
       
-      - name: Dart and Flutter Package Publisher
-        # You may pin to the exact commit or the version.
-        # uses: k-paxian/dart-package-publisher@c7569fbb8a59b84970532083d24ca807fcb12ba0
-        uses: k-paxian/dart-package-publisher@v1.2
-        with:
-          # (Required) Token from ~/.pub-cache/credentials.json. Use secrets.OAUTH_ACCESS_TOKEN
-          accessToken: ecrets.OAUTH_ACCESS_TOKEN
-          # (Required) Token from ~/.pub-cache/credentials.json. Use secrets.OAUTH_REFRESH_TOKEN
-          refreshToken: secrets.OAUTH_REFRESH_TOKEN
+  publishing:
+      runs-on: ubuntu-latest
+      steps:
+        - name: 'Checkout'
+          uses: actions/checkout@v2 # required!
+
+        - name: '>> Dart package <<'
+          uses: k-paxian/dart-package-publisher@master
+          with:
+            accessToken: ${{ secrets.OAUTH_ACCESS_TOKEN }}
+            refreshToken: ${{ secrets.OAUTH_REFRESH_TOKEN }}

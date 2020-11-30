@@ -7,8 +7,6 @@ void main() {
     var xi = arrayToComplexArray(Array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]));
     var yi = arrayToComplexArray(Array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]));
     var zi = convolutionComplex(xi, yi);
-    print(zi);
-    print(zi.length);
 
     var ziExpec = ArrayComplex([
       Complex(real: 1.0000000000000029, imaginary: -1.794120407794253e-14),
@@ -31,6 +29,12 @@ void main() {
       Complex(real: 1.9999999999999982, imaginary: 1.687538997430238e-14),
       Complex(real: 1.0000000000000082, imaginary: 8.704148513061228e-15)
     ]);
+
+    arrayComplexTruncateEachElement(zi, 4);
+    arrayComplexTruncateEachElement(ziExpec, 4);
+
+    print(zi);
+    print(zi.length);
 
     expect(zi, ziExpec);
   });

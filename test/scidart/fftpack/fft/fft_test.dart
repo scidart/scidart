@@ -87,8 +87,6 @@ void main() {
 
     var X = fft(x, n: 16);
 
-    print(X);
-
     // expected FFT
     var XExpected = ArrayComplex([
       Complex(real: 4.0, imaginary: 0.0),
@@ -108,6 +106,11 @@ void main() {
       Complex(real: -1.0, imaginary: 1.0),
       Complex(real: -1.2483028813327441, imaginary: -3.013669746062924)
     ]);
+
+    arrayComplexTruncateEachElement(X, 4);
+    arrayComplexTruncateEachElement(XExpected, 4);
+
+    print(X);
 
     expect(X, XExpected);
   });

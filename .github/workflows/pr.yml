@@ -1,10 +1,8 @@
-name: Dart
+name: Test PR
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, develop ]
 
 jobs:
   build:
@@ -39,15 +37,3 @@ jobs:
       # want to change this to 'flutter test'.
       - name: Run tests
         run: dart test
-      
-  publishing:
-      runs-on: ubuntu-latest
-      steps:
-        - name: 'Checkout'
-          uses: actions/checkout@v2 # required!
-
-        - name: '>> Dart package <<'
-          uses: k-paxian/dart-package-publisher@master
-          with:
-            accessToken: ${{ secrets.OAUTH_ACCESS_TOKEN }}
-            refreshToken: ${{ secrets.OAUTH_REFRESH_TOKEN }}

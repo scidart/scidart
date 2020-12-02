@@ -1,4 +1,4 @@
-# ![Scidart logo](./img/logo.png)
+# ![Scidart logo](https://github.com/scidart/scidart.org/blob/master/img/logo_small.png?raw=true)
 
 **SciDart** is an experimental cross-platform scientific library for Dart.
 

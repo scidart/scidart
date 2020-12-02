@@ -1,3 +1,7 @@
+## 0.0.1-dev.8
+
+- Logo url update.
+
 ## 0.0.1-dev.7
 
 - License changed and documentation updates.

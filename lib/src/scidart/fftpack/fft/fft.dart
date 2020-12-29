@@ -75,24 +75,24 @@ ArrayComplex fft(ArrayComplex x, {int n, bool normalization = false}) {
 ///  The vector's length must be a power of 2. Uses the Cooley-Tukey decimation-in-time radix-2 algorithm.
 ArrayComplex _transformRadix2(ArrayComplex x) {
   var buffer = x.copy();
-  int bits = log(buffer.length) ~/ log(2);
-  for (int j = 1; j < buffer.length / 2; j++) {
-    int swapPos = bitReverse(j, bits);
-    Complex temp = buffer[j];
+  var bits = log(buffer.length) ~/ log(2);
+  for (var j = 1; j < buffer.length / 2; j++) {
+    var swapPos = bitReverse(j, bits);
+    var temp = buffer[j];
     buffer[j] = buffer[swapPos];
     buffer[swapPos] = temp;
   }
 
-  for (int N = 2; N <= buffer.length; N <<= 1) {
-    for (int i = 0; i < buffer.length; i += N) {
-      for (int k = 0; k < N / 2; k++) {
-        int evenIndex = i + k;
-        int oddIndex = (i + k + (N / 2)).toInt();
-        Complex even = buffer[evenIndex];
-        Complex odd = buffer[oddIndex];
+  for (var N = 2; N <= buffer.length; N <<= 1) {
+    for (var i = 0; i < buffer.length; i += N) {
+      for (var k = 0; k < N / 2; k++) {
+        var evenIndex = i + k;
+        var oddIndex = (i + k + (N / 2)).toInt();
+        var even = buffer[evenIndex];
+        var odd = buffer[oddIndex];
 
-        double term = (-2 * pi * k) / N;
-        Complex exp = Complex(real: cos(term), imaginary: sin(term)) * odd;
+        var term = (-2 * pi * k) / N;
+        var exp = Complex(real: cos(term), imaginary: sin(term)) * odd;
 
         buffer[evenIndex] = even + exp;
         buffer[oddIndex] = even - exp;
@@ -221,13 +221,13 @@ ArrayComplex _transformRadix2(ArrayComplex x) {
 ///  Computes the discrete Fourier transform (DFT) of the given complex vector.
 ///  All the array arguments must be non-null
 ArrayComplex _dft(ArrayComplex buffer) {
-  int n = buffer.length;
+  var n = buffer.length;
   var out = ArrayComplex.fixed(n);
-  for (int k = 0; k < n; k++) { // For each output element
-    double sumreal = 0;
-    double sumimag = 0;
-    for (int t = 0; t < n; t++) { // For each input element
-      double angle = 2 * math.pi * t * k / n;
+  for (var k = 0; k < n; k++) { // For each output element
+    var sumreal = 0.0;
+    var sumimag = 0.0;
+    for (var t = 0; t < n; t++) { // For each input element
+      var angle = 2 * math.pi * t * k / n;
       sumreal += buffer[t].real * math.cos(angle) +
           buffer[t].imaginary * math.sin(angle);
       sumimag += -buffer[t].real * math.sin(angle) +

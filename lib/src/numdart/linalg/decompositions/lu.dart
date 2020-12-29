@@ -55,32 +55,32 @@ class LU {
     _m = A.row;
     _n = A.column;
     _piv = Array.fixed(_m);
-    for (int i = 0; i < _m; i++) {
+    for (var i = 0; i < _m; i++) {
       _piv[i] = i.toDouble();
     }
     _pivsign = 1;
     Array LUrowi;
-    Array LUcolj = Array.fixed(_m);
+    var LUcolj = Array.fixed(_m);
 
     // Outer loop.
 
-    for (int j = 0; j < _n; j++) {
+    for (var j = 0; j < _n; j++) {
       // Make a copy of the j-th column to localize references.
 
-      for (int i = 0; i < _m; i++) {
+      for (var i = 0; i < _m; i++) {
         LUcolj[i] = _LUMatrix[i][j];
       }
 
       // Apply previous transformations.
 
-      for (int i = 0; i < _m; i++) {
+      for (var i = 0; i < _m; i++) {
         LUrowi = _LUMatrix[i];
 
         // Most of the time is spent in the following dot product.
 
-        int kmax = math.min(i, j);
-        double s = 0.0;
-        for (int k = 0; k < kmax; k++) {
+        var kmax = math.min(i, j);
+        var s = 0.0;
+        for (var k = 0; k < kmax; k++) {
           s += LUrowi[k] * LUcolj[k];
         }
 
@@ -89,19 +89,19 @@ class LU {
 
       // Find pivot and exchange if necessary.
 
-      int p = j;
-      for (int i = j + 1; i < _m; i++) {
+      var p = j;
+      for (var i = j + 1; i < _m; i++) {
         if (LUcolj[i].abs() > LUcolj[p].abs()) {
           p = i;
         }
       }
       if (p != j) {
-        for (int k = 0; k < _n; k++) {
-          double t = _LUMatrix[p][k];
+        for (var k = 0; k < _n; k++) {
+          var t = _LUMatrix[p][k];
           _LUMatrix[p][k] = _LUMatrix[j][k];
           _LUMatrix[j][k] = t;
         }
-        int k = _piv[p].toInt();
+        var k = _piv[p].toInt();
         _piv[p] = _piv[j];
         _piv[j] = k.toDouble();
         _pivsign = -_pivsign;
@@ -109,7 +109,7 @@ class LU {
 
       // Compute multipliers.
       if (j < _m && _LUMatrix[j][j] != 0.0) {
-        for (int i = j + 1; i < _m; i++) {
+        for (var i = j + 1; i < _m; i++) {
           _LUMatrix[i][j] /= _LUMatrix[j][j];
         }
       }
@@ -175,7 +175,7 @@ class LU {
   ///  Is the matrix nonsingular?
   ///  return true if U, and hence A, is nonsingular.
   bool isNonsingular() {
-    for (int j = 0; j < _n; j++) {
+    for (var j = 0; j < _n; j++) {
       if (_LUMatrix[j][j] == 0) {
         return false;
       }
@@ -186,9 +186,9 @@ class LU {
   /// Return lower triangular factor
   /// return  L
   Array2d L() {
-    Array2d L = Array2d.fixed(_m, _n);
-    for (int i = 0; i < _m; i++) {
-      for (int j = 0; j < _n; j++) {
+    var L = Array2d.fixed(_m, _n);
+    for (var i = 0; i < _m; i++) {
+      for (var j = 0; j < _n; j++) {
         if (i > j) {
           L[i][j] = _LUMatrix[i][j];
         } else if (i == j) {
@@ -204,9 +204,9 @@ class LU {
   ///  Return upper triangular factor
   ///  return U
   Array2d U() {
-    Array2d U = Array2d.fixed(_n, _n);
-    for (int i = 0; i < _n; i++) {
-      for (int j = 0; j < _n; j++) {
+    var U = Array2d.fixed(_n, _n);
+    for (var i = 0; i < _n; i++) {
+      for (var j = 0; j < _n; j++) {
         if (i <= j) {
           U[i][j] = _LUMatrix[i][j];
         } else {
@@ -220,8 +220,8 @@ class LU {
   ///  Return pivot permutation vector
   ///  return piv
   Array pivot() {
-    Array p = Array.fixed(_m);
-    for (int i = 0; i < _m; i++) {
+    var p = Array.fixed(_m);
+    for (var i = 0; i < _m; i++) {
       p[i] = _piv[i];
     }
     return p;
@@ -230,8 +230,8 @@ class LU {
   ///  Return pivot permutation vector as a one-dimensional double array
   ///  return (double) piv
   Array doublePivot() {
-    Array vals = Array.fixed(_m);
-    for (int i = 0; i < _m; i++) {
+    var vals = Array.fixed(_m);
+    for (var i = 0; i < _m; i++) {
       vals[i] = _piv[i];
     }
     return vals;
@@ -242,10 +242,10 @@ class LU {
   ///  exception  FormatException  Matrix must be square
   double det() {
     if (_m != _n) {
-      throw FormatException("Matrix must be square.");
+      throw FormatException('Matrix must be square.');
     }
-    double d = _pivsign.toDouble();
-    for (int j = 0; j < _n; j++) {
+    var d = _pivsign.toDouble();
+    for (var j = 0; j < _n; j++) {
       d *= _LUMatrix[j][j];
     }
     return d;
@@ -258,31 +258,31 @@ class LU {
   ///  RuntimeException  Matrix is singular.
   Array2d solve(Array2d B) {
     if (B.row != _m) {
-      throw FormatException("Matrix row dimensions must agree.");
+      throw FormatException('Matrix row dimensions must agree.');
     }
-    if (!this.isNonsingular()) {
-      throw FormatException("Matrix is singular.");
+    if (!isNonsingular()) {
+      throw FormatException('Matrix is singular.');
     }
 
     // Copy right hand side with pivoting
-    int nx = B.column;
-    Array2d X = matrixSubFromArray(B, _piv, 0, nx - 1);
+    var nx = B.column;
+    var X = matrixSubFromArray(B, _piv, 0, nx - 1);
 
     // Solve L*Y = B(piv,:)
-    for (int k = 0; k < _n; k++) {
-      for (int i = k + 1; i < _n; i++) {
-        for (int j = 0; j < nx; j++) {
+    for (var k = 0; k < _n; k++) {
+      for (var i = k + 1; i < _n; i++) {
+        for (var j = 0; j < nx; j++) {
           X[i][j] -= X[k][j] * _LUMatrix[i][k];
         }
       }
     }
     // Solve U*X = Y;
-    for (int k = _n - 1; k >= 0; k--) {
-      for (int j = 0; j < nx; j++) {
+    for (var k = _n - 1; k >= 0; k--) {
+      for (var j = 0; j < nx; j++) {
         X[k][j] /= _LUMatrix[k][k];
       }
-      for (int i = 0; i < k; i++) {
-        for (int j = 0; j < nx; j++) {
+      for (var i = 0; i < k; i++) {
+        for (var j = 0; j < nx; j++) {
           X[i][j] -= X[k][j] * _LUMatrix[i][k];
         }
       }

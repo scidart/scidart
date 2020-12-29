@@ -10,7 +10,7 @@ void main() {
     matrix.add(line);
     matrix.add(line);
     
-    int i = 0;
+    var i = 0;
     expect(matrix[i].elementAt(0), 1.0);
     expect(matrix[i].elementAt(1), 2.0);
     expect(matrix[i].elementAt(2), 3.0);
@@ -36,11 +36,10 @@ void main() {
 
     var str = matrix.toString();
 
-    var strExpec = 'Array2d([\n' +
-        '  Array([1.0, 2.0, 3.0]), \n' +
-        '  Array([1.0, 2.0, 3.0]), \n' +
-        '  Array([1.0, 2.0, 3.0])\n' +
-        '])';
+    var strExpec = 'Array2d([\n'
+        '  Array([1.0, 2.0, 3.0]), \n'
+        '  Array([1.0, 2.0, 3.0]), \n'
+        '  Array([1.0, 2.0, 3.0])\n' '])';
 
     print(matrix);
 

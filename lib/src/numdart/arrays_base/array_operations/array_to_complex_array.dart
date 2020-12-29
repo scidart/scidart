@@ -11,7 +11,7 @@ import '../array_complex.dart';
 ///  ArrayComplex([Complex(real: 1.0, imaginary: 0.0), Complex(real: 2.0, imaginary: 0.0) , Complex(real: 3.0, imaginary: 0.0)])
 ArrayComplex arrayToComplexArray(Array a) {
   var c = ArrayComplex.fixed(a.length);
-  for (int i = 0; i < a.length; i++) {
+  for (var i = 0; i < a.length; i++) {
     c[i] = Complex(real: a[i]);
   }
   return c;

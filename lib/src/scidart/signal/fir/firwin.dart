@@ -84,15 +84,15 @@ dynamic firwin(int numtaps, Array cutoff,
 
   // Check for invalid input.
   if (cutoff.isEmpty) {
-    throw FormatException("At least one cutoff frequency must be given.");
+    throw FormatException('At least one cutoff frequency must be given.');
   }
   if (arrayMin(cutoff) <= 0 || arrayMax(cutoff) >= 1) {
     throw FormatException(
-        "Invalid cutoff frequency: frequencies must be greater than 0 and less than fs/2.");
+        'Invalid cutoff frequency: frequencies must be greater than 0 and less than fs/2.');
   }
   if (arrayDiff(cutoff).any((i) => i <= 0)) {
     throw FormatException(
-        "Invalid cutoff frequencies: the frequencies must be strictly increasing.");
+        'Invalid cutoff frequencies: the frequencies must be strictly increasing.');
   }
 
   if (width != null) {
@@ -143,11 +143,11 @@ dynamic firwin(int numtaps, Array cutoff,
         "pass_zero is not a bool, please, insert: true, false, 'bandpass', 'lowpass', 'highpass', 'bandstop'");
   }
 
-  bool pass_nyquist = intToBool(cutoff.length & 1 ^ boolToInt(pass_zero));
+  var pass_nyquist = intToBool(cutoff.length & 1 ^ boolToInt(pass_zero));
 
   if (pass_nyquist && numtaps % 2 == 0) {
     throw FormatException(
-        "A filter with an even number of coefficients must have zero response at the Nyquist frequency.");
+        'A filter with an even number of coefficients must have zero response at the Nyquist frequency.');
   }
 
   // Insert 0 and/or 1 at the ends of cutoff so that the length of cutoff

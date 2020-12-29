@@ -5,7 +5,7 @@ import 'package:scidart/src/numdart/fastmath/tables/log_max_value.dart';
 
 /// Compute the hyperbolic sine of a number.
 double sinh(double x) {
-  bool negate = false;
+  var negate = false;
   if (x != x) {
     return x;
   }
@@ -18,7 +18,7 @@ double sinh(double x) {
   if (x > 20) {
     if (x >= LOG_MAX_VALUE) {
       // Avoid overflow (MATH-905).
-      final double t = expFast(0.5 * x);
+      final t = expFast(0.5 * x);
       return (0.5 * t) * t;
     } else {
       return 0.5 * expFast(x);
@@ -26,7 +26,7 @@ double sinh(double x) {
   } else if (x < -20) {
     if (x <= -LOG_MAX_VALUE) {
       // Avoid overflow (MATH-905).
-      final double t = expFast(-0.5 * x);
+      final t = expFast(-0.5 * x);
       return (-0.5 * t) * t;
     } else {
       return -0.5 * expFast(-x);
@@ -48,18 +48,18 @@ double sinh(double x) {
     final hiPrec = List<double>(2);
     expFast(x, 0.0, hiPrec);
 
-    double ya = hiPrec[0] + hiPrec[1];
-    double yb = -(ya - hiPrec[0] - hiPrec[1]);
+    var ya = hiPrec[0] + hiPrec[1];
+    var yb = -(ya - hiPrec[0] - hiPrec[1]);
 
-    double temp = ya * HEX_40000000;
-    double yaa = ya + temp - temp;
-    double yab = ya - yaa;
+    var temp = ya * HEX_40000000;
+    var yaa = ya + temp - temp;
+    var yab = ya - yaa;
 
     // recip = 1/y
-    double recip = 1.0 / ya;
+    var recip = 1.0 / ya;
     temp = recip * HEX_40000000;
-    double recipa = recip + temp - temp;
-    double recipb = recip - recipa;
+    var recipa = recip + temp - temp;
+    var recipb = recip - recipa;
 
     // Correct for rounding in division
     recipb +=
@@ -85,21 +85,21 @@ double sinh(double x) {
     final hiPrec = List<double>(2);
     expm1(x, hiPrecOut: hiPrec);
 
-    double ya = hiPrec[0] + hiPrec[1];
-    double yb = -(ya - hiPrec[0] - hiPrec[1]);
+    var ya = hiPrec[0] + hiPrec[1];
+    var yb = -(ya - hiPrec[0] - hiPrec[1]);
 
     /* Compute expm1(-x) = -expm1(x) / (expm1(x) + 1) */
-    double denom = 1.0 + ya;
-    double denomr = 1.0 / denom;
-    double denomb = -(denom - 1.0 - ya) + yb;
-    double ratio = ya * denomr;
-    double temp = ratio * HEX_40000000;
-    double ra = ratio + temp - temp;
-    double rb = ratio - ra;
+    var denom = 1.0 + ya;
+    var denomr = 1.0 / denom;
+    var denomb = -(denom - 1.0 - ya) + yb;
+    var ratio = ya * denomr;
+    var temp = ratio * HEX_40000000;
+    var ra = ratio + temp - temp;
+    var rb = ratio - ra;
 
     temp = denom * HEX_40000000;
-    double za = denom + temp - temp;
-    double zb = denom - za;
+    var za = denom + temp - temp;
+    var zb = denom - za;
 
     rb += (ya - za * ra - za * rb - zb * ra - zb * rb) * denomr;
 

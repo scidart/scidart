@@ -13,10 +13,10 @@ void main() {
     var xMax = arrayArgMax(y);
     var yMax = arrayMax(y);
 
-    print("Array points:");
-    print("${xMax}, ${yMax}");
+    print('Array points:');
+    print('${xMax}, ${yMax}');
 
-    print("Estimated points:");
+    print('Estimated points:');
     print(parabolic(y, xMax));
   });
 }

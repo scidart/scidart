@@ -39,27 +39,27 @@ double atanFast(double xa, [double xb = 0.0, bool leftPlane = false]) {
   if (xa < 1) {
     idx = (((-1.7168146928204136 * xa * xa + 8.0) * xa) + 0.5).toInt();
   } else {
-    final double oneOverXa = 1 / xa;
+    final oneOverXa = 1 / xa;
     idx = (-((-1.7168146928204136 * oneOverXa * oneOverXa + 8.0) * oneOverXa) +
             13.07)
         .toInt();
   }
 
-  final double ttA = TANGENT_TABLE_A[idx];
-  final double ttB = TANGENT_TABLE_B[idx];
+  final ttA = TANGENT_TABLE_A[idx];
+  final ttB = TANGENT_TABLE_B[idx];
 
-  double epsA = xa - ttA;
-  double epsB = -(epsA - xa + ttA);
+  var epsA = xa - ttA;
+  var epsB = -(epsA - xa + ttA);
   epsB += xb - ttB;
 
-  double temp = epsA + epsB;
+  var temp = epsA + epsB;
   epsB = -(temp - epsA - epsB);
   epsA = temp;
 
   /* Compute eps = eps / (1.0 + xa*tangent) */
   temp = xa * HEX_40000000;
-  double ya = xa + temp - temp;
-  double yb = xb + xa - ya;
+  var ya = xa + temp - temp;
+  var yb = xb + xa - ya;
   xa = ya;
   xb += yb;
 
@@ -67,14 +67,14 @@ double atanFast(double xa, [double xb = 0.0, bool leftPlane = false]) {
   if (idx == 0) {
     /// If the slope of the arctan is gentle enough (< 0.45), this approximation will suffice
     //double denom = 1.0 / (1.0 + xa*tangentTableA[idx] + xb*tangentTableA[idx] + xa*tangentTableB[idx] + xb*tangentTableB[idx]);
-    final double denom = 1.0 / (1.0 + (xa + xb) * (ttA + ttB));
+    final denom = 1.0 / (1.0 + (xa + xb) * (ttA + ttB));
     //double denom = 1.0 / (1.0 + xa*tangentTableA[idx]);
     ya = epsA * denom;
     yb = epsB * denom;
   } else {
-    double temp2 = xa * ttA;
-    double za = 1.0 + temp2;
-    double zb = -(za - 1.0 - temp2);
+    var temp2 = xa * ttA;
+    var za = 1.0 + temp2;
+    var zb = -(za - 1.0 - temp2);
     temp2 = xb * ttA + xa * ttB;
     temp = za + temp2;
     zb += -(temp - za - temp2);
@@ -84,12 +84,12 @@ double atanFast(double xa, [double xb = 0.0, bool leftPlane = false]) {
     ya = epsA / za;
 
     temp = ya * HEX_40000000;
-    final double yaa = (ya + temp) - temp;
-    final double yab = ya - yaa;
+    final yaa = (ya + temp) - temp;
+    final yab = ya - yaa;
 
     temp = za * HEX_40000000;
-    final double zaa = (za + temp) - temp;
-    final double zab = za - zaa;
+    final zaa = (za + temp) - temp;
+    final zab = za - zaa;
 
     /* Correct for rounding in division */
     yb = (epsA - yaa * zaa - yaa * zab - yab * zaa - yab * zab) / za;
@@ -102,7 +102,7 @@ double atanFast(double xa, [double xb = 0.0, bool leftPlane = false]) {
   epsB = yb;
 
   // Evaluate polynomial
-  final double epsA2 = epsA * epsA;
+  final epsA2 = epsA * epsA;
 
   /*
   yb = -0.09001346640161823;
@@ -130,22 +130,22 @@ double atanFast(double xa, [double xb = 0.0, bool leftPlane = false]) {
   /* Add in effect of epsB.   atan'(x) = 1/(1+x^2) */
   yb += epsB / (1.0 + epsA * epsA);
 
-  final double eighths = EIGHTHS[idx];
+  final eighths = EIGHTHS[idx];
 
   //result = yb + eighths[idx] + ya;
-  double za = eighths + ya;
-  double zb = -(za - eighths - ya);
+  var za = eighths + ya;
+  var zb = -(za - eighths - ya);
   temp = za + yb;
   zb += -(temp - za - yb);
   za = temp;
 
-  double result = za + zb;
+  var result = za + zb;
 
   if (leftPlane) {
     // Result is in the left plane
-    final double resultb = -(result - za - zb);
-    final double pia = 1.5707963267948966 * 2;
-    final double pib = 6.123233995736766E-17 * 2;
+    final resultb = -(result - za - zb);
+    final pia = 1.5707963267948966 * 2;
+    final pib = 6.123233995736766E-17 * 2;
 
     za = pia - result;
     zb = -(za - pia + result);

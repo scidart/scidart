@@ -11,7 +11,7 @@ import '../array_complex.dart';
 ///  ArrayComplex([Complex(real: -27.034945603074224, imaginary: -3.8511533348117775), Complex(real: -27.034945603074224, imaginary: -3.8511533348117775), Complex(real: -27.034945603074224, imaginary: -3.8511533348117775)])
 ArrayComplex arrayComplexTruncateLast(ArrayComplex a) {
   var c = ArrayComplex.fixed(a.length - 1);
-  for (int i = 0; i < c.length; i++) {
+  for (var i = 0; i < c.length; i++) {
     c[i] = a[i];
   }
   return c;

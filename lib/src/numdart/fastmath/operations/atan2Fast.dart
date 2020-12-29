@@ -14,9 +14,9 @@ double atan2Fast(double y, double x) {
   }
 
   if (y == 0) {
-    final double result = x * y;
-    final double invx = 1.0 / x;
-    final double invy = 1.0 / y;
+    final result = x * y;
+    final invx = 1.0 / x;
+    final invy = 1.0 / y;
 
     if (invx == 0) {
       // X is infinite
@@ -97,22 +97,22 @@ double atan2Fast(double y, double x) {
   }
 
   // Compute ratio r = y/x
-  final double r = y / x;
+  final r = y / x;
   if (r.isInfinite) {
     // bypass calculations that can create NaN
     return atanFast(r, 0.0, x < 0);
   }
 
-  double ra = r; // TODO(rwl): doubleHighPart(r);
-  double rb = r - ra;
+  var ra = r; // TODO(rwl): doubleHighPart(r);
+  var rb = r - ra;
 
   // Split x
-  final double xa = x; // TODO(rwl): doubleHighPart(x);
-  final double xb = x - xa;
+  final xa = x; // TODO(rwl): doubleHighPart(x);
+  final xb = x - xa;
 
   rb += (y - ra * xa - ra * xb - rb * xa - rb * xb) / x;
 
-  final double temp = ra + rb;
+  final temp = ra + rb;
   rb = -(temp - ra - rb);
   ra = temp;
 
@@ -122,7 +122,7 @@ double atan2Fast(double y, double x) {
   }
 
   // Call atan
-  final double result = atanFast(ra, rb, x < 0);
+  final result = atanFast(ra, rb, x < 0);
 
   return result;
 }

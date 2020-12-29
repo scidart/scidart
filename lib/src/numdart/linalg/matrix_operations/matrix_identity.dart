@@ -15,8 +15,8 @@ import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 ///  ]);
 Array2d matrixIdentity(int row, int column) {
   var X = Array2d.fixed(row, column);
-  for (int i = 0; i < row; i++) {
-    for (int j = 0; j < column; j++) {
+  for (var i = 0; i < row; i++) {
+    for (var j = 0; j < column; j++) {
       X[i][j] = (i == j ? 1.0 : 0.0);
     }
   }

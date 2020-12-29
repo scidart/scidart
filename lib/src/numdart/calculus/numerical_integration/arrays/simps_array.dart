@@ -95,9 +95,7 @@ enum Even {
 double _basicSimps(Array y, int start, int stop, Array x, int dx) {
   var result;
 
-  if (start == null) {
-    start = 0;
-  }
+  start ??= 0;
 
   var step = 2;
 

@@ -19,7 +19,7 @@ import '../array2d.dart';
 dynamic array2dTruncateEachElement(Array2d a, int fractionDigits,
     {bool returnNewArray = false}) {
   if (returnNewArray) {
-    Array2d b = Array2d.empty();
+    var b = Array2d.empty();
     for (var elem in a) {
       var tmp =
           arrayTruncateEachElement(elem, fractionDigits, returnNewArray: true);

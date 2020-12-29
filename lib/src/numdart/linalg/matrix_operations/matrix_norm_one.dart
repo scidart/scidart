@@ -14,10 +14,10 @@ import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 ///  >>> a.norm1();
 ///  >>> 9
 double matrixNormOne(Array2d a) {
-  double f = 0;
-  for (int j = 0; j < a.column; j++) {
-    double s = 0;
-    for (int i = 0; i < a.row; i++) {
+  var f = 0.0;
+  for (var j = 0; j < a.column; j++) {
+    var s = 0.0;
+    for (var i = 0; i < a.row; i++) {
       s += a[i][j].abs();
     }
     f = math.max(f, s);

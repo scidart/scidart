@@ -46,6 +46,7 @@ class Array extends ListBase<double> {
   //#endregion
 
   //#region operators
+  @override
   set length(int newLength) {
     l.length = newLength;
   }
@@ -56,10 +57,13 @@ class Array extends ListBase<double> {
   ///  >>> var a1 = Array([1.0, 2.0, 3.0]);
   ///  >>> a1.length;
   ///  3
+  @override
   int get length => l.length;
 
+  @override
   double operator [](int index) => l[index];
 
+  @override
   void operator []=(int index, double value) {
     l[index] = value;
   }
@@ -73,8 +77,8 @@ class Array extends ListBase<double> {
   ///  Array([4.0, 4.0, 4.0])
   Array operator *(Array b) {
     _checkArray(b);
-    var c = Array.fixed(this.length);
-    for (int i = 0; i < this.length; i++) {
+    var c = Array.fixed(length);
+    for (var i = 0; i < length; i++) {
       c[i] = this[i] * b[i];
     }
     return c;
@@ -89,8 +93,8 @@ class Array extends ListBase<double> {
   ///  Array([1.0, 1.0, 1.0])
   Array operator /(Array b) {
     _checkArray(b);
-    var c = Array.fixed(this.length);
-    for (int i = 0; i < this.length; i++) {
+    var c = Array.fixed(length);
+    for (var i = 0; i < length; i++) {
       c[i] = this[i] / b[i];
     }
     return c;
@@ -105,8 +109,8 @@ class Array extends ListBase<double> {
   ///  Array([2.0, 4.0, 6.0])
   @override Array operator +(List<double> b) {
     _checkArray(b);
-    var c = Array.fixed(this.length);
-    for (int i = 0; i < this.length; i++) {
+    var c = Array.fixed(length);
+    for (var i = 0; i < length; i++) {
       c[i] = this[i] + b[i];
     }
     return c;
@@ -121,8 +125,8 @@ class Array extends ListBase<double> {
   ///  Array([0, 0, 0])
   Array operator -(List<double> b) {
     _checkArray(b);
-    var c = Array.fixed(this.length);
-    for (int i = 0; i < this.length; i++) {
+    var c = Array.fixed(length);
+    for (var i = 0; i < length; i++) {
       c[i] = this[i] - b[i];
     }
     return c;
@@ -135,10 +139,11 @@ class Array extends ListBase<double> {
   ///  >>> var n2 = Array([1, 2, 3]);
   ///  >>> n == n2;
   ///  true
+  @override
   bool operator ==(b) {
     if (b is Array) {
       _checkArray(b);
-      for (var i = 0; i < this.length; i++) {
+      for (var i = 0; i < length; i++) {
         if (this[i] != b[i]) {
           return false;
         }
@@ -190,7 +195,7 @@ class Array extends ListBase<double> {
 
   //#region private methods
   void _checkArray(Array b) {
-    if (this.length != b.length) {
+    if (length != b.length) {
       throw ('both arrays need have the same dimesion');
     }
   }

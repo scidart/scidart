@@ -8,7 +8,7 @@ import '../array.dart';
 ///  Array([4.0, 4.0, 4.0])
 Array arrayMultiplyToScalar(Array a, num b) {
   var c = Array.fixed(a.length);
-  for (int i = 0; i < a.length; i++) {
+  for (var i = 0; i < a.length; i++) {
     c[i] = a[i] * b;
   }
   return c;

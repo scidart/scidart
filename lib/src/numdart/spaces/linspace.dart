@@ -41,7 +41,7 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 ///  Array([ 2. ,  2.2,  2.4,  2.6,  2.8])
 Array linspace(double start, double stop, {int num=50, bool endpoint=true}) {
   if (num <= 0) {
-    throw("num need be igual or greater than 0");
+    throw('num need be igual or greater than 0');
   }
 
   double delta;

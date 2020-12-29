@@ -1,3 +1,8 @@
+## 0.0.1-dev.9
+
+- PolyFit issue #16;
+- Dart lint warning fixed;
+
 ## 0.0.1-dev.8
 
 - Logo url update.

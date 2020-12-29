@@ -14,14 +14,14 @@ import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 Array matrixSumColumns(Array2d a) {
   a.isMatrix();
 
-  int aRows = a.length;
-  int aColumns = a[0].length;
+  var aRows = a.length;
+  var aColumns = a[0].length;
 
   var c = Array.fixed(aColumns, initialValue: 0.0);
 
-  for (int j = 0; j < aColumns; j++) {
+  for (var j = 0; j < aColumns; j++) {
     // bColumn
-    for (int i = 0; i < aRows; i++) {
+    for (var i = 0; i < aRows; i++) {
       //
       c[j] += a[i][j];
     }

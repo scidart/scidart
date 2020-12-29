@@ -124,7 +124,7 @@ void main() {
 
     var str = n.toString();
 
-    var strExpect = '\n' + '  Array([1.0, 2.0, 3.0])';
+    var strExpect = '\n' '  Array([1.0, 2.0, 3.0])';
 
     print(str);
 

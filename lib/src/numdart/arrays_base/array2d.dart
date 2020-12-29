@@ -43,7 +43,7 @@ class Array2d extends ListBase<Array> {
 
   Array2d.fixed(int row, int column, {double initialValue}) {
     l = List<Array>(row);
-    for (int i = 0; i < row; i++) {
+    for (var i = 0; i < row; i++) {
       l[i] = Array.fixed(column, initialValue: initialValue);
     }
   }
@@ -64,16 +64,16 @@ class Array2d extends ListBase<Array> {
     var nCol = (mRow != 0 ? vals.length / mRow : 0).toInt();
 
     if (mRow * nCol != vals.length) {
-      throw FormatException("Array length must be a multiple of mRow.");
+      throw FormatException('Array length must be a multiple of mRow.');
     }
 
     l = List<Array>(mRow);
-    for (int i = 0; i < mRow; i++) {
+    for (var i = 0; i < mRow; i++) {
       l[i] = Array.fixed(nCol);
     }
 
-    for (int i = 0; i < mRow; i++) {
-      for (int j = 0; j < nCol; j++) {
+    for (var i = 0; i < mRow; i++) {
+      for (var j = 0; j < nCol; j++) {
         this[i][j] = vals[i + j * mRow];
       }
     }
@@ -84,12 +84,13 @@ class Array2d extends ListBase<Array> {
   int get row => l.length;
 
   int get column {
-    _checkArray2dColunmsLength(this);
+    _checkArray2dColumnsLength(this);
     return this[0].length;
   }
   //#endregion
 
   //#region operators
+  @override
   set length(int newLength) {
     l.length = newLength;
   }
@@ -104,10 +105,13 @@ class Array2d extends ListBase<Array> {
   ///  >>> matrix.add(line);
   ///  >>> matrix.length;
   ///  3
+  @override
   int get length => l.length;
 
+  @override
   Array operator [](int index) => l[index];
 
+  @override
   void operator []=(int index, Array value) {
     l[index] = value;
   }
@@ -132,17 +136,17 @@ class Array2d extends ListBase<Array> {
   ///    Array([4, 4, 4])
   ///  ]);
   Array2d operator *(Array2d b) {
-    _checkArray2dColunmsLength(this);
-    _checkArray2dColunmsLength(b);
+    _checkArray2dColumnsLength(this);
+    _checkArray2dColumnsLength(b);
     _checkArray2dLength(this, b);
 
-    int aRows = this.length;
-    int aColumns = this[0].length;
+    var aRows = length;
+    var aColumns = this[0].length;
 
     var c = Array2d.fromArray(this); // make a copy of local
 
-    for (int i = 0; i < aRows; i++) { //
-      for (int j = 0; j < aColumns; j++) { // bColumn
+    for (var i = 0; i < aRows; i++) { //
+      for (var j = 0; j < aColumns; j++) { // bColumn
         c[i][j] *= b[i][j];
       }
     }
@@ -170,17 +174,17 @@ class Array2d extends ListBase<Array> {
   ///    Array([1, 1, 1])
   ///  ]);
   Array2d operator /(Array2d b) {
-    _checkArray2dColunmsLength(this);
-    _checkArray2dColunmsLength(b);
+    _checkArray2dColumnsLength(this);
+    _checkArray2dColumnsLength(b);
     _checkArray2dLength(this, b);
 
-    int aRows = this.length;
-    int aColumns = this[0].length;
+    var aRows = length;
+    var aColumns = this[0].length;
 
     var c = Array2d.fromArray(this); // make a copy of local
 
-    for (int i = 0; i < aRows; i++) { //
-      for (int j = 0; j < aColumns; j++) { // bColumn
+    for (var i = 0; i < aRows; i++) { //
+      for (var j = 0; j < aColumns; j++) { // bColumn
         c[i][j] /= b[i][j];
       }
     }
@@ -195,13 +199,14 @@ class Array2d extends ListBase<Array> {
   ///  >>> var n2 = Array([1, 2, 3]);
   ///  >>> n == n2;
   ///  true
+  @override
   bool operator ==(b) {
     if (b is Array2d) {
-      _checkArray2dColunmsLength(this);
-      _checkArray2dColunmsLength(b);
+      _checkArray2dColumnsLength(this);
+      _checkArray2dColumnsLength(b);
       _checkArray2dLength(this, b);
 
-      for (var i = 0; i < this.length; i++) {
+      for (var i = 0; i < length; i++) {
         if (this[i] != b[i]) {
           return false;
         }
@@ -232,17 +237,17 @@ class Array2d extends ListBase<Array> {
   ///    Array([4, 4, 4])
   ///  ]);
   Array2d operator -(Array2d b) {
-    _checkArray2dColunmsLength(this);
-    _checkArray2dColunmsLength(b);
+    _checkArray2dColumnsLength(this);
+    _checkArray2dColumnsLength(b);
     _checkArray2dLength(this, b);
 
-    int aRows = this.length;
-    int aColumns = this[0].length;
+    var aRows = length;
+    var aColumns = this[0].length;
 
     var c = Array2d.fromArray(this); // make a copy of local
 
-    for (int i = 0; i < aRows; i++) { //
-      for (int j = 0; j < aColumns; j++) { // bColumn
+    for (var i = 0; i < aRows; i++) { //
+      for (var j = 0; j < aColumns; j++) { // bColumn
         c[i][j] -= b[i][j];
       }
     }
@@ -257,7 +262,7 @@ class Array2d extends ListBase<Array> {
       if (c.length != columns) {
         if (throwIfIsNot) {
           throw FormatException(
-              "Array2d is not a matrix. All the rows of the Array2d must have the same length of columns.");
+              'Array2d is not a matrix. All the rows of the Array2d must have the same length of columns.');
         } else {
 
         }
@@ -294,27 +299,27 @@ class Array2d extends ListBase<Array> {
 
   //#region private methods
   /// check all the rows have the same length of columns
-  void _checkArray2dColunmsLength(List<Array> list) {
+  void _checkArray2dColumnsLength(List<Array> list) {
     // check if all the columns has the same length
     var columns = list[0].length;
     for (var c in list) {
       if (c.length != columns) {
         throw FormatException(
-            "All the rows of the Array2d must have the same length of columns.");
+            'All the rows of the Array2d must have the same length of columns.');
       }
     }
   }
 
   /// check if inputs have the same size
   void _checkArray2dLength(Array2d a, Array2d b) {
-    int aRows = a.length;
-    int aColumns = a[0].length;
-    int bRows = b.length;
-    int bColumns = b[0].length;
+    var aRows = a.length;
+    var aColumns = a[0].length;
+    var bRows = b.length;
+    var bColumns = b[0].length;
 
     if (aRows != bRows || aColumns != bColumns) {
       throw FormatException(
-          "A and B need to have the same length of rows and columns.");
+          'A and B need to have the same length of rows and columns.');
     }
   }
 //#endregion

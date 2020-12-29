@@ -44,7 +44,3 @@ Scidart is an open source project that runs on donations to pay the bills e.g. o
 ## ⚠ License
 
 Copyright (c) 2019-present [Angelo Polotto](https://github.com/polotto) and Contributors. Scidart is free and open-source software licensed under the [Apache-2.0 License](./LICENSE). The official logo was created by [Juliano Polotto](https://www.linkedin.com/in/juliano-polotto-550ba379/) and distributed under Creative Commons license (CC BY-SA 4.0 International).
-
-**Third-party library licenses**
-
-- [path](https://github.com/dart-lang/path/blob/master/LICENSE)

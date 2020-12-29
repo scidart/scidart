@@ -8,7 +8,7 @@ import '../array.dart';
 ///  Array([1.0, 2.0])
 Array arrayTruncateLast(Array a) {
   var c = Array.fixed(a.length - 1);
-  for (int i = 0; i < c.length; i++) {
+  for (var i = 0; i < c.length; i++) {
     c[i] = a[i];
   }
   return c;

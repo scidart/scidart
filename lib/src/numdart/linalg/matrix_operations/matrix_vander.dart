@@ -41,11 +41,9 @@ import '../../../numdart/numdart.dart';
 ///    Array([1.0, 8.0, 64.0])
 ///  ])
 Array2d matrixVander(Array x, {int N, bool increasing = false}) {
-  if (N == null) {
-    N = x.length;
-  }
+  N ??= x.length;
   if (N <= 0) {
-    throw FormatException("N must be greater than 0 (N > 0)");
+    throw FormatException('N must be greater than 0 (N > 0)');
   }
 
   var v = Array2d.fixed(x.length, N);

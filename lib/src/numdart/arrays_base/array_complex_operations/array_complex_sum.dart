@@ -15,7 +15,7 @@ import '../array_complex.dart';
 ///  ArrayComplex([Complex(real: 2.0, imaginary: 2.0), Complex(real: 2.0, imaginary: 2.0), Complex(real: 2.0, imaginary: 2.0)])
 ArrayComplex arrayComplexSum(ArrayComplex a, ArrayComplex b) {
   var c = ArrayComplex.fixed(a.length);
-  for (int i = 0; i < a.length; i++) {
+  for (var i = 0; i < a.length; i++) {
     c[i] = a[i] + b[i];
   }
   return c;

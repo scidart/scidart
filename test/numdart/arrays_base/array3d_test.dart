@@ -14,7 +14,7 @@ void main() {
     book.add(page);
     book.add(page);
     
-    int i = 0;
+    var i = 0;
     expect(book[i].elementAt(0).elementAt(0), 1.0);
     expect(book[i].elementAt(0).elementAt(1), 2.0);
     expect(book[i].elementAt(0).elementAt(2), 3.0);
@@ -44,18 +44,18 @@ void main() {
 
     var str = book.toString();
 
-    var strExpec = 'Array3d([Array2d([\n' +
-        '  Array([1.0, 2.0, 3.0]), \n' +
-        '  Array([1.0, 2.0, 3.0]), \n' +
-        '  Array([1.0, 2.0, 3.0])\n' +
-        ']), Array2d([\n' +
-        '  Array([1.0, 2.0, 3.0]), \n' +
-        '  Array([1.0, 2.0, 3.0]), \n' +
-        '  Array([1.0, 2.0, 3.0])\n' +
-        ']), Array2d([\n' +
-        '  Array([1.0, 2.0, 3.0]), \n' +
-        '  Array([1.0, 2.0, 3.0]), \n' +
-        '  Array([1.0, 2.0, 3.0])\n' +
+    var strExpec = 'Array3d([Array2d([\n'
+        '  Array([1.0, 2.0, 3.0]), \n'
+        '  Array([1.0, 2.0, 3.0]), \n'
+        '  Array([1.0, 2.0, 3.0])\n'
+        ']), Array2d([\n'
+        '  Array([1.0, 2.0, 3.0]), \n'
+        '  Array([1.0, 2.0, 3.0]), \n'
+        '  Array([1.0, 2.0, 3.0])\n'
+        ']), Array2d([\n'
+        '  Array([1.0, 2.0, 3.0]), \n'
+        '  Array([1.0, 2.0, 3.0]), \n'
+        '  Array([1.0, 2.0, 3.0])\n'
         '])])';
 
     print(book);

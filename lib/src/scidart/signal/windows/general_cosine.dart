@@ -1,7 +1,7 @@
 import 'package:scidart/src/numdart/numdart.dart';
 
 ///  Handle small or incorrect window lengths
-_len_guards(int M) {
+bool _len_guards(int M) {
   if(M != M || M < 0) {
     throw('Window length M must be a non-negative integer');
   }
@@ -10,7 +10,7 @@ _len_guards(int M) {
 
 
 ///  Extend window by 1 sample if needed for DFT-even symmetry
-_extend(int M, bool sym) {
+List<Object> _extend(int M, bool sym) {
   if (! sym ){
     return [M + 1, true];
   } else {
@@ -19,7 +19,7 @@ _extend(int M, bool sym) {
 }
 
 ///  Truncate window by 1 sample if needed for DFT-even symmetry
-_truncate(Array w, needed) {
+Array _truncate(Array w, needed) {
   if (needed) {
     return arrayTruncateLast(w);
   } else {

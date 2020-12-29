@@ -14,11 +14,11 @@ import 'package:scidart/src/numdart/calculus/numerical_integration/functions/che
 ///  truncate(i, 4);
 ///  0
 double trapzFunction(double a, double b, int n, Function f) {
-  double range = checkParamsGetRange(a, b, n);
-  double nFloat = n.toDouble();
-  double sum = 0.0;
-  for (int i = 1; i < n; i++) {
-    double x = a + range * i.toDouble() / nFloat;
+  var range = checkParamsGetRange(a, b, n);
+  var nFloat = n.toDouble();
+  var sum = 0.0;
+  for (var i = 1; i < n; i++) {
+    var x = a + range * i.toDouble() / nFloat;
     sum += f(x);
   }
   sum += (f(a) + f(b)) / 2.0;

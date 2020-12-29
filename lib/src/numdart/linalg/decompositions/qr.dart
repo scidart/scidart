@@ -57,10 +57,10 @@ class QR {
     _Rdiag = Array.fixed(_n);
 
     // Main loop.
-    for (int k = 0; k < _n; k++) {
+    for (var k = 0; k < _n; k++) {
       // Compute 2-norm of k-th column without under/overflow.
-      double nrm = 0;
-      for (int i = k; i < _m; i++) {
+      var nrm = 0.0;
+      for (var i = k; i < _m; i++) {
         nrm = hypotenuse(nrm, _QR[i][k]);
       }
 
@@ -70,19 +70,19 @@ class QR {
 //        if (_QR[k][k] < 0) {
 //          nrm = -nrm;
 //        }
-        for (int i = k; i < _m; i++) {
+        for (var i = k; i < _m; i++) {
           _QR[i][k] /= nrm;
         }
         _QR[k][k] += 1.0;
 
         // Apply transformation to remaining columns.
-        for (int j = k + 1; j < _n; j++) {
-          double s = 0.0;
-          for (int i = k; i < _m; i++) {
+        for (var j = k + 1; j < _n; j++) {
+          var s = 0.0;
+          for (var i = k; i < _m; i++) {
             s += _QR[i][k] * _QR[i][j];
           }
           s = -s / _QR[k][k];
-          for (int i = k; i < _m; i++) {
+          for (var i = k; i < _m; i++) {
             _QR[i][j] += s * _QR[i][k];
           }
         }
@@ -97,7 +97,7 @@ class QR {
   ///  Is the matrix full rank?
   ///  return true if R, and hence A, has full rank.
   bool isFullRank() {
-    for (int j = 0; j < _n; j++) {
+    for (var j = 0; j < _n; j++) {
       if (_Rdiag[j] == 0) {
         return false;
       }
@@ -108,9 +108,9 @@ class QR {
   ///  Return the Householder vectors
   ///  return Lower trapezoidal matrix whose columns define the reflections
   Array2d H() {
-    Array2d H = Array2d.fixed(_m, _n);
-    for (int i = 0; i < _m; i++) {
-      for (int j = 0; j < _n; j++) {
+    var H = Array2d.fixed(_m, _n);
+    for (var i = 0; i < _m; i++) {
+      for (var j = 0; j < _n; j++) {
         if (i >= j) {
           H[i][j] = _QR[i][j];
         } else {
@@ -123,9 +123,9 @@ class QR {
 
   ///  Return the upper triangular factor R
   Array2d R() {
-    Array2d R = Array2d.fixed(_n, _n);
-    for (int i = 0; i < _n; i++) {
-      for (int j = 0; j < _n; j++) {
+    var R = Array2d.fixed(_n, _n);
+    for (var i = 0; i < _n; i++) {
+      for (var j = 0; j < _n; j++) {
         if (i < j) {
           R[i][j] = _QR[i][j];
         } else if (i == j) {
@@ -140,20 +140,20 @@ class QR {
 
   ///  Generate and return the (economy-sized) orthogonal factor Q
   Array2d Q() {
-    Array2d Q = Array2d.fixed(_m, _n);
-    for (int k = _n - 1; k >= 0; k--) {
-      for (int i = 0; i < _m; i++) {
+    var Q = Array2d.fixed(_m, _n);
+    for (var k = _n - 1; k >= 0; k--) {
+      for (var i = 0; i < _m; i++) {
         Q[i][k] = 0.0;
       }
       Q[k][k] = 1.0;
-      for (int j = k; j < _n; j++) {
+      for (var j = k; j < _n; j++) {
         if (_QR[k][k] != 0) {
-          double s = 0.0;
-          for (int i = k; i < _m; i++) {
+          var s = 0.0;
+          for (var i = k; i < _m; i++) {
             s += _QR[i][k] * Q[i][j];
           }
           s = -s / _QR[k][k];
-          for (int i = k; i < _m; i++) {
+          for (var i = k; i < _m; i++) {
             Q[i][j] += s * _QR[i][k];
           }
         }
@@ -167,36 +167,36 @@ class QR {
   ///  return X that minimizes the two norm of Q*R*X-B.
   Array2d solve(Array2d B) {
     if (B.row != _m) {
-      throw FormatException("Matrix row dimensions must agree.");
+      throw FormatException('Matrix row dimensions must agree.');
     }
-    if (!this.isFullRank()) {
-      throw FormatException("Matrix is rank deficient.");
+    if (!isFullRank()) {
+      throw FormatException('Matrix is rank deficient.');
     }
 
     // Copy right hand side
-    int nx = B.column;
-    Array2d X = B.copy();
+    var nx = B.column;
+    var X = B.copy();
 
     // Compute Y = transpose(Q)*B
-    for (int k = 0; k < _n; k++) {
-      for (int j = 0; j < nx; j++) {
-        double s = 0.0;
-        for (int i = k; i < _m; i++) {
+    for (var k = 0; k < _n; k++) {
+      for (var j = 0; j < nx; j++) {
+        var s = 0.0;
+        for (var i = k; i < _m; i++) {
           s += _QR[i][k] * X[i][j];
         }
         s = -s / _QR[k][k];
-        for (int i = k; i < _m; i++) {
+        for (var i = k; i < _m; i++) {
           X[i][j] += s * _QR[i][k];
         }
       }
     }
     // Solve R*X = Y;
-    for (int k = _n - 1; k >= 0; k--) {
-      for (int j = 0; j < nx; j++) {
+    for (var k = _n - 1; k >= 0; k--) {
+      for (var j = 0; j < nx; j++) {
         X[k][j] /= _Rdiag[k];
       }
-      for (int i = 0; i < k; i++) {
-        for (int j = 0; j < nx; j++) {
+      for (var i = 0; i < k; i++) {
+        for (var j = 0; j < nx; j++) {
           X[i][j] -= X[k][j] * _QR[i][k];
         }
       }

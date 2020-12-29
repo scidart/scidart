@@ -6,8 +6,8 @@
 ///  >>> bitReverse(1, 3);
 ///  >>> 4
 int bitReverse(int n, int bits) {
-  int reversedN = n;
-  int count = bits - 1;
+  var reversedN = n;
+  var count = bits - 1;
 
   n >>= 1;
   while (n > 0) {

@@ -7,8 +7,8 @@ import '../array.dart';
 ///  >>> arraySum(n);
 ///  6.0
 double arraySum(Array a) {
-  double sum = 0.0;
-  for (int i = 0; i < a.length; i++) {
+  var sum = 0.0;
+  for (var i = 0; i < a.length; i++) {
     sum += a[i];
   }
   return sum;

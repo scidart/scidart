@@ -39,14 +39,14 @@ import 'package:scidart/src/numdart/numdart.dart';
 ///  >>> var b = firwin(numtaps, Array(\[normal_fc\]));
 ///  >>> var sgFiltered = lfilter(b, Array([1.0]), sg); // filter the signal
 Array lfilter(Array b, Array a, Array x) {
-  Array result = Array.fixed(x.length);
-  for (int i = 0; i < x.length; ++i) {
-    double tmp = 0.0;
-    for (int j = 0; j < b.length; ++j) {
+  var result = Array.fixed(x.length);
+  for (var i = 0; i < x.length; ++i) {
+    var tmp = 0.0;
+    for (var j = 0; j < b.length; ++j) {
       if (i - j < 0) continue;
       tmp += b[j] * x[i - j];
     }
-    for (int j = 1; j < a.length; ++j) {
+    for (var j = 1; j < a.length; ++j) {
       if (i - j < 0) continue;
       tmp -= a[j] * result[i - j];
     }

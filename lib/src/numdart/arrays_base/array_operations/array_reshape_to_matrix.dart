@@ -11,7 +11,7 @@ import '../../numdart.dart';
 ///  ]);
 Array2d arrayReshapeToMatrix(Array a, int order) {
   if (a.length % order != 0) {
-    throw FormatException("order must be multiple of array length");
+    throw FormatException('order must be multiple of array length');
   }
 
   var b = Array2d.fixed(a.length ~/ order, order);

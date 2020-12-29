@@ -18,8 +18,8 @@ double expm1(double x, {List<double> hiPrecOut}) {
     if (x > 0.0) {
       return -1.0 + hiPrec[0] + hiPrec[1];
     } else {
-      final double ra = -1.0 + hiPrec[0];
-      double rb = -(ra + 1.0 - hiPrec[0]);
+      final ra = -1.0 + hiPrec[0];
+      var rb = -(ra + 1.0 - hiPrec[0]);
       rb += hiPrec[1];
       return ra + rb;
     }
@@ -28,7 +28,7 @@ double expm1(double x, {List<double> hiPrecOut}) {
   double baseA;
   double baseB;
   double epsilon;
-  bool negative = false;
+  var negative = false;
 
   if (x < 0.0) {
     x = -x;
@@ -36,11 +36,11 @@ double expm1(double x, {List<double> hiPrecOut}) {
   }
 
   {
-    int intFrac = (x * 1024.0).toInt();
-    double tempA = EXP_FRAC_TABLE_A[intFrac] - 1.0;
-    double tempB = EXP_FRAC_TABLE_B[intFrac];
+    var intFrac = (x * 1024.0).toInt();
+    var tempA = EXP_FRAC_TABLE_A[intFrac] - 1.0;
+    var tempB = EXP_FRAC_TABLE_B[intFrac];
 
-    double temp = tempA + tempB;
+    var temp = tempA + tempB;
     tempB = -(temp - tempA - tempB);
     tempA = temp;
 
@@ -52,15 +52,15 @@ double expm1(double x, {List<double> hiPrecOut}) {
   }
 
   /// Compute expm1(epsilon)
-  double zb = 0.008336750013465571;
+  var zb = 0.008336750013465571;
   zb = zb * epsilon + 0.041666663879186654;
   zb = zb * epsilon + 0.16666666666745392;
   zb = zb * epsilon + 0.49999999999999994;
   zb *= epsilon;
   zb *= epsilon;
 
-  double za = epsilon;
-  double temp = za + zb;
+  var za = epsilon;
+  var temp = za + zb;
   zb = -(temp - za - zb);
   za = temp;
 
@@ -70,10 +70,10 @@ double expm1(double x, {List<double> hiPrecOut}) {
   za = temp;
 
   /// Combine the parts.   `expm1(a+b) = expm1(a) + expm1(b) + expm1(a)*expm1(b)`
-  double ya = za * baseA;
+  var ya = za * baseA;
   //double yb = za*baseB + zb*baseA + zb*baseB;
   temp = ya + za * baseB;
-  double yb = -(temp - ya - za * baseB);
+  var yb = -(temp - ya - za * baseB);
   ya = temp;
 
   temp = ya + zb * baseA;
@@ -107,13 +107,13 @@ double expm1(double x, {List<double> hiPrecOut}) {
 
   if (negative) {
     /// Compute `expm1(-x) = -expm1(x) / (expm1(x) + 1)`
-    double denom = 1.0 + ya;
-    double denomr = 1.0 / denom;
-    double denomb = -(denom - 1.0 - ya) + yb;
-    double ratio = ya * denomr;
+    var denom = 1.0 + ya;
+    var denomr = 1.0 / denom;
+    var denomb = -(denom - 1.0 - ya) + yb;
+    var ratio = ya * denomr;
     temp = ratio * HEX_40000000;
-    final double ra = ratio + temp - temp;
-    double rb = ratio - ra;
+    final ra = ratio + temp - temp;
+    var rb = ratio - ra;
 
     temp = denom * HEX_40000000;
     za = denom + temp - temp;

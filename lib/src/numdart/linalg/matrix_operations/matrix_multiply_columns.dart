@@ -19,20 +19,20 @@ import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 Array2d matrixMultiplyColumns(Array2d a, Array b) {
   a.isMatrix();
 
-  int aRows = a.length;
-  int aColumns = a[0].length;
-  int bColumns = b.length;
+  var aRows = a.length;
+  var aColumns = a[0].length;
+  var bColumns = b.length;
 
   if (aColumns != bColumns) {
     throw FormatException(
-        "Then length of B need be the same length of columns of A");
+        'Then length of B need be the same length of columns of A');
   }
 
   var c = Array2d.fromArray(a); // make a copy of local
 
-  for (int i = 0; i < aRows; i++) {
+  for (var i = 0; i < aRows; i++) {
     //
-    for (int j = 0; j < aColumns; j++) {
+    for (var j = 0; j < aColumns; j++) {
       // bColumn
       c[i][j] *= b[i];
     }

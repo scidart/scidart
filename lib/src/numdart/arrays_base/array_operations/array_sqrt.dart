@@ -10,7 +10,7 @@ import '../array.dart';
 ///  Array([2, 2, 2])
 Array arraySqrt(Array a) {
   var c = Array.fixed(a.length);
-  for (int i = 0; i < a.length; i++) {
+  for (var i = 0; i < a.length; i++) {
     c[i] = math.sqrt(a[i]);
   }
   return c;

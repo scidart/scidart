@@ -26,7 +26,7 @@ import 'array2d.dart';
 ///  >>> book;
 ///  Array3d([Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])])
 class Array3d extends ListBase<Array2d> {
-  List<Array2d> l = List<Array2d>();
+  List<Array2d> l = <Array2d>[];
 
   //#region constructors
   Array3d(List<Array2d> list) {
@@ -45,6 +45,7 @@ class Array3d extends ListBase<Array2d> {
   //#endregion
 
   //#region operators
+  @override
   set length(int newLength) { l.length = newLength; }
 
   ///  Return the length of Array3d
@@ -60,8 +61,11 @@ class Array3d extends ListBase<Array2d> {
   ///  >>> book.add(page);
   ///  >>> book.length;
   ///  3
+  @override
   int get length => l.length;
+  @override
   Array2d operator [](int index) => l[index];
+  @override
   void operator []=(int index, Array2d value) { l[index] = value; }
   //#endregion
 

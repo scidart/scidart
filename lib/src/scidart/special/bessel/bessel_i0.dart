@@ -17,10 +17,10 @@ import 'package:scidart/src/numdart/numdart.dart';
 ///  1.0
 double besselI0(double x) {
   double answer;
-  double ax = x.abs();
+  var ax = x.abs();
   if (ax < 3.75) {
     // polynomial fit
-    double y = x / 3.75;
+    var y = x / 3.75;
     y *= y;
     answer = 1.0 +
         y *
@@ -33,7 +33,7 @@ double besselI0(double x) {
                                     (0.2659732 +
                                         y * (0.360768e-1 + y * 0.45813e-2)))));
   } else {
-    double y = 3.75 / ax;
+    var y = 3.75 / ax;
     answer = 0.39894228 +
         y *
             (0.1328592e-1 +

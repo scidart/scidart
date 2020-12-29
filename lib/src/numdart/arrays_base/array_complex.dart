@@ -47,6 +47,7 @@ class ArrayComplex extends ListBase<Complex> {
   //#endregion
 
   //#region operators
+  @override
   set length(int newLength) {
     l.length = newLength;
   }
@@ -60,10 +61,13 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>> Complex(real: 3.0, imaginary: 4.0)]);
   ///  >>> list.length;
   ///  3
+  @override
   int get length => l.length;
 
+  @override
   Complex operator [](int index) => l[index];
 
+  @override
   void operator []=(int index, Complex value) {
     l[index] = value;
   }
@@ -84,8 +88,8 @@ class ArrayComplex extends ListBase<Complex> {
   ///  ArrayComplex([Complex(real: 23.0, imaginary: 14.0), Complex(real: 23.0, imaginary: 14.0), Complex(real: 23.0, imaginary: 14.0)])
   ArrayComplex operator *(ArrayComplex b) {
     _checkArray(b);
-    var c = ArrayComplex.fixed(this.length);
-    for (int i = 0; i < this.length; i++) {
+    var c = ArrayComplex.fixed(length);
+    for (var i = 0; i < length; i++) {
       c[i] = this[i] * b[i];
     }
 
@@ -99,10 +103,11 @@ class ArrayComplex extends ListBase<Complex> {
   ///  >>> var n2 = Array([1, 2, 3]);
   ///  >>> n == n2;
   ///  true
+  @override
   bool operator ==(b) {
     if (b is ArrayComplex) {
       _checkArray(b);
-      for (var i = 0; i < this.length; i++) {
+      for (var i = 0; i < length; i++) {
         if (this[i] != b[i]) {
           return false;
         }
@@ -169,7 +174,7 @@ class ArrayComplex extends ListBase<Complex> {
 
   //#region private methods
   void _checkArray(ArrayComplex b) {
-    if (this.length != b.length) {
+    if (length != b.length) {
       throw ('both arrays need have the same dimesion');
     }
   }

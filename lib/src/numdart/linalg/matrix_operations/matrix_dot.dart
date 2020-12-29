@@ -26,23 +26,23 @@ Array2d matrixDot(Array2d a, Array2d b) {
   a.isMatrix();
   b.isMatrix();
 
-  int aRows = a.length;
-  int aColumns = a[0].length;
-  int bRows = b.length;
-  int bColumns = b[0].length;
+  var aRows = a.length;
+  var aColumns = a[0].length;
+  var bRows = b.length;
+  var bColumns = b[0].length;
 
   if (aColumns != bRows) {
     throw FormatException(
-        "A:Columns: ${aColumns} did not match B:Rows ${bRows}.");
+        'A:Columns: ${aColumns} did not match B:Rows ${bRows}.');
   }
 
   var c = Array2d.fixed(aRows, bColumns, initialValue: 0.0);
 
-  for (int i = 0; i < aRows; i++) {
+  for (var i = 0; i < aRows; i++) {
     // aRow
-    for (int j = 0; j < bColumns; j++) {
+    for (var j = 0; j < bColumns; j++) {
       // bColumn
-      for (int k = 0; k < aColumns; k++) {
+      for (var k = 0; k < aColumns; k++) {
         // aColumn
         c[i][j] += (a[i][k] * b[k][j]);
       }

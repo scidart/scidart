@@ -9,9 +9,9 @@ import 'mean.dart';
 ///  >>> variance(n);
 ///
 double variance(Array a) {
-  double meanA = mean(a);
-  double temp = 0;
-  for (double el in a) {
+  var meanA = mean(a);
+  var temp = 0.0;
+  for (var el in a) {
     temp += (el - meanA) * (el - meanA);
   }
   return temp / (a.length - 1);

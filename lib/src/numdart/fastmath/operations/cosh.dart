@@ -18,7 +18,7 @@ double cosh(double x) {
   if (x > 20) {
     if (x >= LOG_MAX_VALUE) {
       // Avoid overflow (MATH-905).
-      final double t = math.exp(0.5 * x);
+      final t = math.exp(0.5 * x);
       return (0.5 * t) * t;
     } else {
       return 0.5 * expFast(x);
@@ -26,7 +26,7 @@ double cosh(double x) {
   } else if (x < -20) {
     if (x <= -LOG_MAX_VALUE) {
       // Avoid overflow (MATH-905).
-      final double t = expFast(-0.5 * x);
+      final t = expFast(-0.5 * x);
       return (0.5 * t) * t;
     } else {
       return 0.5 * expFast(-x);
@@ -39,18 +39,18 @@ double cosh(double x) {
   }
   expFast(x, 0.0, hiPrec);
 
-  double ya = hiPrec[0] + hiPrec[1];
-  double yb = -(ya - hiPrec[0] - hiPrec[1]);
+  var ya = hiPrec[0] + hiPrec[1];
+  var yb = -(ya - hiPrec[0] - hiPrec[1]);
 
-  double temp = ya * HEX_40000000;
-  double yaa = ya + temp - temp;
-  double yab = ya - yaa;
+  var temp = ya * HEX_40000000;
+  var yaa = ya + temp - temp;
+  var yab = ya - yaa;
 
   // recip = 1/y
-  double recip = 1.0 / ya;
+  var recip = 1.0 / ya;
   temp = recip * HEX_40000000;
-  double recipa = recip + temp - temp;
-  double recipb = recip - recipa;
+  var recipa = recip + temp - temp;
+  var recipb = recip - recipa;
 
   // Correct for rounding in division
   recipb +=
@@ -66,7 +66,7 @@ double cosh(double x) {
   yb += -(temp - ya - recipb);
   ya = temp;
 
-  double result = ya + yb;
+  var result = ya + yb;
   result *= 0.5;
   return result;
 }

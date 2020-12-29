@@ -7,12 +7,12 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 ///  >>> mode(n);
 ///  3.0
 double mode(Array a) {
-  double maxValue = 0;
-  int maxCount = 0;
+  var maxValue = 0.0;
+  var maxCount = 0;
 
-  for (int i = 0; i < a.length; ++i) {
-    int count = 0;
-    for (int j = 0; j < a.length; ++j) {
+  for (var i = 0; i < a.length; ++i) {
+    var count = 0;
+    for (var j = 0; j < a.length; ++j) {
       if (a[j] == a[i]) ++count;
     }
     if (count > maxCount) {

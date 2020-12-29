@@ -36,7 +36,7 @@ class Complex {
   ///  >>> Complex(real: 2.0, imaginary: 2.0);
   Complex operator +(Complex b) {
     return Complex(
-        real: this.real + b.real, imaginary: this.imaginary + b.imaginary);
+        real: real + b.real, imaginary: imaginary + b.imaginary);
   }
 
   ///  Subtract two complex number
@@ -48,7 +48,7 @@ class Complex {
   ///  >>> Complex(real: 0.0, imaginary: 0.0)
   Complex operator -(Complex b) {
     return Complex(
-        real: this.real - b.real, imaginary: this.imaginary - b.imaginary);
+        real: real - b.real, imaginary: imaginary - b.imaginary);
   }
 
   ///  Multiply two complex number
@@ -60,8 +60,8 @@ class Complex {
   ///  >>> Complex(real: 13.0, imaginary: 14.0)
   Complex operator *(Complex b) {
     return Complex(
-        real: this.real * b.real - this.imaginary * b.imaginary,
-        imaginary: this.real * b.imaginary + this.imaginary * b.real);
+        real: real * b.real - imaginary * b.imaginary,
+        imaginary: real * b.imaginary + imaginary * b.real);
   }
 
   ///  Divide two complex number
@@ -94,9 +94,10 @@ class Complex {
   ///  >>> var c2 = Complex(real: 1, imaginary: 2);
   ///  >>> c1 == c2;
   ///  >>> false
+  @override
   bool operator ==(b) {
     if (b is Complex) {
-      return b.real == this.real && b.imaginary == this.imaginary;
+      return b.real == real && b.imaginary == imaginary;
     } else {
       throw ('the right object has to be a Complex type');
     }

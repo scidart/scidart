@@ -18,18 +18,18 @@ import 'package:scidart/numdart.dart';
 ///    Array([2.0, 2.0, 1.0]) ]
 List findPeaks(Array a, {double threshold}) {
   var N = a.length - 2;
-  Array ix = Array.empty();
-  Array ax = Array.empty();
+  var ix = Array.empty();
+  var ax = Array.empty();
 
   if (threshold != null) {
-    for (int i = 1; i <= N; i++) {
+    for (var i = 1; i <= N; i++) {
       if (a[i - 1] <= a[i] && a[i] >= a[i + 1] && a[i] >= threshold) {
         ix.add(i.toDouble());
         ax.add(a[i]);
       }
     }
   } else {
-    for (int i = 1; i <= N; i++) {
+    for (var i = 1; i <= N; i++) {
       if (a[i - 1] <= a[i] && a[i] >= a[i + 1]) {
         ix.add(i.toDouble());
         ax.add(a[i]);

@@ -17,11 +17,11 @@ import '../array_complex.dart';
 ///    Complex(real: 3.0, imaginary: 4.0)
 ///  ])
 ArrayComplex arrayComplexConcat(ArrayComplex a, ArrayComplex b) {
-  ArrayComplex c = ArrayComplex.empty();
-  for (int i = 0; i < a.length; i++) {
+  var c = ArrayComplex.empty();
+  for (var i = 0; i < a.length; i++) {
     c.add(a[i]);
   }
-  for (int i = 0; i < b.length; i++) {
+  for (var i = 0; i < b.length; i++) {
     c.add(b[i]);
   }
   return c;

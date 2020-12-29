@@ -10,7 +10,7 @@ import '../array.dart';
 ///  Array([-2.3025850929940455, 0.0, 2.302585092994046, 4.605170185988092])
 Array arrayLog(Array a) {
   var c = Array.fixed(a.length);
-  for (int i = 0; i < a.length; i++) {
+  for (var i = 0; i < a.length; i++) {
     c[i] = math.log(a[i]); //fixme change to fast log in the future
   }
   return c;

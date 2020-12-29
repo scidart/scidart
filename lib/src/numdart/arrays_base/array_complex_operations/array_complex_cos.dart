@@ -10,7 +10,7 @@ import '../array_complex.dart';
 ///  Complex(real: -27.034945603074224, imaginary: -3.8511533348117775)
 ArrayComplex arrayComplexCos(ArrayComplex a) {
   var c = ArrayComplex.fixed(a.length);
-  for (int i = 0; i < a.length; i++) {
+  for (var i = 0; i < a.length; i++) {
     c[i] = complexCos(a[i]);
   }
   return c;

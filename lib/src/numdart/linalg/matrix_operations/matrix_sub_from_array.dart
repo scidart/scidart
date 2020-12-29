@@ -21,15 +21,15 @@ import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 ///    Array([16.0, 4.0, 1.0])
 ///  ]);
 Array2d matrixSubFromArray(Array2d a, Array rows, int col0, int col1) {
-  Array2d b = Array2d.fixed(rows.length, col1 - col0 + 1);
+  var b = Array2d.fixed(rows.length, col1 - col0 + 1);
   try {
-    for (int i = 0; i < rows.length; i++) {
-      for (int j = col0; j <= col1; j++) {
+    for (var i = 0; i < rows.length; i++) {
+      for (var j = col0; j <= col1; j++) {
         b[i][j - col0] = a[rows[i].toInt()][j];
       }
     }
   } catch (e) {
-    throw FormatException("Submatrix indices: ${e}");
+    throw FormatException('Submatrix indices: ${e}');
   }
   return b;
 }

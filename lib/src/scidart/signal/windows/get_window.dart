@@ -50,7 +50,7 @@ Array getWindow(dynamic window, int Nx, {bool fftbins = true}) {
     if (win == 'kaiser' || win == 'ksr') {
       return kaiser(Nx, arg, sym: sym);
     } else {
-      throw FormatException("Window type not found");
+      throw FormatException('Window type not found');
     }
 
   } else if (window is String) {
@@ -69,13 +69,13 @@ Array getWindow(dynamic window, int Nx, {bool fftbins = true}) {
     } else if (window == 'nuttall' || window == 'nutl' || window == 'nut') {
       return nuttall(Nx, sym: sym);
     } else {
-      throw FormatException("Window type not found");
+      throw FormatException('Window type not found');
     }
   } else if (window is double) {
     // kaiser, if dont specified
     return kaiser(Nx, window, sym: sym);
   } else {
     throw FormatException(
-        "window need be a String with the name of windows or array where first element is a String with window name and secound is a double with beta");
+        'window need be a String with the name of windows or array where first element is a String with window name and secound is a double with beta');
   }
 }

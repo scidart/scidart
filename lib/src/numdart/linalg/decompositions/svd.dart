@@ -69,7 +69,7 @@ class SVD {
   SVD(Array2d Arg) {
     // Derived from LINPACK code.
     // Initialize.
-    Array2d A = Arg.copy();
+    var A = Arg.copy();
     _m = Arg.row;
     _n = Arg.column;
 
@@ -78,50 +78,50 @@ class SVD {
       if (m<n) {
 	  throw new IllegalArgumentException("Jama SVD only works for m >= n"); }
       */
-    int nu = math.min(_m, _n);
+    var nu = math.min(_m, _n);
     _s = Array.fixed(math.min(_m + 1, _n));
     _U = Array2d.fixed(_m, nu, initialValue: 0);
     _V = Array2d.fixed(_n, _n);
-    Array e = Array.fixed(_n);
-    Array work = Array.fixed(_m);
-    bool wantu = true;
-    bool wantv = true;
+    var e = Array.fixed(_n);
+    var work = Array.fixed(_m);
+    var wantu = true;
+    var wantv = true;
 
     // Reduce A to bidiagonal form, storing the diagonal elements
     // in s and the super-diagonal elements in e.
 
-    int nct = math.min(_m - 1, _n);
-    int nrt = math.max(0, math.min(_n - 2, _m));
-    for (int k = 0; k < math.max(nct, nrt); k++) {
+    var nct = math.min(_m - 1, _n);
+    var nrt = math.max(0, math.min(_n - 2, _m));
+    for (var k = 0; k < math.max(nct, nrt); k++) {
       if (k < nct) {
         // Compute the transformation for the k-th column and
         // place the k-th diagonal in s[k].
         // Compute 2-norm of k-th column without under/overflow.
         _s[k] = 0;
-        for (int i = k; i < _m; i++) {
+        for (var i = k; i < _m; i++) {
           _s[k] = hypotenuse(_s[k], A[i][k]);
         }
         if (_s[k] != 0.0) {
           if (A[k][k] < 0.0) {
             _s[k] = -_s[k];
           }
-          for (int i = k; i < _m; i++) {
+          for (var i = k; i < _m; i++) {
             A[i][k] /= _s[k];
           }
           A[k][k] += 1.0;
         }
         _s[k] = -_s[k];
       }
-      for (int j = k + 1; j < _n; j++) {
+      for (var j = k + 1; j < _n; j++) {
         if ((k < nct) & (_s[k] != 0.0)) {
           // Apply the transformation.
 
-          double t = 0;
-          for (int i = k; i < _m; i++) {
+          var t = 0.0;
+          for (var i = k; i < _m; i++) {
             t += A[i][k] * A[i][j];
           }
           t = -t / A[k][k];
-          for (int i = k; i < _m; i++) {
+          for (var i = k; i < _m; i++) {
             A[i][j] += t * A[i][k];
           }
         }
@@ -135,7 +135,7 @@ class SVD {
         // Place the transformation in U for subsequent back
         // multiplication.
 
-        for (int i = k; i < _m; i++) {
+        for (var i = k; i < _m; i++) {
           _U[i][k] = A[i][k];
         }
       }
@@ -144,14 +144,14 @@ class SVD {
         // k-th super-diagonal in e[k].
         // Compute 2-norm without under/overflow.
         e[k] = 0;
-        for (int i = k + 1; i < _n; i++) {
+        for (var i = k + 1; i < _n; i++) {
           e[k] = hypotenuse(e[k], e[i]);
         }
         if (e[k] != 0.0) {
           if (e[k + 1] < 0.0) {
             e[k] = -e[k];
           }
-          for (int i = k + 1; i < _n; i++) {
+          for (var i = k + 1; i < _n; i++) {
             e[i] /= e[k];
           }
           e[k + 1] += 1.0;
@@ -160,17 +160,17 @@ class SVD {
         if ((k + 1 < _m) && (e[k] != 0.0)) {
           // Apply the transformation.
 
-          for (int i = k + 1; i < _m; i++) {
+          for (var i = k + 1; i < _m; i++) {
             work[i] = 0.0;
           }
-          for (int j = k + 1; j < _n; j++) {
-            for (int i = k + 1; i < _m; i++) {
+          for (var j = k + 1; j < _n; j++) {
+            for (var i = k + 1; i < _m; i++) {
               work[i] += e[j] * A[i][j];
             }
           }
-          for (int j = k + 1; j < _n; j++) {
-            double t = -e[j] / e[k + 1];
-            for (int i = k + 1; i < _m; i++) {
+          for (var j = k + 1; j < _n; j++) {
+            var t = -e[j] / e[k + 1];
+            for (var i = k + 1; i < _m; i++) {
               A[i][j] += t * work[i];
             }
           }
@@ -179,7 +179,7 @@ class SVD {
           // Place the transformation in V for subsequent
           // back multiplication.
 
-          for (int i = k + 1; i < _n; i++) {
+          for (var i = k + 1; i < _n; i++) {
             _V[i][k] = e[i];
           }
         }
@@ -188,7 +188,7 @@ class SVD {
 
     // Set up the final bidiagonal matrix or order p.
 
-    int p = math.min(_n, _m + 1);
+    var p = math.min(_n, _m + 1);
     if (nct < _n) {
       _s[nct] = A[nct][nct];
     }
@@ -203,33 +203,33 @@ class SVD {
     // If required, generate U.
 
     if (wantu) {
-      for (int j = nct; j < nu; j++) {
-        for (int i = 0; i < _m; i++) {
+      for (var j = nct; j < nu; j++) {
+        for (var i = 0; i < _m; i++) {
           _U[i][j] = 0.0;
         }
         _U[j][j] = 1.0;
       }
-      for (int k = nct - 1; k >= 0; k--) {
+      for (var k = nct - 1; k >= 0; k--) {
         if (_s[k] != 0.0) {
-          for (int j = k + 1; j < nu; j++) {
-            double t = 0;
-            for (int i = k; i < _m; i++) {
+          for (var j = k + 1; j < nu; j++) {
+            var t = 0.0;
+            for (var i = k; i < _m; i++) {
               t += _U[i][k] * _U[i][j];
             }
             t = -t / _U[k][k];
-            for (int i = k; i < _m; i++) {
+            for (var i = k; i < _m; i++) {
               _U[i][j] += t * _U[i][k];
             }
           }
-          for (int i = k; i < _m; i++) {
+          for (var i = k; i < _m; i++) {
             _U[i][k] = -_U[i][k];
           }
           _U[k][k] = 1.0 + _U[k][k];
-          for (int i = 0; i < k - 1; i++) {
+          for (var i = 0; i < k - 1; i++) {
             _U[i][k] = 0.0;
           }
         } else {
-          for (int i = 0; i < _m; i++) {
+          for (var i = 0; i < _m; i++) {
             _U[i][k] = 0.0;
           }
           _U[k][k] = 1.0;
@@ -240,20 +240,20 @@ class SVD {
     // If required, generate V.
 
     if (wantv) {
-      for (int k = _n - 1; k >= 0; k--) {
+      for (var k = _n - 1; k >= 0; k--) {
         if ((k < nrt) && (e[k] != 0.0)) {
-          for (int j = k + 1; j < nu; j++) {
-            double t = 0;
-            for (int i = k + 1; i < _n; i++) {
+          for (var j = k + 1; j < nu; j++) {
+            var t = 0.0;
+            for (var i = k + 1; i < _n; i++) {
               t += _V[i][k] * _V[i][j];
             }
             t = -t / _V[k + 1][k];
-            for (int i = k + 1; i < _n; i++) {
+            for (var i = k + 1; i < _n; i++) {
               _V[i][j] += t * _V[i][k];
             }
           }
         }
-        for (int i = 0; i < _n; i++) {
+        for (var i = 0; i < _n; i++) {
           _V[i][k] = 0.0;
         }
         _V[k][k] = 1.0;
@@ -262,8 +262,8 @@ class SVD {
 
     // Main iteration loop for the singular values.
 
-    int pp = p - 1;
-    int iter = 0;
+    var pp = p - 1;
+    var iter = 0;
     double eps = math.pow(2.0, -52.0);
     double tiny = math.pow(2.0, -966.0);
     while (p > 0) {
@@ -297,7 +297,7 @@ class SVD {
           if (ks == k) {
             break;
           }
-          double t = (ks != p ? e[ks].abs() : 0.0) +
+          var t = (ks != p ? e[ks].abs() : 0.0) +
               (ks != k + 1 ? e[ks - 1].abs() : 0.0);
           if (_s[ks].abs() <= tiny + eps * t) {
             _s[ks] = 0.0;
@@ -322,19 +322,19 @@ class SVD {
 
         case 1:
           {
-            double f = e[p - 2];
+            var f = e[p - 2];
             e[p - 2] = 0.0;
-            for (int j = p - 2; j >= k; j--) {
-              double t = hypotenuse(_s[j], f);
-              double cs = _s[j] / t;
-              double sn = f / t;
+            for (var j = p - 2; j >= k; j--) {
+              var t = hypotenuse(_s[j], f);
+              var cs = _s[j] / t;
+              var sn = f / t;
               _s[j] = t;
               if (j != k) {
                 f = -sn * e[j - 1];
                 e[j - 1] = cs * e[j - 1];
               }
               if (wantv) {
-                for (int i = 0; i < _n; i++) {
+                for (var i = 0; i < _n; i++) {
                   t = cs * _V[i][j] + sn * _V[i][p - 1];
                   _V[i][p - 1] = -sn * _V[i][j] + cs * _V[i][p - 1];
                   _V[i][j] = t;
@@ -348,17 +348,17 @@ class SVD {
 
         case 2:
           {
-            double f = e[k - 1];
+            var f = e[k - 1];
             e[k - 1] = 0.0;
-            for (int j = k; j < p; j++) {
-              double t = hypotenuse(_s[j], f);
-              double cs = _s[j] / t;
-              double sn = f / t;
+            for (var j = k; j < p; j++) {
+              var t = hypotenuse(_s[j], f);
+              var cs = _s[j] / t;
+              var sn = f / t;
               _s[j] = t;
               f = -sn * e[j];
               e[j] = cs * e[j];
               if (wantu) {
-                for (int i = 0; i < _m; i++) {
+                for (var i = 0; i < _m; i++) {
                   t = cs * _U[i][j] + sn * _U[i][k - 1];
                   _U[i][k - 1] = -sn * _U[i][j] + cs * _U[i][k - 1];
                   _U[i][j] = t;
@@ -374,20 +374,20 @@ class SVD {
           {
             // Calculate the shift.
 
-            double scale = math.max(
+            var scale = math.max(
                 math.max(
                     math.max(math.max(_s[p - 1].abs(), _s[p - 2].abs()),
                         e[p - 2].abs()),
                     _s[k].abs()),
                 e[k].abs());
-            double sp = _s[p - 1] / scale;
-            double spm1 = _s[p - 2] / scale;
-            double epm1 = e[p - 2] / scale;
-            double sk = _s[k] / scale;
-            double ek = e[k] / scale;
-            double b = ((spm1 + sp) * (spm1 - sp) + epm1 * epm1) / 2.0;
-            double c = (sp * epm1) * (sp * epm1);
-            double shift = 0.0;
+            var sp = _s[p - 1] / scale;
+            var spm1 = _s[p - 2] / scale;
+            var epm1 = e[p - 2] / scale;
+            var sk = _s[k] / scale;
+            var ek = e[k] / scale;
+            var b = ((spm1 + sp) * (spm1 - sp) + epm1 * epm1) / 2.0;
+            var c = (sp * epm1) * (sp * epm1);
+            var shift = 0.0;
             if ((b != 0.0) | (c != 0.0)) {
               shift = math.sqrt(b * b + c);
               if (b < 0.0) {
@@ -395,15 +395,15 @@ class SVD {
               }
               shift = c / (b + shift);
             }
-            double f = (sk + sp) * (sk - sp) + shift;
-            double g = sk * ek;
+            var f = (sk + sp) * (sk - sp) + shift;
+            var g = sk * ek;
 
             // Chase zeros.
 
-            for (int j = k; j < p - 1; j++) {
-              double t = hypotenuse(f, g);
-              double cs = f / t;
-              double sn = g / t;
+            for (var j = k; j < p - 1; j++) {
+              var t = hypotenuse(f, g);
+              var cs = f / t;
+              var sn = g / t;
               if (j != k) {
                 e[j - 1] = t;
               }
@@ -412,7 +412,7 @@ class SVD {
               g = sn * _s[j + 1];
               _s[j + 1] = cs * _s[j + 1];
               if (wantv) {
-                for (int i = 0; i < _n; i++) {
+                for (var i = 0; i < _n; i++) {
                   t = cs * _V[i][j] + sn * _V[i][j + 1];
                   _V[i][j + 1] = -sn * _V[i][j] + cs * _V[i][j + 1];
                   _V[i][j] = t;
@@ -427,7 +427,7 @@ class SVD {
               g = sn * e[j + 1];
               e[j + 1] = cs * e[j + 1];
               if (wantu && (j < _m - 1)) {
-                for (int i = 0; i < _m; i++) {
+                for (var i = 0; i < _m; i++) {
                   t = cs * _U[i][j] + sn * _U[i][j + 1];
                   _U[i][j + 1] = -sn * _U[i][j] + cs * _U[i][j + 1];
                   _U[i][j] = t;
@@ -447,7 +447,7 @@ class SVD {
             if (_s[k] <= 0.0) {
               _s[k] = (_s[k] < 0.0 ? -_s[k] : 0.0);
               if (wantv) {
-                for (int i = 0; i <= pp; i++) {
+                for (var i = 0; i <= pp; i++) {
                   _V[i][k] = -_V[i][k];
                 }
               }
@@ -459,18 +459,18 @@ class SVD {
               if (_s[k] >= _s[k + 1]) {
                 break;
               }
-              double t = _s[k];
+              var t = _s[k];
               _s[k] = _s[k + 1];
               _s[k + 1] = t;
               if (wantv && (k < _n - 1)) {
-                for (int i = 0; i < _n; i++) {
+                for (var i = 0; i < _n; i++) {
                   t = _V[i][k + 1];
                   _V[i][k + 1] = _V[i][k];
                   _V[i][k] = t;
                 }
               }
               if (wantu && (k < _m - 1)) {
-                for (int i = 0; i < _m; i++) {
+                for (var i = 0; i < _m; i++) {
                   t = _U[i][k + 1];
                   _U[i][k + 1] = _U[i][k];
                   _U[i][k] = t;
@@ -510,12 +510,12 @@ class SVD {
   ///  Return the diagonal matrix of singular values
   ///  @return     S
   Array2d S() {
-    Array2d S = Array2d.fixed(_n, _n);
-    for (int i = 0; i < _n; i++) {
-      for (int j = 0; j < _n; j++) {
+    var S = Array2d.fixed(_n, _n);
+    for (var i = 0; i < _n; i++) {
+      for (var j = 0; j < _n; j++) {
         S[i][j] = 0.0;
       }
-      S[i][i] = this._s[i];
+      S[i][i] = _s[i];
     }
     return S;
   }
@@ -536,9 +536,9 @@ class SVD {
   ///  return     Number of nonnegligible singular values.
   int rank() {
     double eps = math.pow(2.0, -52.0);
-    double tol = math.max(_m, _n) * _s[0] * eps;
-    int r = 0;
-    for (int i = 0; i < _s.length; i++) {
+    var tol = math.max(_m, _n) * _s[0] * eps;
+    var r = 0;
+    for (var i = 0; i < _s.length; i++) {
       if (_s[i] > tol) {
         r++;
       }

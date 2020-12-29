@@ -43,9 +43,7 @@ List dbfft(Array x, double fs, {String window, double ref}) {
   // because we are using half of FFT spectrum.
   var s_mag = arrayMultiplyToScalar(arrayComplexAbs(sp), 2 / arraySum(win));
 
-  if (ref == null) {
-    ref = arrayMax(s_mag);
-  }
+  ref ??= arrayMax(s_mag);
 
   // Convert to dBFS
   var s_dbfs =

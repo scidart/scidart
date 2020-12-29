@@ -50,27 +50,28 @@ class PolyFit {
   ///  [degree] the degree of the polynomial to fit
   PolyFit(Array x, Array y, int degree) {
     this.degree = degree;
-    this.variableName = "x";
+    variableName = 'x';
 
     // check arguments.
     if (degree < 0) {
-      throw FormatException("expected deg >= 0");
+      throw FormatException('expected deg >= 0');
     }
     if (x.isEmpty) {
-      throw FormatException("expected non-empty vector for x");
+      throw FormatException('expected non-empty vector for x');
     }
     if (x.length != y.length) {
-      throw FormatException("expected x and y to have same length");
+      throw FormatException('expected x and y to have same length');
     }
 
-    int n = x.length;
+    var n = x.length;
+    var order = degree + 1;
     QR qr;
     Array2d matrixX;
 
     // in case Vandermonde matrix does not have full rank, reduce degree until it does
     while (true) {
       // build Vandermonde matrix
-      matrixX = matrixVander(x, increasing: true);
+      matrixX = matrixVander(x, N: order, increasing: true);
 
       // find least squares solution
       qr = QR(matrixX);
@@ -81,22 +82,22 @@ class PolyFit {
     }
 
     // create matrix from vector
-    Array2d matrixY = Array2d.fromVector(y, n);
+    var matrixY = Array2d.fromVector(y, n);
 
     // linear regression coefficients
     beta = qr.solve(matrixY);
 
     // mean of y[] values
-    double meany = mean(y);
+    var meany = mean(y);
 
     // total variation to be accounted for
-    for (int i = 0; i < n; i++) {
-      double dev = y[i] - meany;
+    for (var i = 0; i < n; i++) {
+      var dev = y[i] - meany;
       sst += dev * dev;
     }
 
     // variation not accounted for
-    Array2d residuals = matrixDot(matrixX, beta) - matrixY;
+    var residuals = matrixDot(matrixX, beta) - matrixY;
     sse = matrixNormTwo(residuals) * matrixNormTwo(residuals);
   }
 
@@ -130,8 +131,8 @@ class PolyFit {
   ///  variable {@code x}
   double predict(double x) {
     // horner's method
-    double y = 0.0;
-    for (int j = beta.row - 1; j >= 0; j--) {
+    var y = 0.0;
+    for (var j = beta.row - 1; j >= 0; j--) {
       y = beta[j][0] + (x * y);
     }
     return y;
@@ -140,8 +141,8 @@ class PolyFit {
   ///  return the coefficients of the polynomial regression
   ///  p(x) = p[0] * x**deg + ... + p\[deg\]
   Array coefficients() {
-    Array coeff = Array.empty();
-    int j = beta.row - 1;
+    var coeff = Array.empty();
+    var j = beta.row - 1;
 
     // ignoring leading zero coefficients
     while (j >= 0 && beta[j][0].abs() < 1E-5) {
@@ -163,8 +164,8 @@ class PolyFit {
   ///  determination <em>R</em><sup>2</sup>
   @override
   String toString() {
-    List<String> s = List();
-    int j = beta.row - 1;
+    var s = <String>[];
+    var j = beta.row - 1;
 
     // ignoring leading zero coefficients
     while (j >= 0 && beta[j][0].abs() < 1E-5) {
@@ -174,28 +175,28 @@ class PolyFit {
     // create remaining terms
     while (j >= 0) {
       if (j == 0) {
-        s.add("${beta[j][0]}");
+        s.add('${beta[j][0]}');
       } else if (j == 1) {
-        s.add("${beta[j][0]} ${variableName} + ");
+        s.add('${beta[j][0]} ${variableName} + ');
       } else {
-        s.add("${beta[j][0]} ${variableName}^${j} + ");
+        s.add('${beta[j][0]} ${variableName}^${j} + ');
       }
       j--;
     }
-    s.add("  (R^2 = ${this.R2()})");
+    s.add('  (R^2 = ${R2()})');
 
     // replace "+ -2n" with "- 2n"
-    return s.join(" ").replaceAll("+ -", "- ");
+    return s.join(' ').replaceAll('+ -', '- ');
   }
 
   ///  Compare lexicographically.
   int compareTo(PolyFit that) {
-    double EPSILON = 1E-5;
-    int maxDegree = math.max(this.polyDegree(), that.polyDegree());
-    for (int j = maxDegree; j >= 0; j--) {
-      double term1 = 0.0;
-      double term2 = 0.0;
-      if (this.polyDegree() >= j) term1 = this.beta[j][0];
+    var EPSILON = 1E-5;
+    var maxDegree = math.max(polyDegree(), that.polyDegree());
+    for (var j = maxDegree; j >= 0; j--) {
+      var term1 = 0.0;
+      var term2 = 0.0;
+      if (polyDegree() >= j) term1 = beta[j][0];
       if (that.polyDegree() >= j) term2 = that.beta[j][0];
       if (term1.abs() < EPSILON) term1 = 0.0;
       if (term2.abs() < EPSILON) term2 = 0.0;

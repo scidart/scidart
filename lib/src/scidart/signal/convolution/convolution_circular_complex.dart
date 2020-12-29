@@ -49,9 +49,9 @@ import 'package:scidart/src/scidart/signal/convolution/convolution_complex.dart'
 ArrayComplex convolutionCircularComplex(ArrayComplex input, ArrayComplex kernel,
     {keepLength = false}) {
   if (keepLength) {
-    int n = input.length;
+    var n = input.length;
     if (n != input.length || n != kernel.length) {
-      throw FormatException("Mismatched lengths");
+      throw FormatException('Mismatched lengths');
     }
 
     var x = fft(input);

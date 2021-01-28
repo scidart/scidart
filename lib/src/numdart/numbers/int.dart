@@ -42,3 +42,9 @@ int boolToInt(bool a) => a ? 1 : 0;
 
 ///  Convert a int to bool, if 0 return false, else true
 bool intToBool(int a) => a == 0 ? false : true;
+
+/// Check if [a] is an Even number.
+bool isEven(int a) => a%2 == 0;
+
+/// Check if [a] is an Odd number.
+bool isOdd(int a) => a%2 != 0;

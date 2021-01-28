@@ -25,4 +25,18 @@ void main() {
     print(n);
     expect(n, 0);
   });
+
+  test('even', () {
+    expect(isEven(0), true);
+    expect(isEven(2), true);
+    expect(isEven(1), false);
+    expect(isEven(3), false);
+  });
+
+  test('odd', () {
+    expect(isOdd(1), true);
+    expect(isOdd(3), true);
+    expect(isOdd(0), false);
+    expect(isOdd(2), false);
+  });
 }

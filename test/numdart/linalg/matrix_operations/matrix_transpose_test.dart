@@ -21,4 +21,42 @@ void main() {
 
     expect(t, tExp);
   });
+
+  test('transpose not square matrix', () {
+    var a = Array2d([
+      Array([1.0, 2.0]),
+      Array([4.0, 5.0]),
+      Array([7.0, 8.0]),
+    ]);
+
+    var t = matrixTranspose(a);
+
+    var tExp = Array2d([
+      Array([1.0, 4.0, 7.0]),
+      Array([2.0, 5.0, 8.0])
+    ]);
+
+    print(t);
+
+    expect(t, tExp);
+  });
+
+  test('transpose not square matrix 2', () {
+    var a = Array2d([
+      Array([1.0, 2.0, 3.0]),
+      Array([4.0, 5.0, 6.0]),
+    ]);
+
+    var t = matrixTranspose(a);
+
+    var tExp = Array2d([
+      Array([1.0, 4.0]),
+      Array([2.0, 5.0]),
+      Array([3.0, 6.0])
+    ]);
+
+    print(t);
+
+    expect(t, tExp);
+  });
 }

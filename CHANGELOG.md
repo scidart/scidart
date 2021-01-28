@@ -1,3 +1,9 @@
+## 0.0.1-dev.10
+
+- Even and Odd number int check created;
+- matrix transpose bug fixed;
+- classes documentations improved;
+
 ## 0.0.1-dev.9
 
 - PolyFit issue #16;

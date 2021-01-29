@@ -2,13 +2,15 @@ import 'math.dart';
 import 'physical.dart';
 import 'time.dart';
 
-// length in meter
+/// length in meter
 const inch = 0.0254;
 const foot = 12 * inch;
 const yard = 3 * foot;
 const mile = 1760 * yard;
 const mil = inch / 1000;
-const pt = inch / 72; // typography
+
+/// typography
+const pt = inch / 72;
 const point = pt;
 
 const surveyFoot = 1200.0 / 3937;

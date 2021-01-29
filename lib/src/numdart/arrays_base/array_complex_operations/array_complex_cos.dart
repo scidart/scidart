@@ -2,10 +2,9 @@ import 'package:scidart/src/numdart/numbers/complex_operations/complex_cos.dart'
 
 import '../array_complex.dart';
 
-/// # arrayComplexCos
 /// Compute the cos for each element of the array
 ///
-/// ## Examples
+/// # Examples
 /// ```dart
 /// var c1 = Complex(real: 3.0, imaginary: 4.0);
 ///

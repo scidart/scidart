@@ -1,11 +1,17 @@
 import 'package:scidart/src/numdart/arrays_base/array.dart';
 
-///  Return the mode of all elements of the array
-///  Examples
-///  --------
-///  >>> var n = Array([1, 2, 3, 3]);
-///  >>> mode(n);
-///  3.0
+/// Return the mode of all elements of the array
+///
+/// # Examples
+/// ```dart
+/// var n = Array([1, 2, 3, 3]);
+///
+/// print(mode(n));
+///
+/// /* output:
+/// 3.0
+/// */
+/// ```
 double mode(Array a) {
   var maxValue = 0.0;
   var maxCount = 0;

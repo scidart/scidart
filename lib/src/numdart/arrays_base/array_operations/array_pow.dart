@@ -2,12 +2,18 @@ import 'dart:math' as math;
 
 import '../array.dart';
 
-///  Compute the square root for each element of the array
-///  Examples
-///  --------
-///  >>> var n = Array([4, 4, 4]);
-///  >>> arrayPow(n, 2);
-///  Array([16, 16, 16])
+/// Compute the square root for each element of the array
+///
+/// # Examples
+/// ```dart
+/// var n = Array([4, 4, 4]);
+///
+/// print(arrayPow(n, 2));
+///
+/// /* output:
+/// Array([16, 16, 16])
+/// */
+/// ```
 Array arrayPow(Array a, double exponent) {
   var c = Array.fixed(a.length);
   for (var i = 0; i < a.length; i++) {

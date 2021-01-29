@@ -3,40 +3,46 @@ import 'dart:math' as math;
 
 import 'package:scidart/src/numdart/numdart.dart';
 
-///  Compute the one-dimensional discrete Fourier Transform.
-///  [x] : A ArrayComplex with the input
-///  [n] : optional
-///        Length of the transformed axis of the output.
-///        If n is smaller than the length of the input, the input is cropped.
-///        If it is larger, the input is padded with zeros.
-///        If n is not given, the length of the input is used.
-///  [normalization] : optional default false
-///        Compute the FFT normalization wich is: fft(x)/n
-///  return A ArrayComplex with FFT output
-///  References
-///  ----------
-///  .. [1] "Fast Fourier Transform". https://rosettacode.org/wiki/Fast_Fourier_transform#C++. Retrieved 2019-07-23.
-///  .. [2] "Free small FFT in multiple languages". https://www.nayuki.io/page/free-small-fft-in-multiple-languages. Retrieved 2019-07-23.
-///  .. [3] "looking for fft1d arbitrary length code". https://stackoverflow.com/questions/34655959/looking-for-fft1d-arbitrary-length-code. Retrieved 2019-07-23.
-///  .. [4] "Chirp_Z-transform Bluestein". https://en.wikipedia.org/wiki/Chirp_Z-transform#Bluestein.27s_algorithm. Retrieved 2019-07-24.
-///  .. [5] "numpy.fft.fft". https://docs.scipy.org/doc/numpy/reference/generated/numpy.fft.fft.html#numpy.fft.fft. Retrieved 2019-07-24.
-///  .. [6] "Fast fourier transformation polynomial multiplication". https://www.geeksforgeeks.org/fast-fourier-transformation-poynomial-multiplication/. Retrieved 2019-07-25.
-///  .. [7] "Implementation of the Divide and Conquer DFT via Matrices". https://www.projectrhea.org/rhea/index.php/Implementation_of_the_Divide_and_Conquer_DFT_via_Matrices. Retrieved 2019-07-25.
-///  .. [8] "How to implement the discrete fourier transform". https://www.nayuki.io/page/how-to-implement-the-discrete-fourier-transform. Retrieved 2019-07-25.
-///  Examples
-///  --------
-///  >>> var x = Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0]).toComplexArray();
-///  >>> fft(x);
-///  >>> ArrayComplex([
-///  >>>   Complex(real: 4.0, imaginary: 0.0),
-///  >>>   Complex(real: 1.0, imaginary: -2.41421356),
-///  >>>   Complex(real: 0.0, imaginary: 0.0),
-///  >>>   Complex(real: 1.0, imaginary: -0.41421356),
-///  >>>   Complex(real: 0.0, imaginary: 0.0),
-///  >>>   Complex(real: 1.0, imaginary: 0.41421356),
-///  >>>   Complex(real: 0.0, imaginary: 0.0),
-///  >>>   Complex(real: 1.0, imaginary: 2.41421356)
-///  >>> ]);
+/// Compute the one-dimensional discrete Fourier Transform.
+/// - [x] : A ArrayComplex with the input
+/// - [n] : optional
+/// Length of the transformed axis of the output.
+/// If n is smaller than the length of the input, the input is cropped.
+/// If it is larger, the input is padded with zeros.
+/// If n is not given, the length of the input is used.
+/// - [normalization] : optional default false
+/// Compute the FFT normalization wich is: fft(x)/n
+/// - return A ArrayComplex with FFT output
+///
+/// # References
+/// 1. "Fast Fourier Transform". https://rosettacode.org/wiki/Fast_Fourier_transform#C++. Retrieved 2019-07-23.
+/// 2. "Free small FFT in multiple languages". https://www.nayuki.io/page/free-small-fft-in-multiple-languages. Retrieved 2019-07-23.
+/// 3. "looking for fft1d arbitrary length code". https://stackoverflow.com/questions/34655959/looking-for-fft1d-arbitrary-length-code. Retrieved 2019-07-23.
+/// 4. "Chirp_Z-transform Bluestein". https://en.wikipedia.org/wiki/Chirp_Z-transform#Bluestein.27s_algorithm. Retrieved 2019-07-24.
+/// 5. "numpy.fft.fft". https://docs.scipy.org/doc/numpy/reference/generated/numpy.fft.fft.html#numpy.fft.fft. Retrieved 2019-07-24.
+/// 6. "Fast fourier transformation polynomial multiplication". https://www.geeksforgeeks.org/fast-fourier-transformation-poynomial-multiplication/. Retrieved 2019-07-25.
+/// 7. "Implementation of the Divide and Conquer DFT via Matrices". https://www.projectrhea.org/rhea/index.php/Implementation_of_the_Divide_and_Conquer_DFT_via_Matrices. Retrieved 2019-07-25.
+/// 8. "How to implement the discrete fourier transform". https://www.nayuki.io/page/how-to-implement-the-discrete-fourier-transform. Retrieved 2019-07-25.
+///
+/// # Examples
+/// ```dart
+/// var x = Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0]).toComplexArray();
+///
+/// fft(x);
+///
+/// /* output:
+/// ArrayComplex([
+///   Complex(real: 4.0, imaginary: 0.0),
+///   Complex(real: 1.0, imaginary: -2.41421356),
+///   Complex(real: 0.0, imaginary: 0.0),
+///   Complex(real: 1.0, imaginary: -0.41421356),
+///   Complex(real: 0.0, imaginary: 0.0),
+///   Complex(real: 1.0, imaginary: 0.41421356),
+///   Complex(real: 0.0, imaginary: 0.0),
+///   Complex(real: 1.0, imaginary: 2.41421356)
+/// ]);
+/// */
+/// ```
 ArrayComplex fft(ArrayComplex x, {int n, bool normalization = false}) {
   ArrayComplex buffer;
   if (n == null || n == x.length) {
@@ -71,8 +77,8 @@ ArrayComplex fft(ArrayComplex x, {int n, bool normalization = false}) {
   return normalization ? arrayComplexDivisionToScalar(res, n) : res;
 }
 
-///  Computes the discrete Fourier transform (DFT) of the given complex vector, returning the result back into the vector.
-///  The vector's length must be a power of 2. Uses the Cooley-Tukey decimation-in-time radix-2 algorithm.
+/// Computes the discrete Fourier transform (DFT) of the given complex vector, returning the result back into the vector.
+/// The vector's length must be a power of 2. Uses the Cooley-Tukey decimation-in-time radix-2 algorithm.
 ArrayComplex _transformRadix2(ArrayComplex x) {
   var buffer = x.copy();
   var bits = log(buffer.length) ~/ log(2);
@@ -103,10 +109,10 @@ ArrayComplex _transformRadix2(ArrayComplex x) {
   return buffer;
 }
 
-///  Computes the discrete Fourier transform (DFT) of the given complex vector, returning the result back into the vector.
-///  The vector can have any length. This requires the convolution function, which in turn requires the radix-2 FFT function.
-///  Uses Bluestein's chirp z-transform algorithm.
-///  fixme: this algorithm don't produced good results, so, I resolve to not use until be fixed
+/// Computes the discrete Fourier transform (DFT) of the given complex vector, returning the result back into the vector.
+/// The vector can have any length. This requires the convolution function, which in turn requires the radix-2 FFT function.
+/// Uses Bluestein's chirp z-transform algorithm.
+/// fixme: this algorithm don't produced good results, so, I resolve to not use until be fixed
 //ArrayComplex _transformBluestein(ArrayComplex buffer) {
 //  var n = buffer.length;
 //  // Find a power-of-2 convolution length m such that m >= n * 2 + 1
@@ -160,10 +166,10 @@ ArrayComplex _transformRadix2(ArrayComplex x) {
 //  return result;
 //}
 
-///  Computes the discrete Fourier transform (DFT) of the given complex vector, using
-///  recursive divide and counquer method.
-///  [buffer] - complex array with the input
-///  fixme: this algorithm don't produced good results, so, I resolve to not use until be fixed
+/// Computes the discrete Fourier transform (DFT) of the given complex vector, using
+/// recursive divide and counquer method.
+/// [buffer] - complex array with the input
+/// fixme: this algorithm don't produced good results, so, I resolve to not use until be fixed
 //ArrayComplex _recursive(ArrayComplex buffer) {
 //  int n = buffer.length;
 //
@@ -218,8 +224,8 @@ ArrayComplex _transformRadix2(ArrayComplex x) {
 //  return y;
 //}
 
-///  Computes the discrete Fourier transform (DFT) of the given complex vector.
-///  All the array arguments must be non-null
+/// Computes the discrete Fourier transform (DFT) of the given complex vector.
+/// All the array arguments must be non-null
 ArrayComplex _dft(ArrayComplex buffer) {
   var n = buffer.length;
   var out = ArrayComplex.fixed(n);

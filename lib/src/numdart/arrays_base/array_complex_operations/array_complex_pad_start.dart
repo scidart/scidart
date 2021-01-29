@@ -2,10 +2,9 @@ import '../../numdart.dart';
 import '../array_complex.dart';
 import 'array_complex_concat.dart';
 
-/// # arrayComplexPadStart
 /// Add zeros at begging of the array
 ///
-/// ## Examples
+/// # Examples
 /// ```dart
 /// var list = ArrayComplex([
 ///   Complex(real: 3.0, imaginary: 4.0),

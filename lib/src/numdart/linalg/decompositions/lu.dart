@@ -5,50 +5,53 @@ import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_sub_from_array.dart';
 import 'package:scidart/src/numdart/numdart.dart';
 
-///  LU Decomposition.
-///  For an m-by-n matrix A with m >= n, the LU decomposition is an m-by-n
-///  unit lower triangular matrix L, an n-by-n upper triangular matrix U,
-///  and a permutation vector piv of length m so that A(piv,:) = L*U.
-///  If m < n, then L is m-by-m and U is m-by-n.
-///  The LU decomposition with pivoting always exists, even if the matrix is
-///  singular, so the constructor will never fail.  The primary use of the
-///  LU decomposition is in the solution of square systems of simultaneous
-///  linear equations.  This will fail if isNonsingular() returns false.
-///  References
-///  ----------
-///  .. [1] "Jama". https://math.nist.gov/javanumerics/jama/. Retrieved 2019-07-17.
-///  .. [2] "LU Decomposition in Python and NumPy". https://www.quantstart.com/articles/LU-Decomposition-in-Python-and-NumPy. Retrieved 2019-07-18.
-///  Examples
-///  --------
-///  >>> var lu = LU(Array2d([
-///  >>>  Array([4.0, 2.0, 1.0]),
-///  >>>  Array([16.0, 4.0, 1.0]),
-///  >>>  Array([64.0, 8.0, 1.0])
-///  >>> ]));
-///  >>> var l = lu.L();
-///  >>> var u = lu.U();
+/// For an m-by-n matrix A with m >= n, the LU decomposition is an m-by-n
+/// unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+/// and a permutation vector piv of length m so that A(piv,:) = L*U.
+/// If m < n, then L is m-by-m and U is m-by-n.
+/// The LU decomposition with pivoting always exists, even if the matrix is
+/// singular, so the constructor will never fail.  The primary use of the
+/// LU decomposition is in the solution of square systems of simultaneous
+/// linear equations.  This will fail if isNonsingular() returns false.
+///
+/// # References
+/// 1. "Jama". https://math.nist.gov/javanumerics/jama/. Retrieved 2019-07-17.
+/// 2. "LU Decomposition in Python and NumPy". https://www.quantstart.com/articles/LU-Decomposition-in-Python-and-NumPy. Retrieved 2019-07-18.
+///
+/// # Examples
+/// ```dart
+/// var lu = LU(Array2d([
+///   Array([4.0, 2.0, 1.0]),
+///   Array([16.0, 4.0, 1.0]),
+///    Array([64.0, 8.0, 1.0])
+/// ]));
+/// var l = lu.L();
+/// print(l);
+/// var u = lu.U();
+/// print(u);
+/// ```
 class LU {
   //#region class variables
-  ///  Array for internal storage of decomposition.
-  ///  internal array storage.
+  /// Array for internal storage of decomposition.
+  /// internal array storage.
   Array2d _LUMatrix;
 
-  ///  Row and column dimensions, and pivot sign.
-  ///  [_m] column dimension.
-  ///  [_n] row dimension.
-  ///  [_pivsign] pivot sign.
+  /// Row and column dimensions, and pivot sign.
+  /// - [_m] column dimension.
+  /// - [_n] row dimension.
+  /// - [_pivsign] pivot sign.
   int _m, _n, _pivsign;
 
-  ///  Internal storage of pivot vector.
-  ///  [_piv] pivot vector.
+  /// Internal storage of pivot vector.
+  /// - [_piv] pivot vector.
   Array _piv;
 
   //#endregion
 
   //#region Constructor
-  ///  LU Decomposition
-  ///  Structure to access L, U and piv.
-  ///  [A] Rectangular matrix
+  /// LU Decomposition
+  /// Structure to access L, U and piv.
+  /// - [A] Rectangular matrix
   LU(Array2d A) {
     // Use a "left-looking", dot-product, Crout/Doolittle algorithm.
     _LUMatrix = A.copy();
@@ -172,8 +175,8 @@ class LU {
 //#endregion.
 
 //#region Public Methods
-  ///  Is the matrix nonsingular?
-  ///  return true if U, and hence A, is nonsingular.
+  /// Is the matrix nonsingular?
+  /// return true if U, and hence A, is nonsingular.
   bool isNonsingular() {
     for (var j = 0; j < _n; j++) {
       if (_LUMatrix[j][j] == 0) {
@@ -201,8 +204,8 @@ class LU {
     return L;
   }
 
-  ///  Return upper triangular factor
-  ///  return U
+  /// Return upper triangular factor
+  /// return U
   Array2d U() {
     var U = Array2d.fixed(_n, _n);
     for (var i = 0; i < _n; i++) {
@@ -217,8 +220,8 @@ class LU {
     return U;
   }
 
-  ///  Return pivot permutation vector
-  ///  return piv
+  /// Return pivot permutation vector
+  /// return piv
   Array pivot() {
     var p = Array.fixed(_m);
     for (var i = 0; i < _m; i++) {
@@ -227,8 +230,8 @@ class LU {
     return p;
   }
 
-  ///  Return pivot permutation vector as a one-dimensional double array
-  ///  return (double) piv
+  /// Return pivot permutation vector as a one-dimensional double array
+  /// return (double) piv
   Array doublePivot() {
     var vals = Array.fixed(_m);
     for (var i = 0; i < _m; i++) {
@@ -237,9 +240,9 @@ class LU {
     return vals;
   }
 
-  ///  Determinant
-  ///  return     det(A)
-  ///  exception  FormatException  Matrix must be square
+  /// Determinant
+  /// return det(A)
+  /// exception FormatException Matrix must be square
   double det() {
     if (_m != _n) {
       throw FormatException('Matrix must be square.');
@@ -251,11 +254,10 @@ class LU {
     return d;
   }
 
-  ///  Solve A*X = B
-  ///  [B]   A Matrix with as many rows as A and any number of columns.
-  ///  so that L*U*X = B(piv,:)
-  ///  IllegalArgumentException Matrix row dimensions must agree.
-  ///  RuntimeException  Matrix is singular.
+  /// Solve A*X = B
+  /// - [B] A Matrix with as many rows as A and any number of columns.
+  /// so that L*U*X = B(piv,:)
+  /// - [FormatException] Matrix row dimensions must agree or Matrix is singular.
   Array2d solve(Array2d B) {
     if (B.row != _m) {
       throw FormatException('Matrix row dimensions must agree.');

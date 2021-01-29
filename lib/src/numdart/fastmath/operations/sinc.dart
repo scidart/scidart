@@ -1,6 +1,6 @@
 import 'dart:math';
 
-///  compute nomilized sinc function of x
+/// compute nomilized sinc function of x
 double sinc(double x) {
   var y;
   if (x == 0) {

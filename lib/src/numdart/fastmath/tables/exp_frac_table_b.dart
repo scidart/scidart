@@ -1,5 +1,5 @@
 /// Exponential over the range of 0 - 1 in increments of `2^-10`
-///     exp(x/1024) =  expFracTableA[x] + expFracTableB[x].
+/// exp(x/1024) =  expFracTableA[x] + expFracTableB[x].
 const EXP_FRAC_TABLE_B = <double>[
   0.0,
   1.552583321178453E-10,

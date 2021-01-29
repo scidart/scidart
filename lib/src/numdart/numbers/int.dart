@@ -1,10 +1,15 @@
-///  Rotate to left the bits of a int number n times
-///  [n]: number
-///  [bits] : number of rotations
-///  Examples
-///  --------
-///  >>> bitReverse(1, 3);
-///  >>> 4
+/// Rotate to left the bits of a int number n times
+/// - [n] : number
+/// - [bits] : number of rotations
+///
+/// # Examples
+/// ```dart
+/// print(bitReverse(1, 3));
+///
+/// /* output:
+/// 4
+/// */
+/// ```
 int bitReverse(int n, int bits) {
   var reversedN = n;
   var count = bits - 1;

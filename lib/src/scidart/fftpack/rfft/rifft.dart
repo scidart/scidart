@@ -1,27 +1,33 @@
 import 'package:scidart/src/numdart/numdart.dart';
 import 'package:scidart/src/scidart/fftpack/fft/ifft.dart';
 
-///  Compute the one-dimensional inverse discrete Fourier Transform and return a Real output.
-///  [x] A ArrayComplex with the input
-///  return A Array with IFFT output
-///  References
-///  ----------
-///  .. [1] "Fast Fourier Transform". https://rosettacode.org/wiki/Fast_Fourier_transform#C++. Retrieved 2019-07-23.
-///  .. [2] "what is numpy fft rfft and numpy fft irfft and its equivalent code in matlab". https://stackoverflow.com/questions/45778504/what-is-numpy-fft-rfft-and-numpy-fft-irfft-and-its-equivalent-code-in-matlab. Retrieved 2019-07-23.
-///  Examples
-///  --------
-///  >>> var X = ArrayComplex([
-///  >>>    Complex(real: 4.0, imaginary: 0.0),
-///  >>>    Complex(real: 1.0, imaginary: -2.41421356),
-///  >>>    Complex(real: 0.0, imaginary: 0.0),
-///  >>>    Complex(real: 1.0, imaginary: -0.41421356),
-///  >>>    Complex(real: 0.0, imaginary: 0.0),
-///  >>>    Complex(real: 1.0, imaginary: 0.41421356),
-///  >>>    Complex(real: 0.0, imaginary: 0.0),
-///  >>>    Complex(real: 1.0, imaginary: 2.41421356)
-///  >>> ]);
-///  >>> rifft(X);
-///  >>> Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0])
+/// Compute the one-dimensional inverse discrete Fourier Transform and return a Real output.
+/// - [x] A ArrayComplex with the input
+/// return A Array with IFFT output
+///
+/// # References
+/// 1. "Fast Fourier Transform". https://rosettacode.org/wiki/Fast_Fourier_transform#C++. Retrieved 2019-07-23.
+/// 2. "what is numpy fft rfft and numpy fft irfft and its equivalent code in matlab". https://stackoverflow.com/questions/45778504/what-is-numpy-fft-rfft-and-numpy-fft-irfft-and-its-equivalent-code-in-matlab. Retrieved 2019-07-23.
+///
+/// # Examples
+/// ```dart
+/// var X = ArrayComplex([
+///   Complex(real: 4.0, imaginary: 0.0),
+///   Complex(real: 1.0, imaginary: -2.41421356),
+///   Complex(real: 0.0, imaginary: 0.0),
+///   Complex(real: 1.0, imaginary: -0.41421356),
+///   Complex(real: 0.0, imaginary: 0.0),
+///   Complex(real: 1.0, imaginary: 0.41421356),
+///   Complex(real: 0.0, imaginary: 0.0),
+///   Complex(real: 1.0, imaginary: 2.41421356)
+/// ]);
+///
+/// print(rifft(X));
+///
+/// /* output:
+/// Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0])
+/// */
+/// ```
 Array rifft(ArrayComplex x) {
   var s, e;
 

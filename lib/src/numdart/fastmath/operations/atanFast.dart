@@ -9,9 +9,9 @@ import 'package:scidart/src/numdart/fastmath/tables/tangent_table_a.dart';
 
 /// Internal helper function to compute arctangent.
 ///
-/// [xa] number from which arctangent is requested.
-/// [xb] extra bits for x (may be 0.0).
-/// [leftPlane] if true, result angle must be put in the left half plane.
+/// - [xa] number from which arctangent is requested.
+/// - [xb] extra bits for x (may be 0.0).
+/// - [leftPlane] if true, result angle must be put in the left half plane.
 /// Returns `atan(xa + xb)` (or angle shifted by `PI` if leftPlane is true)
 double atanFast(double xa, [double xb = 0.0, bool leftPlane = false]) {
   if (xa == 0.0) {

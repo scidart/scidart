@@ -1,9 +1,8 @@
 import '../array_complex.dart';
 
-/// # arrayComplexTruncateLast
 /// Return a Array without the last element
 ///
-/// ## Examples
+/// # Examples
 /// ```dart
 /// var list = ArrayComplex([
 ///   Complex(real: 3.0, imaginary: 4.0),

@@ -4,18 +4,24 @@ import 'package:scidart/src/numdart/fastmath/fastmath.dart' as fmath;
 
 import '../complex.dart';
 
-///  Compute the [cosine](http://mathworld.wolfram.com/Cosine.html)
-///  of this complex number.
+/// Compute the [cosine](http://mathworld.wolfram.com/Cosine.html)
+/// of this complex number.
 ///
-///  Implements the formula:
+/// Implements the formula:
 ///
-///      cos(a + bi) = cos(a)cosh(b) - sin(a)sinh(b)i
+/// cos(a + bi) = cos(a)cosh(b) - sin(a)sinh(b)i
 ///
-///  Examples
-///  --------
-///  >>> var c1 = Complex(real: 3.0, imaginary: 4.0);
-///  >>> c1.cos();
-///  Complex(real: -27.034945603074224, imaginary: -3.8511533348117775)
+///
+/// # Examples
+/// ```dart
+/// var c1 = Complex(real: 3.0, imaginary: 4.0);
+///
+/// print(c1.cos());
+///
+/// /* output:
+/// Complex(real: -27.034945603074224, imaginary: -3.8511533348117775)
+/// */
+/// ```
 Complex complexCos(Complex a) {
   return Complex(
       real: math.cos(a.real) * fmath.cosh(a.imaginary),

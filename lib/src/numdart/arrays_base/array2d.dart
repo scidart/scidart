@@ -2,30 +2,40 @@ import 'dart:collection';
 
 import 'array.dart';
 
-///  Class to create 2 dimensions Array.
-///  Constructors:
-///  ----------
-///  Array2d(List<double> list) : default constructor
+/// Class to create 2 dimensions Array.
 ///
-///  Array2d.empty() : empty array
+/// # Constructors:
+/// ```dart
+/// Array2d(List<double> list) // default constructor
 ///
-///  Array2d.fromArray(Array list) : from another array
+/// Array2d.empty() // empty array
 ///
-///  Array2d.fixed(int length) : from a fixed length
-///  References
-///  ----------
-///  .. [1] "Jama". https://math.nist.gov/javanumerics/jama/. Retrieved 2019-07-17.
-///  .. [2] "numpylinalg.solve". https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.solve.html. Retrieved 2019-07-19.
-///  Examples
-///  --------
-///  >>> import 'package:scidart/src/numdart/numdart.dart';
-///  >>> var matrix = Array2d.empty();
-///  >>> var line = [1.0 ,2.0 , 3.0];
-///  >>> matrix.add(line);
-///  >>> matrix.add(line);
-///  >>> matrix.add(line);
-///  >>> matrix;
-///  Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])
+/// Array2d.fromArray(Array list) // from another array
+///
+/// Array2d.fixed(int length) // from a fixed length
+/// ```
+///
+/// # References
+/// 1. "Jama". https://math.nist.gov/javanumerics/jama/. Retrieved 2019-07-17.
+/// 2. "numpylinalg.solve". https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.solve.html. Retrieved 2019-07-19.
+///
+/// # Examples
+/// ```dart
+/// import 'package:scidart/src/numdart/numdart.dart';
+///
+/// var matrix = Array2d.empty();
+/// var line = [1.0 ,2.0 , 3.0];
+///
+/// matrix.add(line);
+/// matrix.add(line);
+/// matrix.add(line);
+///
+/// print(matrix);
+///
+/// /* output:
+/// Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])
+/// */
+/// ```
 class Array2d extends ListBase<Array> {
   List<Array> l = [];
 
@@ -42,24 +52,30 @@ class Array2d extends ListBase<Array> {
   }
 
   Array2d.fixed(int row, int column, {double initialValue}) {
-    l = List<Array>(row);
+    l = List<Array>.filled(row, Array.empty());
     for (var i = 0; i < row; i++) {
       l[i] = Array.fixed(column, initialValue: initialValue);
     }
   }
 
-  ///  Construct a matrix from a one-dimensional packed array
-  ///  [vals] One-dimensional array of doubles, packed by columns (ala Fortran).
-  ///  [mRow]    Number of rows.
-  ///  FormatException: Array length must be a multiple of m.
-  ///  Examples
-  ///  --------
-  ///  >>> var a =  Array2d.fromVector(Array([1, 2, 3, 4]), 2);
-  ///  >>> a;
-  ///  var aExpec = Array2d([
-  ///    Array([1, 3]),
-  ///    Array([2, 4])
-  ///  ]);
+  /// Construct a matrix from a one-dimensional packed array
+  /// - [vals] One-dimensional array of doubles, packed by columns (ala Fortran).
+  /// - [mRow]    Number of rows.
+  /// - [FormatException]: Array length must be a multiple of m.
+  ///
+  /// # Examples
+  /// ```dart
+  /// var a =  Array2d.fromVector(Array([1, 2, 3, 4]), 2);
+  ///
+  /// print(a);
+  ///
+  /// /* output:
+  /// var aExpec = Array2d([
+  ///   Array([1, 3]),
+  ///   Array([2, 4])
+  /// ]);
+  /// */
+  /// ```
   Array2d.fromVector(Array vals, int mRow) {
     var nCol = (mRow != 0 ? vals.length / mRow : 0).toInt();
 
@@ -67,7 +83,7 @@ class Array2d extends ListBase<Array> {
       throw FormatException('Array length must be a multiple of mRow.');
     }
 
-    l = List<Array>(mRow);
+    l = List<Array>.filled(mRow, Array.empty());
     for (var i = 0; i < mRow; i++) {
       l[i] = Array.fixed(nCol);
     }
@@ -95,16 +111,22 @@ class Array2d extends ListBase<Array> {
     l.length = newLength;
   }
 
-  ///  Return the length of Array2d
-  ///  Examples
-  ///  --------
-  ///  >>> var matrix = Array2d.empty();
-  ///  >>> var line = Array([1.0 ,2.0 , 3.0]);
-  ///  >>> matrix.add(line);
-  ///  >>> matrix.add(line);
-  ///  >>> matrix.add(line);
-  ///  >>> matrix.length;
-  ///  3
+  /// Return the length of Array2d
+  ///
+  /// # Examples
+  /// ```dart
+  /// var matrix = Array2d.empty();
+  /// var line = Array([1.0 ,2.0 , 3.0]);
+  /// matrix.add(line);
+  /// matrix.add(line);
+  /// matrix.add(line);
+  ///
+  /// print(matrix.length);
+  ///
+  /// /* output:
+  /// 3
+  /// */
+  /// ```
   @override
   int get length => l.length;
 
@@ -116,25 +138,31 @@ class Array2d extends ListBase<Array> {
     l[index] = value;
   }
 
-  ///  Multiply two arrays with the same size
-  ///  Examples
-  ///  --------
-  ///  >>> var a = Array2d([
-  ///  >>>   Array([2, 2, 2]),
-  ///  >>>   Array([2, 2, 2]),
-  ///  >>>   Array([2, 2, 2])
-  ///  >>> ]);
-  ///  >>> var b = Array2d([
-  ///  >>>   Array([2, 2, 2]),
-  ///  >>>   Array([2, 2, 2]),
-  ///  >>>   Array([2, 2, 2])
-  ///  >>> ]);
-  ///  >>> a * b;
-  ///  Array2d([
-  ///    Array([4, 4, 4]),
-  ///    Array([4, 4, 4]),
-  ///    Array([4, 4, 4])
-  ///  ]);
+  /// Multiply two arrays with the same size
+  ///
+  /// # Examples
+  /// ```dart
+  /// var a = Array2d([
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2])
+  /// ]);
+  /// var b = Array2d([
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2])
+  /// ]);
+  ///
+  /// print(a * b);
+  ///
+  /// /* output:
+  /// Array2d([
+  ///   Array([4, 4, 4]),
+  ///   Array([4, 4, 4]),
+  ///   Array([4, 4, 4])
+  /// ]);
+  /// */
+  /// ```
   Array2d operator *(Array2d b) {
     _checkArray2dColumnsLength(this);
     _checkArray2dColumnsLength(b);
@@ -154,25 +182,31 @@ class Array2d extends ListBase<Array> {
     return c;
   }
 
-  ///  Divide two arrays with the same size
-  ///  Examples
-  ///  --------
-  ///  >>> var a = Array2d([
-  ///  >>>   Array([2, 2, 2]),
-  ///  >>>   Array([2, 2, 2]),
-  ///  >>>   Array([2, 2, 2])
-  ///  >>> ]);
-  ///  >>> var b = Array2d([
-  ///  >>>   Array([2, 2, 2]),
-  ///  >>>   Array([2, 2, 2]),
-  ///  >>>   Array([2, 2, 2])
-  ///  >>> ]);
-  ///  >>> a / b;
-  ///  Array2d([
-  ///    Array([1, 1, 1]),
-  ///    Array([1, 1, 1]),
-  ///    Array([1, 1, 1])
-  ///  ]);
+  /// Divide two arrays with the same size
+  ///
+  /// # Examples
+  /// ```dart
+  /// var a = Array2d([
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2])
+  /// ]);
+  /// var b = Array2d([
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2])
+  /// ]);
+  ///
+  /// print(a / b);
+  ///
+  /// /* output:
+  /// Array2d([
+  ///   Array([1, 1, 1]),
+  ///   Array([1, 1, 1]),
+  ///   Array([1, 1, 1])
+  /// ]);
+  /// */
+  /// ```
   Array2d operator /(Array2d b) {
     _checkArray2dColumnsLength(this);
     _checkArray2dColumnsLength(b);
@@ -192,13 +226,19 @@ class Array2d extends ListBase<Array> {
     return c;
   }
 
-  ///  compare two arrays
-  ///  Examples
-  ///  --------
-  ///  >>> var n = Array([1, 2, 3]);
-  ///  >>> var n2 = Array([1, 2, 3]);
-  ///  >>> n == n2;
-  ///  true
+  /// compare two arrays
+  ///
+  /// # Examples
+  /// ```dart
+  /// var n = Array([1, 2, 3]);
+  /// var n2 = Array([1, 2, 3]);
+  ///
+  /// print(n == n2);
+  ///
+  /// /* output:
+  /// true
+  /// */
+  /// ```
   @override
   bool operator ==(b) {
     if (b is Array2d) {
@@ -217,25 +257,31 @@ class Array2d extends ListBase<Array> {
     }
   }
 
-  ///  Multiply two arrays with the same size
-  ///  Examples
-  ///  --------
-  ///  >>> var a = Array2d([
-  ///  >>>   Array([2, 2, 2]),
-  ///  >>>   Array([2, 2, 2]),
-  ///  >>>   Array([2, 2, 2])
-  ///  >>> ]);
-  ///  >>> var b = Array2d([
-  ///  >>>   Array([2, 2, 2]),
-  ///  >>>   Array([2, 2, 2]),
-  ///  >>>   Array([2, 2, 2])
-  ///  >>> ]);
-  ///  >>> a - b;
-  ///  Array2d([
-  ///    Array([4, 4, 4]),
-  ///    Array([4, 4, 4]),
-  ///    Array([4, 4, 4])
-  ///  ]);
+  /// Multiply two arrays with the same size
+  ///
+  /// # Examples
+  /// ```dart
+  /// var a = Array2d([
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2])
+  /// ]);
+  /// var b = Array2d([
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2])
+  /// ]);
+  ///
+  /// print(a - b);
+  ///
+  /// /* output:
+  /// Array2d([
+  ///   Array([4, 4, 4]),
+  ///   Array([4, 4, 4]),
+  ///   Array([4, 4, 4])
+  /// ]);
+  /// */
+  /// ```
   Array2d operator -(Array2d b) {
     _checkArray2dColumnsLength(this);
     _checkArray2dColumnsLength(b);
@@ -274,16 +320,22 @@ class Array2d extends ListBase<Array> {
   //#endregion
 
   //#region overload methods
-  ///  Convert a Array2d object to a String representation
-  ///  Examples
-  ///  --------
-  ///  >>> var matrix = Array2d.empty();
-  ///  >>> var line = Array([1.0 ,2.0 , 3.0]);
-  ///  >>> matrix.add(line);
-  ///  >>> matrix.add(line);
-  ///  >>> matrix.add(line);
-  ///  >>> print(matrix.toString());
-  ///  Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])
+  /// Convert a Array2d object to a String representation
+  ///
+  /// # Examples
+  /// ```dart
+  /// var matrix = Array2d.empty();
+  /// var line = Array([1.0 ,2.0 , 3.0]);
+  /// matrix.add(line);
+  /// matrix.add(line);
+  /// matrix.add(line);
+  ///
+  /// print(matrix.toString());
+  ///
+  /// /* output:
+  /// Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])
+  /// */
+  /// ```
   @override
   String toString() {
     var str = IterableBase.iterableToFullString(this, '[', '\n]');
@@ -293,7 +345,7 @@ class Array2d extends ListBase<Array> {
   //#endregion
 
   //#region memory operations
-  ///  Generate a copy of the current matrix
+  /// Generate a copy of the current matrix
   Array2d copy() => Array2d.fromArray(this);
   //#endregion
 

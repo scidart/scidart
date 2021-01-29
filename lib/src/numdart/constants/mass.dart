@@ -1,20 +1,25 @@
 import 'physical.dart';
 
-// mass in kg
-// Reference: https://physics.nist.gov/cuu/Constants/
-// Reference: https://github.com/scipy/scipy/blob/master/scipy/constants/constants.py
+/// mass in kg
+///
+/// ## Reference:
+/// 1. https://physics.nist.gov/cuu/Constants/
+/// 2. https://github.com/scipy/scipy/blob/master/scipy/constants/constants.py
 
 const gram = 1e-3;
 const metricTon = 1e3;
 const grain = 64.79891e-6;
 
-const lb = 7000 * grain; // avoirdupois
+/// avoirdupois
+const lb = 7000 * grain;
 const pound = lb;
 
-const blob = pound * g / 0.0254; // lbf*s**2/in (added in 1.0.0)
+/// lbf*s**2/in (added in 1.0.0)
+const blob = pound * g / 0.0254;
 const slinch = blob;
 
-const slug = blob / 12; // lbf*s**2/foot (added in 1.0.0)
+/// lbf*s**2/foot (added in 1.0.0)
+const slug = blob / 12;
 
 const oz = pound / 16;
 const ounce = oz;

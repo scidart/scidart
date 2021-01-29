@@ -1,10 +1,9 @@
 import 'package:scidart/src/numdart/arrays_base/array_complex.dart';
 import 'package:scidart/src/numdart/numbers/complex_operations/complex_truncate.dart';
 
-/// # arrayComplexTruncateEachElement
 /// Truncate all the numbers of the array
 ///
-/// ## Examples
+/// # Examples
 /// ```dart
 /// var n = Array([4.123456789, 4.123456789, 4.123456789]);
 ///

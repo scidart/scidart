@@ -2,10 +2,9 @@ import 'package:scidart/src/numdart/arrays_base/array_operations/array_truncate_
 
 import '../array2d.dart';
 
-/// # array2dTruncateEachElement
 /// Truncate all the elements of the array
 ///
-/// ## Examples
+/// # Examples
 /// ```dart
 /// var a = Array2d([
 ///   Array([2.123456789, 2.123456789, 2.123456789]),

@@ -2,12 +2,14 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 
 import 'mean.dart';
 
-///  Return the variance of the array
-///  Examples
-///  --------
-///  >>> var n = Array([1, 2, 3]);
-///  >>> variance(n);
+/// Return the variance of the array
 ///
+/// # Examples
+/// ```dart
+/// var n = Array([1, 2, 3]);
+///
+/// print(variance(n));
+/// ```
 double variance(Array a) {
   var meanA = mean(a);
   var temp = 0.0;

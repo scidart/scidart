@@ -6,66 +6,70 @@ import 'package:scidart/src/numdart/geometric/hypotenuse.dart';
 import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_sub.dart';
 import 'package:scidart/src/numdart/numdart.dart';
 
-///  Singular Value Decomposition.
-///  <P>
-///  For an m-by-n matrix A with m >= n, the singular value decomposition is
-///  an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
-///  an n-by-n orthogonal matrix V so that A = U*S*V'.
-///  <P>
-///  The singular values, sigma\[k\] = S\[k\]\[k\], are ordered so that
-///  sigma\[0\] >= sigma\[1\] >= ... >= sigma\[n-1\].
-///  <P>
-///  The singular value decompostion always exists, so the constructor will
-///  never fail.  The matrix condition number and the effective numerical
-///  rank can be computed from this decomposition.
-///  References
-///  ----------
-///  .. [1] "Jama". https://math.nist.gov/javanumerics/jama/. Retrieved 2019-07-19.
-///  .. [2] "Jama Github". https://github.com/fiji/Jama. Retrieved 2019-07-19.
-///  .. [3] "Apache Commons Math Github". https://github.com/apache/commons-math. Retrieved 2019-07-19.
-///  Examples
-///  --------
-///  >>> var svd = SVD(Array2d([
-///  >>>   Array([4.0, 2.0, 1.0]),
-///  >>>   Array([16.0, 4.0, 1.0]),
-///  >>>   Array([64.0, 8.0, 1.0])
-///  >>> ]));
-///  >>> var u = svd.U();
-///  >>> var s = svd.S();
-///  >>> print(u);
-///  Array2d([
-///    Array([0.06370191, 0.63944931, -0.76618969]),
-///    Array([0.24598854, 0.73399958,  0.63303575]),
-///    Array([0.96717718, -0.22879947, -0.11054003])
-///  ]);
-///  >>> print(s);
-///  Array2d([
-///    Array([66.69193778, 0.0, 0.0]),
-///    Array([0.0, 2.66694684, 0.0]),
-///    Array([0.0, 0.0, 0.26986934]),
-///  ]);
+/// Singular Value Decomposition.
+/// For an m-by-n matrix A with m >= n, the singular value decomposition is
+/// an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+/// an n-by-n orthogonal matrix V so that A = U*S*V'.
+/// The singular values, sigma\[k\] = S\[k\]\[k\], are ordered so that
+/// sigma\[0\] >= sigma\[1\] >= ... >= sigma\[n-1\].
+/// The singular value decompostion always exists, so the constructor will
+/// never fail.  The matrix condition number and the effective numerical
+/// rank can be computed from this decomposition.
+///
+/// # References
+/// 1. "Jama". https://math.nist.gov/javanumerics/jama/. Retrieved 2019-07-19.
+/// 2. "Jama Github". https://github.com/fiji/Jama. Retrieved 2019-07-19.
+/// 3. "Apache Commons Math Github". https://github.com/apache/commons-math. Retrieved 2019-07-19.
+///
+/// # Examples
+/// ```dart
+/// var svd = SVD(Array2d([
+///   Array([4.0, 2.0, 1.0]),
+///   Array([16.0, 4.0, 1.0]),
+///   Array([64.0, 8.0, 1.0])
+/// ]));
+/// var u = svd.U();
+/// var s = svd.S();
+///
+/// print(u);
+/// print(s);
+///
+/// /* output:
+/// Array2d([
+///   Array([0.06370191, 0.63944931, -0.76618969]),
+///   Array([0.24598854, 0.73399958,  0.63303575]),
+///   Array([0.96717718, -0.22879947, -0.11054003])
+/// ]);
+///
+/// Array2d([
+///   Array([66.69193778, 0.0, 0.0]),
+///   Array([0.0, 2.66694684, 0.0]),
+///   Array([0.0, 0.0, 0.26986934]),
+/// ]);
+/// */
+/// ```
 class SVD {
   //#region Class variables
-  ///  Arrays for internal storage of U and V.
-  ///  internal storage of [_U].
-  ///  internal storage of [_V].
+  /// Arrays for internal storage of U and V.
+  /// internal storage of [_U].
+  /// internal storage of [_V].
   Array2d _U, _V;
 
-  ///  Array for internal storage of singular values.
-  ///  internal storage of singular values.
+  /// Array for internal storage of singular values.
+  /// internal storage of singular values.
   Array _s;
 
-  ///  Row and column dimensions.
-  ///  [_m] row dimension.
-  ///  [_n] column dimension.
+  /// Row and column dimensions.
+  /// - [_m] row dimension.
+  /// - [_n] column dimension.
   int _m, _n;
 
   //#endregion
 
   //#region Constructor
-  ///  Construct the singular value decomposition
-  ///  Structure to access U, S and V.
-  ///  @param Arg    Rectangular matrix
+  /// Construct the singular value decomposition
+  /// Structure to access U, S and V.
+  /// - [Arg] Rectangular matrix
   SVD(Array2d Arg) {
     // Derived from LINPACK code.
     // Initialize.
@@ -489,26 +493,26 @@ class SVD {
   //#endregion
 
   //#region Public Methods
-  ///  Return the left singular vectors
-  ///  return     U
+  /// Return the left singular vectors
+  /// return U
   Array2d U() {
     return matrixSub(_U, 0, _m - 1, 0, math.min(_m + 1, _n) - 1);
   }
 
-  ///  Return the right singular vectors
-  ///  return     V
+  /// Return the right singular vectors
+  /// return V
   Array2d V() {
     return matrixSub(_V, 0, _n, 0, _n);
   }
 
-  ///  Return the one-dimensional array of singular values
-  ///  @return     diagonal of S.
+  /// Return the one-dimensional array of singular values
+  /// return diagonal of S.
   Array singularValues() {
     return _s;
   }
 
-  ///  Return the diagonal matrix of singular values
-  ///  @return     S
+  /// Return the diagonal matrix of singular values
+  /// return S
   Array2d S() {
     var S = Array2d.fixed(_n, _n);
     for (var i = 0; i < _n; i++) {
@@ -520,20 +524,20 @@ class SVD {
     return S;
   }
 
-  ///  Two norm
-  ///  return     max(S)
+  /// Two norm
+  /// return  max(S)
   double norm2() {
     return _s[0];
   }
 
-  ///  Two norm condition number
-  ///  return     max(S)/min(S)
+  /// Two norm condition number
+  /// return max(S)/min(S)
   double cond() {
     return _s[0] / _s[math.min(_m, _n) - 1];
   }
 
-  ///  Effective numerical matrix rank
-  ///  return     Number of nonnegligible singular values.
+  /// Effective numerical matrix rank
+  /// return Number of nonnegligible singular values.
   int rank() {
     double eps = math.pow(2.0, -52.0);
     var tol = math.max(_m, _n) * _s[0] * eps;

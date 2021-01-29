@@ -1,9 +1,9 @@
 import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 
-/// # Matrix transpose.
+/// Matrix transpose.
 /// return A'
 ///
-/// ## Examples:
+/// # Examples:
 /// ```dart
 /// var a = Array2d([
 ///   Array([1.0, 2.0, 3.0]),
@@ -11,12 +11,15 @@ import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 ///   Array([7.0, 8.0, 10.0]),
 /// ]);
 ///
-/// matrixTranspose(a);
+/// print(matrixTranspose(a));
+///
+/// /* output:
 /// Array2d([
 ///   Array([1.0, 4.0, 7.0]),
 ///   Array([2.0, 5.0, 8.0]),
 ///   Array([3.0, 6.0, 10.0])
 /// ]);
+/// */
 /// ```
 Array2d matrixTranspose(Array2d a) {
   var b = Array2d.fixed(a.column, a.row);

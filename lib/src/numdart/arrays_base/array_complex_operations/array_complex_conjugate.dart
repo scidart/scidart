@@ -2,10 +2,9 @@ import 'package:scidart/src/numdart/numbers/complex_operations/complex_conjugate
 
 import '../array_complex.dart';
 
-/// # arrayComplexConjugate
 /// Conjugate of all elements of the current array
 ///
-/// ## Examples
+/// # Examples
 /// ```dart
 /// var list = ArrayComplex([
 ///   Complex(real: 1.0, imaginary: 1.0),

@@ -1,5 +1,6 @@
-// time in second
-// Reference: https://github.com/scipy/scipy/blob/master/scipy/constants/constants.py
+/// time in second
+/// ## Reference:
+/// 1. https://github.com/scipy/scipy/blob/master/scipy/constants/constants.py
 
 const minute = 60.0;
 const hour = 60 * minute;

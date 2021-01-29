@@ -8,35 +8,41 @@ import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_norm_two.dar
 import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_vander.dart';
 import 'package:scidart/src/numdart/statistic/mean.dart';
 
-///  The {@code PolynomialRegression} class performs a polynomial regression
-///  on an set of <em>N</em> data points (<em>y<sub>i</sub></em>, <em>x<sub>i</sub></em>).
-///  That is, it fits a polynomial
-///  <em>y</em> = &beta;<sub>0</sub> +  &beta;<sub>1</sub> <em>x</em> +
-///  &beta;<sub>2</sub> <em>x</em><sup>2</sup> + ... +
-///  &beta;<sub><em>d</em></sub> <em>x</em><sup><em>d</em></sup>
-///  (where <em>y</em> is the response variable, <em>x</em> is the predictor variable,
-///  and the &beta;<sub><em>i</em></sub> are the regression coefficients)
-///  that minimizes the sum of squared residuals of the multiple regression model.
-///  It also computes associated the coefficient of determination <em>R</em><sup>2</sup>.
-///  <p>
-///  This implementation performs a QR-decomposition of the underlying
-///  Vandermonde matrix, so it is neither the fastest nor the most numerically
-///  stable way to perform the polynomial regression.
-///  References
-///  ----------
-///  .. [1] "Polynomial regression". https://en.wikipedia.org/wiki/Polynomial_regression. Retrieved 2019-07-22.
-///  .. [2] "Polynomial regression". //https://rosettacode.org/wiki/Polynomial_regression#C_sharp. Retrieved 2019-07-22.
-///  .. [3] "polynomial.py". https://github.com/numpy/numpy/blob/v1.15.0/numpy/lib/polynomial.py#L393-L606. Retrieved 2019-07-22.
-///  .. [4] "numpy.polyfit". https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.polyfit.html. Retrieved 2019-07-22.
-///  .. [5] "Princeton Analysis Polynomial Regression". https://algs4.cs.princeton.edu/14analysis/PolynomialRegression.java.html. Retrieved 2019-07-22.
-///  Examples
-///  --------
-///  >>> const int degree = 2;
-///  >>> var x = Array([0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]);
-///  >>> var y = Array([1.0, 6.0, 17.0, 34.0, 57.0, 86.0, 121.0, 162.0, 209.0, 262.0, 321.0]);
-///  >>> var p = PolyFit(x, y, degree);
-///  >>> p
-///  2.999999999999736 x^2 +  2.0000000000002807 x +  1.0000000000000122   (R^2 = 0.9922700105981427)
+/// The PolynomialRegression class performs a polynomial regression
+/// on an set of <em>N</em> data points (<em>y<sub>i</sub></em>, <em>x<sub>i</sub></em>).
+/// That is, it fits a polynomial
+/// <em>y</em> = &beta;<sub>0</sub> +  &beta;<sub>1</sub> <em>x</em> +
+/// &beta;<sub>2</sub> <em>x</em><sup>2</sup> + ... +
+/// &beta;<sub><em>d</em></sub> <em>x</em><sup><em>d</em></sup>
+/// (where <em>y</em> is the response variable, <em>x</em> is the predictor variable,
+/// and the &beta;<sub><em>i</em></sub> are the regression coefficients)
+/// that minimizes the sum of squared residuals of the multiple regression model.
+/// It also computes associated the coefficient of determination <em>R</em><sup>2</sup>.
+/// This implementation performs a QR-decomposition of the underlying
+/// Vandermonde matrix, so it is neither the fastest nor the most numerically
+/// stable way to perform the polynomial regression.
+///
+/// # References
+/// 1. "Polynomial regression". https://en.wikipedia.org/wiki/Polynomial_regression. Retrieved 2019-07-22.
+/// 2. "Polynomial regression". //https://rosettacode.org/wiki/Polynomial_regression#C_sharp. Retrieved 2019-07-22.
+/// 3. "polynomial.py". https://github.com/numpy/numpy/blob/v1.15.0/numpy/lib/polynomial.py#L393-L606. Retrieved 2019-07-22.
+/// 4. "numpy.polyfit". https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.polyfit.html. Retrieved 2019-07-22.
+/// 5. "Princeton Analysis Polynomial Regression". https://algs4.cs.princeton.edu/14analysis/PolynomialRegression.java.html. Retrieved 2019-07-22.
+///
+///
+/// # Examples
+/// ```dart
+/// const int degree = 2;
+/// var x = Array([0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]);
+/// var y = Array([1.0, 6.0, 17.0, 34.0, 57.0, 86.0, 121.0, 162.0, 209.0, 262.0, 321.0]);
+/// var p = PolyFit(x, y, degree);
+///
+/// print(p);
+///
+/// /*
+/// 2.999999999999736 x^2 +  2.0000000000002807 x +  1.0000000000000122   (R^2 = 0.9922700105981427)
+/// */
+/// ```
 class PolyFit {
   String variableName; // name of the predictor variable private
   int degree; // degree of the polynomial regression private

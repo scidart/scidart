@@ -1,5 +1,5 @@
 /// Exponential evaluated at integer values,
-///     exp(x) =  expIntTableA[x + EXP_INT_TABLE_MAX_INDEX] + expIntTableB[x+EXP_INT_TABLE_MAX_INDEX].
+/// exp(x) =  expIntTableA[x + EXP_INT_TABLE_MAX_INDEX] + expIntTableB[x+EXP_INT_TABLE_MAX_INDEX].
 const EXP_INT_TABLE_A = <double>[
   0.0,
   double.nan,

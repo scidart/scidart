@@ -2,9 +2,10 @@ import 'mass.dart';
 import 'physical.dart';
 import 'temperature.dart';
 
-// energy in joule
+/// energy in joule
 
-const eV = elementaryCharge; // * 1 Volt
+/// * 1 Volt
+const eV = elementaryCharge;
 const electron_volt = eV;
 
 const calorie = 4.184;

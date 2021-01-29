@@ -1,9 +1,8 @@
 import '../array_complex.dart';
 
-/// # arrayComplexConcat
 /// Concatenate X in to the current array
 ///
-/// ## Examples
+/// # Examples
 /// ```dart
 /// var list = ArrayComplex([
 ///   Complex(real: 3.0, imaginary: 4.0),

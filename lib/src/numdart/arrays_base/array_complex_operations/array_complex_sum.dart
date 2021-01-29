@@ -1,9 +1,8 @@
 import '../array_complex.dart';
 
-/// # arrayComplexSum
 /// Sum two arrays
 ///
-/// ## Examples
+/// # Examples
 /// ```dart
 /// var list = ArrayComplex([
 ///   Complex(real: 1, imaginary: 1),

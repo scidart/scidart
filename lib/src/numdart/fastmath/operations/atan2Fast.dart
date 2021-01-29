@@ -5,8 +5,8 @@ import 'package:scidart/src/numdart/fastmath/operations/copySign.dart';
 import 'package:scidart/src/numdart/fastmath/tables/fractions.dart';
 
 /// Two arguments arctangent function
-///
-/// [y] ordinate. [x] abscissa.
+/// - [y] ordinate.
+/// - [x] abscissa.
 /// Returns phase angle of point (x,y) between `-PI` and `PI`.
 double atan2Fast(double y, double x) {
   if (x != x || y != y) {

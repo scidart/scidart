@@ -1,7 +1,9 @@
 import 'math.dart';
 
-// physical constants
-// Reference: https://physics.nist.gov/cuu/Constants/
+/// physical constants
+/// ##
+/// Reference:
+/// 1. https://physics.nist.gov/cuu/Constants/
 
 /// speed of light in vacuum
 const c = 299792458;

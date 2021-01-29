@@ -2,10 +2,9 @@ import 'package:scidart/src/numdart/numbers/complex_operations/complex_multiply_
 
 import '../array_complex.dart';
 
-/// # arrayComplexMultiplyToScalar
 /// Multiply all the array elements for a number
 ///
-/// ## Examples
+/// # Examples
 /// ```dart
 /// var list = ArrayComplex([
 ///   Complex(real: 2.0, imaginary: 2.0),

@@ -1,20 +1,25 @@
 import 'package:scidart/src/numdart/numdart.dart';
 
-///  Return modified Bessel function of order 0 for a number.
-///  [x] : double
-///  Returns
-///  -------
-///  y : double
-///  bessel function at x point
-///  References
-///  ----------
-///  .. [1] "scipy.special.i0". https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.i0.html. Retrieved 2019-08-06.
-///  .. [2] "bessel function". https://en.wikipedia.org/wiki/Bessel_function#Modified_Bessel_functions:_I%CE%B1,_K%CE%B1. Retrieved 2019-08-06.
-///  .. [3] "Modified Bessel functions of order (n)". https://stackoverflow.com/questions/8797722/modified-bessel-functions-of-order-n. Retrieved 2019-08-06.
-///  Examples
-///  --------
-///  >>>  besselI0(0);
-///  1.0
+/// Return modified Bessel function of order 0 for a number.
+/// - [x] : double
+///
+/// # Returns
+/// - y : double
+/// bessel function at x point
+///
+/// # References
+/// 1. "scipy.special.i0". https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.i0.html. Retrieved 2019-08-06.
+/// 2. "bessel function". https://en.wikipedia.org/wiki/Bessel_function#Modified_Bessel_functions:_I%CE%B1,_K%CE%B1. Retrieved 2019-08-06.
+/// 3. "Modified Bessel functions of order (n)". https://stackoverflow.com/questions/8797722/modified-bessel-functions-of-order-n. Retrieved 2019-08-06.
+///
+/// # Examples
+/// ```dart
+/// print(besselI0(0));
+///
+/// /* output:
+/// 1.0
+/// */
+/// ```
 double besselI0(double x) {
   double answer;
   var ax = x.abs();

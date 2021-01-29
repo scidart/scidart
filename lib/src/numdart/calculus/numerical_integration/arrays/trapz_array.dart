@@ -1,20 +1,25 @@
 import '../../../numdart.dart';
 import 'check_params_get_range_array.dart';
 
-///  Compute the numerical integration of a Array using the trapezoidal rule.
-///  [y] : input array to integrate
-///  [x] : The sample points corresponding to the y values. If x is null,
-///  the sample points are assumed to be evenly spaced dx apart. The default is null.
-///  [dx] : The spacing between sample points when x is None. The default is 1.
-///  References
-///  ----------
-///  .. [1] "doc numpy.trapz". https://docs.scipy.org/doc/numpy/reference/generated/numpy.trapz.html#numpy.trapz. Retrieved 2019-07-31.
-///  .. [2] "numpy.trapz". https://github.com/numpy/numpy/blob/v1.17.0/numpy/lib/function_base.py#L3987-L4075. Retrieved 2019-07-31.
-///  Examples
-///  --------
-///  >>> var y = Array([1, 2, 3]);
-///  >>> trapzArray(y);
-///  4
+/// Compute the numerical integration of a Array using the trapezoidal rule.
+/// - [y] : input array to integrate
+/// - [x] : The sample points corresponding to the y values. If x is null,
+/// the sample points are assumed to be evenly spaced dx apart. The default is null.
+/// - [dx] : The spacing between sample points when x is None. The default is 1.
+///
+/// # References
+/// 1. "doc numpy.trapz". https://docs.scipy.org/doc/numpy/reference/generated/numpy.trapz.html#numpy.trapz. Retrieved 2019-07-31.
+/// 2. "numpy.trapz". https://github.com/numpy/numpy/blob/v1.17.0/numpy/lib/function_base.py#L3987-L4075. Retrieved 2019-07-31.
+///
+/// # Examples
+/// ```dart
+/// var y = Array([1, 2, 3]);
+///
+/// print(trapzArray(y));
+/// /* output:
+/// 4
+/// */
+/// ```
 double trapzArray(Array y, {Array x, int dx = 1}) {
   checkParamsGetRangeArray(y, x, dx);
 

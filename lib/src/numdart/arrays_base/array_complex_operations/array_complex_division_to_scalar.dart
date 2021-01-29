@@ -2,10 +2,9 @@ import 'package:scidart/src/numdart/numbers/complex_operations/complex_divide_sc
 
 import '../array_complex.dart';
 
-/// # arrayComplexDivisionToScalar
 /// Divide all the array elements for a number
 ///
-/// ## Examples
+/// # Examples
 /// ```dart
 /// var list = ArrayComplex([
 ///   Complex(real: 4.0, imaginary: 4.0),

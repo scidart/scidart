@@ -1,20 +1,26 @@
 import '../../../numdart/numdart.dart';
 
-///  Divide all the columns by a Array
-///  Examples
-///  --------
-///  >>> var a = Array2d([
-///  >>>   Array([2, 2, 2]),
-///  >>>   Array([2, 2, 2]),
-///  >>>   Array([2, 2, 2])
-///  >>> ]);
-///  >>> var b = Array([2, 2, 2]);
-///  >>> matrixDivideColumns(a, b);
-///  Array2d([
-///    Array([1, 1, 1]),
-///    Array([1, 1, 1]),
-///    Array([1, 1, 1])
-///  ]);
+/// Divide all the columns by a Array
+///
+/// # Examples
+/// ```dart
+/// var a = Array2d([
+///   Array([2, 2, 2]),
+///   Array([2, 2, 2]),
+///   Array([2, 2, 2])
+/// ]);
+/// var b = Array([2, 2, 2]);
+///
+/// print(matrixDivideColumns(a, b));
+///
+/// /* output:
+/// Array2d([
+///   Array([1, 1, 1]),
+///   Array([1, 1, 1]),
+///   Array([1, 1, 1])
+/// ]);
+/// */
+/// ```
 Array2d matrixDivideColumns(Array2d a, Array b) {
   a.isMatrix();
 

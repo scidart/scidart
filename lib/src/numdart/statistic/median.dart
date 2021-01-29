@@ -1,11 +1,17 @@
 import 'package:scidart/src/numdart/arrays_base/array.dart';
 
-///  Return the median of a array
-///  Examples
-///  --------
-///  >>> var n = Array([1, 2, 3]);
-///  >>> median(n);
-///  2.0
+/// Return the median of a array
+///
+/// # Examples
+/// ```dart
+/// var n = Array([1, 2, 3]);
+///
+/// print(median(n));
+///
+/// /* output:
+/// 2.0
+/// */
+/// ```
 double median(Array a) {
   var middle = a.length ~/ 2;
   if (a.length % 2 == 1) {

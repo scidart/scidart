@@ -3,31 +3,34 @@ import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 import 'package:scidart/src/numdart/geometric/hypotenuse.dart';
 import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_sub.dart';
 
-///  QR Decomposition.
-///  For an m-by-n matrix A with m >= n, the QR decomposition is an m-by-n
-///  orthogonal matrix Q and an n-by-n upper triangular matrix R so that
-///  A = Q*R.
-///  The QR decompostion always exists, even if the matrix does not have
-///  full rank, so the constructor will never fail.  The primary use of the
-///  QR decomposition is in the least squares solution of nonsquare systems
-///  of simultaneous linear equations.  This will fail if isFullRank()
-///  returns false.
-///  References
-///  ----------
-///  .. [1] "QR Decomposition". https://en.wikipedia.org/wiki/QR_decomposition. Retrieved 2019-07-17.
-///  .. [2] "Jama". https://math.nist.gov/javanumerics/jama/. Retrieved 2019-07-17.
-///  .. [3] "QR Decomposition Algorithms". https://rosettacode.org/wiki/QR_decomposition#Java. Retrieved 2019-07-17.
-///  .. [4] "numpy.linalg.qr". https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.qr.html. Retrieved 2019-07-17.
-///  Examples
-///  --------
-///  >>> var qr = QR(Array2d([
-///  >>>    Array([4.0, 2.0, 1.0]),
-///  >>>    Array([16.0, 4.0, 1.0]),
-///  >>>    Array([64.0, 8.0, 1.0])
-///  >>> ]));
-///  >>> var q = qr.Q();
-///  >>> q.truncateEachElement(frac);
-///  >>> var r = qr.R();
+/// QR Decomposition.
+/// For an m-by-n matrix A with m >= n, the QR decomposition is an m-by-n
+/// orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+/// A = Q*R.
+/// The QR decompostion always exists, even if the matrix does not have
+/// full rank, so the constructor will never fail.  The primary use of the
+/// QR decomposition is in the least squares solution of nonsquare systems
+/// of simultaneous linear equations.  This will fail if isFullRank()
+/// returns false.
+///
+/// # References
+/// 1. "QR Decomposition". https://en.wikipedia.org/wiki/QR_decomposition. Retrieved 2019-07-17.
+/// 2. "Jama". https://math.nist.gov/javanumerics/jama/. Retrieved 2019-07-17.
+/// 3. "QR Decomposition Algorithms". https://rosettacode.org/wiki/QR_decomposition#Java. Retrieved 2019-07-17.
+/// 4. "numpy.linalg.qr". https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.qr.html. Retrieved 2019-07-17.
+///
+/// # Examples
+/// ```dart
+/// var qr = QR(Array2d([
+///    Array([4.0, 2.0, 1.0]),
+///    Array([16.0, 4.0, 1.0]),
+///    Array([64.0, 8.0, 1.0])
+/// ]));
+/// var q = qr.Q();
+/// print(q);
+/// var r = qr.R();
+/// print(r);
+/// ```
 class QR {
   //#region Class variables
   ///  Array for internal storage of decomposition.

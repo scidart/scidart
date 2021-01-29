@@ -1,27 +1,33 @@
 import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 
-///  Multiply two matrix
-///  References
-///  --------
-///  .. [1] "Matrix multiplication using arrays". https://stackoverflow.com/questions/17623876/matrix-multiplication-using-arrays. Retrieved 2019-07-15.
-///  Examples
-///  --------
-///  >>> var a = Array2d([
-///  >>>     Array([4, 2, 1]),
-///  >>>     Array([16, 4, 1]),
-///  >>>     Array([64, 8, 1])
-///  >>>  ]);
-///  >>> var b = Array2d([
-///  >>>    Array([1]),
-///  >>>    Array([1]),
-///  >>>    Array([1])
-///  >>>  ]);
-///  >>> matrixDot(a, b);
-///  Array2d([
-///    Array([7]),
-///    Array([21]),
-///    Array([73])
-///  ]);
+/// Multiply two matrix
+///
+/// # References
+/// 1. "Matrix multiplication using arrays". https://stackoverflow.com/questions/17623876/matrix-multiplication-using-arrays. Retrieved 2019-07-15.
+///
+/// # Examples
+/// ```dart
+/// var a = Array2d([
+///   Array([4, 2, 1]),
+///   Array([16, 4, 1]),
+///   Array([64, 8, 1])
+/// ]);
+/// b = Array2d([
+///   Array([1]),
+///   Array([1]),
+///   Array([1])
+/// ]);
+///
+/// print(matrixDot(a, b));
+///
+/// /* output:
+/// Array2d([
+///   Array([7]),
+///   Array([21]),
+///   Array([73])
+/// ]);
+/// */
+/// ```
 Array2d matrixDot(Array2d a, Array2d b) {
   a.isMatrix();
   b.isMatrix();

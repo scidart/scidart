@@ -3,20 +3,24 @@ import 'package:scidart/src/scidart/fftpack/fft/fft.dart';
 import 'package:scidart/src/scidart/fftpack/fft/ifft.dart';
 import 'package:scidart/src/scidart/signal/convolution/convolution_complex.dart';
 
-///  Computes the circular convolution of the given complex vectors.
-///  Each vector's length must be the same.
-///  [input] : input signal
-///  [kernel] : kernel periodic signal
-///  [keepLength] : the output length is the same of the input, default is false
-///  References
-///  ----------
-///  .. [1] "1d fast convolution". https://stackoverflow.com/questions/35474078/python-1d-array-circular-convolution. Retrieved 2019-07-25.
-///  Examples
-///  --------
-///  >>> var xi = Array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]).toComplexArray();
-///  >>> var yi = Array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]).toComplexArray();
-///  >>> convolutionCircularComplex(xi, yi);
-///  ArrayComplex([
+/// Computes the circular convolution of the given complex vectors.
+/// Each vector's length must be the same.
+/// - [input] : input signal
+/// - [kernel] : kernel periodic signal
+/// - [keepLength] : the output length is the same of the input, default is false
+///
+/// # References
+/// 1. "1d fast convolution". https://stackoverflow.com/questions/35474078/python-1d-array-circular-convolution. Retrieved 2019-07-25.
+///
+/// # Examples
+/// ```dart
+/// var xi = Array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]).toComplexArray();
+/// var yi = Array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]).toComplexArray();
+///
+/// print(convolutionCircularComplex(xi, yi));
+///
+/// /* output:
+/// ArrayComplex([
 ///  Complex(real: 1.0000000000000004, imaginary: -3.138230416273776e-14),
 ///  Complex(real: 1.9999999999999878, imaginary: -3.126388037344441e-14),
 ///  Complex(real: 2.999999999999988, imaginary: -2.0605739337042905e-14),
@@ -46,6 +50,8 @@ import 'package:scidart/src/scidart/signal/convolution/convolution_complex.dart'
 ///  Complex(real: 2.9999999999999933, imaginary: 3.884300288821881e-14),
 ///  Complex(real: 2.000000000000009, imaginary: 3.789561257387201e-15),
 ///  Complex(real: 1.0000000000000058, imaginary: -5.329070518200751e-16)])
+/// */
+/// ```
 ArrayComplex convolutionCircularComplex(ArrayComplex input, ArrayComplex kernel,
     {keepLength = false}) {
   if (keepLength) {

@@ -2,35 +2,41 @@ import 'package:scidart/src/numdart/arrays_base/arrays_base.dart';
 
 import 'check_params_get_range_array.dart';
 
-///  Integrate y(x) using samples along the given axis and the composite
-///  Simpson's rule.  If x is None, spacing of dx is assumed.
-///  If there are an even number of samples, N, then there are an odd
-///  number of intervals (N-1), but Simpson's rule requires an even number
-///  of intervals.  The parameter 'even' controls how this is handled.
-///  Parameters
-///  ----------
-///  [y] : Array to be integrated.
-///  [x] : Optional. If given, the points at which `y` is sampled.
-///  [dx] : Optional. Spacing of integration points along axis of `y`.
-///  Only used when `x` is null(not informed). Default is 1.
-///  [even] : Even {avg, first, last}, optional
-///  \[avg\] : Average two results:1) use the first N-2 intervals with
-///  a trapezoidal rule on the last interval and 2) use the last
-///  N-2 intervals with a trapezoidal rule on the first interval.
-///  \[first\] : Use Simpson's rule for the first N-2 intervals with
-///  a trapezoidal rule on the last interval.
-///  \[last\] : Use Simpson's rule for the last N-2 intervals with a
-///  trapezoidal rule on the first interval.
-///  References
-///  ----------
-///  .. [1] "numpy.simps". https://github.com/scipy/scipy/blob/v1.3.0/scipy/integrate/quadrature.py#L384-L506. Retrieved 2019-07-31.
-///  .. [2] "doc numpy.simps". https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.simps.html#scipy.integrate.simps. Retrieved 2019-07-31.
-///  Examples
-///  --------
-///  >>> var x = arange(start: 0, stop: 10);
-///  >>> var y = arange(start: 0, stop: 10);
-///  >>> simpsArray(y, x: x);
-///  40.5
+/// Integrate y(x) using samples along the given axis and the composite
+/// Simpson's rule.  If x is None, spacing of dx is assumed.
+/// If there are an even number of samples, N, then there are an odd
+/// number of intervals (N-1), but Simpson's rule requires an even number
+/// of intervals.  The parameter 'even' controls how this is handled.
+///
+/// # Parameters
+/// - [y] : Array to be integrated.
+/// - [x] : Optional. If given, the points at which `y` is sampled.
+/// - [dx] : Optional. Spacing of integration points along axis of `y`.
+/// Only used when `x` is null(not informed). Default is 1.
+/// - [even] : Even {avg, first, last}, optional
+/// \[avg\] : Average two results:1) use the first N-2 intervals with
+/// a trapezoidal rule on the last interval and 2) use the last
+/// N-2 intervals with a trapezoidal rule on the first interval.
+/// \[first\] : Use Simpson's rule for the first N-2 intervals with
+/// a trapezoidal rule on the last interval.
+/// \[last\] : Use Simpson's rule for the last N-2 intervals with a
+/// trapezoidal rule on the first interval.
+///
+/// # References
+/// 1. "numpy.simps". https://github.com/scipy/scipy/blob/v1.3.0/scipy/integrate/quadrature.py#L384-L506. Retrieved 2019-07-31.
+/// 2. "doc numpy.simps". https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.simps.html#scipy.integrate.simps. Retrieved 2019-07-31.
+///
+/// # Examples
+/// ```dart
+/// var x = arange(start: 0, stop: 10);
+/// var y = arange(start: 0, stop: 10);
+///
+/// print(simpsArray(y, x: x));
+///
+/// /* output:
+/// 40.5
+/// */
+/// ```
 double simpsArray(Array y, {Array x, int dx = 1, Even even = Even.last}) {
   checkParamsGetRangeArray(y, x, dx);
   var result;

@@ -13,7 +13,7 @@ double expm1(double x, {List<double> hiPrecOut}) {
   if (x <= -1.0 || x >= 1.0) {
     // If not between +/- 1.0
     //return exp(x) - 1.0;
-    final hiPrec = List<double>(2);
+    final hiPrec = List<double>.filled(2, 0.0);
     expFast(x, 0.0, hiPrec);
     if (x > 0.0) {
       return -1.0 + hiPrec[0] + hiPrec[1];

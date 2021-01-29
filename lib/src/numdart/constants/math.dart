@@ -22,7 +22,7 @@ const sqrt1_2 = math.sqrt1_2;
 
 const sqrt2 = math.sqrt2;
 
-// angle in rad
+/// angle in rad
 const degree = pi / 180;
 const arcmin = degree / 60;
 const arcminute = arcmin;

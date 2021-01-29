@@ -45,7 +45,7 @@ double sinh(double x) {
   double result;
 
   if (x > 0.25) {
-    final hiPrec = List<double>(2);
+    final hiPrec = List<double>.filled(2, 0.0);
     expFast(x, 0.0, hiPrec);
 
     var ya = hiPrec[0] + hiPrec[1];
@@ -82,7 +82,7 @@ double sinh(double x) {
     result = ya + yb;
     result *= 0.5;
   } else {
-    final hiPrec = List<double>(2);
+    final hiPrec = List<double>.filled(2, 0.0);
     expm1(x, hiPrecOut: hiPrec);
 
     var ya = hiPrec[0] + hiPrec[1];

@@ -1,5 +1,7 @@
-// SI prefixes
-// Reference: https://github.com/scipy/scipy/blob/master/scipy/constants/constants.py
+/// SI prefixes
+///
+/// ## Reference:
+/// 1. https://github.com/scipy/scipy/blob/master/scipy/constants/constants.py
 
 const yotta = 1e24;
 const zetta = 1e21;

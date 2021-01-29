@@ -2,29 +2,39 @@ import 'dart:collection';
 
 import 'array2d.dart';
 
-///  Class to create 3 dimensions Array.
-///  Constructors:
-///  ----------
-///  Array3d(List<double> list) : default constructor
+/// Class to create 3 dimensions Array.
 ///
-///  Array3d.empty() : empty array
+/// # Constructors:
+/// ```dart
+/// Array3d(List<double> list) // default constructor
 ///
-///  Array3d.fromArray(Array list) : from another array
+/// Array3d.empty() // empty array
 ///
-///  Array3d.fixed(int length) : from a fixed length
-///  Examples
-///  --------
-///  >>> import 'package:scidart/src/numdart/numdart.dart';
-///  >>> var book = Array3d.empty();
-///  >>> var page = Array2d.empty();
-///  >>> page.add(Array([1.0 ,2.0 , 3.0]));
-///  >>> page.add(Array([1.0 ,2.0 , 3.0]));
-///  >>> page.add(Array([1.0 ,2.0 , 3.0]));
-///  >>> book.add(page);
-///  >>> book.add(page);
-///  >>> book.add(page);
-///  >>> book;
-///  Array3d([Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])])
+/// Array3d.fromArray(Array list) // from another array
+///
+/// Array3d.fixed(int length) // from a fixed length
+/// ```
+///
+/// # Examples
+/// ```dart
+/// import 'package:scidart/src/numdart/numdart.dart';
+///
+/// var book = Array3d.empty();
+/// var page = Array2d.empty();
+///
+/// page.add(Array([1.0 ,2.0 , 3.0]));
+/// page.add(Array([1.0 ,2.0 , 3.0]));
+/// page.add(Array([1.0 ,2.0 , 3.0]));
+/// book.add(page);
+/// book.add(page);
+/// book.add(page);
+///
+/// print(book);
+///
+/// /* output:
+/// Array3d([Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])])
+/// */
+/// ```
 class Array3d extends ListBase<Array2d> {
   List<Array2d> l = <Array2d>[];
 
@@ -40,7 +50,7 @@ class Array3d extends ListBase<Array2d> {
   }
 
   Array3d.fixed(int length) {
-    l = List<Array2d>(length);
+    l = List<Array2d>.filled(length, Array2d.empty());
   }
   //#endregion
 
@@ -48,19 +58,25 @@ class Array3d extends ListBase<Array2d> {
   @override
   set length(int newLength) { l.length = newLength; }
 
-  ///  Return the length of Array3d
-  ///  Examples
-  ///  --------
-  ///  >>> var book = Array3d.empty();
-  ///  >>> var page = Array2d.empty();
-  ///  >>> page.add(Array([1.0 ,2.0 , 3.0]));
-  ///  >>> page.add(Array([1.0 ,2.0 , 3.0]));
-  ///  >>> page.add(Array([1.0 ,2.0 , 3.0]));
-  ///  >>> book.add(page);
-  ///  >>> book.add(page);
-  ///  >>> book.add(page);
-  ///  >>> book.length;
-  ///  3
+  /// Return the length of Array3d
+  ///
+  /// # Examples
+  /// ```dart
+  /// var book = Array3d.empty();
+  /// var page = Array2d.empty();
+  /// page.add(Array([1.0 ,2.0 , 3.0]));
+  /// page.add(Array([1.0 ,2.0 , 3.0]));
+  /// page.add(Array([1.0 ,2.0 , 3.0]));
+  /// book.add(page);
+  /// book.add(page);
+  /// book.add(page);
+  ///
+  /// print(book.length);
+  ///
+  /// /* output:
+  /// 3
+  /// */
+  /// ```
   @override
   int get length => l.length;
   @override
@@ -70,19 +86,26 @@ class Array3d extends ListBase<Array2d> {
   //#endregion
 
   //#region overload methods
-  ///  Convert a Array3d object to a String representation
-  ///  Examples
-  ///  --------
-  ///  >>> var book = Array3d.empty();
-  ///  >>> var page = Array2d.empty();
-  ///  >>> page.add(Array([1.0 ,2.0 , 3.0]));
-  ///  >>> page.add(Array([1.0 ,2.0 , 3.0]));
-  ///  >>> page.add(Array([1.0 ,2.0 , 3.0]));
-  ///  >>> book.add(page);
-  ///  >>> book.add(page);
-  ///  >>> book.add(page);
-  ///  >>> book;
-  ///  Array3d([Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])])
+  /// Convert a Array3d object to a String representation
+  ///
+  /// # Examples
+  /// ```dart
+  /// var book = Array3d.empty();
+  /// var page = Array2d.empty();
+  ///
+  /// page.add(Array([1.0 ,2.0 , 3.0]));
+  /// page.add(Array([1.0 ,2.0 , 3.0]));
+  /// page.add(Array([1.0 ,2.0 , 3.0]));
+  /// book.add(page);
+  /// book.add(page);
+  /// book.add(page);
+  ///
+  /// print(book);
+  ///
+  /// /* output:
+  /// Array3d([Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])])
+  /// */
+  /// ```
   @override
   String toString() {
     var str = IterableBase.iterableToFullString(this, '[', ']');

@@ -33,7 +33,7 @@ double cosh(double x) {
     }
   }
 
-  final hiPrec = List<double>(2);
+  final hiPrec = List<double>.filled(2, 0.0);
   if (x < 0.0) {
     x = -x;
   }

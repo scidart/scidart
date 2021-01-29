@@ -2,25 +2,34 @@ import 'dart:collection';
 
 import 'package:scidart/src/numdart/numbers/complex.dart';
 
-///  Class to create 1 dimension ArrayComplex.
-///  Constructors:
-///  ----------
-///  ArrayComplex(List<Complex> list) : default constructor
+/// Class to create 1 dimension ArrayComplex.
 ///
-///  ArrayComplex.empty() : empty array
+/// # Constructors:
+/// ```dart
+/// ArrayComplex(List<Complex> list) : default constructor
 ///
-///  ArrayComplex.fromArray(Array list) : from another array
+/// ArrayComplex.empty() : empty array
 ///
-///  ArrayComplex.fixed(int length) : from a fixed length
-///  Examples
-///  --------
-///  >>> import 'package:scidart/src/numdart/numdart.dart';
-///  >>> var list = ArrayComplex([
-///  >>> Complex(real: 3.0, imaginary: 4.0),
-///  >>> Complex(real: 3.0, imaginary: 4.0) ,
-///  >>> Complex(real: 3.0, imaginary: 4.0)]);
-///  >>> list
-///  ArrayComplex([Complex(real: 3.0, imaginary: 4.0), Complex(real: 3.0, imaginary: 4.0), Complex(real: 3.0, imaginary: 4.0)])
+/// ArrayComplex.fromArray(Array list) : from another array
+///
+/// ArrayComplex.fixed(int length) : from a fixed length
+/// ```
+///
+/// # Examples
+/// ```dart
+/// import 'package:scidart/src/numdart/numdart.dart';
+///
+/// var list = ArrayComplex([
+///   Complex(real: 3.0, imaginary: 4.0),
+///   Complex(real: 3.0, imaginary: 4.0) ,
+///   Complex(real: 3.0, imaginary: 4.0)]);
+///
+/// print(list);
+///
+/// /* output:
+/// ArrayComplex([Complex(real: 3.0, imaginary: 4.0), Complex(real: 3.0, imaginary: 4.0), Complex(real: 3.0, imaginary: 4.0)])
+/// */
+/// ```
 class ArrayComplex extends ListBase<Complex> {
   List<Complex> l = [];
 
@@ -40,7 +49,7 @@ class ArrayComplex extends ListBase<Complex> {
     if (initialValue != null) {
       l = List<Complex>.generate(length, (i) => initialValue);
     } else {
-      l = List<Complex>(length);
+      l = List<Complex>.filled(length, Complex.ri(0.0, 0.0));
     }
   }
 
@@ -52,15 +61,21 @@ class ArrayComplex extends ListBase<Complex> {
     l.length = newLength;
   }
 
-  ///  Return the length of ComplexArray
-  ///  Examples
-  ///  --------
-  ///  >>> var list = ArrayComplex([
-  ///  >>> Complex(real: 3.0, imaginary: 4.0),
-  ///  >>> Complex(real: 3.0, imaginary: 4.0) ,
-  ///  >>> Complex(real: 3.0, imaginary: 4.0)]);
-  ///  >>> list.length;
-  ///  3
+  /// Return the length of ComplexArray
+  ///
+  /// # Examples
+  /// ```dart
+  /// var list = ArrayComplex([
+  ///   Complex(real: 3.0, imaginary: 4.0),
+  ///   Complex(real: 3.0, imaginary: 4.0) ,
+  ///   Complex(real: 3.0, imaginary: 4.0)]);
+  ///
+  /// print(list.length);
+  ///
+  /// /* output:
+  /// 3
+  /// */
+  /// ```
   @override
   int get length => l.length;
 
@@ -72,20 +87,26 @@ class ArrayComplex extends ListBase<Complex> {
     l[index] = value;
   }
 
-  ///  Multiply two arrays
-  ///  Examples
-  ///  --------
-  ///  >>> var list = ArrayComplex([
-  ///  >>> Complex(real: 2, imaginary: 5),
-  ///  >>> Complex(real: 2, imaginary: 5) ,
-  ///  >>> Complex(real: 2, imaginary: 5)]);
-  ///  >>> var list2 = ArrayComplex([
-  ///  >>> Complex(real: 4, imaginary: -3),
-  ///  >>> Complex(real: 4, imaginary: -3),
-  ///  >>> Complex(real: 4, imaginary: -3)]);
-  ///  >>> var cList = list * list2;
-  ///  >>> clist
-  ///  ArrayComplex([Complex(real: 23.0, imaginary: 14.0), Complex(real: 23.0, imaginary: 14.0), Complex(real: 23.0, imaginary: 14.0)])
+  /// Multiply two arrays
+  ///
+  /// # Examples
+  /// ```dart
+  /// var list = ArrayComplex([
+  ///   Complex(real: 2, imaginary: 5),
+  ///   Complex(real: 2, imaginary: 5) ,
+  ///   Complex(real: 2, imaginary: 5)]);
+  /// var list2 = ArrayComplex([
+  ///   Complex(real: 4, imaginary: -3),
+  ///   Complex(real: 4, imaginary: -3),
+  ///   Complex(real: 4, imaginary: -3)]);
+  /// var cList = list * list2;
+  ///
+  /// print(clist)
+  ///
+  /// /* output:
+  /// ArrayComplex([Complex(real: 23.0, imaginary: 14.0), Complex(real: 23.0, imaginary: 14.0), Complex(real: 23.0, imaginary: 14.0)])
+  /// */
+  /// ```
   ArrayComplex operator *(ArrayComplex b) {
     _checkArray(b);
     var c = ArrayComplex.fixed(length);
@@ -96,13 +117,19 @@ class ArrayComplex extends ListBase<Complex> {
     return c;
   }
 
-  ///  compare two arrays
-  ///  Examples
-  ///  --------
-  ///  >>> var n = Array([1, 2, 3]);
-  ///  >>> var n2 = Array([1, 2, 3]);
-  ///  >>> n == n2;
-  ///  true
+  /// compare two arrays
+  ///
+  /// # Examples
+  /// ```dart
+  /// var n = Array([1, 2, 3]);
+  /// var n2 = Array([1, 2, 3]);
+  ///
+  /// print(n == n2);
+  ///
+  /// /* output:
+  /// true
+  /// */
+  /// ``
   @override
   bool operator ==(b) {
     if (b is ArrayComplex) {
@@ -118,21 +145,29 @@ class ArrayComplex extends ListBase<Complex> {
     }
   }
 
-  ///  Return a array given a index interval
-  ///  [start] : start index close interval
-  ///  [end] : end index open interval
-  ///  [step] : optional, step between samples
-  ///  [reverse] : optional, return a reversed array
-  ///  Examples
-  ///  --------
-  ///  >>> var var list = ArrayComplex([
-  ///  >>> Complex(real: 3.0, imaginary: 4.0),
-  ///  >>> Complex(real: 3.0, imaginary: 4.0),
-  ///  >>> Complex(real: 3.0, imaginary: 4.0)]);
-  ///  >>> var b = list.getRangeArray(0, 1);
-  ///  ArrayComplex([
-  ///    Complex(real: 3.0, imaginary: 4.0)
-  ///  ]);
+  /// Return a array given a index interval
+  ///
+  /// - [start] : start index close interval
+  /// - [end] : end index open interval
+  /// - [step] : optional, step between samples
+  /// - [reverse] : optional, return a reversed array
+  ///
+  /// # Examples
+  /// ```dart
+  /// var var list = ArrayComplex([
+  ///   Complex(real: 3.0, imaginary: 4.0),
+  ///   Complex(real: 3.0, imaginary: 4.0),
+  ///   Complex(real: 3.0, imaginary: 4.0)]);
+  /// var b = list.getRangeArray(0, 1);
+  ///
+  /// print(b)
+  ///
+  /// /* output:
+  /// ArrayComplex([
+  ///   Complex(real: 3.0, imaginary: 4.0)
+  /// ]);
+  /// */
+  /// ```
   ArrayComplex getRangeArray(int start, int end,
       {int step = 1, bool reverse = false}) {
     var b = ArrayComplex.empty();
@@ -149,15 +184,20 @@ class ArrayComplex extends ListBase<Complex> {
   //#endregion
 
   //#region overload methods
-  ///  Convert a ArrayComplex object to a String representation
-  ///  Examples
-  ///  --------
-  ///  >>> var list = ArrayComplex([
-  ///  >>> Complex(real: 3.0, imaginary: 4.0),
-  ///  >>> Complex(real: 3.0, imaginary: 4.0) ,
-  ///  >>> Complex(real: 3.0, imaginary: 4.0)]);
-  ///  >>> list.toString();
-  ///  ArrayComplex([Complex(real: 3.0, imaginary: 4.0), Complex(real: 3.0, imaginary: 4.0), Complex(real: 3.0, imaginary: 4.0)])
+  /// Convert a ArrayComplex object to a String representation
+  ///
+  /// # Examples
+  /// ```dart
+  /// var list = ArrayComplex([
+  ///   Complex(real: 3.0, imaginary: 4.0),
+  ///   Complex(real: 3.0, imaginary: 4.0) ,
+  ///   Complex(real: 3.0, imaginary: 4.0)]);
+  ///
+  /// print(list.toString());
+  /// /* output
+  /// ArrayComplex([Complex(real: 3.0, imaginary: 4.0), Complex(real: 3.0, imaginary: 4.0), Complex(real: 3.0, imaginary: 4.0)])
+  /// */
+  /// ```
   @override
   String toString() {
     var str = IterableBase.iterableToFullString(this, '[', ']');
@@ -167,7 +207,7 @@ class ArrayComplex extends ListBase<Complex> {
   //#endregion
 
   //#region memory operations
-  ///  Generate a copy of the current vector
+  /// Generate a copy of the current vector
   ArrayComplex copy() => ArrayComplex.fromArray(this);
 
   //#endregion

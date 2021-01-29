@@ -1,21 +1,27 @@
 import 'package:scidart/src/numdart/arrays_base/array.dart';
 import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 
-///  Multiply all the columns by a Array
-///  Examples
-///  --------
-///  >>> var a = Array2d([
-///  >>>    Array([4, 2, 1]),
-///  >>>    Array([16, 4, 1]),
-///  >>>    Array([64, 8, 1])
-///  >>> ]);
-///  >>> var b = Array([2, 2, 2]);
-///  >>> matrixMultiplyColumns(a, b);
-///  Array2d([
-///    Array([8.0, 4.0, 2.0]),
-///    Array([32.0, 8.0, 2.0]),
-///    Array([128.0, 16.0, 2.0])
-///  ]);
+/// Multiply all the columns by a Array
+///
+/// # Examples
+/// ```dart
+/// var a = Array2d([
+///   Array([4, 2, 1]),
+///   Array([16, 4, 1]),
+///   Array([64, 8, 1])
+/// ]);
+/// var b = Array([2, 2, 2]);
+///
+/// print(matrixMultiplyColumns(a, b));
+///
+/// /* output:
+/// Array2d([
+///   Array([8.0, 4.0, 2.0]),
+///   Array([32.0, 8.0, 2.0]),
+///   Array([128.0, 16.0, 2.0])
+/// ]);
+/// */
+/// ```
 Array2d matrixMultiplyColumns(Array2d a, Array b) {
   a.isMatrix();
 

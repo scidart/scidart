@@ -66,9 +66,11 @@ ArrayComplex fft(ArrayComplex x, {int n, bool normalization = false}) {
   ArrayComplex res;
   if (buffer.isEmpty) {
     return ArrayComplex.empty();
-  } else if ((n & (n - 1)) == 0) { // It is power of 2
+  } else if ((n & (n - 1)) == 0) {
+    // It is power of 2
     res = _transformRadix2(buffer);
-  } else { // More complicated algorithm for arbitrary sizes
+  } else {
+    // More complicated algorithm for arbitrary sizes
 //  return _transformBluestein(buffer); // one option, but didnt work as I expected
 //  return _recursive(buffer); // another option, but didnt work as I expected
     res = _dft(buffer);
@@ -229,10 +231,12 @@ ArrayComplex _transformRadix2(ArrayComplex x) {
 ArrayComplex _dft(ArrayComplex buffer) {
   var n = buffer.length;
   var out = ArrayComplex.fixed(n);
-  for (var k = 0; k < n; k++) { // For each output element
+  for (var k = 0; k < n; k++) {
+    // For each output element
     var sumreal = 0.0;
     var sumimag = 0.0;
-    for (var t = 0; t < n; t++) { // For each input element
+    for (var t = 0; t < n; t++) {
+      // For each input element
       var angle = 2 * math.pi * t * k / n;
       sumreal += buffer[t].real * math.cos(angle) +
           buffer[t].imaginary * math.sin(angle);

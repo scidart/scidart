@@ -42,7 +42,6 @@ double simpsArray(Array y, {Array x, int dx = 1, Even even = Even.last}) {
   var result;
   var N = y.length;
 
-
   if (N % 2 == 0) {
     var val = 0.0;
     result = 0.0;
@@ -92,11 +91,7 @@ double simpsArray(Array y, {Array x, int dx = 1, Even even = Even.last}) {
   return result;
 }
 
-enum Even {
-  avg,
-  first,
-  last
-}
+enum Even { avg, first, last }
 
 double _basicSimps(Array y, int start, int stop, Array x, int dx) {
   var result;
@@ -109,7 +104,8 @@ double _basicSimps(Array y, int start, int stop, Array x, int dx) {
   var slice1 = y.getRangeArray(start + 1, stop + 1, step: step);
   var slice2 = y.getRangeArray(start + 2, stop + 2, step: step);
 
-  if (x == null) { // Even spaced Simpson's rule.
+  if (x == null) {
+    // Even spaced Simpson's rule.
     result = arraySum(arrayMultiplyToScalar(
         slice0 + arrayMultiplyToScalar(slice1, 4) + slice2, (dx / 3.0)));
   } else {
@@ -121,11 +117,12 @@ double _basicSimps(Array y, int start, int stop, Array x, int dx) {
     var hsum = h0 + h1;
     var hprod = h0 * h1;
     var h0divh1 = h0 / h1;
-    var tmp = arrayDivisionToScalar(hsum, 6.0) * (slice0 *
-        (Array.fixed(h0divh1.length, initialValue: 2) -
-            Array.fixed(h0divh1.length, initialValue: 1.0) / h0divh1) +
-        slice1 * hsum * hsum / hprod +
-        slice2 * (Array.fixed(h0divh1.length, initialValue: 2) - h0divh1));
+    var tmp = arrayDivisionToScalar(hsum, 6.0) *
+        (slice0 *
+                (Array.fixed(h0divh1.length, initialValue: 2) -
+                    Array.fixed(h0divh1.length, initialValue: 1.0) / h0divh1) +
+            slice1 * hsum * hsum / hprod +
+            slice2 * (Array.fixed(h0divh1.length, initialValue: 2) - h0divh1));
     result = arraySum(tmp);
   }
   return result;

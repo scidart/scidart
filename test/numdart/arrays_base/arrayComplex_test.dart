@@ -6,8 +6,9 @@ void main() {
   test('set get length', () {
     var list = ArrayComplex([
       Complex(real: 2.0, imaginary: 2.0),
-      Complex(real: 2.0, imaginary: 2.0) ,
-      Complex(real: 2.0, imaginary: 2.0)]);
+      Complex(real: 2.0, imaginary: 2.0),
+      Complex(real: 2.0, imaginary: 2.0)
+    ]);
     print(list);
 
     expect(list.length, 3);
@@ -21,14 +22,14 @@ void main() {
     print(list);
 
     expect(list.length, 2);
-
   });
 
   test('index operator', () {
     var list = ArrayComplex([
       Complex(real: 2.0, imaginary: 2.0),
-      Complex(real: 2.0, imaginary: 2.0) ,
-      Complex(real: 2.0, imaginary: 2.0)]);
+      Complex(real: 2.0, imaginary: 2.0),
+      Complex(real: 2.0, imaginary: 2.0)
+    ]);
 
     expect(list[0], Complex.ri(2.0, 2.0));
 
@@ -41,12 +42,14 @@ void main() {
   test('create and mutiply arrays', () {
     var list = ArrayComplex([
       Complex(real: 2, imaginary: 5),
-      Complex(real: 2, imaginary: 5) ,
-      Complex(real: 2, imaginary: 5)]);
+      Complex(real: 2, imaginary: 5),
+      Complex(real: 2, imaginary: 5)
+    ]);
     var list2 = ArrayComplex([
       Complex(real: 4, imaginary: -3),
       Complex(real: 4, imaginary: -3),
-      Complex(real: 4, imaginary: -3)]);
+      Complex(real: 4, imaginary: -3)
+    ]);
 
     var cList = list * list2;
 
@@ -61,11 +64,10 @@ void main() {
     var list = ArrayComplex([
       Complex(real: 3.0, imaginary: 4.0),
       Complex(real: 3.0, imaginary: 4.0),
-      Complex(real: 3.0, imaginary: 4.0)]);
-    var b = list.getRangeArray(0, 1);
-    var bExpec = ArrayComplex([
       Complex(real: 3.0, imaginary: 4.0)
     ]);
+    var b = list.getRangeArray(0, 1);
+    var bExpec = ArrayComplex([Complex(real: 3.0, imaginary: 4.0)]);
 
     expect(b, bExpec);
   });
@@ -75,8 +77,9 @@ void main() {
   test('toString', () {
     var list = ArrayComplex([
       Complex(real: 3.0, imaginary: 4.0),
-      Complex(real: 3.0, imaginary: 4.0) ,
-      Complex(real: 3.0, imaginary: 4.0)]);
+      Complex(real: 3.0, imaginary: 4.0),
+      Complex(real: 3.0, imaginary: 4.0)
+    ]);
 
     var str = list.toString();
 

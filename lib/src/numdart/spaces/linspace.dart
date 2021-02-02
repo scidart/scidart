@@ -45,19 +45,20 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 /// Array([ 2. ,  2.2,  2.4,  2.6,  2.8])
 /// */
 /// ```
-Array linspace(double start, double stop, {int num=50, bool endpoint=true}) {
+Array linspace(double start, double stop,
+    {int num = 50, bool endpoint = true}) {
   if (num <= 0) {
-    throw('num need be igual or greater than 0');
+    throw ('num need be igual or greater than 0');
   }
 
   double delta;
   if (endpoint) {
-    delta = (stop-start)/(num-1);
+    delta = (stop - start) / (num - 1);
   } else {
-    delta = (stop-start)/num;
+    delta = (stop - start) / num;
   }
 
-  var space = Array(List<double>.generate(num, (i) => start + delta*i));
+  var space = Array(List<double>.generate(num, (i) => start + delta * i));
 
   return space;
 }

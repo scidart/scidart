@@ -3,13 +3,13 @@ import 'package:test/test.dart';
 
 void main() {
   // https://pub.dev/packages/test#running-tests
-  
+
   test('Empty constructor complex numbers', () {
     var c1 = Complex();
     expect(c1.real, 0);
     expect(c1.imaginary, 0);
   });
-  
+
   test('Sum complex numbers', () {
     var c1 = Complex(real: 1, imaginary: 1);
     var c2 = Complex(real: 1, imaginary: 1);
@@ -49,8 +49,8 @@ void main() {
     var c1 = Complex(real: 7, imaginary: 4);
     var c2 = Complex(real: -3, imaginary: -1);
     var c3 = c1 / c2;
-    expect(c3.real, -5/2);
-    expect(c3.imaginary, -1/2);
+    expect(c3.real, -5 / 2);
+    expect(c3.imaginary, -1 / 2);
   });
 
   test('toString', () {

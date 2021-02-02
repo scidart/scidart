@@ -4,12 +4,12 @@ import 'package:test/test.dart';
 void main() {
   test('create a 3x3 matrix', () {
     var matrix = Array2d.empty();
-    var line = Array([1.0 ,2.0 , 3.0]);
+    var line = Array([1.0, 2.0, 3.0]);
 
     matrix.add(line);
     matrix.add(line);
     matrix.add(line);
-    
+
     var i = 0;
     expect(matrix[i].elementAt(0), 1.0);
     expect(matrix[i].elementAt(1), 2.0);
@@ -28,7 +28,7 @@ void main() {
 
   test('toString', () {
     var matrix = Array2d.empty();
-    var line = Array([1.0 ,2.0 , 3.0]);
+    var line = Array([1.0, 2.0, 3.0]);
 
     matrix.add(line);
     matrix.add(line);
@@ -39,7 +39,8 @@ void main() {
     var strExpec = 'Array2d([\n'
         '  Array([1.0, 2.0, 3.0]), \n'
         '  Array([1.0, 2.0, 3.0]), \n'
-        '  Array([1.0, 2.0, 3.0])\n' '])';
+        '  Array([1.0, 2.0, 3.0])\n'
+        '])';
 
     print(matrix);
 

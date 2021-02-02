@@ -1,7 +1,7 @@
 import 'package:scidart/src/numdart/numdart.dart';
 import 'package:test/test.dart';
 
-void main() { 
+void main() {
   test('rotate 000001 3 times and get 00100', () {
     var n = bitReverse(1, 3);
     print(n);

@@ -52,9 +52,8 @@ Array rifft(ArrayComplex x) {
 
   // concatenate the current array with your own reverse and the conjugate complex
   // fft symmetry estimation
-  xn = arrayComplexConcat(xn,
-      arrayComplexConjugate(x.getRangeArray(s, e, step: 1, reverse: true))
-  );
+  xn = arrayComplexConcat(
+      xn, arrayComplexConjugate(x.getRangeArray(s, e, step: 1, reverse: true)));
 
   // calculate the IFFT
   var irfft = ifft(xn);

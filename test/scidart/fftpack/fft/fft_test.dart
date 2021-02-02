@@ -4,8 +4,8 @@ import 'package:test/test.dart';
 
 void main() {
   test('fft of a signal', () {
-    var x = arrayToComplexArray(
-        Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0]));
+    var x =
+        arrayToComplexArray(Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0]));
 
     var X = fft(x);
 
@@ -71,7 +71,8 @@ void main() {
       Complex(real: 0.9999999999999998, imaginary: -1.9915985002059197e-16),
       Complex(real: 0.0, imaginary: -2.449293598294706e-16),
       Complex(real: 1.0000000000000004, imaginary: -2.872973975786683e-16),
-      Complex(real: 2.220446049250313e-16, imaginary: 1.7320508075688748)]);
+      Complex(real: 2.220446049250313e-16, imaginary: 1.7320508075688748)
+    ]);
 
     var fractionDigits = 8;
     for (var i = 0; i < X.length; i++) {

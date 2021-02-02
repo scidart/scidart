@@ -78,8 +78,8 @@ import 'package:scidart/src/scidart/signal/windows/get_window.dart';
 /// ```
 dynamic firwin(int numtaps, Array cutoff,
     {double width,
-      dynamic window = 'hamming',
-      dynamic pass_zero = true,
+    dynamic window = 'hamming',
+    dynamic pass_zero = true,
     bool scale = true,
     double nyq,
     double fs}) {
@@ -113,28 +113,23 @@ dynamic firwin(int numtaps, Array cutoff,
         if (cutoff.length != 1) {
           throw FormatException(
               'cutoff must have one element if pass_zero=="lowpass", got ${cutoff}');
-        }
-        else if (cutoff.length <= 1) {
+        } else if (cutoff.length <= 1) {
           throw FormatException(
               'cutoff must have at least two elements if pass_zero=="bandstop", got ${cutoff}');
         }
         pass_zero = true;
-      }
-      else if (pass_zero == 'bandpass' || pass_zero == 'highpass') {
+      } else if (pass_zero == 'bandpass' || pass_zero == 'highpass') {
         if (pass_zero == 'highpass') {
           if (cutoff.length != 1) {
             throw FormatException(
-                'cutoff must have one element if pass_zero=="highpass", got ${cutoff
-                    .length}');
+                'cutoff must have one element if pass_zero=="highpass", got ${cutoff.length}');
           }
-        }
-        else if (cutoff.length <= 1) {
+        } else if (cutoff.length <= 1) {
           throw FormatException(
               'cutoff must have at least two elements if pass_zero=="bandpass", got ${cutoff}');
         }
         pass_zero = false;
-      }
-      else {
+      } else {
         throw FormatException(
             'pass_zero must be True, False, "bandpass", "lowpass", "highpass", or "bandstop", got ${pass_zero}');
       }
@@ -171,7 +166,8 @@ dynamic firwin(int numtaps, Array cutoff,
   var alpha = 0.5 * (numtaps - 1);
   var m = arraySubToScalar(arange(start: 0, stop: numtaps), alpha);
   var h = Array.fixed(m.length, initialValue: 0);
-  for (var j = 0; j < bands.row; j++) { // lr[0] - left; lr[1] - right
+  for (var j = 0; j < bands.row; j++) {
+    // lr[0] - left; lr[1] - right
     var left = bands[j][0];
     var right = bands[j][1];
     h += arrayMultiplyToScalar(
@@ -191,11 +187,9 @@ dynamic firwin(int numtaps, Array cutoff,
     var scale_frequency;
     if (left == 0) {
       scale_frequency = 0.0;
-    }
-    else if (right == 1) {
+    } else if (right == 1) {
       scale_frequency = 1.0;
-    }
-    else {
+    } else {
       scale_frequency = 0.5 * (left + right);
     }
     var c = arrayCos(arrayMultiplyToScalar(m, pi * scale_frequency));

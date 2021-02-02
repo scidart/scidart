@@ -69,7 +69,7 @@ void main() {
 
   test('create a linear space with 50 elemets but without endpoint', () {
     var n = linspace(1.2, 3, endpoint: false);
-    
+
     var nExpect = [
       1.2,
       1.236,

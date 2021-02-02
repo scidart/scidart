@@ -33,10 +33,12 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 /// Array([3, 5])
 /// */
 /// ```
-Array arange({int start = 0, int stop = 10, int step=1}) {
-  var N = (stop - start) ~/ step; // https:///stackoverflow.com/a/52479342/6846888
+Array arange({int start = 0, int stop = 10, int step = 1}) {
+  var N =
+      (stop - start) ~/ step; // https:///stackoverflow.com/a/52479342/6846888
 
-  var space = Array(List<double>.generate(N, (i) => (start + i * step).toDouble()));
+  var space =
+      Array(List<double>.generate(N, (i) => (start + i * step).toDouble()));
 
   return space;
 }

@@ -17,7 +17,7 @@ import 'dart:math';
 /// */
 /// ```
 double truncate(double val, int fractionDigits) {
-  double mod = pow(10.0, fractionDigits); 
+  double mod = pow(10.0, fractionDigits);
   return ((val * mod).round().toDouble() / mod);
 }
 

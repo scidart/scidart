@@ -25,7 +25,7 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 /// ```
 Array ones(int num) {
   if (num <= 0) {
-    throw('num need be igual or greater than 0');
+    throw ('num need be igual or greater than 0');
   }
 
   var space = Array(List<double>.generate(num, (i) => 1.0));

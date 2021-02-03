@@ -56,7 +56,9 @@ class Array3d extends ListBase<Array2d> {
 
   //#region operators
   @override
-  set length(int newLength) { l.length = newLength; }
+  set length(int newLength) {
+    l.length = newLength;
+  }
 
   /// Return the length of Array3d
   ///
@@ -82,7 +84,9 @@ class Array3d extends ListBase<Array2d> {
   @override
   Array2d operator [](int index) => l[index];
   @override
-  void operator []=(int index, Array2d value) { l[index] = value; }
+  void operator []=(int index, Array2d value) {
+    l[index] = value;
+  }
   //#endregion
 
   //#region overload methods

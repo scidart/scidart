@@ -52,7 +52,6 @@ Array kaiser(int M, double beta, {bool sym = true}) {
 
 //  w = (special.i0(beta * np.sqrt(1 - ((n - alpha) / alpha) ** 2.0)) / special.i0(beta))
 
-
   var den = arraySqrt(one -
       arrayPow(arrayDivisionToScalar(arraySubToScalar(n, alpha), alpha), 2.0));
   den = arrayMultiplyToScalar(den, beta);

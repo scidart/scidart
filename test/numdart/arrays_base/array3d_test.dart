@@ -6,14 +6,14 @@ void main() {
     var book = Array3d.empty();
 
     var page = Array2d.empty();
-    page.add(Array([1.0 ,2.0 , 3.0]));
-    page.add(Array([1.0 ,2.0 , 3.0]));
-    page.add(Array([1.0 ,2.0 , 3.0]));
-    
+    page.add(Array([1.0, 2.0, 3.0]));
+    page.add(Array([1.0, 2.0, 3.0]));
+    page.add(Array([1.0, 2.0, 3.0]));
+
     book.add(page);
     book.add(page);
     book.add(page);
-    
+
     var i = 0;
     expect(book[i].elementAt(0).elementAt(0), 1.0);
     expect(book[i].elementAt(0).elementAt(1), 2.0);
@@ -34,9 +34,9 @@ void main() {
     var book = Array3d.empty();
 
     var page = Array2d.empty();
-    page.add(Array([1.0 ,2.0 , 3.0]));
-    page.add(Array([1.0 ,2.0 , 3.0]));
-    page.add(Array([1.0 ,2.0 , 3.0]));
+    page.add(Array([1.0, 2.0, 3.0]));
+    page.add(Array([1.0, 2.0, 3.0]));
+    page.add(Array([1.0, 2.0, 3.0]));
 
     book.add(page);
     book.add(page);

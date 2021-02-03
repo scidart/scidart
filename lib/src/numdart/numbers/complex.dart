@@ -46,8 +46,7 @@ class Complex {
   /// */
   /// ```
   Complex operator +(Complex b) {
-    return Complex(
-        real: real + b.real, imaginary: imaginary + b.imaginary);
+    return Complex(real: real + b.real, imaginary: imaginary + b.imaginary);
   }
 
   /// Subtract two complex number
@@ -64,8 +63,7 @@ class Complex {
   /// */
   /// ```
   Complex operator -(Complex b) {
-    return Complex(
-        real: real - b.real, imaginary: imaginary - b.imaginary);
+    return Complex(real: real - b.real, imaginary: imaginary - b.imaginary);
   }
 
   /// Multiply two complex number

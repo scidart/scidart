@@ -16,9 +16,9 @@ int bitReverse(int n, int bits) {
 
   n >>= 1;
   while (n > 0) {
-      reversedN = (reversedN << 1) | (n & 1);
-      count--;
-      n >>= 1;
+    reversedN = (reversedN << 1) | (n & 1);
+    count--;
+    n >>= 1;
   }
 
   return ((reversedN << count) & ((1 << bits) - 1));
@@ -49,7 +49,7 @@ int boolToInt(bool a) => a ? 1 : 0;
 bool intToBool(int a) => a == 0 ? false : true;
 
 /// Check if [a] is an Even number.
-bool isEven(int a) => a%2 == 0;
+bool isEven(int a) => a % 2 == 0;
 
 /// Check if [a] is an Odd number.
-bool isOdd(int a) => a%2 != 0;
+bool isOdd(int a) => a % 2 != 0;

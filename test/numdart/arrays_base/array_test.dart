@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   //#region constructors
   test('fromList', () {
-    var list = Array([2.0, 2.0 , 2.0]);
+    var list = Array([2.0, 2.0, 2.0]);
     print(list);
 
     expect(list.length, 3);
@@ -13,7 +13,7 @@ void main() {
 
   //#region operators tests
   test('set get length', () {
-    var list = Array([2.0, 2.0 , 2.0]);
+    var list = Array([2.0, 2.0, 2.0]);
     print(list);
 
     expect(list.length, 3);
@@ -27,23 +27,21 @@ void main() {
     print(list);
 
     expect(list.length, 2);
-
   });
 
   test('index operator', () {
-    var list = Array([2.0, 2.0 , 2.0]);
+    var list = Array([2.0, 2.0, 2.0]);
 
     expect(list[0], 2.0);
 
     list[0] = 10.0;
 
     expect(list[0], 10.0);
-
   });
 
   test('create and mutiply arrays', () {
-    var list = Array([2.0, 2.0 , 2.0]);
-    var list2 = Array([2.0, 2.0 , 2.0]);
+    var list = Array([2.0, 2.0, 2.0]);
+    var list2 = Array([2.0, 2.0, 2.0]);
 
     var cList = list * list2;
 
@@ -84,7 +82,7 @@ void main() {
 
     var n3Exp = Array([0, 0, 0]);
 
-    for(var i=0; i< n.length; i++) {
+    for (var i = 0; i < n.length; i++) {
       expect(truncate(n3[i], 4), truncate(n3Exp[i], 4));
     }
   });

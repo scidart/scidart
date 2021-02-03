@@ -135,8 +135,9 @@ void main() {
 
     var fractionDigits = 4;
 
-    expect(arrayTruncateEachElement(w, fractionDigits, returnNewArray: true),
-        arrayTruncateEachElement(
-            wExpect, fractionDigits, returnNewArray: true));
+    expect(
+        arrayTruncateEachElement(w, fractionDigits, returnNewArray: true),
+        arrayTruncateEachElement(wExpect, fractionDigits,
+            returnNewArray: true));
   });
 }

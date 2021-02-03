@@ -138,7 +138,8 @@ class Array extends ListBase<double> {
   /// Array([2.0, 4.0, 6.0])
   /// */
   /// ```
-  @override Array operator +(List<double> b) {
+  @override
+  Array operator +(List<double> b) {
     _checkArray(b);
     var c = Array.fixed(length);
     for (var i = 0; i < length; i++) {

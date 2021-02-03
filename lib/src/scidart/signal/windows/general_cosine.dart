@@ -2,16 +2,15 @@ import 'package:scidart/src/numdart/numdart.dart';
 
 /// Handle small or incorrect window lengths
 bool _len_guards(int M) {
-  if(M != M || M < 0) {
-    throw('Window length M must be a non-negative integer');
+  if (M != M || M < 0) {
+    throw ('Window length M must be a non-negative integer');
   }
   return M <= 1;
 }
 
-
 /// Extend window by 1 sample if needed for DFT-even symmetry
 List<Object> _extend(int M, bool sym) {
-  if (! sym ){
+  if (!sym) {
     return [M + 1, true];
   } else {
     return [M, false];
@@ -57,7 +56,7 @@ Array _truncate(Array w, needed) {
 /// var w = generalCosine(M, Array([alpha, 1.0 - alpha]));
 /// ```
 Array generalCosine(int M, Array a, {bool sym = true}) {
-  if(_len_guards(M)) {
+  if (_len_guards(M)) {
     return ones(M);
   }
 
@@ -67,9 +66,9 @@ Array generalCosine(int M, Array a, {bool sym = true}) {
 
   var fac = linspace(-pi, pi, num: MExt);
   var w = zeros(MExt);
-  for(var k = 0; k < a.length; k++) {
+  for (var k = 0; k < a.length; k++) {
     w += arrayMultiplyToScalar(arrayCos(arrayMultiplyToScalar(fac, k)), a[k]);
   }
-  
+
   return _truncate(w, needsTrunc);
 }

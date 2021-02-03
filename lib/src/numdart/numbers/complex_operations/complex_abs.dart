@@ -8,7 +8,7 @@ import 'package:scidart/src/numdart/numbers/complex.dart';
 /// var c1 = Complex(real: 3.0, imaginary: 4.0);
 ///
 /// print(c1.abs());
-/// 
+///
 /// /* output:
 /// 5.0
 /// */

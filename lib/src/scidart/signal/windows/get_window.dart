@@ -57,12 +57,12 @@ Array getWindow(dynamic window, int Nx, {bool fftbins = true}) {
     } else {
       throw FormatException('Window type not found');
     }
-
   } else if (window is String) {
     // without beta windows
     if (window == 'blackman' || window == 'black' || window == 'blk') {
       return blackman(Nx, sym: sym);
-    } else if (window == 'blackmanharris' || window == 'blackharr' ||
+    } else if (window == 'blackmanharris' ||
+        window == 'blackharr' ||
         window == 'bkh') {
       return blackmanharris(Nx, sym: sym);
     } else if (window == 'flattop' || window == 'flat' || window == 'flt') {

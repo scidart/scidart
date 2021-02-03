@@ -173,8 +173,10 @@ class Array2d extends ListBase<Array> {
 
     var c = Array2d.fromArray(this); // make a copy of local
 
-    for (var i = 0; i < aRows; i++) { //
-      for (var j = 0; j < aColumns; j++) { // bColumn
+    for (var i = 0; i < aRows; i++) {
+      //
+      for (var j = 0; j < aColumns; j++) {
+        // bColumn
         c[i][j] *= b[i][j];
       }
     }
@@ -217,8 +219,10 @@ class Array2d extends ListBase<Array> {
 
     var c = Array2d.fromArray(this); // make a copy of local
 
-    for (var i = 0; i < aRows; i++) { //
-      for (var j = 0; j < aColumns; j++) { // bColumn
+    for (var i = 0; i < aRows; i++) {
+      //
+      for (var j = 0; j < aColumns; j++) {
+        // bColumn
         c[i][j] /= b[i][j];
       }
     }
@@ -292,8 +296,10 @@ class Array2d extends ListBase<Array> {
 
     var c = Array2d.fromArray(this); // make a copy of local
 
-    for (var i = 0; i < aRows; i++) { //
-      for (var j = 0; j < aColumns; j++) { // bColumn
+    for (var i = 0; i < aRows; i++) {
+      //
+      for (var j = 0; j < aColumns; j++) {
+        // bColumn
         c[i][j] -= b[i][j];
       }
     }
@@ -309,9 +315,7 @@ class Array2d extends ListBase<Array> {
         if (throwIfIsNot) {
           throw FormatException(
               'Array2d is not a matrix. All the rows of the Array2d must have the same length of columns.');
-        } else {
-
-        }
+        } else {}
         return false;
       }
     }

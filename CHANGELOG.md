@@ -1,3 +1,9 @@
+## 0.0.1-dev.11
+
+- Even and Odd number double check created;
+- cross correlation for real and complex signals created;
+- dartfmt applied in the code;
+
 ## 0.0.1-dev.10
 
 - Even and Odd number int check created;

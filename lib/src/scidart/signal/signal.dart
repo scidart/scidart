@@ -3,6 +3,8 @@ library signal;
 export 'convolution/convolution.dart';
 export 'convolution/convolution_circular_complex.dart';
 export 'convolution/convolution_complex.dart';
+export 'convolution/correlate.dart';
+export 'convolution/correlate_complex.dart';
 export 'fir/firwin.dart';
 export 'lfilter/lfilter.dart';
 export 'peaks/find_peaks.dart';

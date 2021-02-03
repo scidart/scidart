@@ -24,3 +24,21 @@ double truncate(double val, int fractionDigits) {
 class FloatInfo {
   static double get eps => 2e-16;
 }
+
+/// Check if [a] is an Even number after a truncation.
+/// - [fractionDigits] : number of decimal digits
+bool isEvenDouble(double a, int fractionDigits) {
+  var aT = truncate(a, fractionDigits);
+  var aTString = aT.toString();
+  var last = int.parse(aTString[aTString.length - 1]);
+  return last % 2 == 0;
+}
+
+/// Check if [a] is an Odd number after a truncation.
+/// - [fractionDigits] : number of decimal digits
+bool isOddDouble(double a, int fractionDigits) {
+  var aT = truncate(a, fractionDigits);
+  var aTString = aT.toString();
+  var last = int.parse(aTString[aTString.length - 1]);
+  return last % 2 != 0;
+}

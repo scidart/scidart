@@ -19,7 +19,7 @@ dartanalyzer lib test example
 dartfmt -w lib test example
 
 # validate but do not publish the package.
-pub publish  --dry-run
+pub publish --dry-run
 
 # pack and publish
 publish package

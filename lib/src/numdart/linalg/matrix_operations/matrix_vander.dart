@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import '../../../numdart/numdart.dart';
 
 /// Generate a Vandermonde matrix.

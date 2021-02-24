@@ -1,3 +1,6 @@
+## 0.0.1-dev.12
+- PR #22 merged: Remove unused dart: imports
+
 ## 0.0.1-dev.11
 
 - Even and Odd number double check created;

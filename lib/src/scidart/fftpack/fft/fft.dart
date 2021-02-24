@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:math' as math;
 
 import 'package:scidart/src/numdart/numdart.dart';

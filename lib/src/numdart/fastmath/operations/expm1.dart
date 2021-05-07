@@ -4,7 +4,7 @@ import 'package:scidart/src/numdart/fastmath/tables/exp_frac_table_b.dart';
 import 'package:scidart/src/numdart/fastmath/tables/hex_40000000.dart';
 
 /// Compute `exp(x) - 1`.
-double expm1(double x, {List<double> hiPrecOut}) {
+double expm1(double x, {List<double>? hiPrecOut}) {
   if (x != x || x == 0.0) {
     // NaN or zero
     return x;

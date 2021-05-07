@@ -37,7 +37,7 @@ import 'check_params_get_range_array.dart';
 /// 40.5
 /// */
 /// ```
-double simpsArray(Array y, {Array x, int dx = 1, Even even = Even.last}) {
+double simpsArray(Array y, {Array? x, int dx = 1, Even even = Even.last}) {
   checkParamsGetRangeArray(y, x, dx);
   var result;
   var N = y.length;
@@ -48,14 +48,13 @@ double simpsArray(Array y, {Array x, int dx = 1, Even even = Even.last}) {
 
     // Compute using Simpson's rule on first intervals
     if (even == Even.avg || even == Even.first) {
-      var xslice1 = x[x.length - 1];
-      var xslice2 = x[x.length - 2];
-
       var yslice1 = y[y.length - 1];
       var yslice2 = y[y.length - 2];
 
       var last_dx;
       if (x != null) {
+        var xslice1 = x[x.length - 1];
+        var xslice2 = x[x.length - 2];
         last_dx = xslice1 - xslice2;
       }
       val += 0.5 * last_dx * (yslice1 + yslice2);
@@ -64,14 +63,13 @@ double simpsArray(Array y, {Array x, int dx = 1, Even even = Even.last}) {
 
     // Compute using Simpson's rule on last set of intervals
     if (even == Even.avg || even == Even.last) {
-      var xslice1 = x[0];
-      var xslice2 = x[1];
-
       var yslice1 = y[0];
       var yslice2 = y[1];
 
       var first_dx;
       if (x != null) {
+        var xslice1 = x[0];
+        var xslice2 = x[1];
         first_dx = xslice2 - xslice1;
       }
       val += 0.5 * first_dx * (yslice2 + yslice1);
@@ -93,10 +91,8 @@ double simpsArray(Array y, {Array x, int dx = 1, Even even = Even.last}) {
 
 enum Even { avg, first, last }
 
-double _basicSimps(Array y, int start, int stop, Array x, int dx) {
+double _basicSimps(Array y, int start, int stop, Array? x, int dx) {
   var result;
-
-  start ??= 0;
 
   var step = 2;
 

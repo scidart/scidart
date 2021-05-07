@@ -37,7 +37,7 @@ import 'array.dart';
 /// */
 /// ```
 class Array2d extends ListBase<Array> {
-  List<Array> l = [];
+  List<Array?> l = [];
 
   //#region constructors
   Array2d(List<Array> list) {
@@ -51,7 +51,7 @@ class Array2d extends ListBase<Array> {
     l = list.map((element) => element).toList();
   }
 
-  Array2d.fixed(int row, int column, {double initialValue}) {
+  Array2d.fixed(int row, int column, {double? initialValue}) {
     l = List<Array>.filled(row, Array.empty());
     for (var i = 0; i < row; i++) {
       l[i] = Array.fixed(column, initialValue: initialValue);
@@ -131,7 +131,7 @@ class Array2d extends ListBase<Array> {
   int get length => l.length;
 
   @override
-  Array operator [](int index) => l[index];
+  Array operator [](int index) => l[index] ?? Array.empty();
 
   @override
   void operator []=(int index, Array value) {
@@ -343,7 +343,7 @@ class Array2d extends ListBase<Array> {
   @override
   String toString() {
     var str = IterableBase.iterableToFullString(this, '[', '\n]');
-    return 'Array2d(${str})';
+    return 'Array2d($str)';
   }
 
   //#endregion

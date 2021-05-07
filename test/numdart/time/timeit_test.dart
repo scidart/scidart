@@ -26,6 +26,6 @@ void main() {
 
       print(xf);
     });
-    print('Array.solve() executed in ${duration}');
+    print('Array.solve() executed in $duration');
   });
 }

@@ -19,7 +19,7 @@ import 'package:scidart/src/numdart/numdart.dart';
 ///
 /// print(cumIntegration(y));
 /// ```
-Array cumIntegration(Array y, {Array x, int dx = 1, double initial}) {
+Array cumIntegration(Array y, {Array? x, int dx = 1, double? initial}) {
   checkParamsGetRangeArray(y, x, dx);
 
   var d;

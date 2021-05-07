@@ -42,8 +42,8 @@ import 'package:scidart/src/numdart/numdart.dart';
 /// ]);
 /// */
 /// ```
-ArrayComplex fft(ArrayComplex x, {int n, bool normalization = false}) {
-  ArrayComplex buffer;
+ArrayComplex fft(ArrayComplex x, {int? n, bool normalization = false}) {
+  var buffer = ArrayComplex.empty();
   if (n == null || n == x.length) {
     n = x.length;
     buffer = x.copy();

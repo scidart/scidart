@@ -5,6 +5,7 @@
 
 # dart analyzer
 dartanalyzer lib test example
+dart analyze
 
 # format code
 dartfmt -w lib test example

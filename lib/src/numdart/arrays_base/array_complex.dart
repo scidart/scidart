@@ -59,16 +59,19 @@ class ArrayComplex extends ListBase<Complex> {
   @override
   set length(int newLength) {
     if (newLength < 0) {
-      throw FormatException('newLength must be greater equal than 0 (newLength >= 0)');
+      throw FormatException(
+          'newLength must be greater equal than 0 (newLength >= 0)');
     }
 
-    var aux = l.map((element)=>element).toList();
+    var aux = l.map((element) => element).toList();
 
     if (newLength == 0) {
       l = [];
     } else if (newLength > l.length) {
       l = [];
-      aux.forEach((element) { l.add(element); });
+      aux.forEach((element) {
+        l.add(element);
+      });
       for (var i = l.length; i < newLength; i++) {
         l.add(Complex());
       }

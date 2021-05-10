@@ -6,7 +6,7 @@ import '../complex.dart';
 /// # Examples
 /// ```dart
 /// var c1 = Complex(real: 4.0, imaginary: 4.0);
-/// print(c1.divideScalar(2));
+/// print(divideScalar(c1, 2));
 ///
 /// /* output:
 /// Complex(real: 2.0, imaginary: 2.0)

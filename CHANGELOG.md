@@ -1,5 +1,7 @@
 ## 0.0.2-dev.1
 - Null safety added to the package
+- FFT bug to big power of 2 arrays fixed
+- complexExp function created to calculate complex number natural exponent
 
 ## 0.0.1-dev.12
 - PR #22 merged: Remove unused dart: imports

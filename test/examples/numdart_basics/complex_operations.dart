@@ -16,6 +16,7 @@ void main() {
     print(complexCos(a));
     print(complexDivideScalar(a, 2));
     print(complexMultiplyScalar(a, 2));
+    print(complexExp(a));
     print(complexTruncate(a, 2));
   });
 }

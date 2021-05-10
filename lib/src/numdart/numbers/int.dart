@@ -53,3 +53,6 @@ bool isEven(int a) => a % 2 == 0;
 
 /// Check if [a] is an Odd number.
 bool isOdd(int a) => a % 2 != 0;
+
+/// CHeck if [n] is power of 2.
+bool isPowerOf2(int n) => (n & (n - 1)) == 0;

@@ -46,7 +46,8 @@ import 'package:scidart/src/numdart/statistic/mean.dart';
 class PolyFit {
   String variableName = 'x'; // name of the predictor variable private
   int degree = 0; // degree of the polynomial regression private
-  Array2d beta = Array2d.empty(); // the polynomial regression coefficients private
+  Array2d beta =
+      Array2d.empty(); // the polynomial regression coefficients private
   double sse = 0; // sum of squares due to error private
   double sst = 0; // total sum of squares private
 

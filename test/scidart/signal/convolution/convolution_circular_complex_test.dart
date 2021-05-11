@@ -14,7 +14,7 @@ void main() {
     var zi = arrayComplexAbs(convolutionCircularComplex(xi, yi));
     arrayTruncateEachElement(zi, 4);
 
-    kernel = arrayConcat(kernel, kernel.copy());
+    kernel = arrayConcat([kernel, kernel.copy()]);
     var ziExpec = convolution(input, kernel);
 
     print(zi);

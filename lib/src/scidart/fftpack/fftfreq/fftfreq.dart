@@ -47,10 +47,10 @@ Array fftFreq(int n, {double d = 1.0, bool realFrequenciesOnly = false}) {
   var results = Array.empty();
   var N = (n - 1) ~/ 2 + 1;
   var p1 = arange(start: 0, stop: N);
-  results = arrayConcat(results, p1);
+  results = arrayConcat([results, p1]);
   if (!realFrequenciesOnly) {
     var p2 = arange(start: -(n ~/ 2), stop: 0);
-    results = arrayConcat(results, p2);
+    results = arrayConcat([results, p2]);
   }
   return arrayMultiplyToScalar(results, val);
 }

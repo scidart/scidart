@@ -152,10 +152,16 @@ dynamic firwin(int numtaps, Array cutoff,
   // Insert 0 and/or 1 at the ends of cutoff so that the length of cutoff
   // is even, and each pair in cutoff corresponds to passband.
   if (pass_zero) {
-    cutoff = arrayConcat(Array([0.0]), cutoff);
+    cutoff = arrayConcat([
+      Array([0.0]),
+      cutoff
+    ]);
   }
   if (pass_nyquist) {
-    cutoff = arrayConcat(cutoff, Array([1.0]));
+    cutoff = arrayConcat([
+      cutoff,
+      Array([1.0])
+    ]);
   }
 
   // `bands` is a 2D array; each row gives the left and right edges of

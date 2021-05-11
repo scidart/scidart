@@ -15,7 +15,7 @@ void main() {
     print(a - b);
     print(a * b);
     print(a / b);
-    print(arrayConcat(a, b)); // array concatenation
+    print(arrayConcat([a, b])); // array concatenation
     print(arrayMax(a));
     print(arrayMin(a));
     print(arrayDivisionToScalar(a, 2));

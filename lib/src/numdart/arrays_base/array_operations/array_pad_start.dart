@@ -15,5 +15,5 @@ import 'array_concat.dart';
 /// ```
 Array arrayPadStart(Array a, int pad) {
   var aux = Array.fixed(pad, initialValue: 0);
-  return arrayConcat(aux, a);
+  return arrayConcat([aux, a]);
 }

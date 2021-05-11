@@ -5,8 +5,8 @@ import 'package:test/test.dart';
 void main() {
   test('signal', () {
     // sample signals for test
-    var x = arrayConcat(zeros(8), ones(8));
-    var y = arrayConcat(ones(8), zeros(8));
+    var x = arrayConcat([zeros(8), ones(8)]);
+    var y = arrayConcat([ones(8), zeros(8)]);
 
     //-------- convolution -----------//
     // simple numeric convolution

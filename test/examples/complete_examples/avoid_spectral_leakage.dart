@@ -13,7 +13,7 @@ void main() {
     var f1 = 1.0; // 1Hz
     var sg = arraySin(arrayMultiplyToScalar(n, 2 * pi * f1));
     sg = sg.getRangeArray(0, sg.length - 201);
-    sg = arrayConcat(sg, zeros(200));
+    sg = arrayConcat([sg, zeros(200)]);
 
     // reduce spectral leakage with a window function
     var sgWindowed = blackmanharris(sg.length) * sg;

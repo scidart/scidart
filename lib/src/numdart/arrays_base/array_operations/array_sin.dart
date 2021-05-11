@@ -18,7 +18,7 @@ import '../array.dart';
 Array arraySin(Array a) {
   var c = Array.fixed(a.length);
   for (var i = 0; i < a.length; i++) {
-    c[i] = math.sin(a[i]); //fixme change to fast cos in the future
+    c[i] = math.sin(a[i]); //fixme parallelize
   }
   return c;
 }

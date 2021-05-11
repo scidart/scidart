@@ -2,6 +2,7 @@
 - Null safety added to the package
 - FFT bug to big power of 2 arrays fixed
 - complexExp function created to calculate complex number natural exponent
+- arrayConcat changed to concatenate N arrays
 
 ## 0.0.1-dev.12
 - PR #22 merged: Remove unused dart: imports

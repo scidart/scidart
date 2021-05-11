@@ -20,6 +20,6 @@ import 'dart:math' as math;
 /// 2. "Exponential Form". https://tutorial.math.lamar.edu/Extras/ComplexPrimer/Forms.aspx . Retrieved 2021-05-10.
 /// 3. "Euler's formula". https://en.wikipedia.org/wiki/Euler%27s_formula . Retrieved 2021-05-10.
 Complex complexExp(Complex exponent) {
-  return Complex.ri(math.exp(exponent.real) * math.cos(exponent.imaginary),
-      math.exp(exponent.real) * math.sin(exponent.imaginary));
+  return Complex.ri(expFast(exponent.real) * math.cos(exponent.imaginary),
+      expFast(exponent.real) * math.sin(exponent.imaginary));
 }

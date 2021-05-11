@@ -35,7 +35,7 @@ Array2d matrixSubFromArray(Array2d a, Array rows, int col0, int col1) {
       }
     }
   } catch (e) {
-    throw FormatException('Submatrix indices: ${e}');
+    throw FormatException('Submatrix indices: $e');
   }
   return b;
 }

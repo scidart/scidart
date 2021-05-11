@@ -1,5 +1,4 @@
-import 'dart:math' as math;
-
+import '../../numdart.dart';
 import '../array.dart';
 
 /// Compute the cos for each element of the array
@@ -18,7 +17,7 @@ import '../array.dart';
 Array arrayCos(Array a) {
   var c = Array.fixed(a.length);
   for (var i = 0; i < a.length; i++) {
-    c[i] = math.cos(a[i]); //fixme change to fast cos in the future
+    c[i] = cos(a[i]); //fixme parallelize
   }
   return c;
 }

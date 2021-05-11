@@ -14,7 +14,7 @@ void main() {
     var yMax = arrayMax(y);
 
     print('Array points:');
-    print('${xMax}, ${yMax}');
+    print('$xMax, $yMax');
 
     print('Estimated points:');
     print(parabolic(y, xMax));

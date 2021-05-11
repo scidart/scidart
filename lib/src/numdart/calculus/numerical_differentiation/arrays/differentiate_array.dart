@@ -43,7 +43,7 @@ import '../../../numdart.dart';
 /// ```
 Array differentiateArray(Array y, Array x) {
   var dy = Array.empty();
-  dy = arrayConcat(dy, arrayDiff(y) / arrayDiff(x));
+  dy = arrayConcat([dy, arrayDiff(y) / arrayDiff(x)]);
   dy.add((y[y.length - 1] - y[y.length - 2]) /
       (x[x.length - 1] - x[x.length - 2]));
   return dy;

@@ -13,8 +13,8 @@ void main() {
   var fEstimated = freqFromFft(sg1, fs);
 
   print('The original and estimated frequency need be very close each other');
-  print('Original frequency: ${f1}');
-  print('Estimated frequency: ${fEstimated}');
+  print('Original frequency: $f1');
+  print('Estimated frequency: $fEstimated');
 }
 
 double freqFromFft(Array sig, double fs) {

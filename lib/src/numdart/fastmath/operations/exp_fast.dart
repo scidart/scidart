@@ -9,7 +9,7 @@ import 'package:scidart/src/numdart/fastmath/tables/exp_int_table_max_index.dart
 /// - [x] is the original argument of the exponential function.
 /// - [extra] bits of precision on input (To Be Confirmed).
 /// - [hiPrec] extra bits of precision on output (To Be Confirmed)
-double expFast(double x, [double extra = 0.0, List<double> hiPrec]) {
+double expFast(double x, [double extra = 0.0, List<double>? hiPrec]) {
   double intPartA;
   double intPartB;
   int intVal;

@@ -1,26 +1,25 @@
 import '../array.dart';
 
-/// Concatenate a and b and return
+/// Concatenate a list of arrays and return
 ///
 /// # Examples
 /// ```dart
 /// var list = Array([1,2,3]);
 /// var b = Array([4]);
 ///
-/// print(arrayConcat(a, b));
+/// print(arrayConcat([a, b]));
 ///
 /// /* expected output:
 /// Array([1, 2, 3, 4])
 /// */
 /// ```
-Array arrayConcat(Array a, Array b) {
-  //todo convert to acecpt N arguments
+Array arrayConcat(List<Array> arrays) {
+  //Array a, Array b
   var c = Array.empty();
-  for (var i = 0; i < a.length; i++) {
-    c.add(a[i]);
-  }
-  for (var i = 0; i < b.length; i++) {
-    c.add(b[i]);
-  }
+  arrays.forEach((array) {
+    array.forEach((e) {
+      c.add(e);
+    });
+  });
   return c;
 }

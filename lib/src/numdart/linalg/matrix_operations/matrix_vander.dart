@@ -44,7 +44,7 @@ import '../../../numdart/numdart.dart';
 /// ])
 /// */
 /// ```
-Array2d matrixVander(Array x, {int N, bool increasing = false}) {
+Array2d matrixVander(Array x, {int? N, bool increasing = false}) {
   N ??= x.length;
   if (N <= 0) {
     throw FormatException('N must be greater than 0 (N > 0)');
@@ -57,13 +57,13 @@ Array2d matrixVander(Array x, {int N, bool increasing = false}) {
     // create a matrix increasing order
     if (increasing) {
       for (var column = 0; column < N; column++) {
-        v[row][column] = pow(x[row], column);
+        v[row][column] = pow(x[row], column).toDouble();
       }
     }
     // create a matrix decreasing order
     else {
       for (var column = 0; column < N; column++) {
-        v[row][column] = pow(x[row], N - 1 - column);
+        v[row][column] = pow(x[row], N - 1 - column).toDouble();
       }
     }
   }

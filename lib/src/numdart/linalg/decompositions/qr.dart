@@ -35,16 +35,16 @@ class QR {
   //#region Class variables
   ///  Array for internal storage of decomposition.
   ///  [_QR] internal array storage.
-  Array2d _QR;
+  Array2d _QR = Array2d.empty();
 
   ///  Row and column dimensions.
   ///  [_m] column dimension.
   ///  [_n] row dimension.
-  int _m, _n;
+  int _m = 0, _n = 0;
 
   ///  Array for internal storage of diagonal of R.
   ///  [_Rdiag] diagonal of R.
-  Array _Rdiag;
+  Array _Rdiag = Array.empty();
 
   //#endregion
 

@@ -34,17 +34,17 @@ class LU {
   //#region class variables
   /// Array for internal storage of decomposition.
   /// internal array storage.
-  Array2d _LUMatrix;
+  Array2d _LUMatrix = Array2d.empty();
 
   /// Row and column dimensions, and pivot sign.
   /// - [_m] column dimension.
   /// - [_n] row dimension.
   /// - [_pivsign] pivot sign.
-  int _m, _n, _pivsign;
+  int _m = 0, _n = 0, _pivsign = 1;
 
   /// Internal storage of pivot vector.
   /// - [_piv] pivot vector.
-  Array _piv;
+  Array _piv = Array.empty();
 
   //#endregion
 

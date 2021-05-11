@@ -22,7 +22,7 @@ import 'package:scidart/numdart.dart';
 ///   Array([2.0, 2.0, 1.0]) ]
 /// */
 /// ```
-List findPeaks(Array a, {double threshold}) {
+List findPeaks(Array a, {double? threshold}) {
   var N = a.length - 2;
   var ix = Array.empty();
   var ax = Array.empty();

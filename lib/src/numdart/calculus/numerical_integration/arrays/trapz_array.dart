@@ -20,7 +20,7 @@ import 'check_params_get_range_array.dart';
 /// 4
 /// */
 /// ```
-double trapzArray(Array y, {Array x, int dx = 1}) {
+double trapzArray(Array y, {Array? x, int dx = 1}) {
   checkParamsGetRangeArray(y, x, dx);
 
   var d;

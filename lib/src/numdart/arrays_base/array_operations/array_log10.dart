@@ -1,5 +1,4 @@
-import 'dart:math' as math;
-
+import '../../numdart.dart';
 import '../array.dart';
 
 /// Compute the log10 for each element of the array
@@ -18,8 +17,7 @@ import '../array.dart';
 Array arrayLog10(Array a) {
   var c = Array.fixed(a.length);
   for (var i = 0; i < a.length; i++) {
-    c[i] =
-        math.log(a[i]) / math.log(10); //fixme change to fast log in the future
+    c[i] = log(a[i]) / log(10); //fixme parallelize
   }
   return c;
 }

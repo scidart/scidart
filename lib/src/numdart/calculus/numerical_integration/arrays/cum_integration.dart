@@ -19,7 +19,7 @@ import 'package:scidart/src/numdart/numdart.dart';
 ///
 /// print(cumIntegration(y));
 /// ```
-Array cumIntegration(Array y, {Array x, int dx = 1, double initial}) {
+Array cumIntegration(Array y, {Array? x, int dx = 1, double? initial}) {
   checkParamsGetRangeArray(y, x, dx);
 
   var d;
@@ -35,7 +35,7 @@ Array cumIntegration(Array y, {Array x, int dx = 1, double initial}) {
   var ret = arrayCumSum(d * arrayDivisionToScalar(slice1 + slice2, 2.0));
 
   if (initial != null) {
-    ret = arrayConcat(arrayMultiplyToScalar(ones(1), initial), ret);
+    ret = arrayConcat([arrayMultiplyToScalar(ones(1), initial), ret]);
   }
 
   return ret;

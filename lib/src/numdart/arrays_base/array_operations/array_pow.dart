@@ -17,7 +17,7 @@ import '../array.dart';
 Array arrayPow(Array a, double exponent) {
   var c = Array.fixed(a.length);
   for (var i = 0; i < a.length; i++) {
-    c[i] = math.pow(a[i], exponent);
+    c[i] = math.pow(a[i], exponent).toDouble();
   }
   return c;
 }

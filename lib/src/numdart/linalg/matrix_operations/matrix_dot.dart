@@ -38,8 +38,7 @@ Array2d matrixDot(Array2d a, Array2d b) {
   var bColumns = b[0].length;
 
   if (aColumns != bRows) {
-    throw FormatException(
-        'A:Columns: ${aColumns} did not match B:Rows ${bRows}.');
+    throw FormatException('A:Columns: $aColumns did not match B:Rows $bRows.');
   }
 
   var c = Array2d.fixed(aRows, bColumns, initialValue: 0.0);

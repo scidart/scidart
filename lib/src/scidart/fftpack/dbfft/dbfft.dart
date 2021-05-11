@@ -28,7 +28,7 @@ import 'package:scidart/src/scidart/scidart.dart';
 ///
 /// print(dbfft(sg1, fs));
 /// ```
-List dbfft(Array x, double fs, {String window, double ref}) {
+List dbfft(Array x, double fs, {String? window, double? ref}) {
   var N = x.length; // Length of input sequence
 
   var win;

@@ -53,16 +53,16 @@ class SVD {
   /// Arrays for internal storage of U and V.
   /// internal storage of [_U].
   /// internal storage of [_V].
-  Array2d _U, _V;
+  Array2d _U = Array2d.empty(), _V = Array2d.empty();
 
   /// Array for internal storage of singular values.
   /// internal storage of singular values.
-  Array _s;
+  Array _s = Array.empty();
 
   /// Row and column dimensions.
   /// - [_m] row dimension.
   /// - [_n] column dimension.
-  int _m, _n;
+  int _m = 0, _n = 0;
 
   //#endregion
 
@@ -82,7 +82,7 @@ class SVD {
       if (m<n) {
 	  throw new IllegalArgumentException("Jama SVD only works for m >= n"); }
       */
-    var nu = math.min(_m, _n);
+    var nu = math.min(_m, _n).toInt();
     _s = Array.fixed(math.min(_m + 1, _n));
     _U = Array2d.fixed(_m, nu, initialValue: 0);
     _V = Array2d.fixed(_n, _n);
@@ -268,8 +268,8 @@ class SVD {
 
     var pp = p - 1;
     var iter = 0;
-    double eps = math.pow(2.0, -52.0);
-    double tiny = math.pow(2.0, -966.0);
+    var eps = math.pow(2.0, -52.0).toDouble();
+    var tiny = math.pow(2.0, -966.0).toDouble();
     while (p > 0) {
       int k, kase;
 
@@ -539,7 +539,7 @@ class SVD {
   /// Effective numerical matrix rank
   /// return Number of nonnegligible singular values.
   int rank() {
-    double eps = math.pow(2.0, -52.0);
+    var eps = math.pow(2.0, -52.0).toDouble();
     var tol = math.max(_m, _n) * _s[0] * eps;
     var r = 0;
     for (var i = 0; i < _s.length; i++) {

@@ -77,12 +77,12 @@ import 'package:scidart/src/scidart/signal/windows/get_window.dart';
 /// */
 /// ```
 dynamic firwin(int numtaps, Array cutoff,
-    {double width,
+    {double? width,
     dynamic window = 'hamming',
     dynamic pass_zero = true,
     bool scale = true,
-    double nyq,
-    double fs}) {
+    double? nyq,
+    double? fs}) {
   nyq = 0.5 * _getFs(fs, nyq);
   cutoff = arrayDivisionToScalar(cutoff, nyq);
 
@@ -112,10 +112,10 @@ dynamic firwin(int numtaps, Array cutoff,
       if (pass_zero == 'lowpass') {
         if (cutoff.length != 1) {
           throw FormatException(
-              'cutoff must have one element if pass_zero=="lowpass", got ${cutoff}');
+              'cutoff must have one element if pass_zero=="lowpass", got $cutoff');
         } else if (cutoff.length <= 1) {
           throw FormatException(
-              'cutoff must have at least two elements if pass_zero=="bandstop", got ${cutoff}');
+              'cutoff must have at least two elements if pass_zero=="bandstop", got $cutoff');
         }
         pass_zero = true;
       } else if (pass_zero == 'bandpass' || pass_zero == 'highpass') {
@@ -126,12 +126,12 @@ dynamic firwin(int numtaps, Array cutoff,
           }
         } else if (cutoff.length <= 1) {
           throw FormatException(
-              'cutoff must have at least two elements if pass_zero=="bandpass", got ${cutoff}');
+              'cutoff must have at least two elements if pass_zero=="bandpass", got $cutoff');
         }
         pass_zero = false;
       } else {
         throw FormatException(
-            'pass_zero must be True, False, "bandpass", "lowpass", "highpass", or "bandstop", got ${pass_zero}');
+            'pass_zero must be True, False, "bandpass", "lowpass", "highpass", or "bandstop", got $pass_zero');
       }
     }
   }
@@ -152,10 +152,16 @@ dynamic firwin(int numtaps, Array cutoff,
   // Insert 0 and/or 1 at the ends of cutoff so that the length of cutoff
   // is even, and each pair in cutoff corresponds to passband.
   if (pass_zero) {
-    cutoff = arrayConcat(Array([0.0]), cutoff);
+    cutoff = arrayConcat([
+      Array([0.0]),
+      cutoff
+    ]);
   }
   if (pass_nyquist) {
-    cutoff = arrayConcat(cutoff, Array([1.0]));
+    cutoff = arrayConcat([
+      cutoff,
+      Array([1.0])
+    ]);
   }
 
   // `bands` is a 2D array; each row gives the left and right edges of
@@ -201,16 +207,18 @@ dynamic firwin(int numtaps, Array cutoff,
 }
 
 /// Utility for replacing the argument 'nyq' (with default 1) with 'fs'.
-double _getFs(double fs, double nyq) {
-  if (nyq == null && fs == null) {
-    fs = 2;
-  } else if (nyq != null) {
-    if (fs != null) {
-      throw FormatException("Values cannot be given for both 'nyq' and 'fs'.");
-    }
-    fs = 2 * nyq;
+double _getFs(double? fs, double? nyq) {
+  if (fs != null && nyq != null) {
+    throw FormatException("Values cannot be given for both 'nyq' and 'fs'.");
   }
-  return fs;
+
+  var fsReturn = fs ?? 0;
+  if (nyq == null && fs == null) {
+    fsReturn = 2;
+  } else if (nyq != null) {
+    fsReturn = 2 * nyq;
+  }
+  return fsReturn;
 }
 
 /// Compute the attenuation of a Kaiser FIR filter.

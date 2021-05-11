@@ -31,7 +31,7 @@ import 'package:scidart/src/numdart/numbers/complex.dart';
 /// */
 /// ```
 class ArrayComplex extends ListBase<Complex> {
-  List<Complex> l = [];
+  List<Complex?> l = [];
 
   //#region constructors
   ArrayComplex(List<Complex> list) {
@@ -45,7 +45,7 @@ class ArrayComplex extends ListBase<Complex> {
     l = list.map((element) => element).toList();
   }
 
-  ArrayComplex.fixed(int length, {Complex initialValue}) {
+  ArrayComplex.fixed(int length, {Complex? initialValue}) {
     if (initialValue != null) {
       l = List<Complex>.generate(length, (i) => initialValue);
     } else {
@@ -58,7 +58,29 @@ class ArrayComplex extends ListBase<Complex> {
   //#region operators
   @override
   set length(int newLength) {
-    l.length = newLength;
+    if (newLength < 0) {
+      throw FormatException(
+          'newLength must be greater equal than 0 (newLength >= 0)');
+    }
+
+    var aux = l.map((element) => element).toList();
+
+    if (newLength == 0) {
+      l = [];
+    } else if (newLength > l.length) {
+      l = [];
+      aux.forEach((element) {
+        l.add(element);
+      });
+      for (var i = l.length; i < newLength; i++) {
+        l.add(Complex());
+      }
+    } else if (newLength < length) {
+      l = [];
+      for (var i = 0; i < newLength; i++) {
+        l.add(aux[i]);
+      }
+    }
   }
 
   /// Return the length of ComplexArray
@@ -80,7 +102,7 @@ class ArrayComplex extends ListBase<Complex> {
   int get length => l.length;
 
   @override
-  Complex operator [](int index) => l[index];
+  Complex operator [](int index) => l[index] ?? Complex();
 
   @override
   void operator []=(int index, Complex value) {
@@ -201,7 +223,7 @@ class ArrayComplex extends ListBase<Complex> {
   @override
   String toString() {
     var str = IterableBase.iterableToFullString(this, '[', ']');
-    return '\n  ArrayComplex(${str}\n  )';
+    return '\n  ArrayComplex($str\n  )';
   }
 
   //#endregion

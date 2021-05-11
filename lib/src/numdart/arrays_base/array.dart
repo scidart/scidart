@@ -30,7 +30,7 @@ import 'dart:collection';
 /// */
 /// ```
 class Array extends ListBase<double> {
-  List<double> l = [];
+  List<double?> l = [];
 
   //#region constructors
   Array(List<double> list) {
@@ -44,7 +44,7 @@ class Array extends ListBase<double> {
     l = list.map((element) => element).toList();
   }
 
-  Array.fixed(int length, {double initialValue}) {
+  Array.fixed(int length, {double? initialValue}) {
     if (initialValue != null) {
       l = List<double>.generate(length, (i) => initialValue);
     } else {
@@ -56,7 +56,29 @@ class Array extends ListBase<double> {
   //#region operators
   @override
   set length(int newLength) {
-    l.length = newLength;
+    if (newLength < 0) {
+      throw FormatException(
+          'newLength must be greater equal than 0 (newLength >= 0)');
+    }
+
+    var aux = l.map((element) => element).toList();
+
+    if (newLength == 0) {
+      l = [];
+    } else if (newLength > l.length) {
+      l = [];
+      aux.forEach((element) {
+        l.add(element);
+      });
+      for (var i = l.length; i < newLength; i++) {
+        l.add(0.0);
+      }
+    } else if (newLength < length) {
+      l = [];
+      for (var i = 0; i < newLength; i++) {
+        l.add(aux[i]);
+      }
+    }
   }
 
   /// Return the length of Array
@@ -75,7 +97,7 @@ class Array extends ListBase<double> {
   int get length => l.length;
 
   @override
-  double operator [](int index) => l[index];
+  double operator [](int index) => l[index] as double;
 
   @override
   void operator []=(int index, double value) {
@@ -249,13 +271,13 @@ class Array extends ListBase<double> {
   @override
   String toString() {
     var str = IterableBase.iterableToFullString(this, '[', ']');
-    return '\n  Array(${str})';
+    return '\n  Array($str)';
   }
 
   //#endregion
 
   //#region private methods
-  void _checkArray(Array b) {
+  void _checkArray(List<double> b) {
     if (length != b.length) {
       throw ('both arrays need have the same dimension');
     }

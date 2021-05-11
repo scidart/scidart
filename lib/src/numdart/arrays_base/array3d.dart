@@ -36,7 +36,7 @@ import 'array2d.dart';
 /// */
 /// ```
 class Array3d extends ListBase<Array2d> {
-  List<Array2d> l = <Array2d>[];
+  List<Array2d?> l = [];
 
   //#region constructors
   Array3d(List<Array2d> list) {
@@ -82,7 +82,7 @@ class Array3d extends ListBase<Array2d> {
   @override
   int get length => l.length;
   @override
-  Array2d operator [](int index) => l[index];
+  Array2d operator [](int index) => l[index] ?? Array2d.empty();
   @override
   void operator []=(int index, Array2d value) {
     l[index] = value;
@@ -113,7 +113,7 @@ class Array3d extends ListBase<Array2d> {
   @override
   String toString() {
     var str = IterableBase.iterableToFullString(this, '[', ']');
-    return 'Array3d(${str})';
+    return 'Array3d($str)';
   }
   //#endregion
 }

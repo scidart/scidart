@@ -61,7 +61,7 @@ Array generalCosine(int M, Array a, {bool sym = true}) {
   }
 
   var ext = _extend(M, sym);
-  var MExt = ext[0];
+  var MExt = ext[0] as int;
   var needsTrunc = ext[1];
 
   var fac = linspace(-pi, pi, num: MExt);

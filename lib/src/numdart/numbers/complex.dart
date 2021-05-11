@@ -152,6 +152,6 @@ class Complex {
   /// ```
   @override
   String toString() {
-    return '\n    Complex(real: ${real}, imaginary: ${imaginary})';
+    return '\n    Complex(real: $real, imaginary: $imaginary)';
   }
 }

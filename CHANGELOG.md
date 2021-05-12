@@ -1,3 +1,8 @@
+## 0.0.2-dev.2
+- new array2d operations created: array2dAddToScalar, array2dDivisionToScalar, array2dMultiplyToScalar, array2dSubToScalar
+- new array operation created: arrayAddToScalar
+- new tests created for array and array2d operations
+
 ## 0.0.2-dev.1
 - Null safety added to the package
 - FFT bug to big power of 2 arrays fixed

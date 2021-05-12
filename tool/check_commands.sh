@@ -15,3 +15,8 @@ pub outdated --no-dev-dependencies --up-to-date --no-dependency-overrides
 
 # validate but do not publish the package.
 pub publish --dry-run
+
+# sequence useful
+dartfmt -w lib test example
+dartanalyzer lib test example
+pub publish --dry-run

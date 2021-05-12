@@ -1,3 +1,6 @@
+## 0.0.2-dev.3
+- new array2d operations: array2dInverseOfEachElement, array2dPow
+
 ## 0.0.2-dev.2
 - new array2d operations created: array2dAddToScalar, array2dDivisionToScalar, array2dMultiplyToScalar, array2dSubToScalar
 - new array operation created: arrayAddToScalar

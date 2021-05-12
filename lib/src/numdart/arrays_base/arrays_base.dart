@@ -2,6 +2,10 @@ library arrays_base;
 
 export 'array.dart';
 export 'array2d.dart';
+export 'array2d_operations/array2d_add_to_scalar.dart';
+export 'array2d_operations/array2d_division_to_scalar.dart';
+export 'array2d_operations/array2d_multiply_to_scalar.dart';
+export 'array2d_operations/array2d_sub_to_scalar.dart';
 export 'array2d_operations/array2d_truncate_each_element.dart';
 export 'array3d.dart';
 export 'array_complex.dart';
@@ -16,6 +20,7 @@ export 'array_complex_operations/array_complex_reverse.dart';
 export 'array_complex_operations/array_complex_sum.dart';
 export 'array_complex_operations/array_complex_truncate_each_element.dart';
 export 'array_complex_operations/array_complex_truncate_last.dart';
+export 'array_operations/array_add_to_scalar.dart';
 export 'array_operations/array_arg_max.dart';
 export 'array_operations/array_concat.dart';
 export 'array_operations/array_cos.dart';

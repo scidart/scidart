@@ -12,6 +12,7 @@ export 'matrix_operations/matrix_inverse.dart';
 export 'matrix_operations/matrix_multiply_columns.dart';
 export 'matrix_operations/matrix_norm_one.dart';
 export 'matrix_operations/matrix_norm_two.dart';
+export 'matrix_operations/matrix_pseudo_inverse.dart';
 export 'matrix_operations/matrix_qr.dart';
 export 'matrix_operations/matrix_rank.dart';
 export 'matrix_operations/matrix_solve.dart';

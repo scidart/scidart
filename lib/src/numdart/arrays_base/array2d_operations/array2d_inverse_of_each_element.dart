@@ -25,14 +25,23 @@ dynamic array2dInverseOfEachElement(Array2d a, {bool returnNewArray = false}) {
     var c = Array2d.fixed(a.row, a.column);
     a.asMap().forEach((i, row) {
       row.asMap().forEach((j, element) {
-        c[i][j] = 1 / element;
+        if (element == 0) {
+          c[i][j] = element;
+        } else {
+          c[i][j] = 1 / element;
+        }
       });
     });
     return c;
   } else {
     for (var i = 0; i < a.row; i++) {
       for (var j = 0; j < a.column; j++) {
-        a[i][j] = 1 / a[i][j];
+        var element = a[i][j];
+        if (element == 0) {
+          a[i][j] = element;
+        } else {
+          a[i][j] = 1 / element;
+        }
       }
     }
   }

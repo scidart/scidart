@@ -1,3 +1,12 @@
+## 0.0.2-dev.4
+- singular value decomposition for matrix m != n (SVD)
+- SVD bug to get U, V and S matrix fixed
+- pseudo inverse matrix using Moore–Penrose (matrixPseudoInverse)
+- new tests cases with matrix m != n
+- new tests cases for SVD with matrix m != n
+- matrixSub limit index added to avoid break
+- array2dInverseOfEachElement bug for elements equal 0 fixed, just keep it 0
+
 ## 0.0.2-dev.3
 - new array2d operations: array2dInverseOfEachElement, array2dPow
 

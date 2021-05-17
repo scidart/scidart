@@ -2,6 +2,8 @@ import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_identity.dart';
 import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_solve.dart';
 
+import 'matrix_pseudo_inverse.dart';
+
 /// Matrix inverse or pseudoinverse
 /// return inverse(A) if A is square, pseudoinverse otherwise.
 ///
@@ -24,5 +26,9 @@ import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_solve.dart';
 /// */
 /// ```
 Array2d matrixInverse(Array2d a) {
-  return matrixSolve(a, matrixIdentity(a.row, a.row));
+  if (a.row != a.column) {
+    return matrixPseudoInverse(a);
+  } else {
+    return matrixSolve(a, matrixIdentity(a.row, a.row));
+  }
 }

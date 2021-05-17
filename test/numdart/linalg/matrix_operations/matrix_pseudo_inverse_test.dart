@@ -11,7 +11,7 @@ void main() {
 
     var frac = 6;
 
-    var i = matrixInverse(a);
+    var i = matrixPseudoInverse(a);
     array2dTruncateEachElement(i, frac);
 
     var iExp = Array2d([
@@ -34,7 +34,7 @@ void main() {
 
     var frac = 6;
 
-    var i = matrixInverse(a);
+    var i = matrixPseudoInverse(a);
     array2dTruncateEachElement(i, frac);
 
     var iExp = Array2d([
@@ -57,7 +57,7 @@ void main() {
 
     var frac = 6;
 
-    var i = matrixInverse(a);
+    var i = matrixPseudoInverse(a);
     array2dTruncateEachElement(i, frac);
 
     var iExp = Array2d([
@@ -79,7 +79,7 @@ void main() {
 
     var frac = 6;
 
-    var i = matrixInverse(a);
+    var i = matrixPseudoInverse(a);
     array2dTruncateEachElement(i, frac);
 
     var iExp = Array2d([
@@ -298,7 +298,7 @@ void main() {
 
     var frac = 5;
 
-    var i = matrixInverse(a);
+    var i = matrixPseudoInverse(a);
     array2dTruncateEachElement(i, frac);
 
     var iExp = Array2d([
@@ -366,29 +366,6 @@ void main() {
       Array([-2.11586922e-01, 1.06557190e-01, 8.81798267e-02]),
       Array([1.35980725e-01, -7.35305548e-02, -2.90522128e-01]),
       Array([-6.87483232e-04, 1.20053627e-02, 2.90258322e-04]),
-    ]);
-    array2dTruncateEachElement(iExp, frac);
-
-    print(i);
-
-    expect(i, iExp);
-  });
-
-  test('pseudo inverse 5', () {
-    var a = Array2d([
-      Array([1.0, 2.0]),
-      Array([3.0, 4.0]),
-      Array([5.0, 6.0]),
-    ]);
-
-    var frac = 6;
-
-    var i = matrixInverse(a);
-    array2dTruncateEachElement(i, frac);
-
-    var iExp = Array2d([
-      Array([-1.3333333333, -0.3333333333, 0.6666666667]),
-      Array([1.0833333333, 0.3333333333, -0.4166666667])
     ]);
     array2dTruncateEachElement(iExp, frac);
 

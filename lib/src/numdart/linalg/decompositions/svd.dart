@@ -48,6 +48,17 @@ import 'package:scidart/src/numdart/numdart.dart';
 /// ]);
 /// */
 /// ```
+/// # References
+/// 1. "svd Singular value decomposition". https://www.mathworks.com/help/matlab/ref/double.svd.html;jsessionid=b19a9f98e76836a49be98bcce77c . Retrieved 2021-05-17.
+/// 2. "Singular Value Decomposition more columns than rows". https://stats.stackexchange.com/questions/96574/singular-value-decomposition-more-columns-than-rows/524664#524664 . Retrieved 2021-05-17.
+/// 3. "Wolfram Alpha". https://www.wolframalpha.com/input/?i=SVD+%7B%7B1%2C2%2C3%7D%2C%7B4%2C5%2C6%7D%7D . Retrieved 2021-05-17.
+/// 4. "Jama Singular Value Decomposition". https://github.com/fiji/Jama/blob/master/src/main/java/Jama/SingularValueDecomposition.java . Retrieved 2021-05-17.
+/// 5. "Scipy svd". https://github.com/scipy/scipy/blob/v1.6.3/scipy/linalg/decomp_svd.py#L13-L136 . Retrieved 2021-05-17.
+/// 6. "Simple SVD algorithms". https://towardsdatascience.com/simple-svd-algorithms-13291ad2eef2 . Retrieved 2021-05-17.
+/// 7. "Library that add functionality of all maths sections that don't exist in dart:math". https://pub.dev/packages/extended_math . Retrieved 2021-05-17.
+/// 8. "How to Calculate the SVD from Scratch with Python". https://machinelearningmastery.com/singular-value-decomposition-for-machine-learning/ . Retrieved 2021-05-17.
+/// 9. "Singular Value Decomposition (SVD) of a Matrix calculator". https://atozmath.com/MatrixEv.aspx?q=svd&q1=1%2c2%2c3%3b4%2c5%2c6%60svd%60&dm=D&dp=8&do=1#PrevPart . Retrieved 2021-05-17.
+///
 class SVD {
   //#region Class variables
   /// Arrays for internal storage of U and V.
@@ -73,15 +84,42 @@ class SVD {
   SVD(Array2d Arg) {
     // Derived from LINPACK code.
     // Initialize.
-    var A = Arg.copy();
     _m = Arg.row;
     _n = Arg.column;
 
-    /* Apparently the failing cases are only a proper subset of (m<n),
-	 so let's not throw error.  Correct fix to come later?
-      if (m<n) {
-	  throw new IllegalArgumentException("Jama SVD only works for m >= n"); }
-      */
+    // Apparently the failing cases are only a proper subset of (m<n),
+    // so let's not throw error.  Correct fix to come later?
+    Array2d A;
+    var specialCaseMoreColumns = false;
+    var specialCaseMoreRows = false;
+    if (_m < _n) {
+      specialCaseMoreColumns = true;
+      _m = Arg.column;
+      _n = Arg.column;
+
+      A = Array2d.fixed(_m, _n);
+
+      Arg.asMap().forEach((i, row) {
+        row.asMap().forEach((j, elem) {
+          A[i][j] = elem;
+        });
+      });
+    } else if (_m > _n) {
+      specialCaseMoreRows = true;
+      _m = Arg.row;
+      _n = Arg.row;
+
+      A = Array2d.fixed(_m, _n);
+
+      Arg.asMap().forEach((i, row) {
+        row.asMap().forEach((j, elem) {
+          A[i][j] = elem;
+        });
+      });
+    } else {
+      A = Arg.copy();
+    }
+
     var nu = math.min(_m, _n).toInt();
     _s = Array.fixed(math.min(_m + 1, _n));
     _U = Array2d.fixed(_m, nu, initialValue: 0);
@@ -117,7 +155,7 @@ class SVD {
         _s[k] = -_s[k];
       }
       for (var j = k + 1; j < _n; j++) {
-        if ((k < nct) & (_s[k] != 0.0)) {
+        if ((k < nct) && (_s[k] != 0.0)) {
           // Apply the transformation.
 
           var t = 0.0;
@@ -288,7 +326,7 @@ class SVD {
         if (k == -1) {
           break;
         }
-        if (e[k].abs() <= tiny + eps * (_s[k].abs() + _s[k + 1].abs())) {
+        if (e[k].abs() <= (tiny + (eps * (_s[k].abs() + _s[k + 1].abs())))) {
           e[k] = 0.0;
           break;
         }
@@ -303,7 +341,7 @@ class SVD {
           }
           var t = (ks != p ? e[ks].abs() : 0.0) +
               (ks != k + 1 ? e[ks - 1].abs() : 0.0);
-          if (_s[ks].abs() <= tiny + eps * t) {
+          if (_s[ks].abs() <= (tiny + (eps * t))) {
             _s[ks] = 0.0;
             break;
           }
@@ -339,8 +377,8 @@ class SVD {
               }
               if (wantv) {
                 for (var i = 0; i < _n; i++) {
-                  t = cs * _V[i][j] + sn * _V[i][p - 1];
-                  _V[i][p - 1] = -sn * _V[i][j] + cs * _V[i][p - 1];
+                  t = (cs * _V[i][j]) + (sn * _V[i][p - 1]);
+                  _V[i][p - 1] = (-sn * _V[i][j]) + (cs * _V[i][p - 1]);
                   _V[i][j] = t;
                 }
               }
@@ -363,8 +401,8 @@ class SVD {
               e[j] = cs * e[j];
               if (wantu) {
                 for (var i = 0; i < _m; i++) {
-                  t = cs * _U[i][j] + sn * _U[i][k - 1];
-                  _U[i][k - 1] = -sn * _U[i][j] + cs * _U[i][k - 1];
+                  t = (cs * _U[i][j]) + (sn * _U[i][k - 1]);
+                  _U[i][k - 1] = (-sn * _U[i][j]) + (cs * _U[i][k - 1]);
                   _U[i][j] = t;
                 }
               }
@@ -389,17 +427,17 @@ class SVD {
             var epm1 = e[p - 2] / scale;
             var sk = _s[k] / scale;
             var ek = e[k] / scale;
-            var b = ((spm1 + sp) * (spm1 - sp) + epm1 * epm1) / 2.0;
+            var b = ((spm1 + sp) * (spm1 - sp) + (epm1 * epm1)) / 2.0;
             var c = (sp * epm1) * (sp * epm1);
             var shift = 0.0;
             if ((b != 0.0) | (c != 0.0)) {
-              shift = math.sqrt(b * b + c);
+              shift = math.sqrt((b * b) + c);
               if (b < 0.0) {
                 shift = -shift;
               }
               shift = c / (b + shift);
             }
-            var f = (sk + sp) * (sk - sp) + shift;
+            var f = ((sk + sp) * (sk - sp)) + shift;
             var g = sk * ek;
 
             // Chase zeros.
@@ -411,14 +449,14 @@ class SVD {
               if (j != k) {
                 e[j - 1] = t;
               }
-              f = cs * _s[j] + sn * e[j];
-              e[j] = cs * e[j] - sn * _s[j];
+              f = (cs * _s[j]) + (sn * e[j]);
+              e[j] = (cs * e[j]) - (sn * _s[j]);
               g = sn * _s[j + 1];
               _s[j + 1] = cs * _s[j + 1];
               if (wantv) {
                 for (var i = 0; i < _n; i++) {
-                  t = cs * _V[i][j] + sn * _V[i][j + 1];
-                  _V[i][j + 1] = -sn * _V[i][j] + cs * _V[i][j + 1];
+                  t = (cs * _V[i][j]) + (sn * _V[i][j + 1]);
+                  _V[i][j + 1] = (-sn * _V[i][j]) + (cs * _V[i][j + 1]);
                   _V[i][j] = t;
                 }
               }
@@ -426,14 +464,14 @@ class SVD {
               cs = f / t;
               sn = g / t;
               _s[j] = t;
-              f = cs * e[j] + sn * _s[j + 1];
-              _s[j + 1] = -sn * e[j] + cs * _s[j + 1];
+              f = (cs * e[j]) + (sn * _s[j + 1]);
+              _s[j + 1] = (-sn * e[j]) + (cs * _s[j + 1]);
               g = sn * e[j + 1];
               e[j + 1] = cs * e[j + 1];
               if (wantu && (j < _m - 1)) {
                 for (var i = 0; i < _m; i++) {
-                  t = cs * _U[i][j] + sn * _U[i][j + 1];
-                  _U[i][j + 1] = -sn * _U[i][j] + cs * _U[i][j + 1];
+                  t = (cs * _U[i][j]) + (sn * _U[i][j + 1]);
+                  _U[i][j + 1] = (-sn * _U[i][j]) + (cs * _U[i][j + 1]);
                   _U[i][j] = t;
                 }
               }
@@ -488,6 +526,32 @@ class SVD {
           break;
       }
     }
+
+    if (specialCaseMoreColumns) {
+      _m = Arg.row;
+      _n = Arg.column;
+      array2dMultiplyToScalar(_U, -1);
+      array2dMultiplyToScalar(_V, -1);
+    } else if (specialCaseMoreRows) {
+      _m = Arg.row;
+      _n = Arg.column;
+
+      for (var i = 0; i < _U.row; i++) {
+        for (var j = 0; j < _U.column; j++) {
+          if (isOdd(j)) {
+            _U[i][j] *= -1;
+          }
+        }
+      }
+
+      for (var i = 0; i < _V.row; i++) {
+        for (var j = 0; j < _V.column; j++) {
+          if (isOdd(j)) {
+            _V[i][j] *= -1;
+          }
+        }
+      }
+    }
   }
 
   //#endregion
@@ -496,13 +560,22 @@ class SVD {
   /// Return the left singular vectors
   /// return U
   Array2d U() {
-    return matrixSub(_U, 0, _m - 1, 0, math.min(_m + 1, _n) - 1);
+    if (_m > _n) {
+      var dim = math.max(_m, _n) - 1;
+      return matrixSub(_U, 0, dim, 0, dim);
+    }
+    if (_m < _n) {
+      var dim = math.min(_m, _n) - 1;
+      return matrixSub(_U, 0, dim, 0, dim);
+    } else {
+      return matrixSub(_U, 0, _m - 1, 0, math.min(_m + 1, _n) - 1);
+    }
   }
 
   /// Return the right singular vectors
   /// return V
   Array2d V() {
-    return matrixSub(_V, 0, _n, 0, _n);
+    return matrixSub(_V, 0, _n - 1, 0, _n - 1);
   }
 
   /// Return the one-dimensional array of singular values
@@ -514,12 +587,14 @@ class SVD {
   /// Return the diagonal matrix of singular values
   /// return S
   Array2d S() {
-    var S = Array2d.fixed(_n, _n);
-    for (var i = 0; i < _n; i++) {
+    var S = Array2d.fixed(_m, _n);
+    for (var i = 0; i < _m; i++) {
       for (var j = 0; j < _n; j++) {
         S[i][j] = 0.0;
       }
-      S[i][i] = _s[i];
+      if (i < _s.length && i < _n) {
+        S[i][i] = _s[i];
+      }
     }
     return S;
   }

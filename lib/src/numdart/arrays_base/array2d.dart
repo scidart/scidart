@@ -48,7 +48,7 @@ class Array2d extends ListBase<Array> {
 
   Array2d.fromArray(Array2d list) {
     // deep copy of the parameter
-    l = list.map((element) => element).toList();
+    l = list.map((element) => Array.fromArray(element)).toList();
   }
 
   Array2d.fixed(int row, int column, {double? initialValue}) {
@@ -320,6 +320,87 @@ class Array2d extends ListBase<Array> {
       }
     }
     return true;
+  }
+
+  /// Return Array with the column elements
+  /// - [column] column number.
+  /// - [FormatException]: columns number must be in Array2d.
+  ///
+  /// # Examples
+  /// ```dart
+  /// var matrix = Array2d.empty();
+  /// var line = Array([1.0, 2.0, 3.0]);
+  ///
+  /// matrix.add(line);
+  /// matrix.add(line);
+  /// matrix.add(line);
+  ///
+  /// print(matrix.getColumn(1));
+  ///
+  /// /* output:
+  /// Array([2.0, 2.0, 2.0])
+  /// */
+  /// ```
+  Array? getColumn(int column) {
+    var aColumn = Array.empty();
+    for (var i = 0; i < l.length; i++) {
+      var row = this[i];
+      if (column >= row.length) {
+        throw FormatException('columns number must be in Array2d');
+      }
+      aColumn.add(row[column]);
+    }
+
+    return aColumn;
+  }
+
+  /// Return a Sub Array2d with the rage of rows columns elements specified
+  /// - [rowStart] row start index.
+  /// - [rowEnd] row end index.
+  /// - [colStart] column start index.
+  /// - [colEnd] column start index.
+  /// - [FormatException]: rowStart and rowEnd must be in Array2d.
+  ///
+  /// # Examples
+  /// ```dart
+  /// var matrix = Array2d.empty();
+  /// var line = Array([1.0, 2.0, 3.0]);
+  ///
+  /// matrix.add(line);
+  /// matrix.add(line);
+  /// matrix.add(line);
+  ///
+  /// print(matrix.subArray2d(0, 1, 1, 2));
+  ///
+  /// /* output:
+  /// Array2d([
+  ///   Array([2.0, 3.0]),
+  ///   Array([2.0, 3.0])
+  /// ])
+  /// */
+  /// ```
+  Array2d subArray2d(int rowStart, int rowEnd, int colStart, int colEnd) {
+    if (rowStart > rowEnd || rowEnd >= l.length) {
+      throw FormatException('rowStart and rowEnd must be in Array2d');
+    }
+
+    var c = Array2d.empty();
+    for (var i = rowStart; i <= rowEnd; i++) {
+      var row = this[i];
+
+      if (colStart > colEnd || colEnd >= row.length) {
+        throw FormatException('colStart and colEnd must be in Array2d');
+      }
+
+      var rowTemp = Array.empty();
+      for (var j = colStart; j <= colEnd; j++) {
+        rowTemp.add(this[i][j]);
+      }
+
+      c.add(rowTemp);
+    }
+
+    return c;
   }
   //#endregion
 

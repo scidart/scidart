@@ -150,4 +150,26 @@ void main() {
 
     expect(a, aExpec);
   });
+
+  test('get column', () {
+    var matrix = Array2d.empty();
+    var line = Array([1.0, 2.0, 3.0]);
+
+    matrix.add(line);
+    matrix.add(line);
+    matrix.add(line);
+
+    print(matrix.getColumn(1));
+  });
+
+  test('sub array2d', () {
+    var matrix = Array2d.empty();
+    var line = Array([1.0, 2.0, 3.0]);
+
+    matrix.add(line);
+    matrix.add(line);
+    matrix.add(line);
+
+    print(matrix.subArray2d(0, 1, 1, 2));
+  });
 }

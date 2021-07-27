@@ -1,3 +1,7 @@
+## 0.0.2-dev.5
+- Array2d.fromArray is not deep copying the arrays in the list of arrays #31
+- subArray2d and getColumn new methods 
+
 ## 0.0.2-dev.4
 - singular value decomposition for matrix m != n (SVD)
 - SVD bug to get U, V and S matrix fixed

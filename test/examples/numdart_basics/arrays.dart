@@ -40,5 +40,13 @@ void main() {
     ]);
 
     print(aComplex);
+
+    // indexing only columns
+    var onlyOneColumn = mA.getColumn(1);
+    print(onlyOneColumn);
+
+    // subArray2d (submatrix)
+    var subMatrix = mA.subArray2d(1, 2, 1, 1);
+    print(subMatrix);
   });
 }

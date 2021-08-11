@@ -18,10 +18,12 @@ void main() {
 
     expect(list.length, 3);
 
-    list.length = 4;
+    list.length = 5;
     print(list);
 
-    expect(list.length, 4);
+    expect(list.length, 5);
+    expect(list[3], 0.0);
+    expect(list[4], 0.0);
 
     list.length = 2;
     print(list);

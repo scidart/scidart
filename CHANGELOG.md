@@ -1,3 +1,6 @@
+## 0.0.2-dev.6
+- Performance improvements for Array.add
+
 ## 0.0.2-dev.5
 - Array2d.fromArray is not deep copying the arrays in the list of arrays #31
 - subArray2d and getColumn new methods 

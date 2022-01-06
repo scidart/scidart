@@ -2,7 +2,7 @@ import 'package:scidart/src/numdart/numdart.dart';
 import 'package:scidart/src/scidart/fftpack/fft/ifft.dart';
 
 /// Compute the one-dimensional inverse discrete Fourier Transform and return a Real output.
-/// - [x] nrrayComplex with the input
+/// - [x] an ArrayComplex with the input
 /// return An Array with IFFT output
 ///
 /// # References

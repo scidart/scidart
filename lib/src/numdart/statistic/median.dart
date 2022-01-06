@@ -1,6 +1,6 @@
 import 'package:scidart/src/numdart/arrays_base/array.dart';
 
-/// Return the median of a array
+/// Return the median of an array
 ///
 /// # Examples
 /// ```dart

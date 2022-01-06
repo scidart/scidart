@@ -2,7 +2,7 @@ import 'package:scidart/src/numdart/numdart.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('create a identity matrix', () {
+  test('create an identity matrix', () {
     var i = matrixIdentity(3, 3);
 
     print(i);

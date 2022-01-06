@@ -1,6 +1,6 @@
 import '../../../numdart/numdart.dart';
 
-/// Divide all the columns by a Array
+/// Divide all the columns by an Array
 ///
 /// # Examples
 /// ```dart

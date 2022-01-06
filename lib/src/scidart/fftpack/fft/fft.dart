@@ -71,7 +71,7 @@ ArrayComplex fft(ArrayComplex x,
   if (buffer.isEmpty) {
     return ArrayComplex.empty();
   } else if (isPowerOf2(n) && !forceDft) {
-    // It is power of 2, apply cooley turkey algorithm
+    // It is power of 2, apply cooley tukey algorithm
     res = _cooleyTukey(buffer);
   } else {
     // It is not power of 2, apply discrete fourier transform algorithm

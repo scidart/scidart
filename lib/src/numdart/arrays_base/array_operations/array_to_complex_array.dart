@@ -3,7 +3,7 @@ import 'package:scidart/src/numdart/numbers/complex.dart';
 import '../array.dart';
 import '../array_complex.dart';
 
-/// Convert a Array to ArrayComplex
+/// Convert an Array to ArrayComplex
 ///
 /// # Examples
 /// ```dart

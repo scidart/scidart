@@ -241,7 +241,7 @@ class Array extends ListBase<double> {
   //#endregion
 
   //#region overload methods
-  /// Convert an Array object to an String representation
+  /// Convert an Array object to a String representation
   ///
   /// # Examples
   /// ```dart

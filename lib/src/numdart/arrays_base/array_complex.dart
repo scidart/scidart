@@ -163,11 +163,11 @@ class ArrayComplex extends ListBase<Complex> {
       }
       return true;
     } else {
-      throw ('the right object has to be a ArrayComplex type');
+      throw ('the right object has to be an ArrayComplex type');
     }
   }
 
-  /// Return a array given a index interval
+  /// Return an array given an index interval
   ///
   /// - [start] : start index close interval
   /// - [end] : end index open interval
@@ -206,7 +206,7 @@ class ArrayComplex extends ListBase<Complex> {
   //#endregion
 
   //#region overload methods
-  /// Convert a ArrayComplex object to a String representation
+  /// Convert an ArrayComplex object to a String representation
   ///
   /// # Examples
   /// ```dart

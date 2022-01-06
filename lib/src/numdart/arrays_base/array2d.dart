@@ -257,7 +257,7 @@ class Array2d extends ListBase<Array> {
       }
       return true;
     } else {
-      throw ('the right object has to be a Array2d type');
+      throw ('the right object has to be an Array2d type');
     }
   }
 
@@ -405,7 +405,7 @@ class Array2d extends ListBase<Array> {
   //#endregion
 
   //#region overload methods
-  /// Convert a Array2d object to a String representation
+  /// Convert an Array2d object to a String representation
   ///
   /// # Examples
   /// ```dart

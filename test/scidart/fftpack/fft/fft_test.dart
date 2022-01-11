@@ -30,7 +30,7 @@ void main() {
     }
   });
 
-  test('fft of a odd samples signal', () {
+  test('fft of an odd samples signal', () {
     var x = arrayToComplexArray(Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0]));
 
     var X = fft(x);

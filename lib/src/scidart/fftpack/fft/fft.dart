@@ -5,14 +5,14 @@ import 'package:scidart/src/numdart/numdart.dart';
 /// Compute the one-dimensional discrete Fourier Transform.
 /// Uses recursive Cooley–Tukey algorithm if N is power of 2 otherwise uses
 /// Discrete Fourier Transform algorithm.
-/// - [x] : A ArrayComplex with the input
+/// - [x] : An ArrayComplex with the input
 /// - [n] : Length of the transformed axis of the output (optional). If not informed,
 /// the length of x will be used
 /// If n is smaller than the length of the input, the input is cropped.
 /// If it is larger, the input is padded with zeros.
 /// If n is not given, the length of the input is used.
 /// - [normalization] : Compute the FFT normalization wich is: fft(x)/n (optional default false)
-/// - return A ArrayComplex with FFT output
+/// - return An ArrayComplex with FFT output
 ///
 /// # References
 /// 1. "Fast Fourier Transform (C++, Nim and Python examples)". https://rosettacode.org/wiki/Fast_Fourier_transform#Nim. Retrieved 2021-05-10.
@@ -71,7 +71,7 @@ ArrayComplex fft(ArrayComplex x,
   if (buffer.isEmpty) {
     return ArrayComplex.empty();
   } else if (isPowerOf2(n) && !forceDft) {
-    // It is power of 2, apply cooley turkey algorithm
+    // It is power of 2, apply cooley tukey algorithm
     res = _cooleyTukey(buffer);
   } else {
     // It is not power of 2, apply discrete fourier transform algorithm

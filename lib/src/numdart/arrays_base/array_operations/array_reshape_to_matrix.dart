@@ -1,6 +1,6 @@
 import '../../numdart.dart';
 
-/// Reshape a Array to a matrix with a given order
+/// Reshape an Array to a matrix with a given order
 ///
 /// # Examples
 /// ```dart

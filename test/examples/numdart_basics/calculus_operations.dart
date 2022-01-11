@@ -22,7 +22,7 @@ void main() {
     print(simpsFunction(a, b, n, f)); // integration using Simpson's rule
 
     // array differentiation
-    print(differentiateArray(y, x)); // return a array with the differentiation
+    print(differentiateArray(y, x)); // return an array with the differentiation
 
     // function differentiation
     var px = 10.0; // point where the function will be differentiated

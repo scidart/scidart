@@ -2,13 +2,13 @@ import 'package:scidart/src/numdart/numdart.dart';
 import 'package:scidart/src/scidart/fftpack/fft/fft.dart';
 
 /// Compute the one-dimensional discrete Fourier Transform for a Real input.
-/// - [x] A Array with the input
+/// - [x] An Array with the input
 /// - [n] : optional
 /// Length of the transformed axis of the output.
 /// If n is smaller than the length of the input, the input is cropped.
 /// If it is larger, the input is padded with zeros.
 /// If n is not given, the length of the input is used.
-/// return A ArrayComplex with FFT output
+/// return An ArrayComplex with FFT output
 ///
 /// # References
 /// 1 "Fast Fourier Transform". https://rosettacode.org/wiki/Fast_Fourier_transform#C++. Retrieved 2019-07-23.

@@ -1,3 +1,6 @@
+## 0.0.2-dev.7
+- Typos in the Source Code
+
 ## 0.0.2-dev.6
 - Performance improvements for Array.add
 

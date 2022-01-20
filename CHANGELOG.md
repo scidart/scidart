@@ -1,3 +1,7 @@
+## 0.0.2-dev.8
+- Issue Infinite loop, memory exhausted with PolyFit(x, y, degree) #37, solved
+- some typos fixed
+
 ## 0.0.2-dev.7
 - Typos in the Source Code
 

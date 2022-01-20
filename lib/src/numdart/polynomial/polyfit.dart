@@ -59,7 +59,7 @@ class PolyFit {
     this.degree = degree;
 
     // check arguments.
-    if (degree < 0) {
+    if (this.degree < 0) {
       throw FormatException('expected deg >= 0');
     }
     if (x.isEmpty) {
@@ -70,7 +70,7 @@ class PolyFit {
     }
 
     var n = x.length;
-    var order = degree + 1;
+    var order = this.degree + 1;
     QR qr;
     Array2d matrixX;
 
@@ -85,6 +85,10 @@ class PolyFit {
 
       // decrease degree and try again
       this.degree--;
+
+      if (this.degree < 0) {
+        throw FormatException('Matrix is rank deficient.');
+      }
     }
 
     // create matrix from vector

@@ -2,7 +2,7 @@ import 'package:scidart/src/numdart/numdart.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('create a one space 50 elem', () {
+  test('create an one space 50 elem', () {
     var n = ones(3);
     var nExpect = [1.0, 1.0, 1.0];
 

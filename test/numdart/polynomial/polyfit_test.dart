@@ -62,4 +62,23 @@ void main() {
 
     expect(eq.polyDegree(), deg);
   });
+
+  test('predict issue #37', () {
+    var x = Array([7614, 7614, 7614, 7980, 7980, 7980, 7980]);
+    var y = Array([1, 4, 20, 25, 25, 20, 4]);
+    var deg = 5;
+
+    expect(() => PolyFit(x, y, deg), throwsException);
+  });
+
+  test('predict issue #37 working', () {
+    var x = Array([1, 4, 20, 25, 25, 20, 4]);
+    var y = Array([7614, 7614, 7614, 7980, 7980, 7980, 7980]);
+    var deg = 5;
+
+    var eq = PolyFit(x, y, deg);
+    print(eq);
+
+    expect(eq.polyDegree(), deg);
+  });
 }

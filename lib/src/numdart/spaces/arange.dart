@@ -13,7 +13,7 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 /// Spacing between values. For any output out, this is the distance between two adjacent values, out\[i+1\] - out\[i\]. The default step size is 1. If step is specified as a position argument, start must also be given.
 ///
 /// # Returns:
-/// arange : \[Array\]
+/// createArrayRange : \[Array\]
 /// Array of evenly spaced values.
 ///
 /// # References
@@ -23,9 +23,9 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 /// ```dart
 /// import 'package:scidart/src/numdart/numdart.dart';
 ///
-/// print(arange(stop: 3));
-/// print(arange(start: 3, stop: 7))
-/// print(arange(start: 3, stop: 7, step: 2))
+/// print(createArrayRange(stop: 3));
+/// print(createArrayRange(start: 3, stop: 7))
+/// print(createArrayRange(start: 3, stop: 7, step: 2))
 ///
 /// /* output:
 /// Array([0, 1, 2])
@@ -33,7 +33,7 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 /// Array([3, 5])
 /// */
 /// ```
-Array arange({int start = 0, int stop = 10, int step = 1}) {
+Array createArrayRange({int start = 0, int stop = 10, int step = 1}) {
   var N =
       (stop - start) ~/ step; // https:///stackoverflow.com/a/52479342/6846888
 
@@ -41,4 +41,9 @@ Array arange({int start = 0, int stop = 10, int step = 1}) {
       Array(List<double>.generate(N, (i) => (start + i * step).toDouble()));
 
   return space;
+}
+
+@Deprecated('Use createArrayRange instead.')
+Array arange({int start = 0, int stop = 10, int step = 1}) {
+  return createArrayRange(start: start, stop: stop, step: step);
 }

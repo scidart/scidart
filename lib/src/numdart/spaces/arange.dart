@@ -43,7 +43,7 @@ Array createArrayRange({int start = 0, int stop = 10, int step = 1}) {
   return space;
 }
 
-@Deprecated('Use createArrayRange instead.')
+@Deprecated('Use createArrayRange instead')
 Array arange({int start = 0, int stop = 10, int step = 1}) {
   return createArrayRange(start: start, stop: stop, step: step);
 }

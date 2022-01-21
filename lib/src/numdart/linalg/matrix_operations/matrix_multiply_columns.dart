@@ -1,7 +1,7 @@
 import 'package:scidart/src/numdart/arrays_base/array.dart';
 import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 
-/// Multiply all the columns by a Array
+/// Multiply all the columns by an Array
 ///
 /// # Examples
 /// ```dart

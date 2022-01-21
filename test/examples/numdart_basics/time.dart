@@ -5,7 +5,7 @@ void main() {
   test('time', () {
     // the random function to measure the computation time
     var func = () {
-      var x = arange(stop: 99);
+      var x = createArrayRange(stop: 99);
       var y = randomArray(99);
       var py = PolyFit(x, y, 10);
       print(py);

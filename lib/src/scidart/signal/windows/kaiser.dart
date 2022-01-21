@@ -45,7 +45,7 @@ Array kaiser(int M, double beta, {bool sym = true}) {
   if (!sym && odd != 0) {
     M = M + 1;
   }
-  var n = arange(start: 0, stop: M);
+  var n = createArrayRange(start: 0, stop: M);
   var alpha = (M - 1) / 2.0;
 
   var one = ones(M);

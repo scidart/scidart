@@ -32,7 +32,7 @@ void main() {
 
     print(book);
 
-    // Create a array of complex numbers
+    // Create an array of complex numbers
     var aComplex = ArrayComplex([
       Complex(real: 2.0, imaginary: 2.0),
       Complex(real: 2.0, imaginary: 2.0),

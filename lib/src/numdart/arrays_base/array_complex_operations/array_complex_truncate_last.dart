@@ -1,6 +1,6 @@
 import '../array_complex.dart';
 
-/// Return a Array without the last element
+/// Return an Array without the last element
 ///
 /// # Examples
 /// ```dart

@@ -1,4 +1,4 @@
-/// Rotate to left the bits of a int number n times
+/// Rotate to left the bits of an int number n times
 /// - [n] : number
 /// - [bits] : number of rotations
 ///
@@ -24,7 +24,7 @@ int bitReverse(int n, int bits) {
   return ((reversedN << count) & ((1 << bits) - 1));
 }
 
-///  Reurn the highest one bit of a int
+///  Reurn the highest one bit of an int
 ///  [n] : input number
 ///  References
 ///  ----------
@@ -45,7 +45,7 @@ int highestOneBit(int n) {
 ///  Convert a bool to int, if true return 1, else 0
 int boolToInt(bool a) => a ? 1 : 0;
 
-///  Convert a int to bool, if 0 return false, else true
+///  Convert an int to bool, if 0 return false, else true
 bool intToBool(int a) => a == 0 ? false : true;
 
 /// Check if [a] is an Even number.

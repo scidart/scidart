@@ -1,6 +1,6 @@
 import '../../numdart.dart';
 
-/// Convert a Array to a matrix with one column
+/// Convert an Array to a matrix with one column
 ///
 /// # Examples
 /// ```dart

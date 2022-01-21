@@ -1,8 +1,8 @@
 import '../../../numdart.dart';
 
 /// Compute the numerical derivative of two arrays
-/// - [y] : a Array with y points
-/// - [x] : a Array with x points
+/// - [y] : an Array with y points
+/// - [x] : an Array with x points
 ///
 /// # References
 ///

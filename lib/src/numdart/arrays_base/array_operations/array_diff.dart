@@ -1,11 +1,11 @@
 import '../array.dart';
 
-/// Calculate the n-th discrete difference of a Array using the formula
+/// Calculate the n-th discrete difference of an Array using the formula
 /// `out[i] = a[i+1] - a[i]`.
 ///
 /// # Parameters
 /// [a] : input array
-/// return a Array with all the differences.
+/// return an Array with all the differences.
 ///
 /// ## References
 /// 1. "numpy.diff". https://github.com/numpy/numpy/blob/v1.17.0/numpy/lib/function_base.py#L1147-L1275. Retrieved 2019-07-31.

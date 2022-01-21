@@ -207,11 +207,11 @@ class Array extends ListBase<double> {
       }
       return true;
     } else {
-      throw ('the right object has to be a Array type');
+      throw ('the right object has to be an Array type');
     }
   }
 
-  /// Return a array given a index interval
+  /// Return an array given an index interval
   /// - [start] : start index close interval
   /// - [end] : end index open interval
   ///
@@ -241,7 +241,7 @@ class Array extends ListBase<double> {
   //#endregion
 
   //#region overload methods
-  /// Convert a Array object to a String representation
+  /// Convert an Array object to a String representation
   ///
   /// # Examples
   /// ```dart

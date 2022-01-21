@@ -1,7 +1,7 @@
 import 'package:scidart/src/numdart/numbers/complex.dart';
 import 'package:scidart/src/numdart/numbers/double.dart';
 
-/// Truncate the real and imaginary part of a imaginary number. This function is very useful
+/// Truncate the real and imaginary part of an imaginary number. This function is very useful
 /// for compere two double numbers.
 /// - [val] : a Complex value
 /// - [fractionDigits] : number of decimal digits

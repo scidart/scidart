@@ -90,7 +90,7 @@ class Array3d extends ListBase<Array2d> {
   //#endregion
 
   //#region overload methods
-  /// Convert a Array3d object to a String representation
+  /// Convert an Array3d object to a String representation
   ///
   /// # Examples
   /// ```dart

@@ -170,7 +170,7 @@ dynamic firwin(int numtaps, Array cutoff,
 
   // Build up the coefficients.
   var alpha = 0.5 * (numtaps - 1);
-  var m = arraySubToScalar(arange(start: 0, stop: numtaps), alpha);
+  var m = arraySubToScalar(createArrayRange(start: 0, stop: numtaps), alpha);
   var h = Array.fixed(m.length, initialValue: 0);
   for (var j = 0; j < bands.row; j++) {
     // lr[0] - left; lr[1] - right

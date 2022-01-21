@@ -2,8 +2,8 @@ import 'package:scidart/src/numdart/numdart.dart';
 import 'package:scidart/src/scidart/fftpack/fft/fft.dart';
 
 /// Compute the one-dimensional inverse discrete Fourier Transform.
-/// - [X] A ArrayComplex with the input
-/// return A ArrayComplex with IFFT output
+/// - [X] An ArrayComplex with the input
+/// return An ArrayComplex with IFFT output
 ///
 /// # References
 /// 1. "Fast Fourier Transform". // https://rosettacode.org/wiki/Fast_Fourier_transform#C++. Retrieved 2019-07-23.

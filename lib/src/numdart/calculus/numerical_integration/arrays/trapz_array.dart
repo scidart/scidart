@@ -1,7 +1,7 @@
 import '../../../numdart.dart';
 import 'check_params_get_range_array.dart';
 
-/// Compute the numerical integration of a Array using the trapezoidal rule.
+/// Compute the numerical integration of an Array using the trapezoidal rule.
 /// - [y] : input array to integrate
 /// - [x] : The sample points corresponding to the y values. If x is null,
 /// the sample points are assumed to be evenly spaced dx apart. The default is null.

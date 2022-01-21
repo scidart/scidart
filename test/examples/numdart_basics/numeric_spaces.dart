@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('Numeric spaces', () {
-    var ar = arange(step: 0, stop: 100); // generate an array 0 to 99
+    var ar = createArrayRange(step: 0, stop: 100); // generate an array 0 to 99
     print(ar);
 
     var lin =

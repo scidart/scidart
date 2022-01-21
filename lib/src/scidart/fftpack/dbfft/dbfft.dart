@@ -42,7 +42,7 @@ List dbfft(Array x, double fs, {String? window, double? ref}) {
   // Calculate real FFT and frequency vector
   var sp = rfft(x);
   var freq = arrayDivisionToScalar(
-      arange(stop: ((N / 2) + 1).toInt()), (N.toDouble() / fs));
+      createArrayRange(stop: ((N / 2) + 1).toInt()), (N.toDouble() / fs));
 
   // Scale the magnitude of FFT by window and factor of 2,
   // because we are using half of FFT spectrum.

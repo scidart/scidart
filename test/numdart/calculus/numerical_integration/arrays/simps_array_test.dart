@@ -26,8 +26,8 @@ void main() {
   });
 
   test('simps array arrange 0 10', () {
-    var x = arange(start: 0, stop: 10);
-    var y = arange(start: 0, stop: 10);
+    var x = createArrayRange(start: 0, stop: 10);
+    var y = createArrayRange(start: 0, stop: 10);
     var i = simpsArray(y, x: x);
     var iExpec = 40.5;
     expect(i, iExpec);

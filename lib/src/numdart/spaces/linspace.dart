@@ -25,7 +25,8 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 /// (depending on whether `endpoint` is True or False).
 ///
 /// # See Also
-/// - arange : Similar to `linspace`, but uses a step size (instead of the
+/// - createArrayRange : Similar to `linspace`, but uses a step size (instead of
+/// the
 /// number of samples).
 ///
 /// # References

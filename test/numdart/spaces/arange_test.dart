@@ -2,8 +2,8 @@ import 'package:scidart/src/numdart/numdart.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('create an arange with 3 elements', () {
-    var n = arange(stop: 3);
+  test('create an array range with 3 elements', () {
+    var n = createArrayRange(stop: 3);
 
     var nExpect = Array([0.0, 1, 2]);
 
@@ -16,8 +16,8 @@ void main() {
     expect(n.length, nExpect.length);
   });
 
-  test('create an arange with 4 elements', () {
-    var n = arange(start: 3, stop: 7);
+  test('create an array range with 4 elements', () {
+    var n = createArrayRange(start: 3, stop: 7);
 
     var nExpect = Array([3.0, 4, 5, 6]);
 
@@ -30,8 +30,8 @@ void main() {
     expect(n.length, nExpect.length);
   });
 
-  test('create an arange with 2 elements', () {
-    var n = arange(start: 3, stop: 7, step: 2);
+  test('create an array range with 2 elements', () {
+    var n = createArrayRange(start: 3, stop: 7, step: 2);
 
     print(n);
 
@@ -46,8 +46,8 @@ void main() {
     expect(n.length, nExpect.length);
   });
 
-  test('create an arange with 1 elements', () {
-    var n = arange(start: 3, stop: 7, step: 3);
+  test('create an array range with 1 elements', () {
+    var n = createArrayRange(start: 3, stop: 7, step: 3);
 
     print(n);
 

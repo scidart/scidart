@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   test('calculus operations', () {
     var y = Array([-1, -1, -1, -1, 1, 1, 1, 1]); // function y points
-    var x = arange(stop: 8); // function x points
+    var x = createArrayRange(stop: 8); // function x points
 
     // array integration
     print(trapzArray(y, x: x)); // integration with trapezoidal rule

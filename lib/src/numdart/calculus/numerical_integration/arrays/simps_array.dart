@@ -28,8 +28,8 @@ import 'check_params_get_range_array.dart';
 ///
 /// # Examples
 /// ```dart
-/// var x = arange(start: 0, stop: 10);
-/// var y = arange(start: 0, stop: 10);
+/// var x = createArrayRange(start: 0, stop: 10);
+/// var y = createArrayRange(start: 0, stop: 10);
 ///
 /// print(simpsArray(y, x: x));
 ///

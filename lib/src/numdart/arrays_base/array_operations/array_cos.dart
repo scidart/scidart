@@ -1,5 +1,4 @@
 import '../../numdart.dart';
-import '../array.dart';
 
 /// Compute the cos for each element of the array
 ///

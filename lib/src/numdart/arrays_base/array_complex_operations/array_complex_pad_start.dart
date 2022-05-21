@@ -1,6 +1,4 @@
 import '../../numdart.dart';
-import '../array_complex.dart';
-import 'array_complex_concat.dart';
 
 /// Add zeros at begging of the array
 ///

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:scidart/src/numdart/numdart.dart';
 import 'package:test/test.dart';
 

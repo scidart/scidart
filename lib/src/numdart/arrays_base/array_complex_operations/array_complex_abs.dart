@@ -1,5 +1,3 @@
-import 'package:scidart/src/numdart/numbers/complex_operations/complex_abs.dart';
-
 import '../../numdart.dart';
 
 /// Absolute value of all elements of the current array

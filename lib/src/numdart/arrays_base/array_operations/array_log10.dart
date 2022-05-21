@@ -1,5 +1,4 @@
 import '../../numdart.dart';
-import '../array.dart';
 
 /// Compute the log10 for each element of the array
 ///

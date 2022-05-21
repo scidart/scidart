@@ -1,8 +1,5 @@
 import 'dart:math' as math;
 
-import 'package:scidart/src/numdart/arrays_base/array.dart';
-import 'package:scidart/src/numdart/arrays_base/array2d.dart';
-import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_sub_from_array.dart';
 import 'package:scidart/src/numdart/numdart.dart';
 
 /// For an m-by-n matrix A with m >= n, the LU decomposition is an m-by-n

@@ -1,5 +1,4 @@
 import '../../../numdart.dart';
-import 'check_params_get_range_array.dart';
 
 /// Compute the numerical integration of an Array using the trapezoidal rule.
 /// - [y] : input array to integrate

@@ -1,9 +1,5 @@
 import 'dart:math' as math;
 
-import 'package:scidart/src/numdart/arrays_base/array.dart';
-import 'package:scidart/src/numdart/arrays_base/array2d.dart';
-import 'package:scidart/src/numdart/geometric/hypotenuse.dart';
-import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_sub.dart';
 import 'package:scidart/src/numdart/numdart.dart';
 
 /// Singular Value Decomposition.

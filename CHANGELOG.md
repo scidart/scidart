@@ -1,3 +1,6 @@
+## 0.0.2-dev.10
+- PR #46 by myConsciousness merged (unnecessary imports removed and YML update)
+
 ## 0.0.2-dev.9
 - `arange` moved to deprecated and replaced by `createArrayRange`, #39 closed
 - some typos fixed

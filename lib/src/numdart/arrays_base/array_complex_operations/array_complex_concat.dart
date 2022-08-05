@@ -25,12 +25,5 @@ import '../array_complex.dart';
 /// */`
 /// ```
 ArrayComplex arrayComplexConcat(ArrayComplex a, ArrayComplex b) {
-  var c = ArrayComplex.empty();
-  for (var i = 0; i < a.length; i++) {
-    c.add(a[i]);
-  }
-  for (var i = 0; i < b.length; i++) {
-    c.add(b[i]);
-  }
-  return c;
+  return ArrayComplex(a + b);
 }

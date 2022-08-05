@@ -1,5 +1,5 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:scidart/numdart.dart';
+import 'package:test/test.dart';
 
 void main() {
   test('complex concat duration', () async {

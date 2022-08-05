@@ -1,3 +1,6 @@
+## 0.0.2-dev.11
+- Enhance complex concat (#49 Closed)
+
 ## 0.0.2-dev.10
 - PR #46 by myConsciousness merged (unnecessary imports removed and YML update)
 

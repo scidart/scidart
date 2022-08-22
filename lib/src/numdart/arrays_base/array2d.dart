@@ -261,7 +261,7 @@ class Array2d extends ListBase<Array> {
     }
   }
 
-  /// Multiply two arrays with the same size
+  /// Subtract two arrays with the same size
   ///
   /// # Examples
   /// ```dart
@@ -280,9 +280,9 @@ class Array2d extends ListBase<Array> {
   ///
   /// /* output:
   /// Array2d([
-  ///   Array([4, 4, 4]),
-  ///   Array([4, 4, 4]),
-  ///   Array([4, 4, 4])
+  ///   Array([0, 0, 0]),
+  ///   Array([0, 0, 0]),
+  ///   Array([0, 0, 0])
   /// ]);
   /// */
   /// ```
@@ -301,6 +301,53 @@ class Array2d extends ListBase<Array> {
       for (var j = 0; j < aColumns; j++) {
         // bColumn
         c[i][j] -= b[i][j];
+      }
+    }
+
+    return c;
+  }
+
+  /// Add two arrays with the same size
+  ///
+  /// # Examples
+  /// ```dart
+  /// var a = Array2d([
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2])
+  /// ]);
+  /// var b = Array2d([
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2]),
+  ///   Array([2, 2, 2])
+  /// ]);
+  ///
+  /// print(a + b);
+  ///
+  /// /* output:
+  /// Array2d([
+  ///   Array([4, 4, 4]),
+  ///   Array([4, 4, 4]),
+  ///   Array([4, 4, 4])
+  /// ]);
+  /// */
+  /// ```
+  @override
+  List<Array> operator +(List<Array> b) {
+    _checkArray2dColumnsLength(this);
+    _checkArray2dColumnsLength(b);
+    _checkArray2dLength(this, b);
+
+    var aRows = length;
+    var aColumns = this[0].length;
+
+    var c = Array2d.fromArray(this); // make a copy of local
+
+    for (var i = 0; i < aRows; i++) {
+      //
+      for (var j = 0; j < aColumns; j++) {
+        // bColumn
+        c[i][j] += b[i][j];
       }
     }
 
@@ -448,7 +495,7 @@ class Array2d extends ListBase<Array> {
   }
 
   /// check if inputs have the same size
-  void _checkArray2dLength(Array2d a, Array2d b) {
+  void _checkArray2dLength(List<Array> a, List<Array> b) {
     var aRows = a.length;
     var aColumns = a[0].length;
     var bRows = b.length;

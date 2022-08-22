@@ -138,6 +138,30 @@ void main() {
     expect(c, cExpec);
   });
 
+  test('+', () {
+    var a = Array2d([
+      Array([2, 2, 2]),
+      Array([2, 2, 2]),
+      Array([2, 2, 2])
+    ]);
+
+    var b = Array2d([
+      Array([2, 2, 2]),
+      Array([2, 2, 2]),
+      Array([2, 2, 2])
+    ]);
+
+    var c = a + b;
+
+    var cExpec = Array2d([
+      Array([4, 4, 4]),
+      Array([4, 4, 4]),
+      Array([4, 4, 4])
+    ]);
+
+    expect(c, cExpec);
+  });
+
   test('fromVector', () {
     var a = Array2d.fromVector(Array([1, 2, 3, 4]), 2);
 

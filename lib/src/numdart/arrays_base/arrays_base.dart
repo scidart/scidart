@@ -31,6 +31,7 @@ export 'array_operations/array_diff.dart';
 export 'array_operations/array_division_to_scalar.dart';
 export 'array_operations/array_log.dart';
 export 'array_operations/array_log10.dart';
+export 'array_operations/array_logspace.dart';
 export 'array_operations/array_max.dart';
 export 'array_operations/array_min.dart';
 export 'array_operations/array_multiply_to_scalar.dart';

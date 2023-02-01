@@ -35,6 +35,7 @@ export 'array_operations/array_logspace.dart';
 export 'array_operations/array_max.dart';
 export 'array_operations/array_min.dart';
 export 'array_operations/array_multiply_to_scalar.dart';
+export 'array_operations/array_norm.dart';
 export 'array_operations/array_pad_start.dart';
 export 'array_operations/array_pow.dart';
 export 'array_operations/array_reshape_to_matrix.dart';

@@ -13,6 +13,7 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 /// */
 /// ```
 double median(Array a) {
+  a.sort();
   var middle = a.length ~/ 2;
   if (a.length % 2 == 1) {
     return a[middle];

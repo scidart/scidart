@@ -1,6 +1,6 @@
 name: scidart
 description: Cross-platform scientific library for Dart. The main goal of SciDart is run where Dart can run, in other words, run on Flutter, Dart CLI, Dart web, etc.
-version: 0.0.2-dev.12
+version: 0.0.2-dev.13
 repository: https://github.com/scidart/scidart
 homepage: https://scidart.org/
 

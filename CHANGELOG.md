@@ -1,3 +1,7 @@
+## 0.0.2-dev.13
+
+- Sort array before median calculation (#59 Closed)
+
 ## 0.0.2-dev.12
 
 - Add operation created for Array2d (#48 Closed)

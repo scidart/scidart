@@ -6,12 +6,12 @@ import '../array.dart';
 ///
 /// # Examples
 /// ```dart
-/// var list = Array([1.0, -3.0, 2.0]);
+/// var list = Array([3, 4]);
 ///
-/// print(arrayAddToScalar(list, 2));
+/// print(arrayNorm(list));
 ///
 /// /* output:
-/// 3.74165
+/// 5
 /// */
 /// ```
 double arrayNorm(Array a) {

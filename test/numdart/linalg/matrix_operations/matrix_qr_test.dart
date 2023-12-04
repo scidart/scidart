@@ -11,6 +11,6 @@ void main() {
 
     var qr = matrixQR(a);
 
-    expect(qr is QR, true);
+    expect(qr, true);
   });
 }

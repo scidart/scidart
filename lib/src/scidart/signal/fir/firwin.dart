@@ -113,23 +113,23 @@ dynamic firwin(int numtaps, Array cutoff,
         if (cutoff.length != 1) {
           throw FormatException(
               'cutoff must have one element if pass_zero=="lowpass", got $cutoff');
-        } else if (cutoff.length <= 1) {
-          throw FormatException(
-              'cutoff must have at least two elements if pass_zero=="bandstop", got $cutoff');
         }
-        pass_zero = true;
-      } 
+      } else if (cutoff.length <= 1) {
+        throw FormatException(
+            'cutoff must have at least two elements if pass_zero=="bandstop", got $cutoff');
+      }
+      pass_zero = true;
     } else if (pass_zero == 'bandpass' || pass_zero == 'highpass') {
       if (pass_zero == 'highpass') {
         if (cutoff.length != 1) {
           throw FormatException(
               'cutoff must have one element if pass_zero=="highpass", got ${cutoff.length}');
-        } else if (cutoff.length <= 1) {
+        }
+      } else if (cutoff.length <= 1) {
         throw FormatException(
             'cutoff must have at least two elements if pass_zero=="bandpass", got $cutoff');
-        }
-        pass_zero = false;
       }
+      pass_zero = false;
     } else {
       throw FormatException(
           'pass_zero must be True, False, "bandpass", "lowpass", "highpass", or "bandstop", got $pass_zero');

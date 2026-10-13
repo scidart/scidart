@@ -1,15 +1,50 @@
-# Publishes to pub.dev when a tag like v1.2.3 is pushed.
-# Requires automated publishing enabled on pub.dev (package Admin tab):
-# repository scidart/scidart, tag pattern v{{version}}.
+# Publishes a version tag (v1.2.3) to pub.dev and creates its GitHub Release.
+# Started by the release job of the CI on master, or by pushing a tag.
+# pub.dev (package Admin tab) allows automated publishing from scidart/scidart
+# with tag pattern v{{version}} for push and workflow_dispatch events.
 name: Publish
 
 on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+*'
+  workflow_dispatch:
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require a version tag
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+        run: |
+          echo "::error::run this workflow on a version tag, not ${{ github.ref }}"
+          exit 1
+
   publish:
+    needs: check
     permissions:
       id-token: write
     uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+
+  github-release:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Create the GitHub Release from the CHANGELOG
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "release $tag already exists"
+            exit 0
+          fi
+          version="${tag#v}"
+          awk -v v="$version" '$0 == "## " v {f=1; next} /^## / {if (f) exit} f' CHANGELOG.md > notes.md
+          prerelease=""
+          case "$version" in *-*) prerelease="--prerelease" ;; esac
+          gh release create "$tag" --title "$tag" --notes-file notes.md --verify-tag $prerelease

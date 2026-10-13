@@ -130,6 +130,15 @@ void main() {
     }
   });
 
+  test('x near the largest double keeps the degree', () {
+    // the column norm overflows although every value is finite
+    var x = Array([1.0e308, 1.5e308, 0.5e308, 1.2e308]);
+    var eq = PolyFit(x, Array([5, 6.5, 3.5, 5.6]), 1);
+
+    expect(eq.polyDegree(), 1);
+    expect(eq.predict(0.8e308), closeTo(4.4, 1e-9));
+  });
+
   test('a power of x that overflows reduces the degree', () {
     var eq = PolyFit(Array([1e200, 2e200, 3e200]), Array([1, 2, 3]), 2);
 

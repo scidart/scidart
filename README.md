@@ -24,6 +24,11 @@ You can follow instruction in the Pub website: https://pub.dev/packages/scidart#
 
 The examples can be found in [the project web site](https://scidart.org/#examples-scidart).
 
+## 📦 Modules
+
+- `numdart` (NumPy): `Array`, `Array2d`, `ArrayComplex`, linear algebra (LU, QR, SVD), calculus, statistics, polynomial regression (`PolyFit`, `PolyFitMultivariate`).
+- `scidart` (SciPy): FFT (`fftpack`), signal processing (`signal`), special functions (`special`: Bessel, `erf`), root finding (`optimize`: `rootScalar`, `root`) and distributions (`stats`: `NormalDistribution`).
+
 ## 🛣 Project milestones
 
 All the project status will be shared and updated in the __Projects__ section of Github.

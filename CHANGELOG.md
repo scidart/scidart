@@ -1,3 +1,12 @@
+## 0.1.0
+
+New:
+- `NormalDistribution` in `stats`: `pdf`, `logPdf`, `cdf`, `sf`, `ppf`, `isf`, `interval`, `sample` and Array versions, like `scipy.stats.norm` (#44)
+- `erf`, `erfc`, `arrayErf` and `arrayErfc` in `special`
+- `rootScalar` in `optimize` with the `bisect`, `brentq`, `newton` and `secant` methods, like `scipy.optimize.root_scalar` (#56)
+- `root` in `optimize` for systems of equations with the `lm` (Levenberg-Marquardt), `newton` and `broyden1` methods, returning an `OptimizeResult`, like `scipy.optimize.root` (#56)
+- `PolyFitMultivariate`: polynomial regression with several features and outputs, with interaction terms in the order of `sklearn.preprocessing.PolynomialFeatures`; uses the minimum norm solution when there are more terms than samples (#55)
+
 ## 0.0.3
 
 Breaking changes:

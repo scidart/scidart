@@ -98,6 +98,8 @@ const _oneOverSqrtPi = 5.6418958354775628695e-1;
 const _threshold = 0.46875;
 const _xSmall = 1.11e-16;
 const _xBig = 26.543;
+// erfc(27.3) is below half the smallest subnormal double, so it rounds to 0
+const _xHuge = 27.3;
 
 double _calerf(double x, _Kind kind) {
   if (x.isNaN) return double.nan;
@@ -126,7 +128,7 @@ double _calerf(double x, _Kind kind) {
     }
     result = (xnum + _c[7]) / (xden + _d[7]);
     result *= _expMinusSquare(y);
-  } else if (y >= _xBig) {
+  } else if (y >= _xHuge) {
     result = 0.0;
   } else {
     var ysq = 1.0 / (y * y);
@@ -138,7 +140,15 @@ double _calerf(double x, _Kind kind) {
     }
     result = ysq * (xnum + _p[4]) / (xden + _q[4]);
     result = (_oneOverSqrtPi - result) / y;
-    result *= _expMinusSquare(y);
+    if (y < _xBig) {
+      result *= _expMinusSquare(y);
+    } else {
+      // exp(-y^2) alone is subnormal here and the product would lose the
+      // remaining bits: join both factors in one exponent
+      var ysq16 = (y * 16.0).truncateToDouble() / 16.0;
+      var del = (y - ysq16) * (y + ysq16);
+      result = math.exp(math.log(result) - ysq16 * ysq16 - del);
+    }
   }
 
   if (kind == _Kind.erf) {

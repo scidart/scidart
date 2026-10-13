@@ -99,4 +99,16 @@ void main() {
     expect(arrayErf(a)[1], closeToRelative(0.5204998778130465));
     expect(arrayErfc(a)[2], closeToRelative(2.2090496998585445e-05));
   });
+
+  test('erfc keeps the subnormal tail', () {
+    // mpmath.erfc with 50 digits; a subnormal result keeps fewer bits, so the
+    // tolerance is about one unit of the smallest subnormal (4.9e-324)
+    expect(erfc(26.6), closeTo(1.0885125885442265e-309, 1e-322));
+    expect(erfc(27.0), closeTo(5.2370489237892557e-319, 1e-323));
+    expect(erfc(27.2), closeTo(1.0189049142703155e-323, 5e-324));
+    expect(erfc(-27.0), 2.0);
+    // erfc(27.25) = 6.7e-325 rounds to zero
+    expect(erfc(27.25), 0.0);
+    expect(erfc(1e300), 0.0);
+  });
 }

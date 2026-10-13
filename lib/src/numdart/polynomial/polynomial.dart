@@ -1,3 +1,3 @@
-library polynomial;
+library;
 
 export 'polyfit.dart';

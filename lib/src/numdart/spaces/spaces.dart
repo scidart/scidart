@@ -1,4 +1,4 @@
-library spaces;
+library;
 
 export 'create_array_range.dart';
 export 'linspace.dart';

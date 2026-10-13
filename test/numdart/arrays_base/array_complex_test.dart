@@ -74,6 +74,7 @@ void main() {
   //#endregion
 
   //#region methods overload
+  // On the web, doubles with no fractional part print without '.0'.
   test('toString', () {
     var list = ArrayComplex([
       Complex(real: 3.0, imaginary: 4.0),
@@ -93,6 +94,6 @@ void main() {
     print(str);
 
     expect(str, strExpect);
-  });
+  }, testOn: 'vm');
   //#endregion
 }

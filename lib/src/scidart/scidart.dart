@@ -1,4 +1,4 @@
-library scidart;
+library;
 
 export 'fftpack/fftpack.dart';
 export 'signal/signal.dart';

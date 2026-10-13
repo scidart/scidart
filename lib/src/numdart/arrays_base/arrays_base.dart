@@ -1,4 +1,4 @@
-library arrays_base;
+library;
 
 export 'array.dart';
 export 'array2d.dart';

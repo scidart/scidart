@@ -1,4 +1,4 @@
-library constants;
+library;
 
 export 'area.dart';
 export 'binary.dart';

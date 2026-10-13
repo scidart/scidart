@@ -53,9 +53,10 @@ void main() {
     expect(c3.imaginary, -1 / 2);
   });
 
+  // On the web, doubles with no fractional part print without '.0'.
   test('toString', () {
     var c1 = Complex(real: 1, imaginary: 1);
 
     expect(c1.toString(), '\n' '    Complex(real: 1.0, imaginary: 1.0)');
-  });
+  }, testOn: 'vm');
 }

@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-import 'package:scidart/src/numdart/fastmath/operations/copySign.dart';
+import 'package:scidart/src/numdart/fastmath/operations/copy_sign.dart';
 import 'package:scidart/src/numdart/fastmath/tables/eights.dart';
 import 'package:scidart/src/numdart/fastmath/tables/fractions.dart';
 import 'package:scidart/src/numdart/fastmath/tables/hex_40000000.dart';

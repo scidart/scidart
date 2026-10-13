@@ -30,6 +30,7 @@ void main() {
     expect(book[i].elementAt(2).elementAt(2), 3.0);
   });
 
+  // On the web, doubles with no fractional part print without '.0'.
   test('create a 3x3x3 matrix that represent a book', () {
     var book = Array3d.empty();
 
@@ -61,5 +62,5 @@ void main() {
     print(book);
 
     expect(str, strExpec);
-  });
+  }, testOn: 'vm');
 }

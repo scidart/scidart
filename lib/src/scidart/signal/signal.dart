@@ -1,4 +1,4 @@
-library signal;
+library;
 
 export 'convolution/convolution.dart';
 export 'convolution/convolution_circular_complex.dart';

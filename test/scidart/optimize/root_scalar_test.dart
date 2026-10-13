@@ -67,4 +67,16 @@ void main() {
         throwsFormatException);
     expect(() => rootScalar(cubic), throwsFormatException);
   });
+
+  test('bracket signs are compared without multiplying the values', () {
+    // f(a) * f(b) underflows to zero for values this small
+    for (var method in [RootScalarMethod.bisect, RootScalarMethod.brentq]) {
+      expect(() => rootScalar((x) => 1e-300, method: method, bracket: [0, 1]),
+          throwsFormatException);
+      var r = rootScalar((x) => 1e-200 * (x - 0.3),
+          method: method, bracket: [0, 1]);
+      expect(r.converged, isTrue);
+      expect(r.root, closeTo(0.3, 1e-11));
+    }
+  });
 }

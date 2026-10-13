@@ -110,7 +110,8 @@ void _checkBracket(double fa, double fb) {
   if (fa.isNaN || fb.isNaN) {
     throw FormatException('f is NaN at the bracket');
   }
-  if (fa * fb > 0) {
+  // compare signs, not the product: tiny values underflow to zero
+  if (fa.sign * fb.sign > 0) {
     throw FormatException('f(a) and f(b) must have different signs');
   }
 }
@@ -131,7 +132,7 @@ RootScalarResult _bisect(double Function(double) f, double a, double b,
     xm = a + dm;
     var fm = f(xm);
     calls++;
-    if (fm * fa >= 0) {
+    if (fm.sign * fa.sign >= 0) {
       a = xm;
     }
     if (fm == 0 || dm.abs() < xtol + rtol * xm.abs()) {

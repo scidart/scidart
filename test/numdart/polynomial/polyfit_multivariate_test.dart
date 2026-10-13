@@ -251,4 +251,20 @@ void main() {
     expect(() => PolyFitMultivariate(x, y, 1).predict(Array([1])),
         throwsFormatException);
   });
+
+  test('columns near the largest double keep their scale', () {
+    // the column norm of x overflows although every value is finite
+    var xs = [1.0e308, 1.5e308, 0.5e308, 1.2e308];
+    var x = rows([
+      for (var v in xs) [v]
+    ]);
+    var y = rows([
+      for (var v in xs) [2.0 + 3e-308 * v]
+    ]);
+    var fit = PolyFitMultivariate(x, y, 1);
+    expect(fit.rank, 2);
+    expect(fit.coefficients[0][0], closeTo(2.0, 1e-12));
+    expect(fit.coefficients[1][0], closeTo(3e-308, 3e-320));
+    expect(fit.predict(Array([0.8e308]))[0], closeTo(4.4, 1e-12));
+  });
 }

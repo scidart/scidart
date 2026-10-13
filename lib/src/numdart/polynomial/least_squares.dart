@@ -10,31 +10,36 @@ import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_transpose.da
 
 const double machineEpsilon = 2.220446049250313e-16;
 
-/// Scales each column of [m] to unit norm in place and returns the scales.
-/// The norm is computed relative to the largest absolute value of the
-/// column, so it does not overflow or underflow for finite values.
-Array normalizeColumns(Array2d m) {
-  var scale = Array.fixed(m.column);
+/// Scales each column of [m] to unit norm in place. Column j is divided by
+/// `maxAbs[j]` and then by `rootSum[j]`; a coefficient of the scaled problem
+/// goes back with the same two divisions. Their product is the column norm,
+/// kept as two factors because it can overflow when the entries are near
+/// the largest double.
+({Array maxAbs, Array rootSum}) normalizeColumns(Array2d m) {
+  var maxAbs = Array.fixed(m.column);
+  var rootSum = Array.fixed(m.column);
   for (var j = 0; j < m.column; j++) {
-    var maxAbs = 0.0;
+    var big = 0.0;
     for (var i = 0; i < m.row; i++) {
-      maxAbs = math.max(maxAbs, m[i][j].abs());
+      big = math.max(big, m[i][j].abs());
     }
-    var norm = 1.0;
-    if (maxAbs > 0.0) {
-      var sum = 0.0;
+    var sum = 1.0;
+    if (big > 0.0) {
+      sum = 0.0;
       for (var i = 0; i < m.row; i++) {
-        var r = m[i][j] / maxAbs;
+        var r = m[i][j] / big;
         sum += r * r;
       }
-      norm = maxAbs * math.sqrt(sum);
+    } else {
+      big = 1.0;
     }
-    scale[j] = norm;
+    maxAbs[j] = big;
+    rootSum[j] = math.sqrt(sum);
     for (var i = 0; i < m.row; i++) {
-      m[i][j] /= norm;
+      m[i][j] = m[i][j] / big / rootSum[j];
     }
   }
-  return scale;
+  return (maxAbs: maxAbs, rootSum: rootSum);
 }
 
 /// Least squares solution of a x = b. Uses QR when [a] has full column rank

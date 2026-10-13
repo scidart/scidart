@@ -101,7 +101,7 @@ class PolyFitMultivariate {
     rank = solutionRank;
     for (var t = 0; t < solution.row; t++) {
       for (var o = 0; o < outputCount; o++) {
-        solution[t][o] /= scale[t];
+        solution[t][o] = solution[t][o] / scale.maxAbs[t] / scale.rootSum[t];
       }
     }
     coefficients = solution;

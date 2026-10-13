@@ -77,7 +77,7 @@ class PolyFit {
       degree = n - 1;
     }
     late QR qr;
-    late Array scale;
+    late ({Array maxAbs, Array rootSum}) scale;
 
     // in case Vandermonde matrix does not have full rank, reduce degree until it does
     while (true) {
@@ -109,7 +109,7 @@ class PolyFit {
     // linear regression coefficients, undoing the column scaling
     beta = qr.solve(matrixY);
     for (var j = 0; j < beta.row; j++) {
-      beta[j][0] /= scale[j];
+      beta[j][0] = beta[j][0] / scale.maxAbs[j] / scale.rootSum[j];
     }
 
     // mean of y[] values

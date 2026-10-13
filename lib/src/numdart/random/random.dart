@@ -1,4 +1,4 @@
-library random;
+library;
 
 export 'random_array.dart';
 export 'random_array2d.dart';

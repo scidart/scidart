@@ -119,6 +119,7 @@ void main() {
   //#endregion
 
   //#region methods overload
+  // On the web, doubles with no fractional part print without '.0'.
   test('toString', () {
     var n = Array([1, 2, 3]);
 
@@ -129,6 +130,25 @@ void main() {
     print(str);
 
     expect(str, strExpect);
-  });
+  }, testOn: 'vm');
   //#endregion
+
+  test('equality is false for other types and lengths', () {
+    var a = Array([1.0, 2.0]);
+
+    expect(a == Array([1.0, 2.0]), isTrue);
+    expect(a == Array([1.0, 2.0, 3.0]), isFalse);
+    // ignore: unrelated_type_equality_checks
+    expect(a == 'a', isFalse);
+    expect(a.hashCode, Array([1.0, 2.0]).hashCode);
+    expect(
+        {
+          a,
+          Array([1.0, 2.0])
+        }.length,
+        1);
+    expect(Complex(real: 1, imaginary: 2) == Complex(real: 1, imaginary: 2),
+        isTrue);
+    expect({Complex(real: 1), Complex(real: 1)}.length, 1);
+  });
 }

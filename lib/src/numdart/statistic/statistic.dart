@@ -1,4 +1,4 @@
-library statistic;
+library;
 
 export 'mean.dart';
 export 'median.dart';

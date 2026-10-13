@@ -26,6 +26,7 @@ void main() {
     expect(matrix[i].elementAt(2), 3.0);
   });
 
+  // On the web, doubles with no fractional part print without '.0'.
   test('toString', () {
     var matrix = Array2d.empty();
     var line = Array([1.0, 2.0, 3.0]);
@@ -45,7 +46,7 @@ void main() {
     print(matrix);
 
     expect(str, strExpec);
-  });
+  }, testOn: 'vm');
 
   test('multiply array', () {
     var a = Array2d([

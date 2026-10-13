@@ -54,4 +54,14 @@ void main() {
           truncate(w[i], fractionDigits), truncate(wExpect[i], fractionDigits));
     }
   });
+
+  test('symmetric hamming window, issue #64', () {
+    for (var m in [6, 7, 51]) {
+      var w = hamming(m, sym: true);
+      for (var i = 0; i < m; i++) {
+        expect(w[i], closeTo(w[m - 1 - i], 1e-12));
+      }
+      expect(w[0], closeTo(0.08, 1e-12));
+    }
+  });
 }

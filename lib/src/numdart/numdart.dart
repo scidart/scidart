@@ -1,4 +1,4 @@
-library numdart;
+library;
 
 export 'arrays_base/arrays_base.dart';
 export 'calculus/calculus.dart';

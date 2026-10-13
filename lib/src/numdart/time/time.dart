@@ -1,3 +1,3 @@
-library time;
+library;
 
 export 'timeit.dart';

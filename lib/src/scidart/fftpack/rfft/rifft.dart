@@ -2,7 +2,12 @@ import 'package:scidart/src/numdart/numdart.dart';
 import 'package:scidart/src/scidart/fftpack/fft/ifft.dart';
 
 /// Compute the one-dimensional inverse discrete Fourier Transform and return a Real output.
-/// - [x] an ArrayComplex with the input
+/// It is the inverse of [rfft] and follows `numpy.fft.irfft`.
+/// - [x] an ArrayComplex with the non-negative frequency terms, as returned by [rfft]
+/// - [n] length of the output. The default is 2 * (x.length - 1), which
+///   recovers signals of even length. Pass the original length to recover a
+///   signal of odd length. Missing terms are zero padded and extra terms are
+///   ignored.
 /// return An Array with IFFT output
 ///
 /// # References
@@ -16,10 +21,7 @@ import 'package:scidart/src/scidart/fftpack/fft/ifft.dart';
 ///   Complex(real: 1.0, imaginary: -2.41421356),
 ///   Complex(real: 0.0, imaginary: 0.0),
 ///   Complex(real: 1.0, imaginary: -0.41421356),
-///   Complex(real: 0.0, imaginary: 0.0),
-///   Complex(real: 1.0, imaginary: 0.41421356),
-///   Complex(real: 0.0, imaginary: 0.0),
-///   Complex(real: 1.0, imaginary: 2.41421356)
+///   Complex(real: 0.0, imaginary: 0.0)
 /// ]);
 ///
 /// print(rifft(X));
@@ -28,38 +30,27 @@ import 'package:scidart/src/scidart/fftpack/fft/ifft.dart';
 /// Array([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0])
 /// */
 /// ```
-Array rifft(ArrayComplex x) {
-  var s, e;
-
-  // determine if even or odd to reconstruct the FFT signal
-  var even = x.length % 2 == 0;
-
-  // create an empty array
-  var xn = ArrayComplex.empty();
-
-  // concatenate the input x
-  xn = arrayComplexConcat(xn, x);
-
-  if (even) {
-    // if even, reversed conjugate complex start at index 1 and go until end
-    s = 1;
-    e = x.length;
-  } else {
-    // if odd, reversed conjugate complex start at index 1 and go until Last - 1
-    s = 1;
-    e = x.length - 1;
+Array rifft(ArrayComplex x, {int? n}) {
+  n ??= 2 * (x.length - 1);
+  if (n < 1) {
+    throw FormatException('invalid number of data points ($n) specified');
   }
 
-  // concatenate the current array with your own reverse and the conjugate complex
-  // fft symmetry estimation
-  xn = arrayComplexConcat(
-      xn, arrayComplexConjugate(x.getRangeArray(s, e, step: 1, reverse: true)));
+  // non-negative frequency terms, zero padded or truncated to n ~/ 2 + 1
+  var half = n ~/ 2 + 1;
+  var xn = ArrayComplex.fixed(n);
+  for (var k = 0; k < half; k++) {
+    xn[k] = k < x.length ? x[k] : Complex();
+  }
 
-  // calculate the IFFT
+  // negative frequency terms are the complex conjugate of the positive ones
+  // (Hermitian symmetry of the spectrum of a real signal)
+  for (var k = half; k < n; k++) {
+    xn[k] = complexConjugate(xn[n - k]);
+  }
+
+  // the imaginary part of the DC and Nyquist terms only adds an imaginary
+  // component to the output, so the real part is the real signal
   var irfft = ifft(xn);
-
-  // absulute value of the list
-  var xReal = arrayComplexAbs(irfft);
-
-  return xReal;
+  return Array(irfft.map((c) => c.real).toList());
 }

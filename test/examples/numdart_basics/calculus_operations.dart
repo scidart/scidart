@@ -14,7 +14,7 @@ void main() {
     print(cumIntegration(y, x: x));
 
     // function integration
-    var f = (x) => pow(x, 2); // function definition: y = x^2
+    num f(x) => pow(x, 2); // function definition: y = x^2
     var a = 0.0; // start integration interval
     var b = 10.0; // end integration interval
     var n = 10; // number of point between a and b

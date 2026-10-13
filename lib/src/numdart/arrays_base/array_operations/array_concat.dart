@@ -16,10 +16,10 @@ import '../array.dart';
 Array arrayConcat(List<Array> arrays) {
   //Array a, Array b
   var c = Array.empty();
-  arrays.forEach((array) {
-    array.forEach((e) {
+  for (var array in arrays) {
+    for (var e in array) {
       c.add(e);
-    });
-  });
+    }
+  }
   return c;
 }

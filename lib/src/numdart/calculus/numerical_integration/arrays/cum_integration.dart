@@ -22,7 +22,7 @@ import 'package:scidart/src/numdart/numdart.dart';
 Array cumIntegration(Array y, {Array? x, int dx = 1, double? initial}) {
   checkParamsGetRangeArray(y, x, dx);
 
-  var d;
+  Array d;
   if (x != null) {
     d = arrayDiff(x);
   } else {

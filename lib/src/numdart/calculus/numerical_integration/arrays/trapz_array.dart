@@ -22,7 +22,7 @@ import '../../../numdart.dart';
 double trapzArray(Array y, {Array? x, int dx = 1}) {
   checkParamsGetRangeArray(y, x, dx);
 
-  var d;
+  Array d;
   if (x != null) {
     d = arrayDiff(x);
   } else {

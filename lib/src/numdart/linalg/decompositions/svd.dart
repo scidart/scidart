@@ -78,6 +78,15 @@ class SVD {
   /// Structure to access U, S and V.
   /// - [Arg] Rectangular matrix
   SVD(Array2d Arg) {
+    // Non-finite values never converge in the iteration loop below.
+    for (var row in Arg) {
+      for (var elem in row) {
+        if (!elem.isFinite) {
+          throw FormatException('Matrix must contain only finite values.');
+        }
+      }
+    }
+
     // Derived from LINPACK code.
     // Initialize.
     _m = Arg.row;

@@ -93,4 +93,29 @@ void main() {
     expect(arrayTruncateEachElement(h, 4, returnNewArray: true),
         arrayTruncateEachElement(hExpec, 4, returnNewArray: true));
   });
+
+  test('string pass_zero values match the boolean ones', () {
+    var low = Array([0.3]);
+    var band = Array([0.2, 0.5]);
+
+    expect(firwin(11, low, pass_zero: 'lowpass', fs: 2),
+        firwin(11, low, pass_zero: true, fs: 2));
+    expect(firwin(11, low, pass_zero: 'highpass', fs: 2),
+        firwin(11, low, pass_zero: false, fs: 2));
+    expect(firwin(11, band, pass_zero: 'bandpass', fs: 2),
+        firwin(11, band, pass_zero: false, fs: 2));
+    expect(firwin(11, band, pass_zero: 'bandstop', fs: 2),
+        firwin(11, band, pass_zero: true, fs: 2));
+  });
+
+  test('string pass_zero values validate the number of cutoffs', () {
+    expect(() => firwin(11, Array([0.2, 0.5]), pass_zero: 'lowpass', fs: 2),
+        throwsFormatException);
+    expect(() => firwin(11, Array([0.2, 0.5]), pass_zero: 'highpass', fs: 2),
+        throwsFormatException);
+    expect(() => firwin(11, Array([0.3]), pass_zero: 'bandpass', fs: 2),
+        throwsFormatException);
+    expect(() => firwin(11, Array([0.3]), pass_zero: 'bandstop', fs: 2),
+        throwsFormatException);
+  });
 }

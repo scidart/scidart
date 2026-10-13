@@ -1,3 +1,3 @@
-library geometric;
+library;
 
 export 'hypotenuse.dart';

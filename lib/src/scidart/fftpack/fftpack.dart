@@ -1,4 +1,4 @@
-library fftpack;
+library;
 
 export 'dbfft/dbfft.dart';
 export 'fft/fft.dart';

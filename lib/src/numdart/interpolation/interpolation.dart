@@ -1,3 +1,3 @@
-library interpolation;
+library;
 
 export 'parabolic.dart';

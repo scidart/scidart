@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
-import 'package:scidart/src/numdart/fastmath/operations/atanFast.dart';
-import 'package:scidart/src/numdart/fastmath/operations/copySign.dart';
+import 'package:scidart/src/numdart/fastmath/operations/atan_fast.dart';
+import 'package:scidart/src/numdart/fastmath/operations/copy_sign.dart';
 import 'package:scidart/src/numdart/fastmath/tables/fractions.dart';
 
 /// Two arguments arctangent function

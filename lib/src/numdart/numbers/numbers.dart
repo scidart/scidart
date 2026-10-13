@@ -1,4 +1,4 @@
-library numbers;
+library;
 
 export './complex_operations/complex_abs.dart';
 export './complex_operations/complex_conjugate.dart';

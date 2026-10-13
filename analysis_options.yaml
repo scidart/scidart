@@ -1,14 +1,14 @@
-# Defines a default set of lint rules enforced for
-# projects at Google. For details and rationale,
-# see https://github.com/dart-lang/pedantic#enabled-lints.
-include: package:pedantic/analysis_options.yaml
+# Lint rules: https://dart.dev/tools/linter-rules
+include: package:lints/recommended.yaml
 
-# For lint rules and documentation, see http://dart-lang.github.io/linter/lints.
-# Uncomment to specify additional rules.
-# linter:
-#   rules:
-#     - camel_case_types
+linter:
+  rules:
+    # Public names follow the mathematical notation and the SciPy/NumPy/JAMA
+    # names they port (R2, Nx, pass_zero, LOG_MAX_VALUE, Btu...). Renaming them
+    # would break the public API.
+    constant_identifier_names: false
+    non_constant_identifier_names: false
 
 analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+  exclude:
+    - scratch/**

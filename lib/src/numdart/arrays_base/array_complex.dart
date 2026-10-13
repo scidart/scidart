@@ -69,9 +69,9 @@ class ArrayComplex extends ListBase<Complex> {
       l = [];
     } else if (newLength > l.length) {
       l = [];
-      aux.forEach((element) {
+      for (var element in aux) {
         l.add(element);
-      });
+      }
       for (var i = l.length; i < newLength; i++) {
         l.add(Complex());
       }
@@ -153,19 +153,20 @@ class ArrayComplex extends ListBase<Complex> {
   /// */
   /// ``
   @override
-  bool operator ==(b) {
-    if (b is ArrayComplex) {
-      _checkArray(b);
-      for (var i = 0; i < length; i++) {
-        if (this[i] != b[i]) {
-          return false;
-        }
-      }
-      return true;
-    } else {
-      throw ('the right object has to be an ArrayComplex type');
+  bool operator ==(Object b) {
+    if (b is! ArrayComplex || b.length != length) {
+      return false;
     }
+    for (var i = 0; i < length; i++) {
+      if (this[i] != b[i]) {
+        return false;
+      }
+    }
+    return true;
   }
+
+  @override
+  int get hashCode => Object.hashAll(this);
 
   /// Return an array given an index interval
   ///

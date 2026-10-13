@@ -1,4 +1,4 @@
-library calculus;
+library;
 
 export 'package:scidart/src/numdart/calculus/numerical_integration/arrays/check_params_get_range_array.dart';
 export 'package:scidart/src/numdart/calculus/numerical_integration/arrays/simps_array.dart';

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # generate doc
-dartdoc
+dart doc
 
 # open docs with http server
-dhttpd --path doc/api
+dart pub global run dhttpd --path doc/api

@@ -32,4 +32,12 @@ void main() {
     var iExpec = 40.5;
     expect(i, iExpec);
   });
+
+  test('simps array with even samples and no x uses dx', () {
+    var y = createArrayRange(start: 0, stop: 10);
+    for (var even in Even.values) {
+      expect(simpsArray(y, even: even), closeTo(40.5, 1e-12));
+      expect(simpsArray(y, dx: 2, even: even), closeTo(81.0, 1e-12));
+    }
+  });
 }

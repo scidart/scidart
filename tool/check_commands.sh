@@ -1,22 +1,15 @@
 #!/usr/bin/env bash
+# Same checks the CI runs.
+set -e
 
-# flutter analyzer
-#flutter analyze
+dart pub get
+dart format --output=none --set-exit-if-changed .
+dart analyze --fatal-infos
+dart test
+dart test -p chrome
 
-# dart analyzer
-dartanalyzer lib test example
-dart analyze
+# list outdated dependencies
+dart pub outdated
 
-# format code
-dartfmt -w lib test example
-
-# update packages
-pub outdated --no-dev-dependencies --up-to-date --no-dependency-overrides
-
-# validate but do not publish the package.
-pub publish --dry-run
-
-# sequence useful
-dartfmt -w lib test example
-dartanalyzer lib test example
-pub publish --dry-run
+# validate but do not publish the package
+dart pub publish --dry-run

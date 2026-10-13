@@ -2,6 +2,7 @@
 ///
 /// ## Reference:
 /// 1.https://github.com/scipy/scipy/blob/master/scipy/constants/constants.py
+library;
 
 const kibi = 1024; //2**10;
 const mebi = 1048576; //2**20;

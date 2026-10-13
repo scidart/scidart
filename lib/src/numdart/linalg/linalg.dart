@@ -1,4 +1,4 @@
-library linalg;
+library;
 
 export 'decompositions/lu.dart';
 export 'decompositions/qr.dart';

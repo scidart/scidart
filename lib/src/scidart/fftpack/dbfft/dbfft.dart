@@ -31,7 +31,7 @@ import 'package:scidart/src/scidart/scidart.dart';
 List dbfft(Array x, double fs, {String? window, double? ref}) {
   var N = x.length; // Length of input sequence
 
-  var win;
+  Array win;
   if (window == null) {
     win = ones(N);
   } else {

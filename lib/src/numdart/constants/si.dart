@@ -2,6 +2,7 @@
 ///
 /// ## Reference:
 /// 1. https://github.com/scipy/scipy/blob/master/scipy/constants/constants.py
+library;
 
 const yotta = 1e24;
 const zetta = 1e21;

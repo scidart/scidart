@@ -244,22 +244,20 @@ class Array2d extends ListBase<Array> {
   /// */
   /// ```
   @override
-  bool operator ==(b) {
-    if (b is Array2d) {
-      _checkArray2dColumnsLength(this);
-      _checkArray2dColumnsLength(b);
-      _checkArray2dLength(this, b);
-
-      for (var i = 0; i < length; i++) {
-        if (this[i] != b[i]) {
-          return false;
-        }
-      }
-      return true;
-    } else {
-      throw ('the right object has to be an Array2d type');
+  bool operator ==(Object b) {
+    if (b is! Array2d || b.length != length) {
+      return false;
     }
+    for (var i = 0; i < length; i++) {
+      if (this[i] != b[i]) {
+        return false;
+      }
+    }
+    return true;
   }
+
+  @override
+  int get hashCode => Object.hashAll(this);
 
   /// Subtract two arrays with the same size
   ///
@@ -354,7 +352,7 @@ class Array2d extends ListBase<Array> {
     return c;
   }
 
-  bool isMatrix({throwIfIsNot = true}) {
+  bool isMatrix({bool throwIfIsNot = true}) {
     // check if all the columns has the same length
     var columns = this[0].length;
     for (var c in this) {

@@ -127,13 +127,12 @@ class Complex {
   /// false
   /// */
   @override
-  bool operator ==(b) {
-    if (b is Complex) {
-      return b.real == real && b.imaginary == imaginary;
-    } else {
-      throw ('the right object has to be a Complex type');
-    }
+  bool operator ==(Object b) {
+    return b is Complex && b.real == real && b.imaginary == imaginary;
   }
+
+  @override
+  int get hashCode => Object.hash(real, imaginary);
 
   /// Convert a Complex object (number) to a String representation
   ///

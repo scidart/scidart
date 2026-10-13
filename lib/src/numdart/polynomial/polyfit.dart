@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:scidart/src/numdart/arrays_base/array.dart';
 import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 import 'package:scidart/src/numdart/linalg/decompositions/qr.dart';
+import 'package:scidart/src/numdart/polynomial/least_squares.dart';
 import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_vander.dart';
 import 'package:scidart/src/numdart/statistic/mean.dart';
 
@@ -85,12 +86,12 @@ class PolyFit {
       var matrixX = matrixVander(x, N: degree + 1, increasing: true);
 
       // a power of x that overflows cannot be used: reduce the degree
-      if (_isFinite(matrixX)) {
-        scale = _normalizeColumns(matrixX);
+      if (isFiniteMatrix(matrixX)) {
+        scale = normalizeColumns(matrixX);
 
         // find least squares solution
         qr = QR(matrixX);
-        var tolerance = math.max(n, degree + 1) * _machineEpsilon;
+        var tolerance = math.max(n, degree + 1) * machineEpsilon;
         if (qr.isFullRank(tolerance: tolerance)) break;
       }
 
@@ -233,43 +234,5 @@ class PolyFit {
       }
     }
     return 0;
-  }
-
-  static const double _machineEpsilon = 2.220446049250313e-16;
-
-  static bool _isFinite(Array2d m) {
-    for (var row in m) {
-      for (var value in row) {
-        if (!value.isFinite) return false;
-      }
-    }
-    return true;
-  }
-
-  /// Scales each column of [m] to unit norm in place and returns the scales.
-  /// The norm is computed relative to the largest absolute value of the
-  /// column, so it does not overflow or underflow for finite values.
-  static Array _normalizeColumns(Array2d m) {
-    var scale = Array.fixed(m.column);
-    for (var j = 0; j < m.column; j++) {
-      var maxAbs = 0.0;
-      for (var i = 0; i < m.row; i++) {
-        maxAbs = math.max(maxAbs, m[i][j].abs());
-      }
-      var norm = 1.0;
-      if (maxAbs > 0.0) {
-        var sum = 0.0;
-        for (var i = 0; i < m.row; i++) {
-          var r = m[i][j] / maxAbs;
-          sum += r * r;
-        }
-        norm = maxAbs * math.sqrt(sum);
-      }
-      scale[j] = norm;
-      for (var i = 0; i < m.row; i++) {
-        m[i][j] /= norm;
-      }
-    }
-    return scale;
   }
 }

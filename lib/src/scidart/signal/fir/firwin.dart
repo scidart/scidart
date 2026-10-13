@@ -113,23 +113,23 @@ dynamic firwin(int numtaps, Array cutoff,
         if (cutoff.length != 1) {
           throw FormatException(
               'cutoff must have one element if pass_zero=="lowpass", got $cutoff');
-        } else if (cutoff.length <= 1) {
-          throw FormatException(
-              'cutoff must have at least two elements if pass_zero=="bandstop", got $cutoff');
         }
-        pass_zero = true;
-      } 
+      } else if (cutoff.length <= 1) {
+        throw FormatException(
+            'cutoff must have at least two elements if pass_zero=="bandstop", got $cutoff');
+      }
+      pass_zero = true;
     } else if (pass_zero == 'bandpass' || pass_zero == 'highpass') {
       if (pass_zero == 'highpass') {
         if (cutoff.length != 1) {
           throw FormatException(
               'cutoff must have one element if pass_zero=="highpass", got ${cutoff.length}');
-        } else if (cutoff.length <= 1) {
+        }
+      } else if (cutoff.length <= 1) {
         throw FormatException(
             'cutoff must have at least two elements if pass_zero=="bandpass", got $cutoff');
-        }
-        pass_zero = false;
       }
+      pass_zero = false;
     } else {
       throw FormatException(
           'pass_zero must be True, False, "bandpass", "lowpass", "highpass", or "bandstop", got $pass_zero');
@@ -137,7 +137,7 @@ dynamic firwin(int numtaps, Array cutoff,
   }
 
   // ensure bool-like
-  if (!(pass_zero is bool)) {
+  if (pass_zero is! bool) {
     throw FormatException(
         "pass_zero is not a bool, please, insert: true, false, 'bandpass', 'lowpass', 'highpass', 'bandstop'");
   }
@@ -190,7 +190,7 @@ dynamic firwin(int numtaps, Array cutoff,
     // Get the first passband.
     var left = bands[0][0];
     var right = bands[0][1];
-    var scale_frequency;
+    double scale_frequency;
     if (left == 0) {
       scale_frequency = 0.0;
     } else if (right == 1) {
@@ -279,7 +279,7 @@ double kaiserAtten(int numtaps, double width) {
 /// */
 /// ```
 double kaiserBeta(double a) {
-  var beta;
+  double beta;
   if (a > 50) {
     beta = 0.1102 * (a - 8.7);
   } else if (a > 21) {

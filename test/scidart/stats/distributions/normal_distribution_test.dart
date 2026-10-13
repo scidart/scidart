@@ -160,4 +160,15 @@ void main() {
     expect(() => NormalDistribution(mean: double.nan), throwsFormatException);
     expect(() => n.sample(-1), throwsFormatException);
   });
+
+  test('standard ppf and cdf below the smallest normal double', () {
+    // scipy.special.ndtri and mpmath.ncdf with 50 digits
+    var z = NormalDistribution();
+    expect(z.ppf(2.2250738585072014e-308), closeToRelative(-37.5193793471445));
+    expect(z.ppf(1e-310), closeToRelative(-37.663060331949524));
+    expect(z.ppf(1e-320), closeToRelative(-38.26912534303265));
+    expect(z.ppf(5e-324), closeToRelative(-38.467405617144344));
+    expect(z.isf(1e-320), closeToRelative(38.26912534303265));
+    expect(z.cdf(-38.0), closeTo(2.8854283600687843e-316, 1e-322));
+  });
 }

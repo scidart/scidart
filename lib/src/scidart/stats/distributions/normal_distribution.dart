@@ -183,8 +183,36 @@ double _standardPpf(double p) {
             1.0);
   }
 
+  // below the smallest normal double the cdf is subnormal and too coarse for
+  // Halley, and exp(x^2 / 2) overflows
+  if (p < _minNormal) return _farTailPpf(p, x);
+
   // Halley refinement with the exact cdf
   var e = 0.5 * erfc(-x / math.sqrt2) - p;
   var u = e * _sqrt2Pi * math.exp(x * x / 2.0);
   return x - u / (1.0 + x * u / 2.0);
+}
+
+const _minNormal = 2.2250738585072014e-308;
+
+/// Newton's method on log(cdf(x)) = log(p) for x below -37. log(cdf) comes
+/// from the asymptotic series of the Mills ratio, which reaches double
+/// precision with 8 terms there:
+/// cdf(x) = pdf(x) / |x| * (1 - 1/x^2 + 3/x^4 - 15/x^6 + ...).
+double _farTailPpf(double p, double x) {
+  var logP = math.log(p);
+  for (var i = 0; i < 3; i++) {
+    var r = 1.0 / (x * x);
+    var series = 1.0;
+    var term = 1.0;
+    for (var k = 1; k <= 8; k++) {
+      term *= -(2 * k - 1) * r;
+      series += term;
+    }
+    var logCdf =
+        -0.5 * x * x - math.log(_sqrt2Pi) - math.log(-x) + math.log(series);
+    // d/dx log(cdf(x)) = pdf(x) / cdf(x) = -x / series
+    x -= (logCdf - logP) * series / -x;
+  }
+  return x;
 }

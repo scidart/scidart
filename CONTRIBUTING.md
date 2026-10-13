@@ -7,14 +7,32 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 ## Pull Request Process
 
-1. Ensure any install or build dependencies are removed before the end of the layer when doing a 
-   build.
-2. Update the README.md with details of changes to the interface, this includes new environment 
-   variables, exposed ports, useful file locations and container parameters.
-3. Increase the version numbers in the pubspec.yaml file to the new version that this
-   Pull Request would represent. The versioning scheme we use is [SemVer](http://semver.org/).
-4. You may merge the Pull Request in once you have the sign-off of two other developers, or if you 
+1. Every new or fixed function needs at least one test. Compare results with
+   NumPy/SciPy and write the reference values in the test.
+2. Before opening the Pull Request, run the same checks the CI runs:
+
+   ```sh
+   dart pub get
+   dart format .
+   dart analyze --fatal-infos
+   dart test
+   dart test -p chrome
+   ```
+
+3. Update the README.md and the CHANGELOG.md with the changes to the public API.
+4. You may merge the Pull Request in once you have the sign-off of two other developers, or if you
    do not have permission to do that, you may request the second reviewer to merge it for you.
+
+## Release Process
+
+1. Update `version` in `pubspec.yaml` and add the entry to `CHANGELOG.md`
+   (the versioning scheme is [SemVer](http://semver.org/)).
+2. After the Pull Request is merged, tag the merge commit with the same version
+   and push the tag: `git tag v0.0.3 && git push origin v0.0.3`.
+3. The `Publish` workflow publishes the tag to pub.dev. It uses automated
+   publishing (OIDC), so no secret is needed, but the package Admin tab on
+   pub.dev must allow publishing from `scidart/scidart` with the tag pattern
+   `v{{version}}`.
 
 ## Code of Conduct
 

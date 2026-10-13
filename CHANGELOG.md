@@ -8,7 +8,7 @@ Breaking changes:
 
 Fixes:
 - `PolyFit` no longer loops forever with `Infinity` or `NaN` values, it throws `FormatException` (#65)
-- `PolyFit` reduces the degree correctly when there are not enough distinct `x` values and scales the Vandermonde matrix like numpy, fixing wrong fits and negative R² (#37, #58)
+- `PolyFit` reduces the degree correctly when there are not enough distinct `x` values and scales the Vandermonde matrix like numpy with an overflow-safe norm, fixing wrong fits and negative R² (#37, #58). A degree larger than `x.length - 1`, or one whose powers of `x` overflow, is reduced
 - `QR` uses the stable Householder sign again and matches the numpy signs; `QR.isFullRank` accepts a `tolerance`
 - `SVD` throws `FormatException` for non-finite values instead of looping forever
 - `median` no longer sorts the caller's array (#59)

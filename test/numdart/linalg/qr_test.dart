@@ -37,4 +37,13 @@ void main() {
     expect(q, qExp);
     expect(r, rExp);
   });
+
+  test('matrix wider than tall is not full rank', () {
+    var qr = QR(Array2d([
+      Array([1.0, 1.0, 1.0]),
+      Array([1.0, 2.0, 4.0]),
+    ]));
+
+    expect(qr.isFullRank(), isFalse);
+  });
 }

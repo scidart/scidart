@@ -67,6 +67,13 @@ class QR {
         nrm = hypotenuse(nrm, _QR[i][k]);
       }
 
+      // A matrix wider than tall has no diagonal element in this column, so
+      // R has a zero there and the matrix is not full rank.
+      if (k >= _m) {
+        _Rdiag[k] = 0.0;
+        continue;
+      }
+
       // As in LAPACK, no reflection is applied when there is nothing below
       // the diagonal: R keeps the original sign of the diagonal element.
       var belowDiagonalIsZero = true;

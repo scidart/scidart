@@ -109,4 +109,31 @@ void main() {
     expect(() => PolyFit(Array([double.nan, 1, 2]), Array([0, 1, 2]), 1),
         throwsFormatException);
   });
+
+  test('degree larger than the number of points is reduced', () {
+    var eq = PolyFit(Array([1, 2]), Array([1, 2]), 2);
+
+    expect(eq.polyDegree(), 1);
+    expect(eq.predict(3), closeTo(3, 1e-12));
+  });
+
+  test('large and small finite x keep the degree', () {
+    for (var x in [
+      Array([1e200, 2e200]),
+      Array([1e-200, 2e-200]),
+    ]) {
+      var eq = PolyFit(x, Array([1, 2]), 1);
+
+      expect(eq.polyDegree(), 1);
+      expect(eq.predict(x[0]), closeTo(1, 1e-9));
+      expect(eq.predict(x[1]), closeTo(2, 1e-9));
+    }
+  });
+
+  test('a power of x that overflows reduces the degree', () {
+    var eq = PolyFit(Array([1e200, 2e200, 3e200]), Array([1, 2, 3]), 2);
+
+    expect(eq.polyDegree(), 1);
+    expect(eq.R2(), closeTo(1, 1e-12));
+  });
 }

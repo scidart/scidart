@@ -71,20 +71,28 @@ class PolyFit {
     }
 
     var n = x.length;
-    QR qr;
-    Array scale;
+    // n points define at most a polynomial of degree n - 1
+    if (degree > n - 1) {
+      degree = n - 1;
+    }
+    late QR qr;
+    late Array scale;
 
     // in case Vandermonde matrix does not have full rank, reduce degree until it does
     while (true) {
       // build Vandermonde matrix with columns scaled to unit norm, as numpy
       // does, so the rank test does not depend on the magnitude of x
       var matrixX = matrixVander(x, N: degree + 1, increasing: true);
-      scale = _normalizeColumns(matrixX);
 
-      // find least squares solution
-      qr = QR(matrixX);
-      var tolerance = math.max(n, degree + 1) * _machineEpsilon;
-      if (qr.isFullRank(tolerance: tolerance)) break;
+      // a power of x that overflows cannot be used: reduce the degree
+      if (_isFinite(matrixX)) {
+        scale = _normalizeColumns(matrixX);
+
+        // find least squares solution
+        qr = QR(matrixX);
+        var tolerance = math.max(n, degree + 1) * _machineEpsilon;
+        if (qr.isFullRank(tolerance: tolerance)) break;
+      }
 
       // decrease degree and try again
       degree--;
@@ -229,16 +237,34 @@ class PolyFit {
 
   static const double _machineEpsilon = 2.220446049250313e-16;
 
+  static bool _isFinite(Array2d m) {
+    for (var row in m) {
+      for (var value in row) {
+        if (!value.isFinite) return false;
+      }
+    }
+    return true;
+  }
+
   /// Scales each column of [m] to unit norm in place and returns the scales.
+  /// The norm is computed relative to the largest absolute value of the
+  /// column, so it does not overflow or underflow for finite values.
   static Array _normalizeColumns(Array2d m) {
     var scale = Array.fixed(m.column);
     for (var j = 0; j < m.column; j++) {
-      var norm = 0.0;
+      var maxAbs = 0.0;
       for (var i = 0; i < m.row; i++) {
-        norm += m[i][j] * m[i][j];
+        maxAbs = math.max(maxAbs, m[i][j].abs());
       }
-      norm = math.sqrt(norm);
-      if (norm == 0.0) norm = 1.0;
+      var norm = 1.0;
+      if (maxAbs > 0.0) {
+        var sum = 0.0;
+        for (var i = 0; i < m.row; i++) {
+          var r = m[i][j] / maxAbs;
+          sum += r * r;
+        }
+        norm = maxAbs * math.sqrt(sum);
+      }
       scale[j] = norm;
       for (var i = 0; i < m.row; i++) {
         m[i][j] /= norm;

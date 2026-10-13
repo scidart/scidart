@@ -67,12 +67,27 @@ class QR {
         nrm = hypotenuse(nrm, _QR[i][k]);
       }
 
+      // As in LAPACK, no reflection is applied when there is nothing below
+      // the diagonal: R keeps the original sign of the diagonal element.
+      var belowDiagonalIsZero = true;
+      for (var i = k + 1; i < _m; i++) {
+        if (_QR[i][k] != 0.0) {
+          belowDiagonalIsZero = false;
+          break;
+        }
+      }
+      if (belowDiagonalIsZero) {
+        _Rdiag[k] = _QR[k][k];
+        _QR[k][k] = 0.0;
+        continue;
+      }
+
       if (nrm != 0.0) {
-        // bug fixed to correct the signal of last column
-        // Form k-th Householder vector.
-//        if (_QR[k][k] < 0) {
-//          nrm = -nrm;
-//        }
+        // Form k-th Householder vector. The sign of nrm follows the diagonal
+        // element to avoid cancellation in _QR[k][k] += 1.0 below.
+        if (_QR[k][k] < 0) {
+          nrm = -nrm;
+        }
         for (var i = k; i < _m; i++) {
           _QR[i][k] /= nrm;
         }
@@ -98,10 +113,17 @@ class QR {
 
   //#region Public Methods
   ///  Is the matrix full rank?
+  ///  [tolerance] a diagonal element of R whose absolute value is less than or
+  ///  equal to tolerance * max(|diag(R)|) counts as zero. The default (0.0)
+  ///  only treats exact zeros as rank deficient.
   ///  return true if R, and hence A, has full rank.
-  bool isFullRank() {
+  bool isFullRank({double tolerance = 0.0}) {
+    var maxDiag = 0.0;
     for (var j = 0; j < _n; j++) {
-      if (_Rdiag[j] == 0) {
+      maxDiag = _Rdiag[j].abs() > maxDiag ? _Rdiag[j].abs() : maxDiag;
+    }
+    for (var j = 0; j < _n; j++) {
+      if (_Rdiag[j].abs() <= tolerance * maxDiag || _Rdiag[j] == 0) {
         return false;
       }
     }
@@ -182,6 +204,7 @@ class QR {
 
     // Compute Y = transpose(Q)*B
     for (var k = 0; k < _n; k++) {
+      if (_QR[k][k] == 0.0) continue;
       for (var j = 0; j < nx; j++) {
         var s = 0.0;
         for (var i = k; i < _m; i++) {

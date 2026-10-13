@@ -3,8 +3,6 @@ import 'dart:math' as math;
 import 'package:scidart/src/numdart/arrays_base/array.dart';
 import 'package:scidart/src/numdart/arrays_base/array2d.dart';
 import 'package:scidart/src/numdart/linalg/decompositions/qr.dart';
-import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_dot.dart';
-import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_norm_two.dart';
 import 'package:scidart/src/numdart/linalg/matrix_operations/matrix_vander.dart';
 import 'package:scidart/src/numdart/statistic/mean.dart';
 
@@ -55,11 +53,8 @@ class PolyFit {
   ///  [x] the values of the predictor variable
   ///  [y] the corresponding values of the response variable
   ///  [degree] the degree of the polynomial to fit
-  PolyFit(Array x, Array y, int degree) {
-    this.degree = degree;
-
-    // check arguments.
-    if (this.degree < 0) {
+  PolyFit(Array x, Array y, this.degree) {
+    if (degree < 0) {
       throw FormatException('expected deg >= 0');
     }
     if (x.isEmpty) {
@@ -69,24 +64,32 @@ class PolyFit {
       throw FormatException('expected x and y to have same length');
     }
 
+    for (var i = 0; i < x.length; i++) {
+      if (!x[i].isFinite || !y[i].isFinite) {
+        throw FormatException('expected only finite values in x and y');
+      }
+    }
+
     var n = x.length;
-    var order = this.degree + 1;
     QR qr;
-    Array2d matrixX;
+    Array scale;
 
     // in case Vandermonde matrix does not have full rank, reduce degree until it does
     while (true) {
-      // build Vandermonde matrix
-      matrixX = matrixVander(x, N: order, increasing: true);
+      // build Vandermonde matrix with columns scaled to unit norm, as numpy
+      // does, so the rank test does not depend on the magnitude of x
+      var matrixX = matrixVander(x, N: degree + 1, increasing: true);
+      scale = _normalizeColumns(matrixX);
 
       // find least squares solution
       qr = QR(matrixX);
-      if (qr.isFullRank()) break;
+      var tolerance = math.max(n, degree + 1) * _machineEpsilon;
+      if (qr.isFullRank(tolerance: tolerance)) break;
 
       // decrease degree and try again
-      this.degree--;
+      degree--;
 
-      if (this.degree < 0) {
+      if (degree < 0) {
         throw FormatException('Matrix is rank deficient.');
       }
     }
@@ -94,8 +97,11 @@ class PolyFit {
     // create matrix from vector
     var matrixY = Array2d.fromVector(y, n);
 
-    // linear regression coefficients
+    // linear regression coefficients, undoing the column scaling
     beta = qr.solve(matrixY);
+    for (var j = 0; j < beta.row; j++) {
+      beta[j][0] /= scale[j];
+    }
 
     // mean of y[] values
     var meany = mean(y);
@@ -107,8 +113,10 @@ class PolyFit {
     }
 
     // variation not accounted for
-    var residuals = matrixDot(matrixX, beta) - matrixY;
-    sse = matrixNormTwo(residuals) * matrixNormTwo(residuals);
+    for (var i = 0; i < n; i++) {
+      var residual = predict(x[i]) - y[i];
+      sse += residual * residual;
+    }
   }
 
   ///  Returns the {@code j}th regression coefficient.
@@ -217,5 +225,25 @@ class PolyFit {
       }
     }
     return 0;
+  }
+
+  static const double _machineEpsilon = 2.220446049250313e-16;
+
+  /// Scales each column of [m] to unit norm in place and returns the scales.
+  static Array _normalizeColumns(Array2d m) {
+    var scale = Array.fixed(m.column);
+    for (var j = 0; j < m.column; j++) {
+      var norm = 0.0;
+      for (var i = 0; i < m.row; i++) {
+        norm += m[i][j] * m[i][j];
+      }
+      norm = math.sqrt(norm);
+      if (norm == 0.0) norm = 1.0;
+      scale[j] = norm;
+      for (var i = 0; i < m.row; i++) {
+        m[i][j] /= norm;
+      }
+    }
+    return scale;
   }
 }

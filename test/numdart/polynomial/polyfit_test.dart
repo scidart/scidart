@@ -68,7 +68,9 @@ void main() {
     var y = Array([1, 4, 20, 25, 25, 20, 4]);
     var deg = 5;
 
-    expect(() => PolyFit(x, y, deg), throwsException);
+    // only two distinct x values: the degree is reduced to a line
+    var eq = PolyFit(x, y, deg);
+    expect(eq.polyDegree(), 1);
   });
 
   test('predict issue #37 working', () {
@@ -79,6 +81,32 @@ void main() {
     var eq = PolyFit(x, y, deg);
     print(eq);
 
-    expect(eq.polyDegree(), deg);
+    // only four distinct x values: the degree is reduced to 3, with the same
+    // residuals numpy.polyfit gives for deg=5
+    expect(eq.polyDegree(), 3);
+    expect(eq.R2(), closeTo(0.4166666666666667, 1e-9));
+  });
+
+  test('third order fit, issue #58', () {
+    var x = Array([100.0, 200, 300, 400, 500, 600, 700]);
+    var y = Array(x.map((v) => 0.5 * v * v * v - v * v + 3 * v + 1).toList());
+
+    var eq = PolyFit(x, y, 3);
+
+    expect(eq.polyDegree(), 3);
+    expect(eq.coefficient(3), closeTo(0.5, 1e-9));
+    expect(eq.coefficient(2), closeTo(-1.0, 1e-6));
+    expect(eq.R2(), closeTo(1.0, 1e-12));
+  });
+
+  test('infinite values throw instead of looping, issue #65', () {
+    var x = Array([80, 90, 100]);
+    var y = Array([double.infinity, 0, 1]);
+
+    for (var deg = 0; deg <= 4; deg++) {
+      expect(() => PolyFit(x, y, deg), throwsFormatException);
+    }
+    expect(() => PolyFit(Array([double.nan, 1, 2]), Array([0, 1, 2]), 1),
+        throwsFormatException);
   });
 }

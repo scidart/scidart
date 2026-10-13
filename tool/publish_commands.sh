@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Publishing is done by the Publish workflow when a version tag is pushed.
+# Releases are automatic when a new version is merged on master (see
+# CONTRIBUTING.md). This script is the manual fallback: it pushes the tag,
+# which starts the Publish workflow.
 # Usage: tool/publish_commands.sh 0.0.3
 set -e
 

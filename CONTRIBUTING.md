@@ -25,14 +25,17 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 ## Release Process
 
-1. Update `version` in `pubspec.yaml` and add the entry to `CHANGELOG.md`
-   (the versioning scheme is [SemVer](http://semver.org/)).
-2. After the Pull Request is merged, tag the merge commit with the same version
-   and push the tag: `git tag v0.0.3 && git push origin v0.0.3`.
-3. The `Publish` workflow publishes the tag to pub.dev. It uses automated
-   publishing (OIDC), so no secret is needed, but the package Admin tab on
-   pub.dev must allow publishing from `scidart/scidart` with the tag pattern
-   `v{{version}}`.
+1. In the Pull Request, update `version` in `pubspec.yaml` and add the entry
+   `## <version>` at the top of `CHANGELOG.md` (the versioning scheme is
+   [SemVer](http://semver.org/)). The CI fails if they do not match.
+2. Merge the Pull Request. The `release` job of the CI on `master` creates the
+   tag `v<version>` and starts the `Publish` workflow, which publishes to
+   pub.dev and creates the GitHub Release with the CHANGELOG entry.
+3. A merge without a version change releases nothing.
+
+Publishing uses pub.dev automated publishing (OIDC), so no secret is needed.
+The package Admin tab on pub.dev allows `scidart/scidart` with the tag pattern
+`v{{version}}` for `push` and `workflow_dispatch` events.
 
 ## Code of Conduct
 

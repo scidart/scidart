@@ -19,6 +19,14 @@ jobs:
         run: dart format --output=none --set-exit-if-changed .
       - name: Analyze
         run: dart analyze --fatal-infos
+      - name: Check CHANGELOG has the pubspec version
+        shell: bash
+        run: |
+          version=$(sed -n 's/^version: *//p' pubspec.yaml)
+          if [ "$(sed -n 's/^## //p' CHANGELOG.md | head -1)" != "$version" ]; then
+            echo "::error file=CHANGELOG.md::the first entry must be '## $version'"
+            exit 1
+          fi
       - name: Validate package
         run: dart pub publish --dry-run
 
@@ -49,3 +57,34 @@ jobs:
       - run: dart pub get
       - name: Run tests (Chrome)
         run: dart test -p chrome
+
+  # On master, a version without tag is released: the tag is created and the
+  # Publish workflow publishes it to pub.dev and creates the GitHub Release.
+  release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: [ analyze, test, test-web ]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Tag the new version
+        id: tag
+        shell: bash
+        run: |
+          tag="v$(sed -n 's/^version: *//p' pubspec.yaml)"
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null; then
+            echo "$tag already released"
+            exit 0
+          fi
+          git tag "$tag"
+          git push origin "$tag"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+      # a tag pushed with GITHUB_TOKEN does not start other workflows,
+      # so the Publish workflow is dispatched on the tag
+      - name: Start Publish
+        if: steps.tag.outputs.tag != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref "${{ steps.tag.outputs.tag }}"

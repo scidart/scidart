@@ -1,3 +1,29 @@
+## 0.0.3
+
+Breaking changes:
+- `rifft` follows `numpy.fft.irfft`: the output length is `2 * (x.length - 1)` by default and the new `n` argument sets it. Pass `n` with the original length to recover signals of odd length (#47)
+- `rifft` returns the real part of the inverse FFT instead of the absolute value (#47)
+- `==` of `Array`, `Array2d`, `ArrayComplex` and `Complex` returns `false` for other types and lengths instead of throwing, and `hashCode` is consistent with `==`
+- The minimum Dart SDK is 3.0.0
+
+Fixes:
+- `PolyFit` no longer loops forever with `Infinity` or `NaN` values, it throws `FormatException` (#65)
+- `PolyFit` reduces the degree correctly when there are not enough distinct `x` values and scales the Vandermonde matrix like numpy, fixing wrong fits and negative R² (#37, #58)
+- `QR` uses the stable Householder sign again and matches the numpy signs; `QR.isFullRank` accepts a `tolerance`
+- `SVD` throws `FormatException` for non-finite values instead of looping forever
+- `median` no longer sorts the caller's array (#59)
+- `firwin` accepts `pass_zero` as `'lowpass'`, `'highpass'`, `'bandpass'` and `'bandstop'` (#63 by j4ger)
+- `simpsArray` with an even number of samples and no `x` uses `dx` instead of failing
+- `truncate` works with values larger than 2^63
+
+New:
+- `multimode` returns all the most frequent values (#62)
+
+Maintenance:
+- Lints from `package:lints` replace the discontinued `pedantic`
+- CI runs on Linux, macOS, Windows and Chrome, with the minimum and the stable SDK
+- Publishing to pub.dev uses automated publishing (OIDC) when a `v*` tag is pushed
+
 ## 0.0.2-dev.13
 
 - Sort array before median calculation (#59 Closed)

@@ -10,8 +10,8 @@ import 'package:scidart/src/scidart/scidart.dart';
 ///
 /// # Returns:
 /// List
-/// - [freq] : frequency vector
-/// - [s_db] : spectrum in dB scale
+/// - `freq` : frequency vector
+/// - `s_db` : spectrum in dB scale
 ///
 /// # References
 /// 1. "fft to spectrum in decibel". https://dsp.stackexchange.com/questions/32076/fft-to-spectrum-in-decibel. Retrieved 2019-08-07.

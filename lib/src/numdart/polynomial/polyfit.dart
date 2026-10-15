@@ -166,7 +166,7 @@ class PolyFit {
   }
 
   ///  return the coefficients of the polynomial regression
-  ///  p(x) = p[0] * x**deg + ... + p\[deg\]
+  ///  `p(x) = p[0] * x**deg + ... + p[deg]`
   Array coefficients() {
     var coeff = Array.empty();
     var j = beta.row - 1;

@@ -5,7 +5,7 @@ import '../../../../numdart.dart';
 /// Compute the 1D cross-correlation of 2 complex signals
 /// - [input] : input signal
 /// - [kernel] : kernel signal that will convolve with input
-/// - [fast] : optional parameter default false,
+/// - `fast` : optional parameter default false,
 /// if true, compute convolution using FFT
 /// if false (default), compute convolution using numerical definition
 ///

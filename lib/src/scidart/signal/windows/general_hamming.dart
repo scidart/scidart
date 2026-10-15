@@ -3,7 +3,7 @@ import 'package:scidart/src/scidart/signal/windows/general_cosine.dart';
 
 /// Return a generalized Hamming window.
 /// The generalized Hamming window is constructed by multiplying a rectangular
-/// window by one period of a cosine function [1]_.
+/// window by one period of a cosine function (reference 1).
 ///
 /// # Parameters
 /// - [M] : int
@@ -27,7 +27,7 @@ import 'package:scidart/src/scidart/signal/windows/general_cosine.dart';
 /// \qquad 0 \leq n \leq M-1
 /// Both the common Hamming window and Hann window are special cases of the
 /// generalized Hamming window with :math:`\alpha` = 0.54 and :math:`\alpha` =
-/// 0.5, respectively [2]_.
+/// 0.5, respectively (reference 2).
 ///
 /// # See Also
 /// - hamming, hann
@@ -48,7 +48,7 @@ import 'package:scidart/src/scidart/signal/windows/general_cosine.dart';
 /// ```dart
 /// /* The Sentinel-1A/B Instrument Processing Facility uses generalized Hamming
 /// windows in the processing of spaceborne Synthetic Aperture Radar (SAR)
-/// data [3]_. The facility uses various values for the :math:`\alpha`
+/// data (reference 3). The facility uses various values for the `alpha`
 /// parameter based on operating mode of the SAR instrument. Some common
 /// :math:`\alpha` values include 0.75, 0.7 and 0.52 [4]_. As an example, we
 /// plot these different windows. */

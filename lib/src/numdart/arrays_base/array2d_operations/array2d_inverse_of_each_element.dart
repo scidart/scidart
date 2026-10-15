@@ -1,6 +1,6 @@
 import 'package:scidart/numdart.dart';
 
-/// Compute the inverse of each elements ( x[r][l] = 1/x[r][l] )
+/// Compute the inverse of each element (`x[r][l] = 1/x[r][l]`)
 ///
 /// # Examples
 /// ```dart

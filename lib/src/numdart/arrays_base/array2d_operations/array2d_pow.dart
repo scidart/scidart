@@ -1,7 +1,7 @@
 import 'package:scidart/numdart.dart';
 
 /// Compute the power of each element of the array2d [a] by [exponent]
-/// ( x[r][l] = x[r][l]^exponent )
+/// (`x[r][l] = x[r][l]^exponent`)
 ///
 /// # Examples
 /// ```dart

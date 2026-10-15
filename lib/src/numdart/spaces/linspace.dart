@@ -2,7 +2,7 @@ import 'package:scidart/src/numdart/arrays_base/array.dart';
 
 /// Return evenly spaced numbers over a specified interval.
 /// Returns `num` evenly spaced samples, calculated over the
-/// interval [`start`, `stop`].
+/// interval `[start, stop]`.
 ///
 /// # Parameters
 /// - [start] : double

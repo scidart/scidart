@@ -5,8 +5,10 @@ import 'package:scidart/src/numdart/numdart.dart';
 /// per unit of the sample spacing (with zero at the start).  For instance, if
 /// the sample spacing is in seconds, then the frequency unit is cycles/second.
 /// Given a window length `n` and a sample spacing `d`::
+/// ```text
 ///   f = [0, 1, ...,   n/2-1,     -n/2, ..., -1] / (d*n)   if n is even
 ///   f = [0, 1, ..., (n-1)/2, -(n-1)/2, ..., -1] / (d*n)   if n is odd
+/// ```
 ///
 /// # Parameters
 /// - [n] : int

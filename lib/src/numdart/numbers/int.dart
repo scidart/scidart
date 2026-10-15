@@ -28,7 +28,7 @@ int bitReverse(int n, int bits) {
 ///  [n] : input number
 ///  References
 ///  ----------
-///  .. [1] "understanding logic behind integer highestonebit method implementation". https://stackoverflow.com/questions/53369498/understanding-logic-behind-integer-highestonebit-method-implementation. Retrieved 2019-07-24.
+/// 1. "understanding logic behind integer highestonebit method implementation". https://stackoverflow.com/questions/53369498/understanding-logic-behind-integer-highestonebit-method-implementation. Retrieved 2019-07-24.
 ///  Examples
 ///  --------
 ///  >>>

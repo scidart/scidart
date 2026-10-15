@@ -9,7 +9,7 @@ import 'package:scidart/src/numdart/numdart.dart';
 /// - [n] : Length of the transformed axis of the output (optional). If not informed,
 /// the length of x will be used
 /// If n is smaller than the length of the input, the input is cropped.
-/// If it is larger, the input is padded with zeros.
+/// If it is larger, zeros are appended at the end of the input, like numpy.
 /// If n is not given, the length of the input is used.
 /// - [normalization] : Compute the FFT normalization wich is: fft(x)/n (optional default false)
 /// - return An ArrayComplex with FFT output
@@ -58,13 +58,13 @@ ArrayComplex fft(ArrayComplex x,
       buffer.add(x[i]);
     }
   } else if (n > x.length) {
-    buffer = ArrayComplex.empty();
+    // zeros go at the end, like numpy.fft.fft
+    buffer = x.copy();
     var pad = n - x.length;
     while (pad > 0) {
       buffer.add(Complex());
       pad--;
     }
-    buffer = arrayComplexConcat(buffer, x);
   }
 
   ArrayComplex res;

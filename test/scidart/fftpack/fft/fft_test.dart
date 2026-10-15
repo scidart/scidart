@@ -88,32 +88,66 @@ void main() {
 
     var X = fft(x, n: 16, forceDft: true);
 
-    // expected FFT
+    // numpy.fft.fft(x, n=16): zeros are appended at the end
     var XExpected = ArrayComplex([
-      Complex(real: 4.0, imaginary: 0.0),
-      Complex(real: -2.0137, imaginary: 3.0137),
-      Complex(real: -1.0, imaginary: -2.4142),
-      Complex(real: 1.2483, imaginary: 0.2483),
-      Complex(real: 0.0, imaginary: 0.0),
-      Complex(real: 0.1659, imaginary: 0.8341),
-      Complex(real: -1.0, imaginary: -0.4142),
-      Complex(real: 0.5995, imaginary: -0.4005),
-      Complex(real: 0.0, imaginary: 0.0),
-      Complex(real: 0.5995, imaginary: 0.4005),
-      Complex(real: -1.0, imaginary: 0.4142),
-      Complex(real: 0.1659, imaginary: -0.8341),
-      Complex(real: 0.0, imaginary: 0.0),
-      Complex(real: 1.2483, imaginary: -0.2483),
-      Complex(real: -1.0, imaginary: 2.4142),
-      Complex(real: -2.0137, imaginary: -3.0137)
+      Complex(real: 4.0000, imaginary: 0.0000),
+      Complex(real: 3.0137, imaginary: -2.0137),
+      Complex(real: 1.0000, imaginary: -2.4142),
+      Complex(real: -0.2483, imaginary: -1.2483),
+      Complex(real: 0.0000, imaginary: 0.0000),
+      Complex(real: 0.8341, imaginary: 0.1659),
+      Complex(real: 1.0000, imaginary: -0.4142),
+      Complex(real: 0.4005, imaginary: -0.5995),
+      Complex(real: 0.0000, imaginary: 0.0000),
+      Complex(real: 0.4005, imaginary: 0.5995),
+      Complex(real: 1.0000, imaginary: 0.4142),
+      Complex(real: 0.8341, imaginary: -0.1659),
+      Complex(real: 0.0000, imaginary: 0.0000),
+      Complex(real: -0.2483, imaginary: 1.2483),
+      Complex(real: 1.0000, imaginary: 2.4142),
+      Complex(real: 3.0137, imaginary: 2.0137),
     ]);
 
-    arrayComplexTruncateEachElement(X, 4);
-    arrayComplexTruncateEachElement(XExpected, 4);
+    expect(X.length, 16);
+    for (var i = 0; i < X.length; i++) {
+      expect(X[i].real, closeTo(XExpected[i].real, 1e-4));
+      expect(X[i].imaginary, closeTo(XExpected[i].imaginary, 1e-4));
+    }
+  });
 
-    print(X);
+  test('zero padding appends zeros like numpy', () {
+    var x = arrayToComplexArray(Array([1.0, 2.0, 3.0]));
 
-    expect(X, XExpected);
+    // numpy.fft.fft([1, 2, 3], n=4), radix-2 path
+    var radix2 = fft(x, n: 4);
+    var expected4 = [
+      Complex(real: 6, imaginary: 0),
+      Complex(real: -2, imaginary: -2),
+      Complex(real: 2, imaginary: 0),
+      Complex(real: -2, imaginary: 2),
+    ];
+    // numpy.fft.fft([1, 2, 3], n=5), DFT path
+    var dft = fft(x, n: 5);
+    var expected5 = [
+      Complex(real: 6, imaginary: 0),
+      Complex(real: -0.80901699, imaginary: -3.66546879),
+      Complex(real: 0.30901699, imaginary: 1.67759904),
+      Complex(real: 0.30901699, imaginary: -1.67759904),
+      Complex(real: -0.80901699, imaginary: 3.66546879),
+    ];
+    for (var (got, want) in [(radix2, expected4), (dft, expected5)]) {
+      expect(got.length, want.length);
+      for (var i = 0; i < want.length; i++) {
+        expect(got[i].real, closeTo(want[i].real, 1e-8));
+        expect(got[i].imaginary, closeTo(want[i].imaginary, 1e-8));
+      }
+    }
+
+    // numpy.fft.rfft([1, 2, 3], n=4)
+    var r = rfft(Array([1.0, 2.0, 3.0]), n: 4);
+    expect(r.length, 3);
+    expect(r[1].real, closeTo(-2, 1e-12));
+    expect(r[1].imaginary, closeTo(-2, 1e-12));
   });
 
   test('fft of a big signal', () {

@@ -48,3 +48,24 @@ jobs:
           prerelease=""
           case "$version" in *-*) prerelease="--prerelease" ;; esac
           gh release create "$tag" --title "$tag" --notes-file notes.md --verify-tag $prerelease
+
+  update-site:
+    # Rebuilds scidart.org with the new release. Needs the SITE_DISPATCH_TOKEN
+    # secret: a fine-grained token for scidart/scidart.org with
+    # "Contents: read and write". Without it the step is skipped.
+    needs: github-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ask scidart.org to rebuild
+        env:
+          GH_TOKEN: ${{ secrets.SITE_DISPATCH_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "SITE_DISPATCH_TOKEN not set: run the Deploy workflow of scidart/scidart.org by hand"
+            exit 0
+          fi
+          gh api repos/scidart/scidart.org/dispatches \
+            -f event_type=scidart-release \
+            -f "client_payload[ref]=$TAG"

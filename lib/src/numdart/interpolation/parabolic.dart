@@ -6,7 +6,7 @@ import '../numdart.dart';
 /// - [x] : is an index point for that vector.
 ///
 /// # Return
-/// [vx, vy], the coordinates of the vertex of a parabola that goes
+/// `[vx, vy]`, the coordinates of the vertex of a parabola that goes
 /// through point x and its two neighbors.
 ///
 /// # References

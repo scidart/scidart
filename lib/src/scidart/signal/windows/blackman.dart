@@ -29,7 +29,7 @@ import 'general_cosine.dart';
 /// sidelobes, but has discontinuities at the boundaries, resulting in a
 /// 6 dB/oct fall-off.  This window is an approximation of the "exact" window,
 /// which does not null the sidelobes as well, but is smooth at the edges,
-/// improving the fall-off rate to 18 dB/oct. [3]_
+/// improving the fall-off rate to 18 dB/oct (reference 3).
 /// Most references to the Blackman window come from the signal processing
 /// literature, where it is used as one of many windowing functions for
 /// smoothing values.  It is also known as an apodization (which means

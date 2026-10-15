@@ -45,19 +45,12 @@ void main() {
 
     var str = book.toString();
 
-    var strExpec = 'Array3d([Array2d([\n'
-        '  Array([1.0, 2.0, 3.0]), \n'
-        '  Array([1.0, 2.0, 3.0]), \n'
-        '  Array([1.0, 2.0, 3.0])\n'
-        ']), Array2d([\n'
-        '  Array([1.0, 2.0, 3.0]), \n'
-        '  Array([1.0, 2.0, 3.0]), \n'
-        '  Array([1.0, 2.0, 3.0])\n'
-        ']), Array2d([\n'
-        '  Array([1.0, 2.0, 3.0]), \n'
-        '  Array([1.0, 2.0, 3.0]), \n'
-        '  Array([1.0, 2.0, 3.0])\n'
-        '])])';
+    var pageStr = 'Array2d([\n'
+        '    Array([1.0, 2.0, 3.0]),\n'
+        '    Array([1.0, 2.0, 3.0]),\n'
+        '    Array([1.0, 2.0, 3.0])\n'
+        '  ])';
+    var strExpec = 'Array3d([\n  $pageStr,\n  $pageStr,\n  $pageStr\n])';
 
     print(book);
 

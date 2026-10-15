@@ -64,11 +64,11 @@ class NormalDistribution {
   double sf(double x) => 0.5 * erfc((x - mean) / (std * math.sqrt2));
 
   /// Percent point function (inverse of [cdf]): the value with
-  /// `cdf(value) == p`, for p in [0, 1].
+  /// `cdf(value) == p`, for p in `[0, 1]`.
   double ppf(double p) => mean + std * _standardPpf(p);
 
   /// Inverse survival function: the value with `sf(value) == q`, for q in
-  /// [0, 1]. Accurate for small q.
+  /// `[0, 1]`. Accurate for small q.
   double isf(double q) => mean - std * _standardPpf(q);
 
   /// Interval with the given [confidence] around the mean, as

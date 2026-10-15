@@ -263,7 +263,7 @@ class Array extends ListBase<double> {
   @override
   String toString() {
     var str = IterableBase.iterableToFullString(this, '[', ']');
-    return '\n  Array($str)';
+    return 'Array($str)';
   }
 
   //#endregion

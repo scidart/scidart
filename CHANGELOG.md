@@ -1,3 +1,14 @@
+## 0.1.1
+
+Fixes:
+- `randomArray2d(rows, columns)` returns `rows` rows of `columns` values; it had rows and columns swapped
+- `fft` with `n` larger than the input appends the zeros at the end, like `numpy.fft.fft`; they were added at the start, which changed the phase of the result. `rfft` gets the same fix
+- `toString` of `Array` and `Complex` no longer starts with a line break, as their documentation shows. `ArrayComplex` prints on one line, and `Array2d` and `Array3d` print one row per line without trailing spaces
+
+Docs:
+- API documentation builds without warnings (unresolved references in doc comments)
+- The scidart.org site is rebuilt after each release
+
 ## 0.1.0
 
 New:

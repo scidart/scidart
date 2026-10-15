@@ -3,7 +3,7 @@ import 'package:scidart/src/numdart/numdart.dart';
 import 'general_cosine.dart';
 
 /// Return a minimum 4-term Blackman-Harris window according to Nuttall.
-/// This variation is called "Nuttall4c" by Heinzel. [1]_
+/// This variation is called "Nuttall4c" by Heinzel (reference 1).
 ///
 /// # Parameters
 /// - [M] : int

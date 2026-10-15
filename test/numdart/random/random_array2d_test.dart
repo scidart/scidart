@@ -10,4 +10,11 @@ void main() {
     expect(x.row, xExpec);
     expect(x.column, xExpec);
   });
+
+  test('random array2d has rows x columns', () {
+    var x = randomArray2d(2, 3);
+    expect(x.row, 2);
+    expect(x.column, 3);
+    expect(x.every((r) => r.every((v) => v >= 0 && v < 1)), isTrue);
+  });
 }

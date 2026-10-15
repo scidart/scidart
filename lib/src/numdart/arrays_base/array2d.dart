@@ -463,13 +463,17 @@ class Array2d extends ListBase<Array> {
   /// print(matrix.toString());
   ///
   /// /* output:
-  /// Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])
+  /// Array2d([
+  ///   Array([1.0, 2.0, 3.0]),
+  ///   Array([1.0, 2.0, 3.0]),
+  ///   Array([1.0, 2.0, 3.0])
+  /// ])
   /// */
   /// ```
   @override
   String toString() {
-    var str = IterableBase.iterableToFullString(this, '[', '\n]');
-    return 'Array2d($str)';
+    if (isEmpty) return 'Array2d([])';
+    return 'Array2d([\n  ${join(',\n  ')}\n])';
   }
 
   //#endregion

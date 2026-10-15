@@ -38,8 +38,8 @@ void main() {
     var str = matrix.toString();
 
     var strExpec = 'Array2d([\n'
-        '  Array([1.0, 2.0, 3.0]), \n'
-        '  Array([1.0, 2.0, 3.0]), \n'
+        '  Array([1.0, 2.0, 3.0]),\n'
+        '  Array([1.0, 2.0, 3.0]),\n'
         '  Array([1.0, 2.0, 3.0])\n'
         '])';
 

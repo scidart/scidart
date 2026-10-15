@@ -84,12 +84,10 @@ void main() {
 
     var str = list.toString();
 
-    var strExpect = '\n'
-        '  ArrayComplex([\n'
-        '    Complex(real: 3.0, imaginary: 4.0), \n'
-        '    Complex(real: 3.0, imaginary: 4.0), \n'
-        '    Complex(real: 3.0, imaginary: 4.0)]\n'
-        '  )';
+    var strExpect = 'ArrayComplex(['
+        'Complex(real: 3.0, imaginary: 4.0), '
+        'Complex(real: 3.0, imaginary: 4.0), '
+        'Complex(real: 3.0, imaginary: 4.0)])';
 
     print(str);
 

@@ -107,13 +107,22 @@ class Array3d extends ListBase<Array2d> {
   /// print(book);
   ///
   /// /* output:
-  /// Array3d([Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])]), Array2d([Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0]), Array([1.0, 2.0, 3.0])])])
+  /// Array3d([
+  ///   Array2d([
+  ///     Array([1.0, 2.0, 3.0]),
+  ///     Array([1.0, 2.0, 3.0]),
+  ///     Array([1.0, 2.0, 3.0])
+  ///   ]),
+  ///   ...
+  /// ])
   /// */
   /// ```
   @override
   String toString() {
-    var str = IterableBase.iterableToFullString(this, '[', ']');
-    return 'Array3d($str)';
+    if (isEmpty) return 'Array3d([])';
+    // indent each matrix one level inside the outer brackets
+    var pages = map((page) => page.toString().replaceAll('\n', '\n  '));
+    return 'Array3d([\n  ${pages.join(',\n  ')}\n])';
   }
   //#endregion
 }

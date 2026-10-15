@@ -57,6 +57,6 @@ void main() {
   test('toString', () {
     var c1 = Complex(real: 1, imaginary: 1);
 
-    expect(c1.toString(), '\n' '    Complex(real: 1.0, imaginary: 1.0)');
+    expect(c1.toString(), 'Complex(real: 1.0, imaginary: 1.0)');
   }, testOn: 'vm');
 }
